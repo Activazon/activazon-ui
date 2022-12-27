@@ -15,76 +15,79 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <body>
-        <nav className="navbar sticky-top">
-          <div className="container">
-            <a className="navbar-brand" href="#">
-              <i className="bi bi-activity"></i> Activazon
-            </a>
+        <div className="page">
+          <nav className="navbar sticky-top">
+            <div className="container">
+              <a className="navbar-brand" href="#">
+                <i className="bi bi-activity"></i> Activazon
+              </a>
 
-            <p className="page-title">Honduras</p>
+              <p className="page-title">Honduras</p>
+            </div>
+          </nav>
+          <div class="container banner">
+            <p className="banner-text">Barrio Concepción</p>
+            <p className="banner-lead mb-4">San Pedro Sula</p>
           </div>
-        </nav>
-        <div class="container banner">
-          <p className="banner-text">Barrio Concepción</p>
-          <p className="banner-lead pb-4">San Pedro Sula</p>
-        </div>
+          <main>
+            <div class="container mt-3">
+              <p className="lead">
+                <i className="bi bi-card-text"></i> Summary
+              </p>
 
-        <div class="container mt-3">
-          <p className="lead">
-            <i className="bi bi-card-text"></i> Summary
-          </p>
+              <ActivityTypeCard
+                count={5}
+                // href="/c/honduras/activity/1"
+                href="#"
+                title="Arrests"
+                description="Reported in the last 6 months"
+              />
+              <ActivityTypeCard
+                count={2}
+                // href="/c/honduras/activity/1"
+                href="#"
+                title="Robberies"
+                description="Reported in the last 6 months"
+              />
+              <ActivityTypeCard
+                count={1}
+                // href="/c/honduras/activity/1"
+                href="#"
+                title="Murders"
+                description="Reported in the last 6 months"
+              />
+            </div>
 
-          <ActivityTypeCard
-            count={5}
-            // href="/c/honduras/activity/1"
-            href="#"
-            title="Arrests"
-            description="Reported in the last 6 months"
-          />
-          <ActivityTypeCard
-            count={2}
-            // href="/c/honduras/activity/1"
-            href="#"
-            title="Robberies"
-            description="Reported in the last 6 months"
-          />
-          <ActivityTypeCard
-            count={1}
-            // href="/c/honduras/activity/1"
-            href="#"
-            title="Murders"
-            description="Reported in the last 6 months"
-          />
-        </div>
+            <div class="container mt-3">
+              <p className="lead">
+                <i className="bi bi-activity"></i> Activity in this area
+              </p>
 
-        <div class="container mt-3">
-          <p className="lead">
-            <i className="bi bi-activity"></i> Activity in this area
-          </p>
-
-          <ActivityCard
-            href="/honduras/activity/1"
-            title="Arrest in Barrio Concepción"
-            description="A robbery took place at a gas station"
-          />
-          <ActivityCard
-            href="/honduras/activity/1"
-            title="Arrest in Barrio Concepción"
-            description="A robbery took place at a gas station"
-          />
-          <ActivityCard
-            href="/honduras/activity/1"
-            title="Arrest in Barrio Concepción"
-            description="A robbery took place at a gas station"
-          />
-          <ActivityCard
-            href="/honduras/activity/1"
-            title="Arrest in Barrio Concepción"
-            description="A robbery took place at a gas station"
-          />
-        </div>
-        <div class="container my-5 text-center">
-          <p>&copy; Activazon 2023</p>
+              <ActivityCard
+                href="/honduras/activity/1"
+                title="Arrest in Barrio Concepción"
+                description="A robbery took place at a gas station"
+              />
+              <ActivityCard
+                href="/honduras/activity/1"
+                title="Arrest in Barrio Concepción"
+                description="A robbery took place at a gas station"
+              />
+              <ActivityCard
+                href="/honduras/activity/1"
+                title="Arrest in Barrio Concepción"
+                description="A robbery took place at a gas station"
+              />
+              <ActivityCard
+                href="/honduras/activity/1"
+                title="Arrest in Barrio Concepción"
+                description="A robbery took place at a gas station"
+              />
+            </div>
+            <div class="container my-5 text-center">
+              <p>&copy; Activazon 2023</p>
+            </div>
+          </main>
         </div>
       </body>
     </>
