@@ -1,14 +1,15 @@
 import Head from "next/head";
+import Link from "next/link";
 
 const CountryCard = () => (
-  <a href="/c/honduras" className="text-decoration-none">
+  <Link href="/c/honduras" className="text-decoration-none">
     <div className="card card-body card-column">
       <div class="icon">🇭🇳</div>
       <div className="card-content">
         <p className="card-title">Honduras</p>
       </div>
     </div>
-  </a>
+  </Link>
 );
 
 export default function Home() {

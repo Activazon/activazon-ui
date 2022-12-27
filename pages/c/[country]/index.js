@@ -39,18 +39,18 @@ export default function Home() {
           </p>
 
           <NeighbourhoodCard
-            href="/honduras/neighbourhood/1"
+            href="/c/honduras/neighbourhood/1"
             title="Barrio Concepción"
             description="San Pedro Sula"
           />
 
           <NeighbourhoodCard
-            href="/honduras/neighbourhood/1"
+            href="/c/honduras/neighbourhood/1"
             title="Barrio Concepción"
             description="San Pedro Sula"
           />
           <NeighbourhoodCard
-            href="/honduras/neighbourhood/1"
+            href="/c/honduras/neighbourhood/1"
             title="Barrio Concepción"
             description="San Pedro Sula"
           />
@@ -61,7 +61,8 @@ export default function Home() {
             <i className="bi bi-activity"></i> Recent Activity
           </p>
           <ActivityCard
-            href="/honduras/activity/1"
+            href="#"
+            // href="/c/honduras/activity/1"
             title="Arrest in Barrio Concepción"
             description="A robbery took place at a gas station"
           />

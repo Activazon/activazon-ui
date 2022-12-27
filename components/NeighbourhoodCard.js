@@ -1,5 +1,7 @@
+import Link from "next/link";
+
 const NeighbourhoodCard = ({ href, title, description }) => (
-  <a href={href} className="text-decoration-none">
+  <Link href={href} className="text-decoration-none">
     <div className="card card-body card-row">
       <div class="icon">
         <i class="bi bi-pin-map-fill"></i>
@@ -10,7 +12,7 @@ const NeighbourhoodCard = ({ href, title, description }) => (
         <p className="card-description mb-0">5 reports in the last 30 days</p>
       </div>
     </div>
-  </a>
+  </Link>
 );
 
 export default NeighbourhoodCard;

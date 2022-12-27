@@ -36,19 +36,22 @@ export default function Home() {
 
           <ActivityTypeCard
             count={5}
-            href="/honduras/activity/1"
+            // href="/c/honduras/activity/1"
+            href="#"
             title="Arrests"
             description="Reported in the last 6 months"
           />
           <ActivityTypeCard
             count={2}
-            href="/honduras/activity/1"
+            // href="/c/honduras/activity/1"
+            href="#"
             title="Robberies"
             description="Reported in the last 6 months"
           />
           <ActivityTypeCard
             count={1}
-            href="/honduras/activity/1"
+            // href="/c/honduras/activity/1"
+            href="#"
             title="Murders"
             description="Reported in the last 6 months"
           />

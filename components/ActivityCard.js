@@ -1,5 +1,7 @@
+import Link from "next/link";
+
 const ActivityCard = ({ href, title, description }) => (
-  <a href={href} className="text-decoration-none">
+  <Link href={href} className="text-decoration-none">
     <div className="card card-body card-row">
       <div class="icon">
         <i class="bi bi-lightning-fill"></i>
@@ -10,7 +12,7 @@ const ActivityCard = ({ href, title, description }) => (
         <p className="card-description mb-0">Reported Today</p>
       </div>
     </div>
-  </a>
+  </Link>
 );
 
 export default ActivityCard;
