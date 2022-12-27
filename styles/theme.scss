@@ -1,0 +1,121 @@
+@import "bootstrap/scss/bootstrap.scss";
+@import "bootstrap-icons/font/bootstrap-icons.scss";
+@import "./fonts.scss";
+
+$white: #cdd7de;
+$primary: #06d0f9;
+$secondary: #7176ed;
+$bg-color: #0b2442;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+);
+
+body {
+  font-family: "TT-Supermolot-Neue";
+  background-color: $bg-color;
+  color: $white;
+}
+
+.banner {
+  background-color: $primary;
+  padding-top: $spacer * 1.5;
+
+  .banner-text {
+    @extend .display-3;
+    font-family: "TT-Supermolot-Neue";
+    font-weight: 600;
+    color: $bg-color;
+  }
+
+  .banner-lead {
+    font-family: "TT-Supermolot-Neue";
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: $bg-color;
+  }
+
+  .search-form {
+    display: flex;
+    background-color: darken($primary, 10deg);
+
+    input[type="text"] {
+      background-color: transparent;
+      border: 0px;
+      flex: 1;
+      padding: $spacer * 0.5 $spacer;
+      outline: none;
+      color: $bg-color;
+      font-size: $spacer * 1.2;
+      font-weight: 600;
+      &::placeholder {
+        color: lighten($primary, 15%);
+      }
+    }
+  }
+}
+
+.navbar {
+  background-color: $bg-color !important;
+  .container {
+    justify-content: start !important;
+  }
+  .navbar-brand {
+    font-weight: 700;
+    font-size: $spacer * 1.5;
+    color: $primary;
+    margin-right: $spacer * 0.3;
+  }
+  .page-title {
+    @extend .navbar-brand;
+    color: $white;
+    font-weight: 500;
+    margin-bottom: 0px;
+  }
+}
+
+.lead {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: $primary;
+}
+
+.card.card-body {
+  border-radius: 0px;
+  border: 0px;
+  background-color: darken($bg-color, 3.5%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: $spacer * 0.5;
+  color: $white;
+
+  &:hover {
+    background-color: darken($bg-color, 8%);
+  }
+
+  .icon {
+    font-size: 2rem;
+    padding: $spacer * 0.2 $spacer;
+    padding-right: $spacer * 2;
+  }
+  .card-content {
+    .card-title {
+      font-size: 1.3rem;
+      margin-bottom: 0px;
+      font-weight: 600;
+      color: $primary;
+    }
+    .card-description {
+      //   color: lighten($bg-color, 25deg);
+      font-weight: 500;
+    }
+  }
+}
