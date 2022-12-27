@@ -1,4 +1,6 @@
 import Head from "next/head";
+import Nav from "../../../../components/Nav";
+import Banner from "../../../../components/Banner";
 import ActivityTypeCard from "../../../../components/ActivityTypeCard";
 import ActivityCard from "../../../../components/ActivityCard";
 
@@ -16,20 +18,14 @@ export default function Home() {
       </Head>
       <body>
         <div className="page">
-          <nav className="navbar sticky-top">
-            <div className="container">
-              <a className="navbar-brand" href="#">
-                <i className="bi bi-activity"></i> Activazon
-              </a>
-
-              <p className="page-title">Honduras</p>
-            </div>
-          </nav>
-          <div class="container banner">
-            <p className="banner-text">Barrio Concepción</p>
-            <p className="banner-lead mb-4">San Pedro Sula</p>
-          </div>
+          <Nav pageTitle={"Honduras"} />
           <main>
+            <Banner
+              title={"Barrio Concepción"}
+              description={"San Pedro Sula"}
+              showSearch={true}
+            />
+
             <div class="container mt-3">
               <p className="lead">
                 <i className="bi bi-card-text"></i> Summary

@@ -1,15 +1,7 @@
 import Head from "next/head";
-import Link from "next/link";
-
-const CountryCard = () => (
-  <Link href="/c/honduras" className="text-decoration-none">
-    <div className="card card-body card-row-sm">
-      <div className="card-content">
-        <p className="card-title">Honduras</p>
-      </div>
-    </div>
-  </Link>
-);
+import Banner from "../components/Banner";
+import CountryCard from "../components/CountryCard";
+import Nav from "../components/Nav";
 
 export default function Home() {
   return (
@@ -25,36 +17,19 @@ export default function Home() {
       </Head>
       <body>
         <div className="page">
-          <nav className="navbar sticky-top">
-            <div className="container">
-              <a className="navbar-brand" href="#">
-                <i className="bi bi-activity"></i> Activazon
-              </a>
+          <Nav />
+          <main>
+            <Banner
+              title="AI-powered insights for your neighborhood"
+              showSearch={true}
+            />
 
-              <p className="page-title"></p>
-            </div>
-          </nav>
-
-          <div class="container banner">
-            <p className="banner-text">
-              AI-powered insights for your neighborhood
-            </p>
-            <div class="row">
-              <div class="search-form">
-                <input type="text" placeholder="Search your neighbourhood" />
-              </div>
-            </div>
-          </div>
-          <main className="flex-grow-1">
             <div className="container pt-3">
               <p className="lead">Explore</p>
               <div className="row">
-                <div className="col-12">
+                <div className="col-12 col-md-6 col-lg-4">
                   <CountryCard />
                 </div>
-                {/* <div className="col-6">
-              <CountryCard />
-            </div> */}
               </div>
             </div>
             <div class="container mt-3">

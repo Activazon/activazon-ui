@@ -40,14 +40,20 @@ main {
 
 .banner {
   background-color: $primary;
-  padding-top: $spacer * 1.5;
+  padding: $spacer * 1.5 0px;
 
   .banner-text {
-    @extend .display-3;
     font-family: "TT-Supermolot-Neue";
-    font-weight: 700;
+
     color: $bg-color;
-    // text-shadow: 2px 2px 0px lighten($primary, 30%);
+    &.banner-title {
+      @extend .display-3;
+      font-weight: 700;
+    }
+    &.banner-description {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
   }
 
   .banner-lead {
@@ -73,6 +79,16 @@ main {
       &::placeholder {
         color: lighten($primary, 15%);
       }
+    }
+    button[type="submit"] {
+      background-color: transparent;
+      border: 0px;
+      padding: $spacer * 0.5 $spacer;
+      outline: none;
+      color: $bg-color;
+      font-size: $spacer * 1.2;
+      font-weight: 600;
+      cursor: pointer;
     }
   }
 }
