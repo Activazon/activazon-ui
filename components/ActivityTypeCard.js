@@ -1,6 +1,6 @@
 const ActivityTypeCard = ({ href, count, title, description }) => (
   <a href={href} className="text-decoration-none">
-    <div className="card card-body">
+    <div className="card card-body card-row">
       <div class="icon">{count}</div>
       <div class="card-content">
         <p className="card-title">{title}</p>
