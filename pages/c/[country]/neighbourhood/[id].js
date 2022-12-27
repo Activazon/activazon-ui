@@ -3,6 +3,7 @@ import Nav from "../../../../components/Nav";
 import Banner from "../../../../components/Banner";
 import ActivityTypeCard from "../../../../components/ActivityTypeCard";
 import ActivityCard from "../../../../components/ActivityCard";
+import Footer from "../../../../components/Footer";
 
 export default function Home() {
   return (
@@ -80,9 +81,7 @@ export default function Home() {
                 description="A robbery took place at a gas station"
               />
             </div>
-            <div class="container my-5 text-center">
-              <p>&copy; Activazon 2023</p>
-            </div>
+            <Footer />
           </main>
         </div>
       </body>

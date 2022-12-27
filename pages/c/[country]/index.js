@@ -3,6 +3,7 @@ import Nav from "../../../components/Nav";
 import Banner from "../../../components/Banner";
 import NeighbourhoodCard from "../../../components/NeighbourhoodCard";
 import ActivityCard from "../../../components/ActivityCard";
+import Footer from "../../../components/Footer";
 
 export default function Home() {
   return (
@@ -59,6 +60,7 @@ export default function Home() {
                 description="A robbery took place at a gas station"
               />
             </div>
+            <Footer />
           </main>
         </div>
       </body>

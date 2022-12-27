@@ -2,6 +2,7 @@ import Head from "next/head";
 import Banner from "../components/Banner";
 import CountryCard from "../components/CountryCard";
 import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -41,6 +42,7 @@ export default function Home() {
                 you&apos;re a resident or a traveler.
               </p>
             </div>
+            <Footer />
           </main>
         </div>
       </body>
