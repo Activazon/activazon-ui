@@ -1,9 +1,9 @@
 import Head from "next/head";
-import Nav from "../../../../components/Nav";
-import Banner from "../../../../components/Banner";
-import ActivityTypeCard from "../../../../components/ActivityTypeCard";
-import ActivityCard from "../../../../components/ActivityCard";
-import Footer from "../../../../components/Footer";
+import Nav from "../../components/Nav";
+import Banner from "../../components/Banner";
+import ActivityTypeCard from "../../components/ActivityTypeCard";
+import ActivityCard from "../../components/ActivityCard";
+import Footer from "../../components/Footer";
 
 export default function Home() {
   return (
@@ -34,21 +34,21 @@ export default function Home() {
 
               <ActivityTypeCard
                 count={5}
-                // href="/c/honduras/activity/1"
+                // href="/a/1"
                 href="#"
                 title="Arrests"
                 description="Reported in the last 6 months"
               />
               <ActivityTypeCard
                 count={2}
-                // href="/c/honduras/activity/1"
+                // href="/a/1"
                 href="#"
                 title="Robberies"
                 description="Reported in the last 6 months"
               />
               <ActivityTypeCard
                 count={1}
-                // href="/c/honduras/activity/1"
+                // href="/a/1"
                 href="#"
                 title="Murders"
                 description="Reported in the last 6 months"
@@ -61,22 +61,22 @@ export default function Home() {
               </p>
 
               <ActivityCard
-                href="/c/honduras/activity/1"
+                href="/a/1"
                 title="Arrest in Barrio Concepción"
                 description="A robbery took place at a gas station"
               />
               <ActivityCard
-                href="/c/honduras/activity/1"
+                href="/a/1"
                 title="Arrest in Barrio Concepción"
                 description="A robbery took place at a gas station"
               />
               <ActivityCard
-                href="/c/honduras/activity/1"
+                href="/a/1"
                 title="Arrest in Barrio Concepción"
                 description="A robbery took place at a gas station"
               />
               <ActivityCard
-                href="/c/honduras/activity/1"
+                href="/a/1"
                 title="Arrest in Barrio Concepción"
                 description="A robbery took place at a gas station"
               />

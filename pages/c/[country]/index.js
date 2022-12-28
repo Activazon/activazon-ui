@@ -32,18 +32,18 @@ export default function Home() {
               </p>
 
               <NeighbourhoodCard
-                href="/c/honduras/neighbourhood/1"
+                href="/n/1"
                 title="Barrio Concepción"
                 description="San Pedro Sula"
               />
 
               <NeighbourhoodCard
-                href="/c/honduras/neighbourhood/1"
+                href="/n/1"
                 title="Barrio Concepción"
                 description="San Pedro Sula"
               />
               <NeighbourhoodCard
-                href="/c/honduras/neighbourhood/1"
+                href="/n/1"
                 title="Barrio Concepción"
                 description="San Pedro Sula"
               />
@@ -55,7 +55,7 @@ export default function Home() {
               </p>
               <ActivityCard
                 href="#"
-                // href="/c/honduras/activity/1"
+                // href="/a/1"
                 title="Arrest in Barrio Concepción"
                 description="A robbery took place at a gas station"
               />

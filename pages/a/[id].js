@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
-import Nav from "../../../../components/Nav";
-import Banner from "../../../../components/Banner";
-import Footer from "../../../../components/Footer";
+import Nav from "../../components/Nav";
+import Banner from "../../components/Banner";
+import Footer from "../../components/Footer";
 
 const Source = () => (
   <li className="list-group-item d-flex align-items-center">
