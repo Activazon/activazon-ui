@@ -7,7 +7,7 @@ const Banner = ({ title, description, showSearch }) => (
       )}
       {showSearch && (
         <div className="search-form rounded">
-          <input type="text" placeholder="Search your neighbourhood" />
+          <input type="text" placeholder="Search for your neighbourhood" />
           <button type="submit" className="btn">
             <i className="bi bi-search"></i>
           </button>

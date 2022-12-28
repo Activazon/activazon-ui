@@ -19,7 +19,7 @@ export default function Home() {
       </Head>
       <body>
         <div className="page">
-          <Nav pageTitle={"Honduras"} />
+          <Nav pageTitle={"Honduras"} backUrl="/c/honduras" />
           <main>
             <Banner
               title={"Barrio Concepción"}
