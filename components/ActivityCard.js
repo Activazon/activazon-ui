@@ -4,7 +4,7 @@ const ActivityCard = ({ href, title, description }) => (
   <Link href={href} className="text-decoration-none">
     <div className="card card-body card-row">
       <div className="icon">
-        <i className="bi bi-lightning-fill"></i>
+        <i className="bi bi-newspaper"></i>
       </div>
       <div className="card-content">
         <p className="card-title">{title}</p>

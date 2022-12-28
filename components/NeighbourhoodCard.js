@@ -4,7 +4,7 @@ const NeighbourhoodCard = ({ href, title, description }) => (
   <Link href={href} className="text-decoration-none">
     <div className="card card-body card-row">
       <div className="icon">
-        <i className="bi bi-pin-map-fill"></i>
+        <i className="bi bi-houses-fill"></i>
       </div>
       <div className="card-content">
         <p className="card-title">{title}</p>
