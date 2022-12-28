@@ -7,7 +7,7 @@ import Footer from "../../components/Footer";
 import { useTrans } from "./../../lib/trans";
 
 export default function Home() {
-  const { i } = useTrans();
+  const { i, p } = useTrans();
   return (
     <>
       <Head>
@@ -38,21 +38,21 @@ export default function Home() {
                 count={5}
                 // href="/a/1"
                 href="#"
-                title={i("arrest")}
+                title={p("arrest", "arrests", 5)}
                 description={i("Reported in the last 6 months")}
               />
               <ActivityTypeCard
                 count={2}
                 // href="/a/1"
                 href="#"
-                title={i("robbery")}
+                title={p("robbery", "robberies", 2)}
                 description={i("Reported in the last 6 months")}
               />
               <ActivityTypeCard
                 count={1}
                 // href="/a/1"
                 href="#"
-                title={i("murder")}
+                title={p("murder", "murders", 1)}
                 description={i("Reported in the last 6 months")}
               />
             </div>

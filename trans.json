@@ -31,15 +31,15 @@
         "en-US": "Arrest",
         "es-ES": "Arresto"
     },
-    "murder__plural": {
+    "murders": {
         "en-US": "Murders",
         "es-ES": "Asesinatos"
     },
-    "robbery__plural": {
+    "robberies": {
         "en-US": "Robberies",
         "es-ES": "Robos"
     },
-    "arrest__plural": {
+    "arrests": {
         "en-US": "Arrests",
         "es-ES": "Arrestos"
     },
