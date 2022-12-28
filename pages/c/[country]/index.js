@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Head from "../../../components/Head";
 import Nav from "../../../components/Nav";
 import Banner from "../../../components/Banner";
 import NeighbourhoodCard from "../../../components/NeighbourhoodCard";
@@ -10,15 +10,7 @@ export default function Home() {
   const { i } = useTrans();
   return (
     <>
-      <Head>
-        <title>Activazon</title>
-        <meta
-          name="description"
-          content="AI-powered insights for your neighborhood"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Head title={"Honduras"} />
       <body>
         <div className="page">
           <Nav pageTitle={"Honduras"} />

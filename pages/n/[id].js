@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Head from "../../components/Head";
 import Nav from "../../components/Nav";
 import Banner from "../../components/Banner";
 import ActivityTypeCard from "../../components/ActivityTypeCard";
@@ -10,15 +10,7 @@ export default function Home() {
   const { i, p } = useTrans();
   return (
     <>
-      <Head>
-        <title>Barrio Concepción, San Pedro Sula, Honduras - Activazon</title>
-        <meta
-          name="description"
-          content="AI-powered insights for your neighborhood"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Head title={"Barrio Concepción, San Pedro Sula, Honduras"} />
       <body>
         <div className="page">
           <Nav pageTitle={"Honduras"} backUrl="/c/honduras" />
