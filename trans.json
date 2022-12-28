@@ -78,5 +78,9 @@
     "This activity was detected by analyzing the following sources using AI.": {
         "en-US": "This activity was detected by analyzing the following sources using AI.",
         "es-ES": "Esta actividad fue detectada al analizar las siguientes fuentes con AI."
+    },
+    "Search for your neighbourhood": {
+        "en-US": "Search for your neighbourhood",
+        "es-ES": "Busca tu barrio"
     }
 }
