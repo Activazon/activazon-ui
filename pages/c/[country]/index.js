@@ -4,8 +4,10 @@ import Banner from "../../../components/Banner";
 import NeighbourhoodCard from "../../../components/NeighbourhoodCard";
 import ActivityCard from "../../../components/ActivityCard";
 import Footer from "../../../components/Footer";
+import { useTrans } from "../../../lib/trans";
 
 export default function Home() {
+  const { i } = useTrans();
   return (
     <>
       <Head>
@@ -22,13 +24,14 @@ export default function Home() {
           <Nav pageTitle={"Honduras"} />
           <main>
             <Banner
-              title={"Get to know your neighbourhood"}
+              title={i("Get to know your neighbourhood")}
               showSearch={true}
             />
 
             <div className="container mt-3">
               <p className="lead">
-                <i className="bi bi-activity"></i> Most Active Neighbourhoods
+                <i className="bi bi-activity"></i>{" "}
+                {i("Most Active Neighbourhoods")}
               </p>
 
               <NeighbourhoodCard
@@ -51,7 +54,7 @@ export default function Home() {
 
             <div className="container mt-3">
               <p className="lead">
-                <i className="bi bi-activity"></i> Recent Activity
+                <i className="bi bi-activity"></i> {i("Recent Activity")}
               </p>
               <ActivityCard
                 href="#"

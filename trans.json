@@ -1,0 +1,82 @@
+{
+    "AI-powered insights for your neighborhood": {
+        "en-US": "AI-powered insights for your neighborhood",
+        "es-ES": "Información impulsada por AI para tu barrio"
+    },
+    "Explore the neighborhoods of countries, see what is going on": {
+        "en-US": "Explore the neighborhoods of countries, see what is going on",
+        "es-ES": "Explora los barrios de los países, ve lo que está pasando"
+    },
+    "Explore Countries": {
+        "en-US": "Explore Countries",
+        "es-ES": "Explora países"
+    },
+    "What is Activazon": {
+        "en-US": "What is Activazon",
+        "es-ES": "¿Qué es Activazon?"
+    },
+    "Activazon uses advanced AI to bring you customized, reliable information about the neighborhoods and communities you care about. Stay informed and feel secure with Activazon, whether you&apos;re a resident or a traveler.": {
+        "en-US": "Activazon uses advanced AI to bring you customized, reliable information about the neighborhoods and communities you care about. Stay informed and feel secure with Activazon, whether you&apos;re a resident or a traveler.",
+        "es-ES": "Activazon utiliza IA avanzada para brindarle información personalizada y confiable sobre los barrios y comunidades que le interesan. Manténgase informado y sienta seguridad con Activazon, ya sea residente o viajero."
+    },
+    "murder": {
+        "en-US": "Murder",
+        "es-ES": "Asesinato"
+    },
+    "robbery": {
+        "en-US": "Robbery",
+        "es-ES": "Robo"
+    },
+    "arrest": {
+        "en-US": "Arrest",
+        "es-ES": "Arresto"
+    },
+    "murder__plural": {
+        "en-US": "Murders",
+        "es-ES": "Asesinatos"
+    },
+    "robbery__plural": {
+        "en-US": "Robberies",
+        "es-ES": "Robos"
+    },
+    "arrest__plural": {
+        "en-US": "Arrests",
+        "es-ES": "Arrestos"
+    },
+    "Summary": {
+        "en-US": "Summary",
+        "es-ES": "Resumen"
+    },
+    "Reported in the last 6 months": {
+        "en-US": "Reported in the last 6 months",
+        "es-ES": "Reportado en los últimos 6 meses"
+    },
+    "Activity in this area": {
+        "en-US": "Activity in this area",
+        "es-ES": "Actividad en esta área"
+    },
+    "Get to know your neighbourhood": {
+        "en-US": "Get to know your neighbourhood",
+        "es-ES": "Conoce tu barrio"
+    },
+    "Most Active Neighbourhoods": {
+        "en-US": "Most Active Neighbourhoods",
+        "es-ES": "Barrios más activos"
+    },
+    "Recent Activity": {
+        "en-US": "Recent Activity",
+        "es-ES": "Actividad reciente"
+    },
+    "Reported Yesterday": {
+        "en-US": "Reported Yesterday",
+        "es-ES": "Reportado ayer"
+    },
+    "Sources": {
+        "en-US": "Sources",
+        "es-ES": "Fuentes"
+    },
+    "This activity was detected by analyzing the following sources using AI.": {
+        "en-US": "This activity was detected by analyzing the following sources using AI.",
+        "es-ES": "Esta actividad fue detectada al analizar las siguientes fuentes con AI."
+    }
+}

@@ -3,8 +3,10 @@ import Banner from "../components/Banner";
 import CountryCard from "../components/CountryCard";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
+import { useTrans } from "../lib/trans";
 
 export default function Home() {
+  const { i } = useTrans();
   return (
     <>
       <Head>
@@ -21,14 +23,17 @@ export default function Home() {
           <Nav />
           <main>
             <Banner
-              title="AI-powered insights for your neighborhood"
+              title={i("AI-powered insights for your neighborhood")}
               showSearch={true}
             />
 
             <div className="container pt-3">
-              <p className="lead">Explore Countries</p>
+              <p className="lead">{i("Explore Countries")}</p>
               <p>
-                Explore the neighborhoods of countries, see what is going on.
+                {i(
+                  "Explore the neighborhoods of countries, see what is going on"
+                )}
+                .
               </p>
               <div className="row">
                 <div className="col-12 col-md-6 col-lg-4">
@@ -37,12 +42,11 @@ export default function Home() {
               </div>
             </div>
             <div className="container mt-3">
-              <p className="lead">What is Activazon</p>
+              <p className="lead">{i("What is Activazon")}</p>
               <p>
-                Activazon uses advanced AI to bring you customized, reliable
-                information about the neighborhoods and communities you care
-                about. Stay informed and feel secure with Activazon, whether
-                you&apos;re a resident or a traveler.
+                {i(
+                  "Activazon uses advanced AI to bring you customized, reliable information about the neighborhoods and communities you care about. Stay informed and feel secure with Activazon, whether you&apos;re a resident or a traveler."
+                )}
               </p>
             </div>
             {/* <div className="container mt-3">

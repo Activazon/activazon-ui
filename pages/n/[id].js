@@ -4,8 +4,10 @@ import Banner from "../../components/Banner";
 import ActivityTypeCard from "../../components/ActivityTypeCard";
 import ActivityCard from "../../components/ActivityCard";
 import Footer from "../../components/Footer";
+import { useTrans } from "./../../lib/trans";
 
 export default function Home() {
+  const { i } = useTrans();
   return (
     <>
       <Head>
@@ -29,35 +31,35 @@ export default function Home() {
 
             <div className="container mt-3">
               <p className="lead">
-                <i className="bi bi-card-text"></i> Summary
+                <i className="bi bi-card-text"></i> {i("Summary")}
               </p>
 
               <ActivityTypeCard
                 count={5}
                 // href="/a/1"
                 href="#"
-                title="Arrests"
-                description="Reported in the last 6 months"
+                title={i("arrest")}
+                description={i("Reported in the last 6 months")}
               />
               <ActivityTypeCard
                 count={2}
                 // href="/a/1"
                 href="#"
-                title="Robberies"
-                description="Reported in the last 6 months"
+                title={i("robbery")}
+                description={i("Reported in the last 6 months")}
               />
               <ActivityTypeCard
                 count={1}
                 // href="/a/1"
                 href="#"
-                title="Murders"
-                description="Reported in the last 6 months"
+                title={i("murder")}
+                description={i("Reported in the last 6 months")}
               />
             </div>
 
             <div className="container mt-3">
               <p className="lead">
-                <i className="bi bi-activity"></i> Activity in this area
+                <i className="bi bi-activity"></i> {i("Activity in this area")}
               </p>
 
               <ActivityCard

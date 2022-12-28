@@ -3,6 +3,7 @@ import Image from "next/image";
 import Nav from "../../components/Nav";
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
+import { useTrans } from "../../lib/trans";
 
 const Source = () => (
   <li className="list-group-item d-flex align-items-center">
@@ -26,6 +27,7 @@ const Source = () => (
 );
 
 export default function Home() {
+  const { i } = useTrans();
   return (
     <>
       <Head>
@@ -43,13 +45,13 @@ export default function Home() {
           <main>
             <Banner
               title={"Arrest in Barrio Concepción"}
-              description={"Reported Yesterday"}
+              description={i("Reported Yesterday")}
               showSearch={false}
             />
 
             <div className="container mt-3">
               <p className="lead">
-                <i className="bi bi-card-text"></i> Summary
+                <i className="bi bi-card-text"></i> {i("Summary")}
               </p>
 
               <p className="lh-lg">
@@ -69,11 +71,12 @@ export default function Home() {
 
             <div className="container mt-3">
               <p className="lead">
-                <i className="bi bi-card-text"></i> Sources
+                <i className="bi bi-card-text"></i> {i("Sources")}
               </p>
               <p>
-                This activity was detected by analyzing the following sources
-                using AI.
+                {i(
+                  "This activity was detected by analyzing the following sources using AI."
+                )}
               </p>
 
               <ul className="list-group">
