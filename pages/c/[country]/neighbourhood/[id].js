@@ -27,7 +27,7 @@ export default function Home() {
               showSearch={true}
             />
 
-            <div class="container mt-3">
+            <div className="container mt-3">
               <p className="lead">
                 <i className="bi bi-card-text"></i> Summary
               </p>
@@ -55,7 +55,7 @@ export default function Home() {
               />
             </div>
 
-            <div class="container mt-3">
+            <div className="container mt-3">
               <p className="lead">
                 <i className="bi bi-activity"></i> Activity in this area
               </p>

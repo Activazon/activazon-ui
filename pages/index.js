@@ -33,7 +33,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div class="container mt-3">
+            <div className="container mt-3">
               <p className="lead">What is Activazon</p>
               <p>
                 Activazon uses advanced AI to bring you customized, reliable
