@@ -95,6 +95,7 @@ main {
 
 .navbar {
   background-color: $bg-color !important;
+  box-shadow: 0px 7px 0px $primary;
   .container {
     justify-content: start !important;
   }
@@ -167,6 +168,16 @@ main {
       .card-title {
         text-align: center;
       }
+    }
+  }
+}
+
+.list-group {
+  .list-group-item {
+    border: 0px;
+    border-bottom: 1px solid rgba($bg-color, 0.15);
+    &:last-child {
+      border-bottom: unset;
     }
   }
 }

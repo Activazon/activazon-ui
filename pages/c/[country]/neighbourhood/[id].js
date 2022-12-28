@@ -61,22 +61,22 @@ export default function Home() {
               </p>
 
               <ActivityCard
-                href="/honduras/activity/1"
+                href="/c/honduras/activity/1"
                 title="Arrest in Barrio Concepción"
                 description="A robbery took place at a gas station"
               />
               <ActivityCard
-                href="/honduras/activity/1"
+                href="/c/honduras/activity/1"
                 title="Arrest in Barrio Concepción"
                 description="A robbery took place at a gas station"
               />
               <ActivityCard
-                href="/honduras/activity/1"
+                href="/c/honduras/activity/1"
                 title="Arrest in Barrio Concepción"
                 description="A robbery took place at a gas station"
               />
               <ActivityCard
-                href="/honduras/activity/1"
+                href="/c/honduras/activity/1"
                 title="Arrest in Barrio Concepción"
                 description="A robbery took place at a gas station"
               />
