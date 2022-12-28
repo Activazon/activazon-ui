@@ -26,7 +26,10 @@ export default function Home() {
             />
 
             <div className="container pt-3">
-              <p className="lead">Explore</p>
+              <p className="lead">Explore Countries</p>
+              <p>
+                Explore the neighborhoods of countries, see what is going on.
+              </p>
               <div className="row">
                 <div className="col-12 col-md-6 col-lg-4">
                   <CountryCard />
@@ -42,6 +45,21 @@ export default function Home() {
                 you&apos;re a resident or a traveler.
               </p>
             </div>
+            {/* <div className="container mt-3">
+              <p className="lead">Message from the Creator</p>
+              <p>
+                I&apos;ve noticed that some countries get such a bad rap for
+                being dangerous just because of the side that stream on main
+                stream media. But in truth, these places are so much more than
+                that – they have amazing food, friendly people, and rich
+                cultures that are worth exploring. I understand why people might
+                be hesitant to visit. That&apos;s where Activazon comes in. We
+                want to help people feel at ease and confident while they are in
+                these countries. With Activazon, you can discover all the beauty
+                and wonder that these places have to offer without worrying with
+                security and confidence. - Creator of Activazon
+              </p>
+            </div> */}
             <Footer />
           </main>
         </div>
