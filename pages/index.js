@@ -4,8 +4,9 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Head from "../components/Head";
 import { useTrans } from "../lib/trans";
+import { getCountries } from "../lib/api";
 
-export default function Home() {
+export default function Home({ countries }) {
   const { i } = useTrans();
   return (
     <>
@@ -28,9 +29,14 @@ export default function Home() {
                 .
               </p>
               <div className="row">
-                <div className="col-12 col-md-6 col-lg-4">
-                  <CountryCard />
-                </div>
+                {countries.results.map((country) => (
+                  <div className="col-12 col-md-6 col-lg-4">
+                    <CountryCard
+                      displayName={i(country.name)}
+                      name={country.name}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
             <div className="container mt-3">
@@ -62,4 +68,14 @@ export default function Home() {
       </body>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const countries = await getCountries(100);
+
+  return {
+    props: {
+      countries,
+    },
+  };
 }
