@@ -13,8 +13,8 @@ module.exports = {
     return {
       beforeFiles: [
         {
-          source: "/admin",
-          destination: `https://activazon.herokuapp.com/admin`,
+          source: "/admin/",
+          destination: `https://activazon.herokuapp.com/admin/`,
         },
         {
           source: "/admin/:path*",
