@@ -56,7 +56,7 @@ export default function Home({ country, neighbourhoods, activities }) {
                     title={i(
                       "{{activity_type_name}} in {{neighbourhood_name}}",
                       {
-                        activity_type_name: activity.activity_type.name,
+                        activity_type_name: i(activity.activity_type.name),
                         neighbourhood_name: activity.neighbourhood.name,
                       }
                     )}
