@@ -60,7 +60,7 @@ const Banner = ({ title, description, showSearch, searchCountry }) => {
                   searchResults.results.map((neighbourhood) => (
                     <li
                       key={`neighbourhood-${neighbourhood.id}`}
-                      className="list-group-item"
+                      className="list-group-item text-capitalize"
                       onClick={() => onSelectResult(neighbourhood.id)}
                     >
                       {neighbourhood.name} {neighbourhood.city}{" "}
