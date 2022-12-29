@@ -4,40 +4,55 @@ import Nav from "../../components/Nav";
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
 import { useTrans } from "../../lib/trans";
+import { useDate } from "../../lib/date";
+import { getActivity } from "../../lib/api";
 
-const Source = () => (
-  <li className="list-group-item d-flex align-items-center">
-    <Image
-      src="/sources/elheraldo.jpg"
-      width={80}
-      height={80}
-      alt="El Heraldo Logo"
-      className="me-3"
-    />
-    <div>
-      <p className="mb-0">
-        Diana Rivera: sobreviviente de violencia que ahora clama ayuda para
-        convertirse en ingeniera
-      </p>
-      <p className="mb-0">
-        <small>El Heraldo</small>
-      </p>
-    </div>
-  </li>
+const Source = ({ sourceName, sourceUrl, sourceTitle }) => (
+  <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
+    <li className="list-group-item d-flex align-items-center">
+      <Image
+        src={`/sources/${sourceName}.jpg`}
+        width={80}
+        height={80}
+        alt="Source Logo"
+        className="me-3"
+      />
+      <div>
+        <p className="mb-0">{sourceTitle || sourceName}</p>
+        <p className="mb-0">
+          <small>{sourceName}</small>
+        </p>
+      </div>
+    </li>
+  </a>
 );
 
-export default function Home() {
-  const { i } = useTrans();
+export default function Home({ activity }) {
+  const { i, locale } = useTrans();
+  const { displayDate } = useDate();
+  const title = i("{{activity_type_name}} in {{neighbourhood_name}}", {
+    activity_type_name: i(activity.activity_type.name),
+    neighbourhood_name: activity.neighbourhood.name,
+  });
+  const summary = {
+    "en-US": activity.summary_en,
+    "es-ES": activity.summary_es,
+  }[locale];
   return (
     <>
-      <Head title={"Arrest in Barrio Concepción"} />
+      <Head title={title} />
       <body>
         <div className="page">
-          <Nav pageTitle={"Honduras"} backUrl="/c/honduras" />
+          <Nav
+            pageTitle={i(activity.neighbourhood.country)}
+            backUrl={`/c/${activity.neighbourhood.country}`}
+          />
           <main>
             <Banner
-              title={"Arrest in Barrio Concepción"}
-              description={i("Reported Yesterday")}
+              title={title}
+              description={i("Reported {{date}}", {
+                date: displayDate(activity.date_occured),
+              })}
               showSearch={false}
             />
 
@@ -46,19 +61,7 @@ export default function Home() {
                 <i className="bi bi-card-text"></i> {i("Summary")}
               </p>
 
-              <p className="lh-lg">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse at justo in risus tincidunt mollis. Aliquam porta
-                semper neque, sed pellentesque velit sagittis at. Sed gravida,
-                nisl at viverra aliquet, elit mauris vulputate urna, eget
-                egestas metus turpis in libero. Nulla rutrum dictum congue.
-                Etiam vestibulum, ex a cursus feugiat, est mi posuere nisi, quis
-                blandit risus libero nec felis. Nulla aliquet ultrices tortor,
-                id scelerisque ante luctus non. Etiam neque enim, consectetur ac
-                tortor nec, auctor faucibus orci. Phasellus elementum leo
-                vulputate posuere congue. Donec id ante ultrices nisi tristique
-                mattis.
-              </p>
+              <p className="lh-lg">{summary}</p>
             </div>
 
             <div className="container mt-3">
@@ -78,9 +81,13 @@ export default function Home() {
                   className="text-decoration-none"
                   href="https://elheraldo.hn/honduras/diana-rivera-sobreviviente-violencia-clama-ayuda-convertirse-ingeniera-forestal-unacifor-honduras-beca-siguatepeque-AG11535317"
                 >
-                  <Source />
-                  <Source />
-                  <Source />
+                  {activity.source_article && (
+                    <Source
+                      sourceName={activity.source_article.source_name}
+                      sourceUrl={activity.source_article.source_url}
+                      sourceTitle={activity.source_article.source_title}
+                    />
+                  )}
                 </a>
               </ul>
             </div>
@@ -90,4 +97,27 @@ export default function Home() {
       </body>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  if (isNaN(context.params.id)) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const activityId = parseInt(context.params.id);
+  const activity = await getActivity(activityId);
+
+  if (!activity.id) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      activity,
+    },
+  };
 }

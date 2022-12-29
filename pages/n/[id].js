@@ -72,7 +72,7 @@ export default function Home({ neighbourhood, summary, activities }) {
                     neighbourhood_name: activity.neighbourhood.name,
                   })}
                   description={i("Reported {{date}}", {
-                    date: displayDate(activity.activities),
+                    date: displayDate(activity.date_occured),
                   })}
                 />
               ))}
