@@ -105,6 +105,7 @@ main {
       border-top-right-radius: 0px;
 
       .list-group-item {
+        cursor: pointer;
         background-color: inherit;
         color: lighten($bg-color, 10deg);
         &:hover {
