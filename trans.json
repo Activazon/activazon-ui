@@ -104,5 +104,13 @@
     "Searching...": {
         "en-US": "Searching...",
         "es-ES": "Buscando..."
+    },
+    "Try searching instead": {
+        "en-US": "Try searching instead",
+        "es-ES": "Prueba a buscar en su lugar"
+    },
+    "Whoops! Could not find the page you were looking for.": {
+        "en-US": "Whoops! Could not find the page you were looking for.",
+        "es-ES": "¡Ups! No se ha podido encontrar la página que estabas buscando."
     }
 }
