@@ -36,6 +36,14 @@ main {
   @extend .flex-grow-1;
   background-color: #ffffff;
   color: $text-default-color;
+
+  .text-theme-black {
+    color: $bg-color;
+  }
+
+  .text-theme-default {
+    color: $text-default-color;
+  }
 }
 
 .banner {

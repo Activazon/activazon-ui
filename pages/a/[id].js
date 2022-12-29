@@ -7,9 +7,14 @@ import { useTrans } from "../../lib/trans";
 import { useDate } from "../../lib/date";
 import { getActivity } from "../../lib/api";
 
-const Source = ({ sourceName, sourceUrl, sourceTitle }) => (
-  <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
-    <li className="list-group-item d-flex align-items-center">
+const Source = ({ sourceName, sourceDisplayName, sourceUrl, sourceTitle }) => (
+  <li className="list-group-item">
+    <a
+      href={sourceUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-decoration-none d-flex align-items-center"
+    >
       <Image
         src={`/sources/${sourceName}.jpg`}
         width={80}
@@ -18,13 +23,15 @@ const Source = ({ sourceName, sourceUrl, sourceTitle }) => (
         className="me-3"
       />
       <div>
-        <p className="mb-0">{sourceTitle || sourceName}</p>
-        <p className="mb-0">
-          <small>{sourceName}</small>
+        <p className="mb-0 text-theme-black">
+          <b>{sourceTitle || sourceName}</b>
+        </p>
+        <p className="mb-0 text-theme-default">
+          <small>{sourceDisplayName}</small>
         </p>
       </div>
-    </li>
-  </a>
+    </a>
+  </li>
 );
 
 export default function Home({ activity }) {
@@ -86,6 +93,9 @@ export default function Home({ activity }) {
                       sourceName={activity.source_article.source_name}
                       sourceUrl={activity.source_article.source_url}
                       sourceTitle={activity.source_article.source_title}
+                      sourceDisplayName={
+                        activity.source_article.source_display_name
+                      }
                     />
                   )}
                 </a>
@@ -114,6 +124,8 @@ export async function getServerSideProps(context) {
       notFound: true,
     };
   }
+
+  console.log("activity.source_article", activity.source_article);
 
   return {
     props: {
