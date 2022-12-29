@@ -21,7 +21,9 @@ const Banner = ({ title, description, showSearch, searchCountry }) => {
       (async () => {
         if (e.target.value.trim() !== "") {
           const searchResp = await fetch(
-            `/api/search?country=${searchCountry}&search=${e.target.value}`,
+            `/api/search?country=${searchCountry || ""}&search=${
+              e.target.value
+            }`,
             {
               method: "GET",
             }
