@@ -30,7 +30,7 @@ const AppHead = ({ title }) => {
       <meta
         property="og:image"
         itemprop="image"
-        content="https://www.activazon.com/thumb.jpg"
+        content="https://www.activazon.com/social-share.png"
       />
       <meta property="og:type" content="website" />
     </Head>
