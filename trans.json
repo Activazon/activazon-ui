@@ -31,15 +31,15 @@
         "en-US": "Arrest",
         "es-ES": "Arresto"
     },
-    "murders": {
+    "murder__plural": {
         "en-US": "Murders",
         "es-ES": "Asesinatos"
     },
-    "robberies": {
+    "robbery__plural": {
         "en-US": "Robberies",
         "es-ES": "Robos"
     },
-    "arrests": {
+    "arrest__plural": {
         "en-US": "Arrests",
         "es-ES": "Arrestos"
     },
@@ -112,5 +112,10 @@
     "Whoops! Could not find the page you were looking for.": {
         "en-US": "Whoops! Could not find the page you were looking for.",
         "es-ES": "¡Ups! No se ha podido encontrar la página que estabas buscando."
+    },
+    "Reports in the last 5 months": {
+        "examples": ["8 reports in the last 5 months", "30 reports in the last 5 months"],
+        "en-US": "Reports in the last 5 months",
+        "es-ES": "Informes en los últimos 5 meses"
     }
 }

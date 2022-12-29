@@ -5,9 +5,10 @@ import ActivityTypeCard from "../../components/ActivityTypeCard";
 import ActivityCard from "../../components/ActivityCard";
 import Footer from "../../components/Footer";
 import { useTrans } from "./../../lib/trans";
+import { getNeighbourhoodSummary } from "../../lib/api";
 
-export default function Home() {
-  const { i, p } = useTrans();
+export default function Home({ summary }) {
+  const { i, pfs } = useTrans();
   return (
     <>
       <Head title={"Barrio Concepción, San Pedro Sula, Honduras"} />
@@ -25,28 +26,19 @@ export default function Home() {
               <p className="lead">
                 <i className="bi bi-card-text"></i> {i("Summary")}
               </p>
-
-              <ActivityTypeCard
-                count={5}
-                // href="/a/1"
-                href="#"
-                title={p("arrest", "arrests", 5)}
-                description={i("Reported in the last 6 months")}
-              />
-              <ActivityTypeCard
-                count={2}
-                // href="/a/1"
-                href="#"
-                title={p("robbery", "robberies", 2)}
-                description={i("Reported in the last 6 months")}
-              />
-              <ActivityTypeCard
-                count={1}
-                // href="/a/1"
-                href="#"
-                title={p("murder", "murders", 1)}
-                description={i("Reported in the last 6 months")}
-              />
+              {summary.total > 0 &&
+                summary.activities.map((activity) => (
+                  <ActivityTypeCard
+                    count={activity.count}
+                    title={pfs(activity.activity_type_name, activity.count)}
+                    description={i(
+                      summary.activites_since === "total__last_5_months"
+                        ? "Reports in the last 5 months"
+                        : "Recent Reports"
+                    )}
+                  />
+                ))}
+              {summary.total === 0 && <p>No acrtivity in the last 5 months</p>}
             </div>
 
             <div className="container mt-3">
@@ -81,4 +73,30 @@ export default function Home() {
       </body>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  if (isNaN(context.params.id)) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const neighbourhoodId = parseInt(context.params.id);
+
+  const summary = await getNeighbourhoodSummary(neighbourhoodId);
+
+  console.log("summary", summary);
+
+  // if (neighbourhoods.count === 0) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
+
+  return {
+    props: {
+      summary,
+    },
+  };
 }

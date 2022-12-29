@@ -170,7 +170,7 @@ main {
     }
   }
 
-  &:hover {
+  &:not(.card-no-link):hover {
     background-color: rgba($primary, 0.8);
   }
   &.card-row {
