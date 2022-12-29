@@ -47,10 +47,6 @@
         "en-US": "Summary",
         "es-ES": "Resumen"
     },
-    "Reported in the last 6 months": {
-        "en-US": "Reported in the last 6 months",
-        "es-ES": "Reportado en los últimos 6 meses"
-    },
     "Activity in this area": {
         "en-US": "Activity in this area",
         "es-ES": "Actividad en esta área"
@@ -59,17 +55,17 @@
         "en-US": "Get to know your neighbourhood",
         "es-ES": "Conoce tu barrio"
     },
-    "Most Active Neighbourhoods": {
-        "en-US": "Most Active Neighbourhoods",
-        "es-ES": "Barrios más activos"
+    "Neighbourhoods": {
+        "en-US": "Neighbourhoods",
+        "es-ES": "Barrios"
     },
     "Recent Activity": {
         "en-US": "Recent Activity",
         "es-ES": "Actividad reciente"
     },
-    "Reported Yesterday": {
-        "en-US": "Reported Yesterday",
-        "es-ES": "Reportado ayer"
+    "Reported {{date}}": {
+        "en-US": "Reported {{date}}",
+        "es-ES": "Reportado {{date}}"
     },
     "Sources": {
         "en-US": "Sources",
@@ -88,11 +84,17 @@
         "es-ES": "Honduras"
     },
     "{{count}} reports in the last 5 months": {
+        "examples": ["8 reports in the last 5 months", "30 reports in the last 5 months"],
         "en-US": "{{count}} reports in the last 5 months",
-        "es-ES": ""
+        "es-ES": "{{count}} informes en los últimos 5 meses"
     },
     "1 report in the last 5 months": {
         "en-US": "1 report in the last 5 months",
-        "es-ES": ""
+        "es-ES": "1 informe en los últimos 5 meses"
+    },
+    "{{activity_type_name}} in {{neighbourhood_name}}": {
+        "examples": ["arrest in los naranjos", "robbery in santa bárbara"],
+        "en-US": "{{activity_type_name}} in {{neighbourhood_name}}",
+        "es-ES": "{{activity_type_name}} en {{neighbourhood_name}}"
     }
 }

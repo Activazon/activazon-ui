@@ -7,9 +7,8 @@ const ActivityCard = ({ href, title, description }) => (
         <i className="bi bi-newspaper"></i>
       </div>
       <div className="card-content">
-        <p className="card-title">{title}</p>
+        <p className="card-title text-capitalize">{title}</p>
         <p className="card-description mb-0">{description}</p>
-        <p className="card-description mb-0">Reported Today</p>
       </div>
     </div>
   </Link>

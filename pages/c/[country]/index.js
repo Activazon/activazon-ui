@@ -5,11 +5,13 @@ import NeighbourhoodCard from "../../../components/NeighbourhoodCard";
 import ActivityCard from "../../../components/ActivityCard";
 import Footer from "../../../components/Footer";
 import { useTrans } from "../../../lib/trans";
+import { useDate } from "../../../lib/date";
 
-import { getNeighbourhoods } from "../../../lib/api";
+import { getNeighbourhoods, getCountryRecentActivity } from "../../../lib/api";
 
-export default function Home({ country, neighbourhoods }) {
+export default function Home({ country, neighbourhoods, activities }) {
   const { i, p } = useTrans();
+  const { displayDate } = useDate();
   return (
     <>
       <Head title={i(country)} />
@@ -24,8 +26,7 @@ export default function Home({ country, neighbourhoods }) {
 
             <div className="container mt-3">
               <p className="lead">
-                <i className="bi bi-activity"></i>{" "}
-                {i("Most Active Neighbourhoods")}
+                <i className="bi bi-activity"></i> {i("Neighbourhoods")}
               </p>
               {neighbourhoods.results.map((neighbour) => (
                 <NeighbourhoodCard
@@ -42,17 +43,30 @@ export default function Home({ country, neighbourhoods }) {
               ))}
             </div>
 
-            <div className="container mt-3">
-              <p className="lead">
-                <i className="bi bi-activity"></i> {i("Recent Activity")}
-              </p>
-              <ActivityCard
-                href="#"
-                // href="/a/1"
-                title="Arrest in Barrio Concepción"
-                description="A robbery took place at a gas station"
-              />
-            </div>
+            {activities.count > 0 && (
+              <div className="container mt-3">
+                <p className="lead">
+                  <i className="bi bi-activity"></i> {i("Recent Activity")}
+                </p>
+                {activities.results.map((activity) => (
+                  <ActivityCard
+                    key={`activity-${activity.id}`}
+                    href={`/a/${activity.id}`}
+                    // href="/a/1"
+                    title={i(
+                      "{{activity_type_name}} in {{neighbourhood_name}}",
+                      {
+                        activity_type_name: activity.activity_type.name,
+                        neighbourhood_name: activity.neighbourhood.name,
+                      }
+                    )}
+                    description={i("Reported {{date}}", {
+                      date: displayDate(activity.activities),
+                    })}
+                  />
+                ))}
+              </div>
+            )}
             <Footer />
           </main>
         </div>
@@ -66,6 +80,7 @@ export async function getServerSideProps(context) {
   const limit = parseInt(context.query.neihbourhood_limit || "3");
 
   const neighbourhoods = await getNeighbourhoods(country, limit);
+  const activities = await getCountryRecentActivity(country, 3); // hard limit of 3, not filterable
 
   if (neighbourhoods.count === 0) {
     return {
@@ -77,6 +92,7 @@ export async function getServerSideProps(context) {
     props: {
       country,
       neighbourhoods,
+      activities,
     },
   };
 }
