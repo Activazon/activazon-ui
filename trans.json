@@ -96,5 +96,13 @@
         "examples": ["arrest in los naranjos", "robbery in santa bárbara"],
         "en-US": "{{activity_type_name}} in {{neighbourhood_name}}",
         "es-ES": "{{activity_type_name}} en {{neighbourhood_name}}"
+    },
+    "No neighbourhoods found": {
+        "en-US": "No neighbourhoods found",
+        "es-ES": "No se han encontrado barrios"
+    },
+    "Searching...": {
+        "en-US": "Searching...",
+        "es-ES": "Buscando..."
     }
 }

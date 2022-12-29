@@ -8,7 +8,7 @@ const Banner = ({ title, description, showSearch, searchCountry }) => {
   const router = useRouter();
   const { i } = useTrans();
   const [isSearching, setIsSearching] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState(null);
   const onSelectResult = (nid) => {
     router.push(`/n/${nid}`);
   };
@@ -20,6 +20,7 @@ const Banner = ({ title, description, showSearch, searchCountry }) => {
     searchTimeout = setTimeout(() => {
       (async () => {
         if (e.target.value.trim() !== "") {
+          setIsSearching(true);
           const searchResp = await fetch(
             `/api/search?country=${searchCountry || ""}&search=${
               e.target.value
@@ -30,9 +31,9 @@ const Banner = ({ title, description, showSearch, searchCountry }) => {
           );
           const searchRespJson = await searchResp.json();
           setSearchResults(searchRespJson);
-          setIsSearching(true);
         } else {
           setIsSearching(false);
+          setSearchResults(null);
         }
       })();
     }, 800);
@@ -58,7 +59,7 @@ const Banner = ({ title, description, showSearch, searchCountry }) => {
             {isSearching && (
               <ul className="list-group search-results-list-group">
                 {searchResults &&
-                  searchResults.results &&
+                  searchResults.count > 0 &&
                   searchResults.results.map((neighbourhood) => (
                     <li
                       key={`neighbourhood-${neighbourhood.id}`}
@@ -69,9 +70,14 @@ const Banner = ({ title, description, showSearch, searchCountry }) => {
                       {neighbourhood.country}
                     </li>
                   ))}
-                {!searchResults || !searchResults.results ? (
-                  <li className="list-group-item">Searching...</li>
-                ) : null}
+                {searchResults && searchResults.count === 0 && (
+                  <li className="list-group-item">
+                    {i("No neighbourhoods found")}
+                  </li>
+                )}
+                {!searchResults && (
+                  <li className="list-group-item">{i("Searching...")}</li>
+                )}
               </ul>
             )}
           </div>
