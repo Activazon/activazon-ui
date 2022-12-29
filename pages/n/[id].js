@@ -11,13 +11,20 @@ import {
   getNeighbourhoodSummary,
   getNeighbourhoodActivities,
 } from "../../lib/api";
+import { capitalizeWords } from "../../lib/words";
 
 export default function Home({ neighbourhood, summary, activities }) {
   const { i, pfs } = useTrans();
   const { displayDate } = useDate();
   return (
     <>
-      <Head title={"Barrio Concepción, San Pedro Sula, Honduras"} />
+      <Head
+        title={capitalizeWords(
+          [neighbourhood.name, neighbourhood.city, neighbourhood.country].join(
+            " "
+          )
+        )}
+      />
       <body>
         <div className="page">
           <Nav
