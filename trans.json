@@ -82,5 +82,17 @@
     "Search for your neighbourhood": {
         "en-US": "Search for your neighbourhood",
         "es-ES": "Busca tu barrio"
+    },
+    "honduras": {
+        "en-US": "Honduras",
+        "es-ES": "Honduras"
+    },
+    "{{count}} reports in the last 5 months": {
+        "en-US": "{{count}} reports in the last 5 months",
+        "es-ES": ""
+    },
+    "1 report in the last 5 months": {
+        "en-US": "1 report in the last 5 months",
+        "es-ES": ""
     }
 }

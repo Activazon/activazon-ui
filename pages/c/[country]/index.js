@@ -6,14 +6,16 @@ import ActivityCard from "../../../components/ActivityCard";
 import Footer from "../../../components/Footer";
 import { useTrans } from "../../../lib/trans";
 
-export default function Home() {
-  const { i } = useTrans();
+import { getNeighbourhoods } from "../../../lib/api";
+
+export default function Home({ country, neighbourhoods }) {
+  const { i, p } = useTrans();
   return (
     <>
-      <Head title={"Honduras"} />
+      <Head title={i(country)} />
       <body>
         <div className="page">
-          <Nav pageTitle={"Honduras"} />
+          <Nav pageTitle={i(country)} />
           <main>
             <Banner
               title={i("Get to know your neighbourhood")}
@@ -25,23 +27,19 @@ export default function Home() {
                 <i className="bi bi-activity"></i>{" "}
                 {i("Most Active Neighbourhoods")}
               </p>
-
-              <NeighbourhoodCard
-                href="/n/1"
-                title="Barrio Concepción"
-                description="San Pedro Sula"
-              />
-
-              <NeighbourhoodCard
-                href="/n/1"
-                title="Barrio Concepción"
-                description="San Pedro Sula"
-              />
-              <NeighbourhoodCard
-                href="/n/1"
-                title="Barrio Concepción"
-                description="San Pedro Sula"
-              />
+              {neighbourhoods.results.map((neighbour) => (
+                <NeighbourhoodCard
+                  key={`neighbourhood-${neighbour.id}`}
+                  href={`/n/${neighbour.id}`}
+                  title={neighbour.name}
+                  description={neighbour.city}
+                  description2={p(
+                    "1 report in the last 5 months",
+                    "{{count}} reports in the last 5 months",
+                    neighbour.activity_metrics.total__last_5_months
+                  )}
+                />
+              ))}
             </div>
 
             <div className="container mt-3">
@@ -61,4 +59,24 @@ export default function Home() {
       </body>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const country = context.params.country.toLowerCase();
+  const limit = parseInt(context.query.neihbourhood_limit || "3");
+
+  const neighbourhoods = await getNeighbourhoods(country, limit);
+
+  if (neighbourhoods.count === 0) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      country,
+      neighbourhoods,
+    },
+  };
 }
