@@ -42,9 +42,11 @@ const Banner = ({ title, description, showSearch, searchCountry }) => {
   return (
     <div className="banner">
       <div className="container">
-        <p className="banner-text banner-title">{title}</p>
+        <p className="banner-text banner-title text-capitalize">{title}</p>
         {description && (
-          <p className="banner-text banner-description">{description}</p>
+          <p className="banner-text banner-description text-capitalize">
+            {description}
+          </p>
         )}
         {showSearch && (
           <div className="search-form rounded">

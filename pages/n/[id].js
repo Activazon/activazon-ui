@@ -5,20 +5,27 @@ import ActivityTypeCard from "../../components/ActivityTypeCard";
 import ActivityCard from "../../components/ActivityCard";
 import Footer from "../../components/Footer";
 import { useTrans } from "./../../lib/trans";
-import { getNeighbourhoodSummary } from "../../lib/api";
+import {
+  getNeighbourhood,
+  getNeighbourhoodSummary,
+  getNeighbourhoodActivities,
+} from "../../lib/api";
 
-export default function Home({ summary }) {
+export default function Home({ neighbourhood, summary }) {
   const { i, pfs } = useTrans();
   return (
     <>
       <Head title={"Barrio Concepción, San Pedro Sula, Honduras"} />
       <body>
         <div className="page">
-          <Nav pageTitle={"Honduras"} backUrl="/c/honduras" />
+          <Nav
+            pageTitle={i(neighbourhood.country)}
+            backUrl={`/c/${neighbourhood.country}`}
+          />
           <main>
             <Banner
-              title={"Barrio Concepción"}
-              description={"San Pedro Sula"}
+              title={neighbourhood.name}
+              description={neighbourhood.city}
               showSearch={true}
             />
 
@@ -91,18 +98,22 @@ export async function getServerSideProps(context) {
   }
 
   const neighbourhoodId = parseInt(context.params.id);
+  const neighbourhood = await getNeighbourhood(neighbourhoodId);
+
+  if (!neighbourhood.id) {
+    return {
+      notFound: true,
+    };
+  }
 
   const summary = await getNeighbourhoodSummary(neighbourhoodId);
-
-  // if (neighbourhoods.count === 0) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
+  const activities = await getNeighbourhoodActivities(neighbourhoodId);
 
   return {
     props: {
+      neighbourhood,
       summary,
+      activities,
     },
   };
 }
