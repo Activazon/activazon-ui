@@ -9,18 +9,4 @@ module.exports = {
     defaultLocale: "en-US",
     localeDetection: true,
   },
-  async rewrites() {
-    return {
-      beforeFiles: [
-        {
-          source: "/admin/",
-          destination: `https://activazon.herokuapp.com/admin/`,
-        },
-        {
-          source: "/admin/:path*",
-          destination: `https://activazon.herokuapp.com/admin/:path*`,
-        },
-      ],
-    };
-  },
 };
