@@ -61,7 +61,7 @@ export default function Home({ country, neighbourhoods, activities }) {
                       }
                     )}
                     description={i("Reported {{date}}", {
-                      date: displayDate(activity.activities),
+                      date: displayDate(activity.date_occured),
                     })}
                   />
                 ))}
