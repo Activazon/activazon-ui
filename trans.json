@@ -1,132 +1,167 @@
 {
-    "AI-powered insights for your neighborhood": {
-        "en-US": "AI-powered insights for your neighborhood",
-        "es-ES": "Información impulsada por AI para tu barrio"
-    },
-    "Explore the neighborhoods of countries, see what is going on": {
-        "en-US": "Explore the neighborhoods of countries, see what is going on",
-        "es-ES": "Explora los barrios de los países, ve lo que está pasando"
-    },
-    "Explore Countries": {
-        "en-US": "Explore Countries",
-        "es-ES": "Explora países"
-    },
-    "What is Activazon": {
-        "en-US": "What is Activazon",
-        "es-ES": "¿Qué es Activazon?"
-    },
-    "Activazon uses advanced AI to bring you customized, reliable information about the neighborhoods and communities you care about. Stay informed and feel secure with Activazon, whether you&apos;re a resident or a traveler.": {
-        "en-US": "Activazon uses advanced AI to bring you customized, reliable information about the neighborhoods and communities you care about. Stay informed and feel secure with Activazon, whether you&apos;re a resident or a traveler.",
-        "es-ES": "Activazon utiliza IA avanzada para brindarle información personalizada y confiable sobre los barrios y comunidades que le interesan. Manténgase informado y sienta seguridad con Activazon, ya sea residente o viajero."
-    },
-    "murder": {
-        "en-US": "Murder",
-        "es-ES": "Asesinato"
-    },
-    "robbery": {
-        "en-US": "Robbery",
-        "es-ES": "Robo"
-    },
-    "arrest": {
-        "en-US": "Arrest",
-        "es-ES": "Arresto"
-    },
-    "murder__plural": {
-        "en-US": "Murders",
-        "es-ES": "Asesinatos"
-    },
-    "robbery__plural": {
-        "en-US": "Robberies",
-        "es-ES": "Robos"
-    },
-    "arrest__plural": {
-        "en-US": "Arrests",
-        "es-ES": "Arrestos"
-    },
-    "Summary": {
-        "en-US": "Summary",
-        "es-ES": "Resumen"
-    },
-    "Activity in this area": {
-        "en-US": "Activity in this area",
-        "es-ES": "Actividad en esta área"
-    },
-    "Get to know your neighbourhood": {
-        "en-US": "Get to know your neighbourhood",
-        "es-ES": "Conoce tu barrio"
-    },
-    "Neighbourhoods": {
-        "en-US": "Neighbourhoods",
-        "es-ES": "Barrios"
-    },
-    "Recent Activity": {
-        "en-US": "Recent Activity",
-        "es-ES": "Actividad reciente"
-    },
-    "Reported {{date}}": {
-        "en-US": "Reported {{date}}",
-        "es-ES": "Reportado {{date}}"
-    },
-    "Sources": {
-        "en-US": "Sources",
-        "es-ES": "Fuentes"
-    },
-    "This activity was detected by analyzing the following sources using AI.": {
-        "en-US": "This activity was detected by analyzing the following sources using AI.",
-        "es-ES": "Esta actividad fue detectada al analizar las siguientes fuentes con AI."
-    },
-    "Search for your neighbourhood": {
-        "en-US": "Search for your neighbourhood",
-        "es-ES": "Busca tu barrio"
-    },
-    "honduras": {
-        "en-US": "Honduras",
-        "es-ES": "Honduras"
-    },
-    "{{count}} activities in the last 5 months": {
-        "examples": ["8 activities in the last 5 months", "30 activities in the last 5 months"],
-        "en-US": "{{count}} activities in the last 5 months",
-        "es-ES": "{{count}} actividades en los últimos 5 meses"
-    },
-    "1 activity in the last 5 months": {
-        "en-US": "1 activity in the last 5 months",
-        "es-ES": "1 actividad en los últimos 5 meses"
-    },
-    "{{activity_type_name}} in {{neighbourhood_name}}": {
-        "examples": ["arrest in los naranjos", "robbery in santa bárbara"],
-        "en-US": "{{activity_type_name}} in {{neighbourhood_name}}",
-        "es-ES": "{{activity_type_name}} en {{neighbourhood_name}}"
-    },
-    "No neighbourhoods found": {
-        "en-US": "No neighbourhoods found",
-        "es-ES": "No se han encontrado barrios"
-    },
-    "Searching...": {
-        "en-US": "Searching...",
-        "es-ES": "Buscando..."
-    },
-    "Try searching instead": {
-        "en-US": "Try searching instead",
-        "es-ES": "Prueba a buscar en su lugar"
-    },
-    "Whoops! Could not find the page you were looking for.": {
-        "en-US": "Whoops! Could not find the page you were looking for.",
-        "es-ES": "¡Ups! No se ha podido encontrar la página que estabas buscando."
-    },
-    "Activities in the last 5 months": {
-        "en-US": "Activities in the last 5 months",
-        "es-ES": "Actividades en los últimos 5 meses"
-    },
-    "Recent activities": {
-        "en-US": "Recent activities",
-        "es-ES": "Actividades recientes"
-    },
-    "No activity in the last 5 months": {
-        "en-US": "No activity in the last 5 months",
-        "es-ES": "No hay actividad en los últimos 5 meses"
-    },
-    "No recent actvitiy": {
-        "en-US": "No recent actvitiy",
-        "es-ES": "No hay actividad reciente"
-    }
+  "AI-powered insights for your neighborhood": {
+    "en-US": "AI-powered insights for your neighborhood",
+    "es-ES": "Información impulsada por AI para tu barrio"
+  },
+  "Explore the neighborhoods of countries, see what is going on": {
+    "en-US": "Explore the neighborhoods of countries, see what is going on",
+    "es-ES": "Explora los barrios de los países, ve lo que está pasando"
+  },
+  "Explore Countries": {
+    "en-US": "Explore Countries",
+    "es-ES": "Explora países"
+  },
+  "What is Activazon": {
+    "en-US": "What is Activazon",
+    "es-ES": "¿Qué es Activazon?"
+  },
+  "Activazon uses advanced AI to bring you customized, reliable information about the neighborhoods and communities you care about. Stay informed and feel secure with Activazon, whether you&apos;re a resident or a traveler.": {
+    "en-US": "Activazon uses advanced AI to bring you customized, reliable information about the neighborhoods and communities you care about. Stay informed and feel secure with Activazon, whether you&apos;re a resident or a traveler.",
+    "es-ES": "Activazon utiliza IA avanzada para brindarle información personalizada y confiable sobre los barrios y comunidades que le interesan. Manténgase informado y sienta seguridad con Activazon, ya sea residente o viajero."
+  },
+  "murder": {
+    "en-US": "Murder",
+    "es-ES": "Asesinato"
+  },
+  "robbery": {
+    "en-US": "Robbery",
+    "es-ES": "Robo"
+  },
+  "arrest": {
+    "en-US": "Arrest",
+    "es-ES": "Arresto"
+  },
+  "murder__plural": {
+    "en-US": "Murders",
+    "es-ES": "Asesinatos"
+  },
+  "robbery__plural": {
+    "en-US": "Robberies",
+    "es-ES": "Robos"
+  },
+  "arrest__plural": {
+    "en-US": "Arrests",
+    "es-ES": "Arrestos"
+  },
+  "vandalism": {
+    "en-US": "Vandalism",
+    "es-ES": "Vandalismo"
+  },
+  "vandalism__plural": {
+    "en-US": "Vandalisms",
+    "es-ES": "Vandalismos"
+  },
+  "shooting": {
+    "en-US": "Shooting",
+    "es-ES": "Disparo"
+  },
+  "shooting__plural": {
+    "en-US": "Shootings",
+    "es-ES": "Disparos"
+  },
+  "kidnapping": {
+    "en-US": "Kid Napping",
+    "es-ES": "Secuestro"
+  },
+  "kidnapping__plural": {
+    "en-US": "Kid Nappings",
+    "es-ES": "Secuestros"
+  },
+  "extortion": {
+    "en-US": "Extortion",
+    "es-ES": "Extorsión"
+  },
+  "extortion__plural": {
+    "en-US": "Extortions",
+    "es-ES": "Extorsiones"
+  },
+  "Summary": {
+    "en-US": "Summary",
+    "es-ES": "Resumen"
+  },
+  "Activity in this area": {
+    "en-US": "Activity in this area",
+    "es-ES": "Actividad en esta área"
+  },
+  "Get to know your neighbourhood": {
+    "en-US": "Get to know your neighbourhood",
+    "es-ES": "Conoce tu barrio"
+  },
+  "Neighbourhoods": {
+    "en-US": "Neighbourhoods",
+    "es-ES": "Barrios"
+  },
+  "Recent Activity": {
+    "en-US": "Recent Activity",
+    "es-ES": "Actividad reciente"
+  },
+  "Reported {{date}}": {
+    "en-US": "Reported {{date}}",
+    "es-ES": "Reportado {{date}}"
+  },
+  "Sources": {
+    "en-US": "Sources",
+    "es-ES": "Fuentes"
+  },
+  "This activity was detected by analyzing the following sources using AI.": {
+    "en-US": "This activity was detected by analyzing the following sources using AI.",
+    "es-ES": "Esta actividad fue detectada al analizar las siguientes fuentes con AI."
+  },
+  "Search for your neighbourhood": {
+    "en-US": "Search for your neighbourhood",
+    "es-ES": "Busca tu barrio"
+  },
+  "honduras": {
+    "en-US": "Honduras",
+    "es-ES": "Honduras"
+  },
+  "{{count}} activities in the last 5 months": {
+    "examples": [
+      "8 activities in the last 5 months",
+      "30 activities in the last 5 months"
+    ],
+    "en-US": "{{count}} activities in the last 5 months",
+    "es-ES": "{{count}} actividades en los últimos 5 meses"
+  },
+  "1 activity in the last 5 months": {
+    "en-US": "1 activity in the last 5 months",
+    "es-ES": "1 actividad en los últimos 5 meses"
+  },
+  "{{activity_type_name}} in {{neighbourhood_name}}": {
+    "examples": ["arrest in los naranjos", "robbery in santa bárbara"],
+    "en-US": "{{activity_type_name}} in {{neighbourhood_name}}",
+    "es-ES": "{{activity_type_name}} en {{neighbourhood_name}}"
+  },
+  "No neighbourhoods found": {
+    "en-US": "No neighbourhoods found",
+    "es-ES": "No se han encontrado barrios"
+  },
+  "Searching...": {
+    "en-US": "Searching...",
+    "es-ES": "Buscando..."
+  },
+  "Try searching instead": {
+    "en-US": "Try searching instead",
+    "es-ES": "Prueba a buscar en su lugar"
+  },
+  "Whoops! Could not find the page you were looking for.": {
+    "en-US": "Whoops! Could not find the page you were looking for.",
+    "es-ES": "¡Ups! No se ha podido encontrar la página que estabas buscando."
+  },
+  "Activities in the last 5 months": {
+    "en-US": "Activities in the last 5 months",
+    "es-ES": "Actividades en los últimos 5 meses"
+  },
+  "Recent activities": {
+    "en-US": "Recent activities",
+    "es-ES": "Actividades recientes"
+  },
+  "No activity in the last 5 months": {
+    "en-US": "No activity in the last 5 months",
+    "es-ES": "No hay actividad en los últimos 5 meses"
+  },
+  "No recent actvitiy": {
+    "en-US": "No recent actvitiy",
+    "es-ES": "No hay actividad reciente"
+  }
 }
