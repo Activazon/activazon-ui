@@ -22,6 +22,7 @@ export default function Home({ country, neighbourhoods, activities }) {
             <Banner
               title={i("Get to know your neighbourhood")}
               showSearch={true}
+              searchCountry={country}
             />
 
             <div className="container mt-3">
@@ -52,7 +53,6 @@ export default function Home({ country, neighbourhoods, activities }) {
                   <ActivityCard
                     key={`activity-${activity.id}`}
                     href={`/a/${activity.id}`}
-                    // href="/a/1"
                     title={i(
                       "{{activity_type_name}} in {{neighbourhood_name}}",
                       {

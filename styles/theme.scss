@@ -64,8 +64,10 @@ main {
   }
 
   .search-form {
+    position: relative;
     display: flex;
     background-color: darken($primary, 10deg);
+    color: $bg-color;
 
     input[type="text"] {
       background-color: transparent;
@@ -73,7 +75,7 @@ main {
       flex: 1;
       padding: $spacer * 0.5 $spacer;
       outline: none;
-      color: $bg-color;
+      color: inherit;
       font-size: $spacer * 1.2;
       font-weight: 600;
       &::placeholder {
@@ -86,9 +88,31 @@ main {
       padding: $spacer * 0.5 $spacer;
       outline: none;
       color: $bg-color;
-      font-size: $spacer * 1.2;
+      font-size: 1.4rem;
       font-weight: 600;
       cursor: pointer;
+    }
+
+    .search-results-list-group.list-group {
+      position: absolute;
+      top: calc(100% - 9px);
+      width: 100%;
+      z-index: 1000;
+
+      background-color: inherit;
+      color: inherit;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+
+      .list-group-item {
+        background-color: inherit;
+        color: lighten($bg-color, 10deg);
+        &:hover {
+          background-color: darken($primary, 5deg);
+        }
+        padding: auto $spacer * 1.5;
+        font-size: 1.15rem;
+      }
     }
   }
 }
