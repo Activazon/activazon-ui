@@ -5,14 +5,16 @@ import ActivityTypeCard from "../../components/ActivityTypeCard";
 import ActivityCard from "../../components/ActivityCard";
 import Footer from "../../components/Footer";
 import { useTrans } from "./../../lib/trans";
+import { useDate } from "./../../lib/date";
 import {
   getNeighbourhood,
   getNeighbourhoodSummary,
   getNeighbourhoodActivities,
 } from "../../lib/api";
 
-export default function Home({ neighbourhood, summary }) {
+export default function Home({ neighbourhood, summary, activities }) {
   const { i, pfs } = useTrans();
+  const { displayDate } = useDate();
   return (
     <>
       <Head title={"Barrio Concepción, San Pedro Sula, Honduras"} />
@@ -61,26 +63,19 @@ export default function Home({ neighbourhood, summary }) {
                 <i className="bi bi-activity"></i> {i("Activity in this area")}
               </p>
 
-              <ActivityCard
-                href="/a/1"
-                title="Arrest in Barrio Concepción"
-                description="A robbery took place at a gas station"
-              />
-              <ActivityCard
-                href="/a/1"
-                title="Arrest in Barrio Concepción"
-                description="A robbery took place at a gas station"
-              />
-              <ActivityCard
-                href="/a/1"
-                title="Arrest in Barrio Concepción"
-                description="A robbery took place at a gas station"
-              />
-              <ActivityCard
-                href="/a/1"
-                title="Arrest in Barrio Concepción"
-                description="A robbery took place at a gas station"
-              />
+              {activities.results.map((activity) => (
+                <ActivityCard
+                  key={`activity-${activity.id}`}
+                  href={`/a/${activity.id}`}
+                  title={i("{{activity_type_name}} in {{neighbourhood_name}}", {
+                    activity_type_name: i(activity.activity_type.name),
+                    neighbourhood_name: activity.neighbourhood.name,
+                  })}
+                  description={i("Reported {{date}}", {
+                    date: displayDate(activity.activities),
+                  })}
+                />
+              ))}
             </div>
             <Footer />
           </main>
