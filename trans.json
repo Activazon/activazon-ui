@@ -75,6 +75,14 @@
     "en-US": "Extortions",
     "es-ES": "Extorsiones"
   },
+  "hitandrun": {
+    "en-US": "Hit & Run",
+    "es-ES": "Accidente de fuga y choque"
+  },
+  "hitandrun__plural": {
+    "en-US": "Hit & Runs",
+    "es-ES": "Accidentes de fuga y choque"
+  },
   "Summary": {
     "en-US": "Summary",
     "es-ES": "Resumen"
