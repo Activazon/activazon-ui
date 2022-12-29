@@ -33,12 +33,20 @@ export default function Home({ summary }) {
                     title={pfs(activity.activity_type_name, activity.count)}
                     description={i(
                       summary.activites_since === "total__last_5_months"
-                        ? "Reports in the last 5 months"
-                        : "Recent Reports"
+                        ? "Activities in the last 5 months"
+                        : "Recent activities"
                     )}
                   />
                 ))}
-              {summary.total === 0 && <p>No acrtivity in the last 5 months</p>}
+              {summary.total === 0 && (
+                <p>
+                  {i(
+                    summary.activites_since === "total__last_5_months"
+                      ? "No activity in the last 5 months"
+                      : "No recent actvitiy"
+                  )}
+                </p>
+              )}
             </div>
 
             <div className="container mt-3">
@@ -85,8 +93,6 @@ export async function getServerSideProps(context) {
   const neighbourhoodId = parseInt(context.params.id);
 
   const summary = await getNeighbourhoodSummary(neighbourhoodId);
-
-  console.log("summary", summary);
 
   // if (neighbourhoods.count === 0) {
   //   return {

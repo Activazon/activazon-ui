@@ -83,14 +83,14 @@
         "en-US": "Honduras",
         "es-ES": "Honduras"
     },
-    "{{count}} reports in the last 5 months": {
-        "examples": ["8 reports in the last 5 months", "30 reports in the last 5 months"],
-        "en-US": "{{count}} reports in the last 5 months",
-        "es-ES": "{{count}} informes en los últimos 5 meses"
+    "{{count}} activities in the last 5 months": {
+        "examples": ["8 activities in the last 5 months", "30 activities in the last 5 months"],
+        "en-US": "{{count}} activities in the last 5 months",
+        "es-ES": "{{count}} actividades en los últimos 5 meses"
     },
-    "1 report in the last 5 months": {
-        "en-US": "1 report in the last 5 months",
-        "es-ES": "1 informe en los últimos 5 meses"
+    "1 activity in the last 5 months": {
+        "en-US": "1 activity in the last 5 months",
+        "es-ES": "1 actividad en los últimos 5 meses"
     },
     "{{activity_type_name}} in {{neighbourhood_name}}": {
         "examples": ["arrest in los naranjos", "robbery in santa bárbara"],
@@ -113,9 +113,20 @@
         "en-US": "Whoops! Could not find the page you were looking for.",
         "es-ES": "¡Ups! No se ha podido encontrar la página que estabas buscando."
     },
-    "Reports in the last 5 months": {
-        "examples": ["8 reports in the last 5 months", "30 reports in the last 5 months"],
-        "en-US": "Reports in the last 5 months",
-        "es-ES": "Informes en los últimos 5 meses"
+    "Activities in the last 5 months": {
+        "en-US": "Activities in the last 5 months",
+        "es-ES": "Actividades en los últimos 5 meses"
+    },
+    "Recent activities": {
+        "en-US": "Recent activities",
+        "es-ES": "Actividades recientes"
+    },
+    "No activity in the last 5 months": {
+        "en-US": "No activity in the last 5 months",
+        "es-ES": "No hay actividad en los últimos 5 meses"
+    },
+    "No recent actvitiy": {
+        "en-US": "No recent actvitiy",
+        "es-ES": "No hay actividad reciente"
     }
 }

@@ -36,8 +36,8 @@ export default function Home({ country, neighbourhoods, activities }) {
                   title={neighbour.name}
                   description={neighbour.city}
                   description2={p(
-                    "1 report in the last 5 months",
-                    "{{count}} reports in the last 5 months",
+                    "1 activity in the last 5 months",
+                    "{{count}} activities in the last 5 months",
                     neighbour.activity_metrics.total__last_5_months
                   )}
                 />
