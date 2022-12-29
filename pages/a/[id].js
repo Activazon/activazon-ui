@@ -125,8 +125,6 @@ export async function getServerSideProps(context) {
     };
   }
 
-  console.log("activity.source_article", activity.source_article);
-
   return {
     props: {
       activity,
