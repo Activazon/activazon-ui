@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 
 const Nav = ({ pageTitle, backUrl }) => {
   const router = useRouter();
-  const localButtonLabel = router.locale === "en-US" ? "ES" : "EN";
+  const localButtonLabel = router.locale === "en" ? "ES" : "EN";
   const toggleLocale = () => {
     // switch to the other locale
-    const nextLocale = router.locale === "en-US" ? "es-ES" : "en-US";
+    const nextLocale = router.locale === "en" ? "es" : "en";
     router.push(
       { pathname: router.pathname, query: router.query },
       router.asPath,

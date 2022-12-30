@@ -42,8 +42,8 @@ export default function Home({ activity }) {
     neighbourhood_name: activity.neighbourhood.name,
   });
   const summary = {
-    "en-US": activity.summary_en,
-    "es-ES": activity.summary_es,
+    en: activity.summary_en,
+    es: activity.summary_es,
   }[locale];
   return (
     <>

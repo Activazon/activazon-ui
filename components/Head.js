@@ -31,16 +31,8 @@ const AppHead = ({ title }) => {
         href="/favicon-16x16.png"
       />
       <link rel="manifest" href="/site.webmanifest" />
-      <link
-        rel="alternate"
-        hrefLang="en-US"
-        href="https://activazon.com/en-US"
-      />
-      <link
-        rel="alternate"
-        hrefLang="es-ES"
-        href="https://activazon.com/es-ES"
-      />
+      <link rel="alternate" hrefLang="en" href="https://activazon.com/en" />
+      <link rel="alternate" hrefLang="es" href="https://activazon.com/es" />
       {/* Meta tags */}
       <meta property="og:site_name" content={TITLE} />
       <meta property="og:title" content={titleText} />
