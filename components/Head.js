@@ -47,7 +47,7 @@ const AppHead = ({ title }) => {
       <meta property="og:description" content={descriptionText} />
       <meta
         property="og:image"
-        itemprop="image"
+        itemProp="image"
         content="https://www.activazon.com/social-share.png"
       />
       <meta property="og:type" content="website" />

@@ -21,7 +21,10 @@ export default function Home({ countries }) {
             />
 
             <div className="container pt-3">
-              <p className="lead">{i("Explore Countries")}</p>
+              <p className="lead">
+                <i className="bi bi-binoculars-fill"></i>{" "}
+                {i("Explore Countries")}
+              </p>
               <p>
                 {i(
                   "Explore the neighborhoods of countries, see what is going on"
@@ -40,10 +43,23 @@ export default function Home({ countries }) {
               </div>
             </div>
             <div className="container mt-3">
-              <p className="lead">{i("What is Activazon")}</p>
+              <p className="lead">
+                <i class="bi bi-chat-fill" /> {i("What is Activazon")}
+              </p>
               <p>
                 {i(
-                  "Activazon uses advanced AI to bring you customized, reliable information about the neighborhoods and communities you care about. Stay informed and feel secure with Activazon, whether you&apos;re a resident or a traveler."
+                  "Activazon is an artificial intelligence service designed to keep you informed and safe with real-time updates on crimes in your neighborhood. Our advanced technology does all the work for you, without the need for human intervention. Relax and let Activazon take care of keeping you informed and safe. We're here to help!"
+                )}
+              </p>
+            </div>
+            <div className="container mt-3">
+              <p className="lead">
+                <i className="bi bi-chat-heart-fill" />{" "}
+                {i("You don't need to fear AI")}
+              </p>
+              <p>
+                {i(
+                  "We understand that some people may have concerns about the increasing use of artificial intelligence in our society. But we want to assure you that Activazon is designed to be a useful and beneficial tool, not a harmful or disruptive one. Our AI service is designed to make your life easier and safer. Trust that Activazon is here to help."
                 )}
               </p>
             </div>

@@ -15,9 +15,17 @@
     "en-US": "What is Activazon",
     "es-ES": "¿Qué es Activazon?"
   },
-  "Activazon uses advanced AI to bring you customized, reliable information about the neighborhoods and communities you care about. Stay informed and feel secure with Activazon, whether you&apos;re a resident or a traveler.": {
-    "en-US": "Activazon uses advanced AI to bring you customized, reliable information about the neighborhoods and communities you care about. Stay informed and feel secure with Activazon, whether you&apos;re a resident or a traveler.",
-    "es-ES": "Activazon utiliza IA avanzada para brindarle información personalizada y confiable sobre los barrios y comunidades que le interesan. Manténgase informado y sienta seguridad con Activazon, ya sea residente o viajero."
+  "Activazon is an artificial intelligence service designed to keep you informed and safe with real-time updates on crimes in your neighborhood. Our advanced technology does all the work for you, without the need for human intervention. Relax and let Activazon take care of keeping you informed and safe. We're here to help!": {
+    "en-US": "Activazon is an artificial intelligence service designed to keep you informed and safe with real-time updates on crimes in your neighborhood. Our advanced technology does all the work for you, without the need for human intervention. Relax and let Activazon take care of keeping you informed and safe. We're here to help!",
+    "es-ES": "Activazon es un servicio de inteligencia artificial diseñado para mantenerte informado y seguro con actualizaciones en tiempo real sobre delitos en tu barrio. Nuestra tecnología avanzada hace todo el trabajo por ti, sin necesidad de intervención humana. Relájate y deja que Activazon se encargue de mantenerte informado y seguro. ¡Estamos aquí para ayudarte!"
+  },
+  "You don't need to fear AI": {
+    "en-US": "You don't need to fear AI",
+    "es-ES": "No necesitas temer la IA"
+  },
+  "We understand that some people may have concerns about the increasing use of artificial intelligence in our society. But we want to assure you that Activazon is designed to be a useful and beneficial tool, not a harmful or disruptive one. Our AI service is designed to make your life easier and safer. Trust that Activazon is here to help.": {
+    "en-US": "We understand that some people may have concerns about the increasing use of artificial intelligence in our society. But we want to assure you that Activazon is designed to be a useful and beneficial tool, not a harmful or disruptive one. Our AI service is designed to make your life easier and safer. Trust that Activazon is here to help.",
+    "es-ES": "Entendemos que algunas personas pueden tener preocupaciones sobre el uso cada vez mayor de la inteligencia artificial en nuestra sociedad. Pero queremos asegurarte que Activazon está diseñado para ser una herramienta útil y beneficiosa, no para ser dañina o disruptiva. Nuestro servicio de IA está diseñado para hacer tu vida más fácil y más segura. Confía en que Activazon está aquí para ayudar."
   },
   "murder": {
     "en-US": "Murder",
