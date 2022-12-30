@@ -9,4 +9,12 @@ module.exports = {
     defaultLocale: "es",
     localeDetection: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: "/bear.js",
+        destination: "https://cdn.panelbear.com/analytics.js",
+      },
+    ];
+  },
 };
