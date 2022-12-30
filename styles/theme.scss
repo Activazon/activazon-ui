@@ -144,6 +144,12 @@ main {
     font-weight: 500;
     margin-bottom: 0px;
   }
+
+  .btn.btn-locale-change {
+    border: 0px;
+    color: $primary;
+    font-weight: 600;
+  }
 }
 
 .lead {
