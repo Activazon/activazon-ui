@@ -91,6 +91,14 @@
     "en-US": "Hit & Runs",
     "es-ES": "Accidentes de fuga y choque"
   },
+  "assault": {
+    "en-US": "Assault",
+    "es-ES": "Asalto"
+  },
+  "assault__plural": {
+    "en-US": "Assaults",
+    "es-ES": "Asaltos"
+  },
   "Summary": {
     "en-US": "Summary",
     "es-ES": "Resumen"
