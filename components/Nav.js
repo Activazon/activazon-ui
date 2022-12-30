@@ -8,6 +8,7 @@ const Nav = ({ pageTitle, backUrl }) => {
   const toggleLocale = () => {
     // switch to the other locale
     const nextLocale = router.locale === "en" ? "es" : "en";
+    trackLocaleChange(nextLocale);
     router.push(
       { pathname: router.pathname, query: router.query },
       router.asPath,
@@ -15,7 +16,6 @@ const Nav = ({ pageTitle, backUrl }) => {
         locale: nextLocale,
       }
     );
-    trackLocaleChange(locale);
   };
 
   return (
