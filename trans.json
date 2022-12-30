@@ -99,6 +99,14 @@
     "en": "Assaults",
     "es": "Asaltos"
   },
+  "accident": {
+    "en": "Accident",
+    "es": "Accidente"
+  },
+  "accident__plural": {
+    "en": "Accidents",
+    "es": "Accidentes"
+  },
   "Summary": {
     "en": "Summary",
     "es": "Resumen"
