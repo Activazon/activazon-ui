@@ -45,6 +45,13 @@ export default function Home({ activity }) {
     en: activity.summary_en,
     es: activity.summary_es,
   }[locale];
+  const bannerDescription = [
+    activity.neighbourhood.city,
+    "-",
+    i("Reported {{date}}", {
+      date: displayDate(activity.date_occured),
+    }),
+  ].join(" ");
   return (
     <>
       <Head title={title} />
@@ -57,9 +64,7 @@ export default function Home({ activity }) {
           <main>
             <Banner
               title={title}
-              description={i("Reported {{date}}", {
-                date: displayDate(activity.date_occured),
-              })}
+              description={bannerDescription}
               showSearch={false}
             />
 

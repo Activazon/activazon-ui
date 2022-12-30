@@ -148,6 +148,9 @@ main {
     color: $white;
     font-weight: 500;
     margin-bottom: 0px;
+    &:hover {
+      color: $white;
+    }
   }
 
   .btn.btn-locale-change {
