@@ -189,12 +189,16 @@ main {
     }
   }
 
-  &:not(.card-no-link):hover {
-    background-color: rgba($primary, 0.8);
+  @media (hover: hover) {
+    &:not(.card-no-link):hover {
+      background-color: rgba($primary, 0.8);
+    }
   }
+
   &.card-row {
     display: flex;
     flex-direction: row;
+
     align-items: center;
   }
   &.card-column {

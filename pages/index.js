@@ -44,7 +44,7 @@ export default function Home({ countries }) {
             </div>
             <div className="container mt-3">
               <p className="lead">
-                <i class="bi bi-chat-fill" /> {i("What is Activazon")}
+                <i className="bi bi-chat-fill" /> {i("What is Activazon")}
               </p>
               <p>
                 {i(

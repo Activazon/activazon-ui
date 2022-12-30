@@ -64,7 +64,7 @@ const Banner = ({ title, description, showSearch, searchCountry }) => {
                   searchResults.count > 0 &&
                   searchResults.results.map((neighbourhood) => (
                     <li
-                      key={`neighbourhood-${neighbourhood.id}`}
+                      key={`neighbourhood-result-${neighbourhood.id}`}
                       className="list-group-item text-capitalize"
                       onClick={() => onSelectResult(neighbourhood.id)}
                     >
