@@ -1,14 +1,24 @@
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { useTrans } from "../lib/trans";
+import { trackBannerSearch } from "../lib/track";
 
 let searchTimeout = null;
 
 const Banner = ({ title, description, showSearch, searchCountry }) => {
   const router = useRouter();
   const { i } = useTrans();
+  const [hasStartedSearching, setHasStartedSearching] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
+
+  useEffect(() => {
+    // track that the user has started searching
+    if (hasStartedSearching) {
+      trackBannerSearch();
+    }
+  }, [hasStartedSearching]);
+
   const onSelectResult = (nid) => {
     router.push(`/n/${nid}`);
   };
@@ -21,6 +31,7 @@ const Banner = ({ title, description, showSearch, searchCountry }) => {
       (async () => {
         if (e.target.value.trim() !== "") {
           setIsSearching(true);
+          setHasStartedSearching(true);
           const searchResp = await fetch(
             `/api/search?country=${searchCountry || ""}&search=${
               e.target.value

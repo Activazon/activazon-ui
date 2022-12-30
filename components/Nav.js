@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { trackLocaleChange } from "../lib/track";
 
 const Nav = ({ pageTitle, backUrl }) => {
   const router = useRouter();
@@ -14,6 +15,7 @@ const Nav = ({ pageTitle, backUrl }) => {
         locale: nextLocale,
       }
     );
+    trackLocaleChange(locale);
   };
 
   return (
