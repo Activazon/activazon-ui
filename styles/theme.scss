@@ -26,6 +26,11 @@ body {
   min-height: 100vh;
 }
 
+#nprogress .bar {
+  height: 8px !important;
+  background-color: #06d0f9 !important;
+}
+
 .page {
   @extend .d-flex;
   @extend .flex-column;
