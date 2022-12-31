@@ -107,6 +107,14 @@
     "en": "Accidents",
     "es": "Accidentes"
   },
+  "prisonescape": {
+    "en": "Prison Escape",
+    "es": "Escape de prisión"
+  },
+  "prisonescape__plural": {
+    "en": "Prison Escapes",
+    "es": "Escapes de prisión"
+  },
   "Summary": {
     "en": "Summary",
     "es": "Resumen"

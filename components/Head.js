@@ -1,12 +1,15 @@
+import { useRouter } from "next/router";
 import Head from "next/head";
 import { useTrans } from "../lib/trans";
 
 const TITLE = "Activazon";
 
 const AppHead = ({ title }) => {
+  const { pathname } = useRouter();
   const { i } = useTrans();
   const titleText = title ? `${title} - ${TITLE}` : TITLE;
   const descriptionText = i("AI-powered insights for your neighborhood");
+  const urlNoLocale = pathname.replace("/en", "").replace("/es", "");
   return (
     <Head>
       <title>{titleText}</title>
@@ -31,8 +34,16 @@ const AppHead = ({ title }) => {
         href="/favicon-16x16.png"
       />
       <link rel="manifest" href="/site.webmanifest" />
-      <link rel="alternate" hrefLang="en" href="https://activazon.com/en" />
-      <link rel="alternate" hrefLang="es" href="https://activazon.com/es" />
+      <link
+        rel="alternate"
+        hrefLang="en"
+        href={"https://activazon.com/en/" + urlNoLocale}
+      />
+      <link
+        rel="alternate"
+        hrefLang="es"
+        href={"https://activazon.com/es" + urlNoLocale}
+      />
       {/* Meta tags */}
       <meta property="og:site_name" content={TITLE} />
       <meta property="og:title" content={titleText} />
