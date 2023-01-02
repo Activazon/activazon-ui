@@ -5,12 +5,11 @@ import Footer from "../components/Footer";
 import Head from "../components/Head";
 import ReactMarkdown from "react-markdown";
 import { useTrans } from "../lib/trans";
-import { getCountries } from "../lib/api";
 
 import TermsOfUseEs from "../contents/legal_es.md";
 import TermsOfUseEn from "../contents/legal_en.md";
 
-export default function Home({ countries }) {
+export default function Home({}) {
   const { i, locale } = useTrans();
   const content = locale === "es" ? TermsOfUseEs : TermsOfUseEn;
 
@@ -32,14 +31,4 @@ export default function Home({ countries }) {
       </body>
     </>
   );
-}
-
-export async function getServerSideProps(context) {
-  const countries = await getCountries(100);
-
-  return {
-    props: {
-      countries,
-    },
-  };
 }

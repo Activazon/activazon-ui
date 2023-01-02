@@ -6,9 +6,18 @@ const Footer = () => {
   return (
     <div className="container my-5 text-center">
       <p>
-        &copy; Activazon 2023 |{" "}
+        <i className="bi bi-c-square"></i> Activazon 2023 |{" "}
         <Link href="/legal" className="link">
           {t("Terms of Use")}
+        </Link>{" "}
+      </p>
+      <p>
+        <Link
+          href="https://www.instagram.com/activazon/"
+          target="_blank"
+          className="link"
+        >
+          <i className="bi bi-instagram"></i> Instagram
         </Link>
       </p>
     </div>
