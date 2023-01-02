@@ -232,3 +232,12 @@ main {
     }
   }
 }
+
+.link {
+  color: darken($primary, 10%);
+  text-decoration: none;
+  &:hover {
+    color: darken($primary, 3%);
+    text-decoration: underline;
+  }
+}
