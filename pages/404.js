@@ -1,5 +1,4 @@
 import Banner from "../components/Banner";
-import CountryCard from "../components/CountryCard";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Head from "../components/Head";

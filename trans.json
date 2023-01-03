@@ -19,14 +19,7 @@
     "en": "Activazon is an artificial intelligence service designed to keep you informed and safe with real-time updates on crimes in your neighborhood. Our advanced technology does all the work for you, without the need for human intervention. Relax and let Activazon take care of keeping you informed and safe. We're here to help!",
     "es": "Activazon es un servicio de inteligencia artificial diseñado para mantenerte informado y seguro con actualizaciones en tiempo real sobre delitos en tu barrio. Nuestra tecnología avanzada hace todo el trabajo por ti, sin necesidad de intervención humana. Relájate y deja que Activazon se encargue de mantenerte informado y seguro. ¡Estamos aquí para ayudarte!"
   },
-  "You don't need to fear AI": {
-    "en": "You don't need to fear AI",
-    "es": "No necesitas temer la IA"
-  },
-  "We understand that some people may have concerns about the increasing use of artificial intelligence in our society. But we want to assure you that Activazon is designed to be a useful and beneficial tool, not a harmful or disruptive one. Our AI service is designed to make your life easier and safer. Trust that Activazon is here to help.": {
-    "en": "We understand that some people may have concerns about the increasing use of artificial intelligence in our society. But we want to assure you that Activazon is designed to be a useful and beneficial tool, not a harmful or disruptive one. Our AI service is designed to make your life easier and safer. Trust that Activazon is here to help.",
-    "es": "Entendemos que algunas personas pueden tener preocupaciones sobre el uso cada vez mayor de la inteligencia artificial en nuestra sociedad. Pero queremos asegurarte que Activazon está diseñado para ser una herramienta útil y beneficiosa, no para ser dañina o disruptiva. Nuestro servicio de IA está diseñado para hacer tu vida más fácil y más segura. Confía en que Activazon está aquí para ayudar."
-  },
+
   "murder": {
     "en": "Murder",
     "es": "Asesinato"
@@ -207,5 +200,25 @@
   "Terms of Use": {
     "en": "Terms of Use",
     "es": "Términos de uso"
+  },
+  "Find your area": {
+    "en": "Find your Country",
+    "es": "Encuentra tu País"
+  },
+  "Stay Safe and Informed with Activazon": {
+    "en": "Stay Safe and Informed with Activazon",
+    "es": "Mantente informado y seguro con Activazon"
+  },
+  "We understand that staying informed and safe is a top priority, and that's where we come in. Our service analyzes and detects crime in neighborhoods to help residents and travelers stay informed and make informed decisions about where to go and when to be extra cautious.": {
+    "en": "We understand that staying informed and safe is a top priority, and that's where we come in. Our service analyzes and detects crime in neighborhoods to help residents and travelers stay informed and make informed decisions about where to go and when to be extra cautious.",
+    "es": "Entendemos que mantenerse informado y seguro es una prioridad y es aquí donde entramos. Nuestro servicio analiza y detecta delitos en vecindarios para ayudar a residentes y viajeros a mantenerse informados y tomar decisiones informadas sobre adónde ir y cuándo ser extra cautelosos."
+  },
+  "We are always on the look out for you": {
+    "en": "We are always on the look out for you",
+    "es": "Siempre estamos atentos a tu seguridad"
+  },
+  "Activazon is always analyzing and looking for updates on incidents to keep you informed and safe. We use publicly available information to generate summaries and alerts, so you can stay informed about crime in your neighborhood or destination.": {
+    "en": "Activazon is always analyzing and looking for updates on incidents to keep you informed and safe. We use publicly available information to generate summaries and alerts, so you can stay informed about crime in your neighborhood or destination.",
+    "es": "Activazon siempre está analizando y buscando actualizaciones sobre incidentes para mantenerte informado y seguro. Utilizamos información públicamente disponible para generar resúmenes y alertas, para que puedas mantenerte informado sobre el delito en tu vecindario o destino."
   }
 }

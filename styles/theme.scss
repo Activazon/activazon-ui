@@ -161,16 +161,21 @@ main {
 }
 
 .lead {
+  @extend .display-6;
   font-weight: 700;
-  font-size: 1.2rem;
+  // font-size: 1.2rem;
   color: $bg-color;
 }
 
 .card.card-body {
   border: 0px;
-  background-color: rgba($primary, 0.15);
+  background-color: rgba(darken($primary, 20%), 0.07);
   margin-bottom: $spacer * 0.5;
   color: $bg-color;
+
+  &.light {
+    background-color: $primary;
+  }
 
   .icon {
     font-size: 2rem;
@@ -194,7 +199,8 @@ main {
 
   @media (hover: hover) {
     &:not(.card-no-link):hover {
-      background-color: rgba($primary, 0.8);
+      background-color: rgba($primary, 0.2);
+      color: $primary;
     }
   }
 
@@ -220,6 +226,10 @@ main {
         text-align: center;
       }
     }
+  }
+
+  &.promo-card {
+    @extend .py-4;
   }
 }
 

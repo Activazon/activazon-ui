@@ -1,13 +1,13 @@
 import Banner from "../components/Banner";
-import CountryCard from "../components/CountryCard";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Head from "../components/Head";
+import CountrySelector from "../components/CountrySelector";
 import { useTrans } from "../lib/trans";
 import { getCountries } from "../lib/api";
 
 export default function Home({ countries }) {
-  const { i } = useTrans();
+  const { i, t } = useTrans();
   return (
     <>
       <Head title={null} />
@@ -21,28 +21,9 @@ export default function Home({ countries }) {
             />
 
             <div className="container pt-3">
-              <p className="lead">
-                <i className="bi bi-binoculars-fill"></i>{" "}
-                {i("Explore Countries")}
-              </p>
-              <p>
-                {i(
-                  "Explore the neighborhoods of countries, see what is going on"
-                )}
-                .
-              </p>
-              <div className="row">
-                {countries.results.map((country) => (
-                  <div className="col-12 col-md-6 col-lg-4">
-                    <CountryCard
-                      displayName={i(country.name)}
-                      name={country.name}
-                    />
-                  </div>
-                ))}
-              </div>
+              <CountrySelector countries={countries} />
             </div>
-            <div className="container mt-3">
+            {/* <div className="container mt-3">
               <p className="lead">
                 <i className="bi bi-chat-fill" /> {i("What is Activazon")}
               </p>
@@ -51,33 +32,33 @@ export default function Home({ countries }) {
                   "Activazon is an artificial intelligence service designed to keep you informed and safe with real-time updates on crimes in your neighborhood. Our advanced technology does all the work for you, without the need for human intervention. Relax and let Activazon take care of keeping you informed and safe. We're here to help!"
                 )}
               </p>
-            </div>
-            <div className="container mt-3">
-              <p className="lead">
-                <i className="bi bi-chat-heart-fill" />{" "}
-                {i("You don't need to fear AI")}
-              </p>
-              <p>
-                {i(
-                  "We understand that some people may have concerns about the increasing use of artificial intelligence in our society. But we want to assure you that Activazon is designed to be a useful and beneficial tool, not a harmful or disruptive one. Our AI service is designed to make your life easier and safer. Trust that Activazon is here to help."
-                )}
-              </p>
-            </div>
-            {/* <div className="container mt-3">
-              <p className="lead">Message from the Creator</p>
-              <p>
-                I&apos;ve noticed that some countries get such a bad rap for
-                being dangerous just because of the side that stream on main
-                stream media. But in truth, these places are so much more than
-                that – they have amazing food, friendly people, and rich
-                cultures that are worth exploring. I understand why people might
-                be hesitant to visit. That&apos;s where Activazon comes in. We
-                want to help people feel at ease and confident while they are in
-                these countries. With Activazon, you can discover all the beauty
-                and wonder that these places have to offer without worrying with
-                security and confidence. - Creator of Activazon
-              </p>
             </div> */}
+
+            <div className="container mt-3">
+              <div class="card card-body promo-card promo-card-light">
+                <h2 className="lead text-center mb-4">
+                  {t("Stay Safe and Informed with Activazon")}
+                </h2>
+                <p className="mb-0">
+                  {t(
+                    "We understand that staying informed and safe is a top priority, and that's where we come in. Our service analyzes and detects crime in neighborhoods to help residents and travelers stay informed and make informed decisions about where to go and when to be extra cautious."
+                  )}
+                </p>
+              </div>
+            </div>
+
+            <div className="container mt-3">
+              <div class="card card-body promo-card">
+                <h2 className="lead text-center mb-4">
+                  {t("We are always on the look out for you")}
+                </h2>
+                <p className="mb-0">
+                  {t(
+                    "Activazon is always analyzing and looking for updates on incidents to keep you informed and safe. We use publicly available information to generate summaries and alerts, so you can stay informed about crime in your neighborhood or destination."
+                  )}
+                </p>
+              </div>
+            </div>
             <Footer />
           </main>
         </div>
