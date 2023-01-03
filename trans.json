@@ -220,5 +220,9 @@
   "Activazon is always analyzing and looking for updates on incidents to keep you informed and safe. We use publicly available information to generate summaries and alerts, so you can stay informed about crime in your neighborhood or destination.": {
     "en": "Activazon is always analyzing and looking for updates on incidents to keep you informed and safe. We use publicly available information to generate summaries and alerts, so you can stay informed about crime in your neighborhood or destination.",
     "es": "Activazon siempre está analizando y buscando actualizaciones sobre incidentes para mantenerte informado y seguro. Utilizamos información públicamente disponible para generar resúmenes y alertas, para que puedas mantenerte informado sobre el delito en tu vecindario o destino."
+  },
+  "Support for more countries coming soon": {
+    "en": "Support for more countries coming soon",
+    "es": "Pronto habrá más países disponibles"
   }
 }

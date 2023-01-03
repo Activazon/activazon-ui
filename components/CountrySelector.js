@@ -26,7 +26,9 @@ const CountrySelector = ({ countries }) => {
         </div>
       ))}
 
-      {/*  */}
+      <p className="mt-2 text-center">
+        {t("Support for more countries coming soon")}
+      </p>
     </div>
   );
 };
