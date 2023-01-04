@@ -54,6 +54,10 @@ const AppHead = ({ title }) => {
         content="https://www.activazon.com/social-share.png"
       />
       <meta property="og:type" content="website" />
+      <meta
+        name="keywords"
+        content="honduras safety, safety, neighbourhoods, is honduras safe, safe neighbourhoods, crime, ai, ai analysis, activa zone, activazon, travel saftey, san pedro sula, tegucigalpa, roatan, la ceiba"
+      />
     </Head>
   );
 };
