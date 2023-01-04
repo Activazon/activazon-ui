@@ -56,7 +56,7 @@ const AppHead = ({ title }) => {
       <meta property="og:type" content="website" />
       <meta
         name="keywords"
-        content="Honduras, Advisory, Honduras Safety, Safety, Neighbourhoods, Is Honduras Safe, Safe Neighbourhoods, Crime, Ai, Ai Analysis, Activa Zone, Activazon, Travel Saftey, San Pedro Sula, Tegucigalpa, Roatan, La Ceiba, Honduras Crime"
+        content="Honduras, Advisory, Honduras Safety, Safety, Neighbourhoods, Is Honduras Safe, Safe Neighbourhoods, Crime, Ai, Ai Analysis, Activa Zone, Activazon, Travel Saftey, San Pedro Sula, Tegucigalpa, Roatan, La Ceiba, Honduras Crime, Francisco Morazan Department, viajar a honduras es seguro?, vaijar a honduras"
       />
     </Head>
   );
