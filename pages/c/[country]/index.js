@@ -77,10 +77,9 @@ export default function Home({ country, neighbourhoods, activities }) {
 
 export async function getServerSideProps(context) {
   const country = context.params.country.toLowerCase();
-  const limit = parseInt(context.query.neihbourhood_limit || "3");
 
-  const neighbourhoods = await getNeighbourhoods(country, limit);
-  const activities = await getCountryRecentActivity(country, 17); // hard limit, not filterable
+  const neighbourhoods = await getNeighbourhoods(country, 15);
+  const activities = await getCountryRecentActivity(country, 3); // hard limit, not filterable
 
   if (neighbourhoods.count === 0) {
     return {
