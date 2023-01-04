@@ -66,13 +66,13 @@ export default function Home({ activity }) {
               title={title}
               description={bannerDescription}
               showSearch={false}
-              bottomContent={
-                <img
-                  className="rounded shadow"
-                  width={"100%"}
-                  src={`/api/nmap?nid=${activity.neighbourhood.id}`}
-                />
-              }
+              // bottomContent={
+              //   <img
+              //     className="rounded shadow"
+              //     width={"100%"}
+              //     src={`/api/nmap?nid=${activity.neighbourhood.id}`}
+              //   />
+              // }
             />
 
             <div className="container mt-3">

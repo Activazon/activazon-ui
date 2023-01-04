@@ -37,13 +37,13 @@ export default function Home({ neighbourhood, summary, activities }) {
               title={neighbourhood.name}
               description={neighbourhood.city}
               showSearch={false}
-              bottomContent={
-                <img
-                  className="rounded shadow"
-                  width={"100%"}
-                  src={`/api/nmap?nid=${neighbourhood.id}`}
-                />
-              }
+              // bottomContent={
+              //   <img
+              //     className="rounded shadow"
+              //     width={"100%"}
+              //     src={`/api/nmap?nid=${neighbourhood.id}`}
+              //   />
+              // }
             />
 
             <div className="container mt-3"></div>
