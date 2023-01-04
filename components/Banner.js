@@ -5,7 +5,13 @@ import { trackBannerSearch } from "../lib/track";
 
 let searchTimeout = null;
 
-const Banner = ({ title, description, showSearch, searchCountry }) => {
+const Banner = ({
+  title,
+  description,
+  showSearch,
+  searchCountry,
+  bottomContent,
+}) => {
   const router = useRouter();
   const { i } = useTrans();
   const [hasStartedSearching, setHasStartedSearching] = useState(false);
@@ -95,6 +101,7 @@ const Banner = ({ title, description, showSearch, searchCountry }) => {
             )}
           </div>
         )}
+        {bottomContent}
       </div>
     </div>
   );

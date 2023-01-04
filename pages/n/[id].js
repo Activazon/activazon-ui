@@ -16,6 +16,7 @@ import { capitalizeWords } from "../../lib/words";
 export default function Home({ neighbourhood, summary, activities }) {
   const { i, pfs } = useTrans();
   const { displayDate } = useDate();
+
   return (
     <>
       <Head
@@ -35,8 +36,17 @@ export default function Home({ neighbourhood, summary, activities }) {
             <Banner
               title={neighbourhood.name}
               description={neighbourhood.city}
-              showSearch={true}
+              showSearch={false}
+              bottomContent={
+                <img
+                  className="rounded shadow"
+                  width={"100%"}
+                  src={`/api/nmap?nid=${neighbourhood.id}`}
+                />
+              }
             />
+
+            <div className="container mt-3"></div>
 
             <div className="container mt-3">
               <p className="lead">
