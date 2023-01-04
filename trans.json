@@ -116,6 +116,14 @@
     "en": "Suicides",
     "es": "Suicidios"
   },
+  "homicide": {
+    "en": "Homicide",
+    "es": "Homicidio"
+  },
+  "homicide__plural": {
+    "en": "Homicides",
+    "es": "Homicidios"
+  },
   "Summary": {
     "en": "Summary",
     "es": "Resumen"
