@@ -108,6 +108,14 @@
     "en": "Prison Escapes",
     "es": "Escapes de prisión"
   },
+  "suicide": {
+    "en": "Suicide",
+    "es": "Suicidio"
+  },
+  "suicide__plural": {
+    "en": "Suicides",
+    "es": "Suicidios"
+  },
   "Summary": {
     "en": "Summary",
     "es": "Resumen"

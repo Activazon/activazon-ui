@@ -79,7 +79,7 @@ export async function getServerSideProps(context) {
   const country = context.params.country.toLowerCase();
 
   const neighbourhoods = await getNeighbourhoods(country, 15);
-  const activities = await getCountryRecentActivity(country, 3); // hard limit, not filterable
+  const activities = await getCountryRecentActivity(country, 5); // hard limit, not filterable
 
   if (neighbourhoods.count === 0) {
     return {
