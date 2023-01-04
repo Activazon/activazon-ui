@@ -56,7 +56,7 @@ const AppHead = ({ title }) => {
       <meta property="og:type" content="website" />
       <meta
         name="keywords"
-        content="honduras safety, safety, neighbourhoods, is honduras safe, safe neighbourhoods, crime, ai, ai analysis, activa zone, activazon, travel saftey, san pedro sula, tegucigalpa, roatan, la ceiba"
+        content="Honduras, Advisory, Honduras Safety, Safety, Neighbourhoods, Is Honduras Safe, Safe Neighbourhoods, Crime, Ai, Ai Analysis, Activa Zone, Activazon, Travel Saftey, San Pedro Sula, Tegucigalpa, Roatan, La Ceiba, Honduras Crime"
       />
     </Head>
   );
