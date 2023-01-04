@@ -148,13 +148,13 @@
     "en": "Reported {{date}}",
     "es": "Reportado {{date}}"
   },
-  "Sources": {
-    "en": "Sources",
-    "es": "Fuentes"
+  "Additional Coverage": {
+    "en": "Additional Coverage",
+    "es": "Información adicional"
   },
-  "This activity was detected by analyzing the following sources using AI.": {
-    "en": "This activity was detected by analyzing the following sources using AI.",
-    "es": "Esta actividad fue detectada al analizar las siguientes fuentes con AI."
+  "Learn more about this incident with these in-depth news articles": {
+    "en": "Learn more about this incident with these in-depth news articles",
+    "es": "Obtén más información sobre este incidente con estos artículos de noticias en profundidad"
   },
   "Search for your neighbourhood": {
     "en": "Search for your neighbourhood",

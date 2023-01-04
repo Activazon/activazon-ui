@@ -85,11 +85,11 @@ export default function Home({ activity }) {
 
             <div className="container mt-3">
               <p className="lead">
-                <i className="bi bi-card-text"></i> {i("Sources")}
+                <i className="bi bi-card-text"></i> {i("Additional Coverage")}
               </p>
               <p>
                 {i(
-                  "This activity was detected by analyzing the following sources using AI."
+                  "Learn more about this incident with these in-depth news articles"
                 )}
               </p>
 
