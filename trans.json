@@ -148,6 +148,14 @@
     "en": "Fires",
     "es": "Fuegos"
   },
+  "sicariato": {
+    "en": "Hitmann",
+    "es": "Sicariato"
+  },
+  "sicariato__plural": {
+    "en": "Hitmen",
+    "es": "Sicariatos"
+  },
   "Summary": {
     "en": "Summary",
     "es": "Resumen"
