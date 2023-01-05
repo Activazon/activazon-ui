@@ -124,6 +124,30 @@
     "en": "Homicides",
     "es": "Homicidios"
   },
+  "tragedy": {
+    "en": "Tragedy",
+    "es": "Tragedia"
+  },
+  "tragedy__plural": {
+    "en": "Tragedies",
+    "es": "Tragedias"
+  },
+  "arson": {
+    "en": "Arson",
+    "es": "Incendio provocado"
+  },
+  "arson__plural": {
+    "en": "Arsons",
+    "es": "Incendios provocado"
+  },
+  "fire": {
+    "en": "Fire",
+    "es": "Fuego"
+  },
+  "fire__plural": {
+    "en": "Fires",
+    "es": "Fuegos"
+  },
   "Summary": {
     "en": "Summary",
     "es": "Resumen"
