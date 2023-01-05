@@ -39,5 +39,20 @@ export default function App({ Component, pageProps }) {
       router.events.off("routeChangeError", handleStop);
     };
   }, [router]);
+
+  useEffect(() => {
+    // handles facebook pixel
+    import("react-facebook-pixel")
+      .then((x) => x.default)
+      .then((ReactPixel) => {
+        ReactPixel.init("691903682399662");
+        ReactPixel.pageView();
+
+        router.events.on("routeChangeComplete", () => {
+          ReactPixel.pageView();
+        });
+      });
+  }, [router.events]);
+
   return <Component {...pageProps} />;
 }
