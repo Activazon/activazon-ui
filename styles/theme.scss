@@ -37,6 +37,10 @@ body {
   @extend .vh-100;
 }
 
+.container {
+  max-width: 960px !important;
+}
+
 main {
   @extend .flex-grow-1;
   background-color: #ffffff;
