@@ -59,6 +59,10 @@ const AppHead = ({ title }) => {
         name="keywords"
         content="Honduras, Advisory, Honduras Safety, Safety, Neighbourhoods, Is Honduras Safe, Safe Neighbourhoods, Crime, Ai, Ai Analysis, Activa Zone, Activazon, Travel Saftey, San Pedro Sula, Tegucigalpa, Roatan, La Ceiba, Honduras Crime, Francisco Morazan Department, viajar a honduras es seguro?, vaijar a honduras"
       />
+      <meta
+        name="facebook-domain-verification"
+        content="epcsdmcxlma42kz82fhyo2mz5ntomp"
+      />
     </Head>
   );
 };
