@@ -1,8 +1,9 @@
+import { useCallback } from "react";
 import Head from "../../components/Head";
 import Nav from "../../components/Nav";
 import Banner from "../../components/Banner";
 import ActivityTypeCard from "../../components/ActivityTypeCard";
-import ActivityCard from "../../components/ActivityCard";
+import NeighbourhoodActivityCard from "../../components/NeighbourhoodActivityCard";
 import Footer from "../../components/Footer";
 import { useTrans } from "./../../lib/trans";
 import { useDate } from "./../../lib/date";
@@ -14,8 +15,15 @@ import {
 import { capitalizeWords } from "../../lib/words";
 
 export default function Home({ neighbourhood, summary, activities }) {
-  const { i, pfs } = useTrans();
+  const { i, pfs, locale } = useTrans();
   const { displayDate } = useDate();
+
+  const summaryLocale = useCallback(
+    (activity) => {
+      return locale === "en" ? activity.summary_en : activity.summary_es;
+    },
+    [locale]
+  );
 
   return (
     <>
@@ -52,18 +60,25 @@ export default function Home({ neighbourhood, summary, activities }) {
               <p className="lead">
                 <i className="bi bi-card-text"></i> {i("Summary")}
               </p>
-              {summary.total > 0 &&
-                summary.activities.map((activity) => (
-                  <ActivityTypeCard
-                    count={activity.count}
-                    title={pfs(activity.activity_type_name, activity.count)}
-                    description={i(
-                      summary.activites_since === "total__last_5_months"
-                        ? "Activities in the last 5 months"
-                        : "Recent activities"
-                    )}
-                  />
-                ))}
+              <div className="row">
+                {summary.total > 0 &&
+                  summary.activities.map((activity) => (
+                    <div
+                      key={`activity-type-${activity.activity_type_name}`}
+                      className="col-12 col-sm-4 col-md-4 col-lg-4"
+                    >
+                      <ActivityTypeCard
+                        count={activity.count}
+                        title={pfs(activity.activity_type_name, activity.count)}
+                        description={i(
+                          summary.activites_since === "total__last_5_months"
+                            ? "Activities in the last 5 months"
+                            : "Recent activities"
+                        )}
+                      />
+                    </div>
+                  ))}
+              </div>
               {summary.total === 0 && (
                 <p>
                   {i(
@@ -81,14 +96,15 @@ export default function Home({ neighbourhood, summary, activities }) {
               </p>
 
               {activities.results.map((activity) => (
-                <ActivityCard
+                <NeighbourhoodActivityCard
                   key={`activity-${activity.id}`}
                   href={`/a/${activity.id}`}
                   title={i("{{activity_type_name}} in {{neighbourhood_name}}", {
                     activity_type_name: i(activity.activity_type.name),
                     neighbourhood_name: activity.neighbourhood.name,
                   })}
-                  description={i("Reported {{date}}", {
+                  description={summaryLocale(activity)}
+                  dateLabel={i("Reported {{date}}", {
                     date: displayDate(activity.date_occured),
                   })}
                 />

@@ -19,6 +19,13 @@ $theme-colors: (
   "dark": $dark,
 );
 
+a {
+  color: $primary;
+  &:hover {
+    color: darken($primary, 10%);
+  }
+}
+
 body {
   font-family: "TT-Supermolot-Neue";
   background-color: $bg-color;
@@ -190,7 +197,7 @@ main {
   }
   .card-content {
     .card-title {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       margin-bottom: 0px;
       font-weight: 600;
       color: inherit;
