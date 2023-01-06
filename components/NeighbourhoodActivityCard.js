@@ -6,13 +6,12 @@ const NeighbourhoodActivityCard = ({ href, title, description, dateLabel }) => (
       <i className="bi bi-newspaper"></i>
     </div>
     <div className="card-content">
-      <p className="card-description mb-0">
+      <p className="card-description mb-0 text-capitalize">
         <small>{dateLabel}</small>
       </p>
       <Link href={href} className="text-decoration-none">
         <p className="card-title text-capitalize mb-2">
-          {" "}
-          <i className="d-inline d-sm-none me-2 bi bi-newspaper"></i>
+          <i className="d-inline d-sm-none me-2 bi bi-newspaper" />
           {title}
         </p>
       </Link>

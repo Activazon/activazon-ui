@@ -272,5 +272,9 @@
   "Support for more countries coming soon": {
     "en": "Support for more countries coming soon",
     "es": "Pronto habrá más países disponibles"
+  },
+  "{{activity_type_name}} in area": {
+    "en": "{{activity_type_name}} in area",
+    "es": "{{activity_type_name}} in área"
   }
 }

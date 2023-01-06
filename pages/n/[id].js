@@ -99,14 +99,12 @@ export default function Home({ neighbourhood, summary, activities }) {
                 <NeighbourhoodActivityCard
                   key={`activity-${activity.id}`}
                   href={`/a/${activity.id}`}
-                  title={i("{{activity_type_name}} in {{neighbourhood_name}}", {
+                  title={i("{{activity_type_name}} in area", {
                     activity_type_name: i(activity.activity_type.name),
                     neighbourhood_name: activity.neighbourhood.name,
                   })}
                   description={summaryLocale(activity)}
-                  dateLabel={i("Reported {{date}}", {
-                    date: displayDate(activity.date_occured),
-                  })}
+                  dateLabel={displayDate(activity.date_occured)}
                 />
               ))}
             </div>
