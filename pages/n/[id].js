@@ -61,6 +61,17 @@ export default function Home({ neighbourhood, summary, activities }) {
                 <i className="bi bi-card-text"></i> {i("Summary")}
               </p>
               <div className="row">
+                <div className="col-12 col-sm-4 col-md-4 col-lg-4">
+                  <ActivityTypeCard
+                    count={summary.total}
+                    title={i("Total")}
+                    description={i(
+                      summary.activites_since === "total__last_5_months"
+                        ? "Activities in the last 5 months"
+                        : "Recent activities"
+                    )}
+                  />
+                </div>
                 {summary.total > 0 &&
                   summary.activities.map((activity) => (
                     <div
