@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 const COLOR_WHITE = "#cdd7de";
@@ -100,28 +100,40 @@ const render = (status) => {
   return null;
 };
 
-function MyMapComponent({ center, zoom }) {
+function MyMapComponent({ center, zoom, bounds }) {
+  const [map, setMap] = useState(null);
   const ref = useRef();
 
   useEffect(() => {
-    new window.google.maps.Map(ref.current, {
-      center,
-      zoom,
+    const m = new window.google.maps.Map(ref.current, {
+      // center,
+      // zoom,
       disableDefaultUI: true,
       styles: MAP_STYLES,
     });
-  });
+    setMap(m);
+  }, []);
+  useEffect(() => {
+    if (map && bounds) {
+      const latlngbounds = new google.maps.LatLngBounds();
+      Object.values(bounds).forEach((coords) => {
+        latlngbounds.extend(new google.maps.LatLng(coords.lat, coords.lng));
+      });
+      map.fitBounds(latlngbounds);
+    }
+  }, [map, bounds]);
 
   return <div ref={ref} id="map" />;
 }
 
-function Map() {
-  const center = { lat: -34.397, lng: 150.644 };
-  const zoom = 4;
+function Map({ coordinates, bounds }) {
+  console.log("coordinates", coordinates);
+  const center = { lat: coordinates.latitude, lng: coordinates.longitude };
+  const zoom = 15;
 
   return (
     <Wrapper apiKey="AIzaSyB-3HM0QHCiZqFO219zIbNP1jzWOsiDhKc" render={render}>
-      <MyMapComponent center={center} zoom={zoom} />
+      <MyMapComponent center={center} zoom={zoom} bounds={bounds} />
     </Wrapper>
   );
 }
