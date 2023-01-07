@@ -5,16 +5,18 @@ import Banner from "../../components/Banner";
 import ActivityTypeCard from "../../components/ActivityTypeCard";
 import NeighbourhoodActivityCard from "../../components/NeighbourhoodActivityCard";
 import Footer from "../../components/Footer";
+import Map from "../../components/Map";
 import { useTrans } from "./../../lib/trans";
 import { useDate } from "./../../lib/date";
 import {
   getNeighbourhood,
   getNeighbourhoodSummary,
   getNeighbourhoodActivities,
+  getMapServicesNeighbourhoodCoordinates,
 } from "../../lib/api";
 import { capitalizeWords } from "../../lib/words";
 
-export default function Home({ neighbourhood, summary, activities }) {
+export default function Home({ neighbourhood, summary, activities, geo }) {
   const { i, pfs, locale } = useTrans();
   const { displayDate } = useDate();
 
@@ -45,13 +47,12 @@ export default function Home({ neighbourhood, summary, activities }) {
               title={neighbourhood.name}
               description={neighbourhood.city}
               showSearch={false}
-              // bottomContent={
-              //   <img
-              //     className="rounded shadow"
-              //     width={"100%"}
-              //     src={`/api/nmap?nid=${neighbourhood.id}`}
-              //   />
-              // }
+              bottomContent={
+                <Map
+                  coordinates={geo.geo_coordinates}
+                  bounds={geo.geo_bounds}
+                />
+              }
             />
 
             <div className="container mt-3"></div>
@@ -135,7 +136,13 @@ export async function getServerSideProps(context) {
   }
 
   const neighbourhoodId = parseInt(context.params.id);
-  const neighbourhood = await getNeighbourhood(neighbourhoodId);
+
+  const [neighbourhood, summary, activities, geo] = await Promise.all([
+    getNeighbourhood(neighbourhoodId),
+    getNeighbourhoodSummary(neighbourhoodId),
+    getNeighbourhoodActivities(neighbourhoodId),
+    getMapServicesNeighbourhoodCoordinates(neighbourhoodId),
+  ]);
 
   if (!neighbourhood.id) {
     return {
@@ -143,14 +150,14 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const summary = await getNeighbourhoodSummary(neighbourhoodId);
-  const activities = await getNeighbourhoodActivities(neighbourhoodId);
+  console.log("coordinates", geo);
 
   return {
     props: {
       neighbourhood,
       summary,
       activities,
+      geo,
     },
   };
 }
