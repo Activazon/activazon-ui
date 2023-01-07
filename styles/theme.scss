@@ -262,3 +262,15 @@ main {
     text-decoration: underline;
   }
 }
+
+#map {
+  border-radius: 10px;
+  // box-shadow: 0px 0px 20px rgba($bg-color, 0.2);
+  height: 15rem;
+}
+
+@include media-breakpoint-up(md) {
+  #map {
+    height: 20rem;
+  }
+}

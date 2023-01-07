@@ -5,6 +5,7 @@ import Banner from "../../components/Banner";
 import ActivityTypeCard from "../../components/ActivityTypeCard";
 import NeighbourhoodActivityCard from "../../components/NeighbourhoodActivityCard";
 import Footer from "../../components/Footer";
+import Map from "../../components/Map";
 import { useTrans } from "./../../lib/trans";
 import { useDate } from "./../../lib/date";
 import {
@@ -45,13 +46,7 @@ export default function Home({ neighbourhood, summary, activities }) {
               title={neighbourhood.name}
               description={neighbourhood.city}
               showSearch={false}
-              // bottomContent={
-              //   <img
-              //     className="rounded shadow"
-              //     width={"100%"}
-              //     src={`/api/nmap?nid=${neighbourhood.id}`}
-              //   />
-              // }
+              bottomContent={<Map></Map>}
             />
 
             <div className="container mt-3"></div>
