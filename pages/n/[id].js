@@ -12,6 +12,7 @@ import {
   getNeighbourhood,
   getNeighbourhoodSummary,
   getNeighbourhoodActivities,
+  getMapServicesNeighbourhoodCoordinates,
 } from "../../lib/api";
 import { capitalizeWords } from "../../lib/words";
 
@@ -130,7 +131,13 @@ export async function getServerSideProps(context) {
   }
 
   const neighbourhoodId = parseInt(context.params.id);
-  const neighbourhood = await getNeighbourhood(neighbourhoodId);
+
+  const [neighbourhood, summary, activities, coordinates] = await Promise.all([
+    getNeighbourhood(neighbourhoodId),
+    getNeighbourhoodSummary(neighbourhoodId),
+    getNeighbourhoodActivities(neighbourhoodId),
+    getMapServicesNeighbourhoodCoordinates(neighbourhoodId),
+  ]);
 
   if (!neighbourhood.id) {
     return {
@@ -138,14 +145,14 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const summary = await getNeighbourhoodSummary(neighbourhoodId);
-  const activities = await getNeighbourhoodActivities(neighbourhoodId);
+  console.log("coordinates", coordinates);
 
   return {
     props: {
       neighbourhood,
       summary,
       activities,
+      coordinates,
     },
   };
 }
