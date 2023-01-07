@@ -121,13 +121,22 @@ function MyMapComponent({ center, zoom, bounds }) {
       });
       map.fitBounds(latlngbounds);
     }
+
+    //  set marker
+    new google.maps.Marker({
+      position: new google.maps.LatLng(center.lat, center.lng),
+      map: map,
+      icon: {
+        url: "/map/marker-1.svg",
+        scaledSize: new google.maps.Size(50, 50),
+      },
+    });
   }, [map, bounds]);
 
   return <div ref={ref} id="map" />;
 }
 
 function Map({ coordinates, bounds }) {
-  console.log("coordinates", coordinates);
   const center = { lat: coordinates.latitude, lng: coordinates.longitude };
   const zoom = 15;
 
