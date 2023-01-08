@@ -114,27 +114,29 @@ function MyMapComponent({ center, zoom, bounds }) {
     setMap(m);
   }, []);
   useEffect(() => {
-    if (map && bounds) {
-      const latlngbounds = new google.maps.LatLngBounds();
-      Object.values(bounds).forEach((coords) => {
-        latlngbounds.extend(new google.maps.LatLng(coords.lat, coords.lng));
-      });
-      map.fitBounds(latlngbounds);
-    } else {
-      map.setCenter(center);
-      map.setZoom(zoom);
-    }
+    if (map) {
+      if (bounds) {
+        const latlngbounds = new google.maps.LatLngBounds();
+        Object.values(bounds).forEach((coords) => {
+          latlngbounds.extend(new google.maps.LatLng(coords.lat, coords.lng));
+        });
+        map.fitBounds(latlngbounds);
+      } else {
+        map.setCenter(center);
+        map.setZoom(zoom);
+      }
 
-    //  set marker
-    new google.maps.Marker({
-      position: new google.maps.LatLng(center.lat, center.lng),
-      map: map,
-      icon: {
-        url: "/map/marker-1.svg",
-        scaledSize: new google.maps.Size(50, 50),
-      },
-    });
-  }, [map, bounds]);
+      //  set marker
+      new google.maps.Marker({
+        position: new google.maps.LatLng(center.lat, center.lng),
+        map: map,
+        icon: {
+          url: "/map/marker-1.svg",
+          scaledSize: new google.maps.Size(50, 50),
+        },
+      });
+    }
+  }, [map, bounds, center, zoom]);
 
   return <div ref={ref} id="map" />;
 }
