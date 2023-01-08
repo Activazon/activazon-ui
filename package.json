@@ -25,5 +25,8 @@
     "react-facebook-pixel": "^1.0.4",
     "react-markdown": "^8.0.4",
     "sass": "^1.57.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.31.0"
   }
 }
