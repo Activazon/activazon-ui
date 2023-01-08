@@ -120,6 +120,9 @@ function MyMapComponent({ center, zoom, bounds }) {
         latlngbounds.extend(new google.maps.LatLng(coords.lat, coords.lng));
       });
       map.fitBounds(latlngbounds);
+    } else {
+      map.setCenter(center);
+      map.setZoom(zoom);
     }
 
     //  set marker
