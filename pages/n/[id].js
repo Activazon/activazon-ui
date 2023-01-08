@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import Head from "../../components/Head";
 import Nav from "../../components/Nav";
 import Banner from "../../components/Banner";
@@ -15,10 +15,14 @@ import {
   getMapServicesNeighbourhoodCoordinates,
 } from "../../lib/api";
 import { capitalizeWords } from "../../lib/words";
+import { trackNeighbourhoodView } from "../../lib/track";
 
 export default function Home({ neighbourhood, summary, activities, geo }) {
   const { i, pfs, locale } = useTrans();
   const { displayDate } = useDate();
+  useEffect(() => {
+    trackNeighbourhoodView();
+  }, []);
 
   const summaryLocale = useCallback(
     (activity) => {
@@ -149,8 +153,6 @@ export async function getServerSideProps(context) {
       notFound: true,
     };
   }
-
-  console.log("coordinates", geo);
 
   return {
     props: {

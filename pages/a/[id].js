@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Head from "../../components/Head";
 import Image from "next/image";
 import Nav from "../../components/Nav";
@@ -6,6 +7,7 @@ import Footer from "../../components/Footer";
 import { useTrans } from "../../lib/trans";
 import { useDate } from "../../lib/date";
 import { getActivity } from "../../lib/api";
+import { trackActivityView } from "../../lib/track";
 
 const Source = ({ sourceName, sourceDisplayName, sourceUrl, sourceTitle }) => (
   <li className="list-group-item">
@@ -37,6 +39,10 @@ const Source = ({ sourceName, sourceDisplayName, sourceUrl, sourceTitle }) => (
 export default function Home({ activity }) {
   const { i, locale } = useTrans();
   const { displayDate } = useDate();
+  useEffect(() => {
+    trackActivityView();
+  }, []);
+
   const title = i("{{activity_type_name}} in {{neighbourhood_name}}", {
     activity_type_name: i(activity.activity_type.name),
     neighbourhood_name: activity.neighbourhood.name,
