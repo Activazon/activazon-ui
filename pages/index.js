@@ -16,8 +16,9 @@ export default function Home({ countries }) {
           <Nav />
           <main>
             <Banner
-              title={i("AI-powered insights for your neighborhood")}
+              title={i("Get to know your neighbourhood")}
               showSearch={true}
+              searchCountry={null}
             />
 
             <div className="container pt-3">
