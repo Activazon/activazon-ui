@@ -20,29 +20,38 @@
     "es": "Activazon es un servicio de inteligencia artificial diseñado para mantenerte informado y seguro con actualizaciones en tiempo real sobre delitos en tu barrio. Nuestra tecnología avanzada hace todo el trabajo por ti, sin necesidad de intervención humana. Relájate y deja que Activazon se encargue de mantenerte informado y seguro. ¡Estamos aquí para ayudarte!"
   },
 
-  "murder": {
-    "en": "Murder",
-    "es": "Asesinato"
-  },
   "robbery": {
     "en": "Robbery",
     "es": "Robo"
-  },
-  "arrest": {
-    "en": "Arrest",
-    "es": "Arresto"
-  },
-  "murder__plural": {
-    "en": "Murders",
-    "es": "Asesinatos"
   },
   "robbery__plural": {
     "en": "Robberies",
     "es": "Robos"
   },
+  "arrest": {
+    "en": "Arrest",
+    "es": "Arresto"
+  },
+
   "arrest__plural": {
     "en": "Arrests",
     "es": "Arrestos"
+  },
+  "murder": {
+    "en": "Homicide",
+    "es": "Homicidio"
+  },
+  "murder__plural": {
+    "en": "Homicides",
+    "es": "Homicidios"
+  },
+  "homicide": {
+    "en": "Homicide",
+    "es": "Homicidio"
+  },
+  "homicide__plural": {
+    "en": "Homicides",
+    "es": "Homicidios"
   },
   "vandalism": {
     "en": "Vandalism",
@@ -115,14 +124,6 @@
   "suicide__plural": {
     "en": "Suicides",
     "es": "Suicidios"
-  },
-  "homicide": {
-    "en": "Homicide",
-    "es": "Homicidio"
-  },
-  "homicide__plural": {
-    "en": "Homicides",
-    "es": "Homicidios"
   },
   "tragedy": {
     "en": "Tragedy",
