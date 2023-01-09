@@ -156,6 +156,22 @@
     "en": "Hitmen",
     "es": "Sicariatos"
   },
+  "drugs": {
+    "en": "Drugs",
+    "es": "Drugas"
+  },
+  "drugs__plural": {
+    "en": "Drugs",
+    "es": "Drugas"
+  },
+  "cocaine": {
+    "en": "Drugs",
+    "es": "Drugas"
+  },
+  "cocaine__plural": {
+    "en": "Drugs",
+    "es": "Drugas"
+  },
   "Total": {
     "en": "Total",
     "es": "Total"
