@@ -173,6 +173,14 @@
     "en": "Drugs",
     "es": "Drugas"
   },
+  "drugtrafficking": {
+    "en": "Drug Trafficking",
+    "es": "el tráfico de drogas"
+  },
+  "drugtrafficking_plural": {
+    "en": "Drug Trafficking",
+    "es": "el tráfico de drogas"
+  },
   "Total": {
     "en": "Total",
     "es": "Total"
