@@ -40,7 +40,7 @@ export default function Home({ activity }) {
   const { i, locale } = useTrans();
   const { displayDate } = useDate();
   useEffect(() => {
-    trackActivityView();
+    trackActivityView(activity.neighbourhood.id, activity.id);
   }, []);
 
   const title = i("{{activity_type_name}} in {{neighbourhood_name}}", {

@@ -21,7 +21,7 @@ const Banner = ({
   useEffect(() => {
     // track that the user has started searching
     if (hasStartedSearching) {
-      trackBannerSearch();
+      trackBannerSearch(searchCountry ? true : false);
     }
   }, [hasStartedSearching]);
 

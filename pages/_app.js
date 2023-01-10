@@ -1,18 +1,9 @@
 import "../styles/theme.scss";
 import "nprogress/nprogress.css";
 import { useEffect } from "react";
-import { useRouter } from "next/router";
 import NProgress from "nprogress";
-import { usePanelbear } from "@panelbear/panelbear-nextjs";
 
 export default function App({ Component, pageProps }) {
-  // Load Panelbear only once during the app lifecycle
-  usePanelbear(process.env.NEXT_PUBLIC_BEAR_PANEL_SITE_ID, {
-    debug: process.env.NEXT_PUBLIC_BEAR_PANEL_ENABLED != "1",
-    scriptSrc: "/bear.js",
-  });
-  const router = useRouter();
-
   useEffect(() => {
     // handles showing and hiding the loading overlay
     // when the router is changing routes

@@ -21,7 +21,7 @@ export default function Home({ neighbourhood, summary, activities, geo }) {
   const { i, pfs, locale } = useTrans();
   const { displayDate } = useDate();
   useEffect(() => {
-    trackNeighbourhoodView();
+    trackNeighbourhoodView(neighbourhood.id);
   }, []);
 
   const summaryLocale = useCallback(
