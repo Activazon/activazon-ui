@@ -1,9 +1,11 @@
+import { useRouter } from "next/router";
 import "../styles/theme.scss";
 import "nprogress/nprogress.css";
 import { useEffect } from "react";
 import NProgress from "nprogress";
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
   useEffect(() => {
     // handles showing and hiding the loading overlay
     // when the router is changing routes
