@@ -53,6 +53,9 @@ export default function App({ Component, pageProps }) {
         });
       });
   }, [router.events]);
+  useEffect(() => {
+    import("bootstrap/dist/js/bootstrap");
+  }, []);
 
   return <Component {...pageProps} />;
 }

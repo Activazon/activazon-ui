@@ -1,0 +1,39 @@
+.cta-banner {
+  .cta-banner-info {
+    color: $bg-color;
+    opacity: 0.8;
+  }
+}
+
+#cta-signUpModal {
+  backdrop-filter: blur(8px);
+  .modal-content {
+    border: 0px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.9);
+    background-color: $primary;
+    // border-radius: 0px;
+    color: $bg-color;
+    padding: 1rem 0.5rem;
+
+    .model-title {
+      font-weight: 700;
+    }
+    .model-info {
+      font-size: 1.15rem;
+    }
+    .form-control {
+      border: 0px;
+      background-color: darken($primary, 10%);
+      padding: 0.7rem 0.9rem;
+      color: $bg-color;
+      font-size: 1.15rem;
+      &::placeholder {
+        color: $white;
+      }
+      &:hover {
+        background-color: darken($primary, 5%);
+        outline: lighten($primary, 5%);
+      }
+    }
+  }
+}
