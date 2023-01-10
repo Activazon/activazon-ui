@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Banner from "../components/Banner";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
@@ -5,9 +6,13 @@ import Head from "../components/Head";
 import CountrySelector from "../components/CountrySelector";
 import { useTrans } from "../lib/trans";
 import { getCountries } from "../lib/api";
+import { trackHome } from "../lib/track";
 
 export default function Home({ countries }) {
-  const { i, t } = useTrans();
+  const { i, t, locale } = useTrans();
+  useEffect(() => {
+    trackHome(locale);
+  }, []);
   return (
     <>
       <Head title={null} />
