@@ -305,5 +305,9 @@
   "{{activity_type_name}} in area": {
     "en": "{{activity_type_name}} in area",
     "es": "{{activity_type_name}} en área"
+  },
+  "More from {{neighbourhood_name}}": {
+    "en": "More from {{neighbourhood_name}}",
+    "es": "Más de {{neighbourhood_name}}"
   }
 }

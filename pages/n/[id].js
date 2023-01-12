@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import Link from "next/link";
 import Head from "../../components/Head";
 import Nav from "../../components/Nav";
 import Banner from "../../components/Banner";
@@ -123,6 +124,16 @@ export default function Home({ neighbourhood, summary, activities, geo }) {
                   dateLabel={displayDate(activity.date_occured)}
                 />
               ))}
+            </div>
+            <div className="container mt-3">
+              <Link
+                href={`/c/${neighbourhood.country}`}
+                className="btn btn-primary text-capitalize w-100 py-3"
+              >
+                {i("More from {{neighbourhood_name}}", {
+                  neighbourhood_name: neighbourhood.country,
+                })}
+              </Link>
             </div>
             <Footer />
           </main>

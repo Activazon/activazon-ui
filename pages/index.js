@@ -41,7 +41,7 @@ export default function Home({ countries }) {
             </div> */}
 
             <div className="container mt-3">
-              <div class="card card-body promo-card promo-card-light">
+              <div className="card card-body promo-card promo-card-light">
                 <h2 className="lead text-center mb-4">
                   {t("Stay Safe and Informed with Activazon")}
                 </h2>
@@ -54,7 +54,7 @@ export default function Home({ countries }) {
             </div>
 
             <div className="container mt-3">
-              <div class="card card-body promo-card">
+              <div className="card card-body promo-card">
                 <h2 className="lead text-center mb-4">
                   {t("We are always on the look out for you")}
                 </h2>

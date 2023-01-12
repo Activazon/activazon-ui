@@ -1,12 +1,17 @@
 import { useEffect } from "react";
+import Link from "next/link";
 import Head from "../../components/Head";
 import Image from "next/image";
 import Nav from "../../components/Nav";
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
+import Map from "../../components/Map";
 import { useTrans } from "../../lib/trans";
 import { useDate } from "../../lib/date";
-import { getActivity } from "../../lib/api";
+import {
+  getActivity,
+  getMapServicesNeighbourhoodCoordinates,
+} from "../../lib/api";
 import { trackActivityView } from "../../lib/track";
 
 const Source = ({ sourceName, sourceDisplayName, sourceUrl, sourceTitle }) => (
@@ -36,7 +41,7 @@ const Source = ({ sourceName, sourceDisplayName, sourceUrl, sourceTitle }) => (
   </li>
 );
 
-export default function Home({ activity }) {
+export default function Home({ activity, geo }) {
   const { i, locale } = useTrans();
   const { displayDate } = useDate();
   useEffect(() => {
@@ -72,13 +77,12 @@ export default function Home({ activity }) {
               title={title}
               description={bannerDescription}
               showSearch={false}
-              // bottomContent={
-              //   <img
-              //     className="rounded shadow"
-              //     width={"100%"}
-              //     src={`/api/nmap?nid=${activity.neighbourhood.id}`}
-              //   />
-              // }
+              bottomContent={
+                <Map
+                  coordinates={geo.geo_coordinates}
+                  bounds={geo.geo_bounds}
+                />
+              }
             />
 
             <div className="container mt-3">
@@ -87,6 +91,17 @@ export default function Home({ activity }) {
               </p>
 
               <p className="lh-lg">{summary}</p>
+            </div>
+
+            <div className="container mt-3">
+              <Link
+                href={`/n/${activity.neighbourhood.id}`}
+                className="btn btn-primary text-capitalize w-100 py-3"
+              >
+                {i("More from {{neighbourhood_name}}", {
+                  neighbourhood_name: activity.neighbourhood.name,
+                })}
+              </Link>
             </div>
 
             <div className="container mt-3">
@@ -143,9 +158,14 @@ export async function getServerSideProps(context) {
     };
   }
 
+  const geo = await getMapServicesNeighbourhoodCoordinates(
+    activity.neighbourhood.id
+  );
+
   return {
     props: {
       activity,
+      geo,
     },
   };
 }

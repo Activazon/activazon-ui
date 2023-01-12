@@ -132,7 +132,8 @@ function MyMapComponent({ center, zoom, bounds }) {
         map: map,
         icon: {
           url: "/map/marker-1.svg",
-          scaledSize: new google.maps.Size(50, 50),
+          scaledSize: new google.maps.Size(80, 80),
+          anchor: { x: 40, y: 40 },
         },
       });
     }
