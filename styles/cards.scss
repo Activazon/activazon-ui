@@ -1,0 +1,25 @@
+.card.card-body.card-geo-with-images {
+  cursor: pointer;
+  margin-bottom: 0px;
+  padding: $spacer * 0.3;
+
+  .img-thumbnail {
+    border: 0px;
+    padding: 0px;
+  }
+  .card-lead {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+  }
+  .card-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 0px;
+    color: $primary;
+  }
+  .card-description {
+    margin-bottom: 0px;
+  }
+}
