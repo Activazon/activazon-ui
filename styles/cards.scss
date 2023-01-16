@@ -1,4 +1,8 @@
 .card.card-body.card-geo-with-images {
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
   cursor: pointer;
   margin-bottom: 0px;
   padding: $spacer * 0.3;
