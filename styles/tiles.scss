@@ -38,6 +38,11 @@
   padding: $spacer * 1.5;
   background-color: $primary;
 
+  &:hover {
+    background-color: $primary;
+    color: $bg-color;
+  }
+
   .tile-icon {
     font-size: 4rem;
   }
