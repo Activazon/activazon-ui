@@ -36,7 +36,6 @@ body {
   font-family: "TT-Supermolot-Neue";
   background-color: $bg-color;
   color: $white;
-  min-height: 100vh;
 }
 
 #nprogress .bar {
@@ -47,7 +46,6 @@ body {
 .page {
   @extend .d-flex;
   @extend .flex-column;
-  @extend .vh-100;
 }
 
 .container {
