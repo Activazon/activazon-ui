@@ -1,29 +1,59 @@
-.card.card-body.tile-geo-with-images {
+.card.card-body.tile {
+  cursor: pointer;
+  margin-bottom: 0px;
+
   a {
     text-decoration: none;
     color: inherit;
   }
-  cursor: pointer;
-  margin-bottom: 0px;
+
+  .tile-lead {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+  }
+  .tile-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 0px;
+    color: $primary;
+  }
+  .tile-description {
+    margin-bottom: 0px;
+    font-weight: 600;
+  }
+}
+
+.card.card-body.tile.tile-geo-with-images {
   padding: $spacer * 0.3;
 
   .img-thumbnail {
     border: 0px;
     padding: 0px;
   }
-  .card-lead {
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 0px;
-    text-transform: uppercase;
+}
+
+.card.card-body.tile.tile-login-or-signup-cta {
+  padding: $spacer * 1.5;
+  background-color: $primary;
+
+  .tile-icon {
+    font-size: 4rem;
   }
-  .card-title {
-    font-size: 1.7rem;
-    font-weight: 700;
-    margin-bottom: 0px;
+
+  .tile-title {
+    color: $bg-color;
+  }
+
+  .btn-tile {
+    background-color: $bg-color;
     color: $primary;
-  }
-  .card-description {
-    margin-bottom: 0px;
+    font-weight: 600;
+    border: 0px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    padding: $spacer * 0.7 $spacer * 1.5;
+    width: 100%;
   }
 }

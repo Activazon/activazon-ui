@@ -309,5 +309,17 @@
   "More from {{neighbourhood_name}}": {
     "en": "More from {{neighbourhood_name}}",
     "es": "Más de {{neighbourhood_name}}"
+  },
+  "Take Control of Your Safety": {
+    "en": "Take Control of Your Safety",
+    "es": "Toma el control de tu seguridad"
+  },
+  "Sign Up to stay one step ahead by getting crime reports for your neighborhood or where your next trip will be.": {
+    "en": "Sign Up to stay one step ahead by getting crime reports for your neighborhood or where your next trip will be.",
+    "es": "Regístrate para mantenerte un paso adelante al recibir informes de delitos en tu barrio o en el lugar de tu próximo viaje."
+  },
+  "Sign Up": {
+    "en": "Sign Up",
+    "es": "Regístrate"
   }
 }

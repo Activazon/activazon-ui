@@ -4,13 +4,14 @@ import Nav from "components/Nav";
 import Footer from "components/Footer";
 import Head from "components/Head";
 import GeoWithImagesTile from "components/GeoWithImagesTile";
+import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 import { useTrans } from "lib/trans";
 import { getCities } from "lib/api-v2";
 import { trackHome } from "lib/track";
 import { explorePath } from "lib/urls";
 import { isAuthenticatedFromContext } from "lib/auth";
 
-const Page = ({ cities }) => {
+const Page = ({ cities, isAuthenticated }) => {
   const { i, p, locale } = useTrans();
   useEffect(() => {
     trackHome(locale);
@@ -48,7 +49,11 @@ const Page = ({ cities }) => {
                 ))}
               </div>
             </div>
-            <div className="container pt-3">{/* <SignUpOrLoginTitle /> */}</div>
+            {!isAuthenticated && (
+              <div className="container pt-3">
+                <LoginOrSignUpCtaTile />
+              </div>
+            )}
             <Footer />
           </main>
         </div>
