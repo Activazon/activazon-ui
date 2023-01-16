@@ -3,7 +3,7 @@ import Banner from "components/Banner";
 import Nav from "components/Nav";
 import Footer from "components/Footer";
 import Head from "components/Head";
-import GeoWithImagesCard from "components/GeoWithImagesCard";
+import GeoWithImagesTile from "components/GeoWithImagesTile";
 import { useTrans } from "lib/trans";
 import { getCities } from "lib/api-v2";
 import { trackHome } from "lib/track";
@@ -32,7 +32,7 @@ const Page = ({ cities }) => {
               <div className="row gy-2">
                 {cities?.results?.map((c) => (
                   <div className="col-12">
-                    <GeoWithImagesCard
+                    <GeoWithImagesTile
                       href={explorePath(c.slug_path)}
                       key={`city-card-${c.id}`}
                       image={c.image_square_url}
@@ -48,6 +48,7 @@ const Page = ({ cities }) => {
                 ))}
               </div>
             </div>
+            <div className="container pt-3">{/* <SignUpOrLoginTitle /> */}</div>
             <Footer />
           </main>
         </div>

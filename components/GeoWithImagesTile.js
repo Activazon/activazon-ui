@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-const GeoWithImagesCard = ({ image, lead, title, description, href }) => {
+const GeoWithImagesTile = ({ image, lead, title, description, href }) => {
   return (
-    <div className="card card-body card-geo-with-images">
+    <div className="card card-body tile-geo-with-images">
       <Link href={href}>
         <div className="row">
           <div className="col-5 col-md-2">
@@ -30,4 +30,4 @@ const GeoWithImagesCard = ({ image, lead, title, description, href }) => {
   );
 };
 
-export default GeoWithImagesCard;
+export default GeoWithImagesTile;
