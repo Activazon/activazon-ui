@@ -11,7 +11,7 @@ import { explorePath } from "lib/urls";
 import { isAuthenticatedFromContext } from "lib/auth";
 
 const Page = ({ cities }) => {
-  const { i, t, locale } = useTrans();
+  const { i, p, locale } = useTrans();
   useEffect(() => {
     trackHome(locale);
   }, []);
@@ -38,9 +38,11 @@ const Page = ({ cities }) => {
                       image={c.image_square_url}
                       lead={c.country.display_name}
                       title={c.display_name}
-                      description={
-                        "15 reported activities in the last 5 months"
-                      }
+                      description={p(
+                        "1 activity in the last 5 months",
+                        "{{count}} activities in the last 5 months",
+                        c.activity_total_last5months
+                      )}
                     />
                   </div>
                 ))}
