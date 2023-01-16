@@ -5,13 +5,14 @@ import Script from "next/script";
 
 const TITLE = "Activazon";
 
-const AppHead = ({ title, descriptionText, imageUrl }) => {
+const AppHead = ({ title, descriptionText, keywordsExtras, imageUrl }) => {
   const { pathname } = useRouter();
   const { i } = useTrans();
   const titleText = title ? `${title} - ${TITLE}` : TITLE;
   descriptionText =
     descriptionText || i("AI-powered insights for your neighborhood");
   imageUrl = imageUrl || "https://www.activazon.com/social-share.png";
+  keywordsExtras = keywordsExtras || [];
   const urlNoLocale = pathname.replace("/en", "").replace("/es", "");
   return (
     <Head>
@@ -59,7 +60,9 @@ const AppHead = ({ title, descriptionText, imageUrl }) => {
       <meta property="og:type" content="website" />
       <meta
         name="keywords"
-        content="Honduras, Advisory, Honduras Safety, Safety, Neighbourhoods, Is Honduras Safe, Safe Neighbourhoods, Crime, Ai, Ai Analysis, Activa Zone, Activazon, Travel Saftey, San Pedro Sula, Tegucigalpa, Roatan, La Ceiba, Honduras Crime, Francisco Morazan Department, viajar a honduras es seguro?, vaijar a honduras"
+        content={`Honduras, Advisory, Honduras Safety, Safety, Neighbourhoods, Is Honduras Safe, Safe Neighbourhoods, Crime, Ai, Ai Analysis, Activa Zone, Activazon, Travel Saftey, San Pedro Sula, Tegucigalpa, Roatan, La Ceiba, Honduras Crime, Francisco Morazan Department, viajar a honduras es seguro?, vaijar a honduras${
+          keywordsExtras.length > 0 ? "," : ""
+        }${keywordsExtras.join(",")}`}
       />
     </Head>
   );

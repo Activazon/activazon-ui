@@ -321,5 +321,17 @@
   "Sign Up": {
     "en": "Sign Up Now",
     "es": "Regístrate Ahora"
+  },
+  "{{count}} activities": {
+    "en": "{{count}} activities",
+    "es": "{{count}} actividades"
+  },
+  "1 activity": {
+    "en": "1 activity",
+    "es": "1 actividad"
+  },
+  "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.": {
+    "en": "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
+    "es": "Obtén un análisis detallado de las tendencias delictivas en {{address}} con Activazon. Regístrate para obtener una cuenta gratuita y acceder a informes de delitos personalizados y mantenerte informado sobre la actividad local."
   }
 }

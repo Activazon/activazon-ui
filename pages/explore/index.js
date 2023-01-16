@@ -13,9 +13,7 @@ import { isAuthenticatedFromContext } from "lib/auth";
 
 const Page = ({ cities, isAuthenticated }) => {
   const { i, p, locale } = useTrans();
-  useEffect(() => {
-    trackHome(locale);
-  }, []);
+
   return (
     <>
       <Head title={null} />
