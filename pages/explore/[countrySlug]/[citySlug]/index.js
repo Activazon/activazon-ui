@@ -27,20 +27,22 @@ const Page = ({ city, isAuthenticated }) => {
     </>
   );
   const address = `${city.display_name}, ${city.country.display_name}`;
-  const headTitle = `${address} (${activitesText})`;
-  const metaDescription = t(
+  const seoTitle = `${address} (${activitesText})`;
+  const seoDescription = t(
     "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
     {
       address,
     }
   );
+  const seoImageUrl = city.image_wide_url;
 
   return (
     <>
       <Head
-        title={headTitle}
-        descriptionText={metaDescription}
-        keywordsExtras={[address]}
+        title={seoTitle}
+        seoDescription={seoDescription}
+        seoKeywords={[address]}
+        seoImageUrl={seoImageUrl}
       />
       <body>
         <div className="page">
