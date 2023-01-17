@@ -144,8 +144,6 @@ export async function getServerSideProps(context) {
     getCityActivityBreakdown(city.id),
   ]);
 
-  console.log(activityBreakdown);
-
   return {
     props: {
       isAuthenticated, // use to determine to show signin / login card

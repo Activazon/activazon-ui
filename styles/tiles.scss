@@ -1,4 +1,7 @@
 .card.card-body.tile {
+  &:hover {
+    background-color: $bg-color !important;
+  }
   cursor: pointer;
   margin-bottom: 0px;
   background-color: $white;
