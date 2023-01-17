@@ -1,14 +1,12 @@
 .card.card-body.tile {
-  &:hover {
-    background-color: $bg-color !important;
-  }
-  cursor: pointer;
   margin-bottom: 0px;
   background-color: $white;
+  border: 0px;
 
   a {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
   }
 
   .tile-lead {
@@ -52,12 +50,7 @@
 .card.card-body.tile.tile-login-or-signup-cta {
   padding: $spacer * 1.5;
   background-color: $primary;
-
-  &:hover {
-    background-color: $primary;
-    color: $bg-color;
-  }
-
+  color: $bg-color;
   .tile-icon {
     font-size: 4rem;
   }
@@ -80,11 +73,6 @@
 
 .card.card-body.tile.tile-activity-breakdown {
   padding: $spacer * 1.5;
-
-  &:hover {
-    background-color: $white;
-    color: $bg-color;
-  }
 
   .tile-icon {
     font-size: 4rem;
@@ -109,6 +97,7 @@
         font-weight: 600;
         font-size: 1.1rem;
         margin-bottom: 0px;
+        color: $bg-color;
       }
 
       .label-lg {
