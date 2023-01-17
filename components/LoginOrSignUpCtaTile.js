@@ -7,7 +7,7 @@ const LoginOrSignUpCtaTile = ({ alternativeTitle }) => {
     <div className="card card-body tile tile-login-or-signup-cta">
       <div className="row text-center gy-3">
         <div className="col-12">
-          <i class="tile-icon bi bi-shield-shaded"></i>
+          <i className="tile-icon bi bi-shield-shaded"></i>
         </div>
         <div className="col-12">
           <h2 className="tile-title">

@@ -17,4 +17,13 @@ module.exports = {
 
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/explore",
+        permanent: false,
+      },
+    ];
+  },
 };

@@ -21,7 +21,7 @@ const ActivityBreakdownTile = ({ children, areaName }) => {
     <div className="card card-body tile tile-activity-breakdown">
       <div className="row text-center gy-3">
         <div className="col-12">
-          <i class="tile-icon bi bi-activity"></i>
+          <i className="tile-icon bi bi-activity"></i>
         </div>
         <div className="col-12">
           <h2 className="tile-title">{t("Activity Breakdown")}</h2>
