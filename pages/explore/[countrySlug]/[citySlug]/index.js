@@ -1,30 +1,33 @@
-import { useEffect } from "react";
 import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
 import Footer from "components/Footer";
 import Head from "components/Head";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
+import GeoWithImagesTile from "components/GeoWithImagesTile";
+import ActivityBreakdownTile, {
+  ActivityBreakDownItem,
+} from "components/ActivityBreakdownTile";
 import { useTrans } from "lib/trans";
-import { getCity } from "lib/api-v2";
-import { trackHome } from "lib/track";
-import { explorePath } from "lib/urls";
+import {
+  getCity,
+  getCityActivities,
+  getCityActivityBreakdown,
+} from "lib/api-v2";
+import { activityPath } from "lib/urls";
 import { isAuthenticatedFromContext } from "lib/auth";
+import { useDate } from "lib/date";
 
 const StaticMapImage = ({ src }) => {
   return <img src={src} className="banner-static-map-image" />;
 };
 
-const Page = ({ city, isAuthenticated }) => {
+const Page = ({ isAuthenticated, city, activities, activityBreakdown }) => {
   const { t, p, locale } = useTrans();
+  const { displayDate } = useDate();
   const activitesText = p(
     "1 activity",
     "{{count}} activities",
     city.activity_total_last5months
-  );
-  const bannerDescription = (
-    <>
-      {city.country.display_name} &ndash; {activitesText}
-    </>
   );
   const address = `${city.display_name}, ${city.country.display_name}`;
   const seoTitle = `${address} (${activitesText})`;
@@ -55,7 +58,7 @@ const Page = ({ city, isAuthenticated }) => {
               //   "{{count}} activities in the last 5 months",
               //   city.activity_total_last5months
               // )}
-              description={bannerDescription}
+              // description={bannerDescription}
               showSearch={false}
               searchCountry={null}
               dark={true}
@@ -67,12 +70,52 @@ const Page = ({ city, isAuthenticated }) => {
               </>
             </Bannerv2>
 
-            <div className="container pt-3">{/*  */}</div>
+            <div className="container pt-3">
+              <p className="mb-0">{activitesText}</p>
+            </div>
+            <div className="container pt-3">
+              <div className="row gy-2">
+                {activities?.results?.map((activity) => (
+                  <div className="col-12">
+                    <GeoWithImagesTile
+                      href={activityPath(activity.area.slug_path, activity.id)}
+                      key={`activity-card-${activity.id}`}
+                      image={activity.area.image_square_url}
+                      lead={displayDate(activity.date_occured)}
+                      title={t(
+                        "{{activity_type_name}} in {{neighbourhood_name}}",
+                        {
+                          activity_type_name: t(activity.activity_type.name),
+                          neighbourhood_name: activity.area.display_name,
+                        }
+                      )}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
             {!isAuthenticated && (
               <div className="container pt-3">
-                <LoginOrSignUpCtaTile />
+                <LoginOrSignUpCtaTile
+                  alternativeTitle={t("Sign Up To View More")}
+                />
               </div>
             )}
+
+            <div className="container pt-3">
+              <ActivityBreakdownTile areaName={city.display_name}>
+                <>
+                  {activityBreakdown?.data?.map((breakdown) => (
+                    <ActivityBreakDownItem
+                      key={`ab-item-${breakdown.activity_type_name}`}
+                      name={t(breakdown.activity_type_name + "__plural")}
+                      count={breakdown.count}
+                      percentage={breakdown.percentage}
+                    />
+                  ))}
+                </>
+              </ActivityBreakdownTile>
+            </div>
             <Footer />
           </main>
         </div>
@@ -86,8 +129,6 @@ export default Page;
 export async function getServerSideProps(context) {
   const { countrySlug, citySlug } = context.params;
 
-  console.log("params", { countrySlug, citySlug });
-
   const isAuthenticated = isAuthenticatedFromContext(context);
 
   const city = await getCity(countrySlug, citySlug);
@@ -97,13 +138,20 @@ export async function getServerSideProps(context) {
       notFound: true,
     };
   }
+  const activitiesLimit = 3;
+  const [activities, activityBreakdown] = await Promise.all([
+    getCityActivities(city.id, activitiesLimit),
+    getCityActivityBreakdown(city.id),
+  ]);
 
-  console.log("city", city);
+  console.log(activityBreakdown);
 
   return {
     props: {
       isAuthenticated, // use to determine to show signin / login card
       city,
+      activities,
+      activityBreakdown,
     },
   };
 }

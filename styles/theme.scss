@@ -2,7 +2,7 @@
 @import "bootstrap-icons/font/bootstrap-icons.scss";
 @import "./fonts.scss";
 
-$white: #cdd7de;
+$white: #ffffff;
 $primary: #06d0f9;
 $secondary: #7176ed;
 $bg-color: #0b2442;
@@ -54,7 +54,7 @@ body {
 
 main {
   @extend .flex-grow-1;
-  background-color: #ffffff;
+  background-color: #f1f1f6;
   color: $text-default-color;
 
   .text-theme-black {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { trackLocaleChange } from "../lib/track";
+import { trackLocaleChange } from "lib/track";
+import { explorePath } from "lib/urls";
 
 const Nav = ({ pageTitle, backUrl }) => {
   const router = useRouter();
@@ -21,7 +22,7 @@ const Nav = ({ pageTitle, backUrl }) => {
   return (
     <nav className="navbar sticky-top">
       <div className="container">
-        <Link className="navbar-brand" href={backUrl || "/"}>
+        <Link className="navbar-brand" href={backUrl || explorePath()}>
           {!backUrl ? (
             <i className="bi bi-activity"></i>
           ) : (
