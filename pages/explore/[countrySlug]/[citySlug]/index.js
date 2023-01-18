@@ -110,6 +110,14 @@ const Page = ({
               </div>
             </div>
 
+            {!isAuthenticated && (
+              <div className="container pt-3">
+                <LoginOrSignUpCtaTile
+                  alternativeTitle={t("Sign Up To View More")}
+                />
+              </div>
+            )}
+
             <div className="container pt-3">
               <ActivityBreakdownTile areaName={city.display_name}>
                 <>
