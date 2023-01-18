@@ -92,7 +92,10 @@ const Page = ({
                     <GeoWithImagesTile
                       href={activityPath(activity.area.slug_path, activity.id)}
                       key={`activity-card-${activity.id}`}
-                      image={activity.area.image_square_url}
+                      image={
+                        activity.area.image_square_red_url ||
+                        activity.area.image_square_url
+                      }
                       lead={displayDate(activity.date_occured)}
                       title={t(
                         "{{activity_type_name}} in {{neighbourhood_name}}",
