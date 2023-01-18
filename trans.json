@@ -345,5 +345,13 @@
   "Top 3 activities detected in {{area_name}}": {
     "en": "Top 3 activities detected in {{area_name}}",
     "es": "Top 3 actividades detectada en {{area_name}}"
+  },
+  "Most Active Areas": {
+    "en": "Most Active Areas",
+    "es": "Áreas más activas"
+  },
+  "Areas with the most activity in {{area_name}}": {
+    "en": "Areas with the most activity in {{area_name}}",
+    "es": "Áreas con más actividad en {{area_name}}"
   }
 }

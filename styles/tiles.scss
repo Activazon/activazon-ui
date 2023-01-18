@@ -36,6 +36,27 @@
     padding: $spacer * 0.7 $spacer * 1.5;
     width: 100%;
   }
+
+  .card-item {
+    width: 100%;
+    border-radius: 6px;
+    background-color: $bg-color;
+    text-align: left;
+    padding: $spacer * 0.9 $spacer * 1.2;
+    border-right: 0.6rem solid $primary;
+    .label-lg,
+    .label-sm {
+      margin-bottom: 0px;
+      color: $primary;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .label-sm {
+      font-size: 1rem;
+      font-weight: 600;
+      color: $white;
+    }
+  }
 }
 
 .card.card-body.tile.tile-geo-with-images {
@@ -125,5 +146,18 @@
       background-color: $primary;
       border-radius: inherit;
     }
+  }
+}
+
+.card.card-body.tile.tile-areas {
+  padding: $spacer * 1.5;
+  background-color: $white;
+  color: $bg-color;
+  .tile-icon {
+    font-size: 4rem;
+  }
+
+  .tile-title {
+    color: $bg-color;
   }
 }
