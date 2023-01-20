@@ -188,8 +188,6 @@ export async function getServerSideProps(context) {
     getCityAreas(city.id, 3),
   ]);
 
-  console.log("areas", areas);
-
   return {
     props: {
       isAuthenticated, // use to determine to show signin / login card

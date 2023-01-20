@@ -173,6 +173,14 @@
     "en": "Drugs",
     "es": "Drugas"
   },
+  "maltreatment": {
+    "en": "Cruelty",
+    "es": "Crueldad"
+  },
+  "maltreatment__plural": {
+    "en": "Cruelties",
+    "es": "Crueldades"
+  },
   "drugtrafficking": {
     "en": "Drug Trafficking",
     "es": "el tráfico de drogas"
