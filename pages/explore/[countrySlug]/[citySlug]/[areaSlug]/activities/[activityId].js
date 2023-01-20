@@ -102,8 +102,6 @@ export async function getServerSideProps(context) {
     };
   }
 
-  console.log("activity", activity);
-
   return {
     props: {
       isAuthenticated, // use to determine to show signin / login card
