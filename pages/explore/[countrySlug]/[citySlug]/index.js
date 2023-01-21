@@ -1,5 +1,7 @@
 import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
+import Col from "components/Col";
+import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
@@ -57,27 +59,27 @@ const Page = ({
       <body>
         <div className="page">
           <Nav />
-          <main>
-            <Bannerv2
-              title={city.display_name}
-              description={city.country.display_name}
-              showSearch={false}
-              searchCountry={null}
-              dark={true}
-            >
-              <>
-                <div className="row">
-                  <StaticMapImage
-                    src={brandImage?.image_url || city.image_wide_url}
-                  />
-                </div>
-              </>
-            </Bannerv2>
 
-            <div className="container pt-3">
+          <Bannerv2
+            title={city.display_name}
+            description={city.country.display_name}
+            showSearch={false}
+            searchCountry={null}
+            dark={true}
+          >
+            <>
+              <div className="row">
+                <StaticMapImage
+                  src={brandImage?.image_url || city.image_wide_url}
+                />
+              </div>
+            </>
+          </Bannerv2>
+          <Main>
+            <Col>
               <p className="mb-0">{activitesText}</p>
-            </div>
-            <div className="container pt-3">
+            </Col>
+            <Col>
               <div className="row gy-2">
                 {activities?.results?.map((activity) => (
                   <div className="col-12">
@@ -100,17 +102,17 @@ const Page = ({
                   </div>
                 ))}
               </div>
-            </div>
+            </Col>
 
             {!isAuthenticated && (
-              <div className="container pt-3">
+              <Col>
                 <LoginOrSignUpCtaTile
                   alternativeTitle={t("Sign Up To View More")}
                 />
-              </div>
+              </Col>
             )}
 
-            <div className="container pt-3">
+            <Col>
               <ActivityBreakdownTile areaName={city.display_name}>
                 <>
                   {activityBreakdown?.data?.map((breakdown) => (
@@ -123,9 +125,9 @@ const Page = ({
                   ))}
                 </>
               </ActivityBreakdownTile>
-            </div>
+            </Col>
 
-            <div className="container pt-3">
+            <Col>
               <AreasTile areaName={city.display_name}>
                 <>
                   {areas?.results?.map((area) => (
@@ -142,17 +144,17 @@ const Page = ({
                   ))}
                 </>
               </AreasTile>
-            </div>
+            </Col>
 
             {!isAuthenticated && (
-              <div className="container pt-3">
+              <Col>
                 <LoginOrSignUpCtaTile
                   alternativeTitle={t("Sign Up To View More")}
                 />
-              </div>
+              </Col>
             )}
             <Footer />
-          </main>
+          </Main>
         </div>
       </body>
     </>

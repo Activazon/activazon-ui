@@ -1,13 +1,13 @@
-import { useEffect } from "react";
 import Banner from "components/Banner";
 import Nav from "components/Nav";
+import Col from "components/Col";
+import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
 import GeoWithImagesTile from "components/GeoWithImagesTile";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 import { useTrans } from "lib/trans";
 import { getCities } from "lib/api-v2";
-import { trackHome } from "lib/track";
 import { explorePath } from "lib/urls";
 import { isAuthenticatedFromContext } from "lib/auth";
 
@@ -20,14 +20,14 @@ const Page = ({ cities, isAuthenticated }) => {
       <body>
         <div className="page">
           <Nav />
-          <main>
-            <Banner
-              title={i("Get to know your neighbourhood")}
-              showSearch={true}
-              searchCountry={null}
-            />
 
-            <div className="container pt-3">
+          <Banner
+            title={i("Get to know your neighbourhood")}
+            showSearch={true}
+            searchCountry={null}
+          />
+          <Main>
+            <Col>
               <div className="row gy-2">
                 {cities?.results?.map((c) => (
                   <div className="col-12">
@@ -46,14 +46,14 @@ const Page = ({ cities, isAuthenticated }) => {
                   </div>
                 ))}
               </div>
-            </div>
+            </Col>
             {!isAuthenticated && (
-              <div className="container pt-3">
+              <Col>
                 <LoginOrSignUpCtaTile />
-              </div>
+              </Col>
             )}
             <Footer />
-          </main>
+          </Main>
         </div>
       </body>
     </>

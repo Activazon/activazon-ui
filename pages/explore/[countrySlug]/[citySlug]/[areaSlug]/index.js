@@ -1,5 +1,7 @@
 import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
+import Col from "components/Col";
+import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
@@ -8,6 +10,7 @@ import ActivityBreakdownTile, {
   ActivityBreakDownItem,
 } from "components/ActivityBreakdownTile";
 import StaticMapImage from "components/StaticMapImage";
+
 import { useTrans } from "lib/trans";
 import {
   getArea,
@@ -53,27 +56,27 @@ const AreaPage = ({
       <body>
         <div className="page">
           <Nav />
-          <main>
-            <Bannerv2
-              title={area.display_name}
-              description={
-                area.city.display_name + ", " + area.city.country.display_name
-              }
-              showSearch={false}
-              searchCountry={null}
-              dark={true}
-            >
-              <>
-                <div className="row">
-                  <StaticMapImage src={area.image_wide_url} />
-                </div>
-              </>
-            </Bannerv2>
 
-            <div className="container pt-3">
+          <Bannerv2
+            title={area.display_name}
+            description={
+              area.city.display_name + ", " + area.city.country.display_name
+            }
+            showSearch={false}
+            searchCountry={null}
+            dark={true}
+          >
+            <>
+              <div className="row">
+                <StaticMapImage src={area.image_wide_url} />
+              </div>
+            </>
+          </Bannerv2>
+          <Main>
+            <Col>
               <p className="mb-0">{activitesText}</p>
-            </div>
-            <div className="container pt-3">
+            </Col>
+            <Col>
               <div className="row gy-2">
                 {activities?.results?.map((activity) => (
                   <div className="col-12">
@@ -96,17 +99,17 @@ const AreaPage = ({
                   </div>
                 ))}
               </div>
-            </div>
+            </Col>
 
             {!isAuthenticated && (
-              <div className="container pt-3">
+              <Col>
                 <LoginOrSignUpCtaTile
                   alternativeTitle={t("Sign Up To View More")}
                 />
-              </div>
+              </Col>
             )}
 
-            <div className="container pt-3">
+            <Col>
               <ActivityBreakdownTile areaName={area.display_name}>
                 <>
                   {activityBreakdown?.data?.map((breakdown) => (
@@ -119,10 +122,10 @@ const AreaPage = ({
                   ))}
                 </>
               </ActivityBreakdownTile>
-            </div>
+            </Col>
 
             <Footer />
-          </main>
+          </Main>
         </div>
       </body>
     </>
