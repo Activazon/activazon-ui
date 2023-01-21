@@ -10,13 +10,11 @@ import ActivityBreakdownTile, {
 import AreasTile, { AreaItem } from "components/AreasTile";
 import { useTrans } from "lib/trans";
 import {
-  getCity,
-  getCityActivities,
-  getCityActivityBreakdown,
-  getCityBrandImage,
-  getCityAreas,
+  getArea,
+  getAreaActivities,
+  getAreaActivityBreakdown,
 } from "lib/api-v2";
-import { explorePath, activityPath } from "lib/urls";
+import { activityPath } from "lib/urls";
 import { isAuthenticatedFromContext } from "lib/auth";
 import { useDate } from "lib/date";
 
@@ -24,12 +22,11 @@ const StaticMapImage = ({ src }) => {
   return <img src={src} className="banner-static-map-image" />;
 };
 
-const Page = ({
+const AreaPage = ({
   isAuthenticated,
-  city,
+  area,
   activities,
   activityBreakdown,
-  brandImage,
   areas,
 }) => {
   const { t, p, locale } = useTrans();
@@ -37,9 +34,9 @@ const Page = ({
   const activitesText = p(
     "1 activity",
     "{{count}} activities",
-    city.activity_total_last5months
+    area.activity_total_last5months
   );
-  const address = `${city.display_name}, ${city.country.display_name}`;
+  const address = `${area.display_name}, ${area.city.display_name}, ${area.city.country.display_name}`;
   const seoTitle = `${address} (${activitesText})`;
   const seoDescription = t(
     "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
@@ -47,7 +44,7 @@ const Page = ({
       address,
     }
   );
-  const seoImageUrl = city.image_wide_url;
+  const seoImageUrl = area.image_wide_url;
 
   return (
     <>
@@ -62,17 +59,17 @@ const Page = ({
           <Nav />
           <main>
             <Bannerv2
-              title={city.display_name}
-              description={city.country.display_name}
+              title={area.display_name}
+              description={
+                area.city.display_name + ", " + area.city.country.display_name
+              }
               showSearch={false}
               searchCountry={null}
               dark={true}
             >
               <>
                 <div className="row">
-                  <StaticMapImage
-                    src={brandImage?.image_url || city.image_wide_url}
-                  />
+                  <StaticMapImage src={area.image_wide_url} />
                 </div>
               </>
             </Bannerv2>
@@ -114,7 +111,7 @@ const Page = ({
             )}
 
             <div className="container pt-3">
-              <ActivityBreakdownTile areaName={city.display_name}>
+              <ActivityBreakdownTile areaName={area.display_name}>
                 <>
                   {activityBreakdown?.data?.map((breakdown) => (
                     <ActivityBreakDownItem
@@ -128,32 +125,6 @@ const Page = ({
               </ActivityBreakdownTile>
             </div>
 
-            <div className="container pt-3">
-              <AreasTile areaName={city.display_name}>
-                <>
-                  {areas?.results?.map((area) => (
-                    <AreaItem
-                      key={`area-item-${area.slug}`}
-                      name={area.display_name}
-                      href={explorePath(area.slug_path)}
-                      description={p(
-                        "1 activity in the last 5 months",
-                        "{{count}} activities in the last 5 months",
-                        area.activity_total_last5months
-                      )}
-                    />
-                  ))}
-                </>
-              </AreasTile>
-            </div>
-
-            {!isAuthenticated && (
-              <div className="container pt-3">
-                <LoginOrSignUpCtaTile
-                  alternativeTitle={t("Sign Up To View More")}
-                />
-              </div>
-            )}
             <Footer />
           </main>
         </div>
@@ -162,36 +133,32 @@ const Page = ({
   );
 };
 
-export default Page;
+export default AreaPage;
 
 export async function getServerSideProps(context) {
-  const { countrySlug, citySlug } = context.params;
+  const { countrySlug, citySlug, areaSlug } = context.params;
 
   const isAuthenticated = isAuthenticatedFromContext(context);
+  const area = await getArea(countrySlug, citySlug, areaSlug);
 
-  const city = await getCity(countrySlug, citySlug);
-
-  if (isNaN(city.id)) {
+  if (isNaN(area.id)) {
     return {
       notFound: true,
     };
   }
+
   const activitiesLimit = 3; // TODO: set to get from store, value can change automaticallty once authed
-  const [activities, activityBreakdown, brandImage, areas] = await Promise.all([
-    getCityActivities(city.id, activitiesLimit),
-    getCityActivityBreakdown(city.id),
-    getCityBrandImage(city.id),
-    getCityAreas(city.id, 3),
+  const [activities, activityBreakdown] = await Promise.all([
+    getAreaActivities(area.id, activitiesLimit),
+    getAreaActivityBreakdown(area.id),
   ]);
 
   return {
     props: {
       isAuthenticated, // use to determine to show signin / login card
-      city,
+      area,
       activities,
       activityBreakdown,
-      brandImage,
-      areas,
     },
   };
 }
