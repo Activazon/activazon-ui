@@ -13,7 +13,7 @@ import { explorePath } from "lib/urls";
 import { isAuthenticatedFromContext } from "lib/auth";
 
 const Page = ({ cities, isAuthenticated }) => {
-  const { i, p, locale } = useTrans();
+  const { i, t, p, locale } = useTrans();
 
   return (
     <>
@@ -50,7 +50,9 @@ const Page = ({ cities, isAuthenticated }) => {
             </Col>
             {!isAuthenticated && (
               <Col>
-                <LoginOrSignUpCtaTile />
+                <LoginOrSignUpCtaTile
+                  alternativeTitle={t("Sign Up To View More")}
+                />
               </Col>
             )}
             <Footer />
