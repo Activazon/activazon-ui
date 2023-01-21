@@ -6,6 +6,7 @@ import Footer from "components/Footer";
 import Head from "components/Head";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 import GeoWithImagesTile from "components/GeoWithImagesTile";
+import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
 import ActivityBreakdownTile, {
   ActivityBreakDownItem,
 } from "components/ActivityBreakdownTile";
@@ -21,13 +22,7 @@ import { activityPath } from "lib/urls";
 import { isAuthenticatedFromContext } from "lib/auth";
 import { useDate } from "lib/date";
 
-const AreaPage = ({
-  isAuthenticated,
-  area,
-  activities,
-  activityBreakdown,
-  areas,
-}) => {
+const AreaPage = ({ isAuthenticated, area, activities, activityBreakdown }) => {
   const { t, p, locale } = useTrans();
   const { displayDate } = useDate();
   const activitesText = p(
@@ -74,10 +69,7 @@ const AreaPage = ({
           </Bannerv2>
           <Main>
             <Col>
-              <p className="mb-0">{activitesText}</p>
-            </Col>
-            <Col>
-              <div className="row gy-2">
+              <GeoWithImagesTileContainer description={activitesText}>
                 {activities?.results?.map((activity) => (
                   <div className="col-12">
                     <GeoWithImagesTile
@@ -98,7 +90,7 @@ const AreaPage = ({
                     />
                   </div>
                 ))}
-              </div>
+              </GeoWithImagesTileContainer>
             </Col>
 
             {!isAuthenticated && (

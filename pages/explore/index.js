@@ -5,6 +5,7 @@ import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
 import GeoWithImagesTile from "components/GeoWithImagesTile";
+import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 import { useTrans } from "lib/trans";
 import { getCities } from "lib/api-v2";
@@ -28,7 +29,7 @@ const Page = ({ cities, isAuthenticated }) => {
           />
           <Main>
             <Col>
-              <div className="row gy-2">
+              <GeoWithImagesTileContainer>
                 {cities?.results?.map((c) => (
                   <div className="col-12">
                     <GeoWithImagesTile
@@ -45,7 +46,7 @@ const Page = ({ cities, isAuthenticated }) => {
                     />
                   </div>
                 ))}
-              </div>
+              </GeoWithImagesTileContainer>
             </Col>
             {!isAuthenticated && (
               <Col>

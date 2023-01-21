@@ -6,6 +6,7 @@ import Footer from "components/Footer";
 import Head from "components/Head";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 import GeoWithImagesTile from "components/GeoWithImagesTile";
+import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
 import ActivityBreakdownTile, {
   ActivityBreakDownItem,
 } from "components/ActivityBreakdownTile";
@@ -77,10 +78,7 @@ const Page = ({
           </Bannerv2>
           <Main>
             <Col>
-              <p className="mb-0">{activitesText}</p>
-            </Col>
-            <Col>
-              <div className="row gy-2">
+              <GeoWithImagesTileContainer description={activitesText}>
                 {activities?.results?.map((activity) => (
                   <div className="col-12">
                     <GeoWithImagesTile
@@ -101,7 +99,7 @@ const Page = ({
                     />
                   </div>
                 ))}
-              </div>
+              </GeoWithImagesTileContainer>
             </Col>
 
             {!isAuthenticated && (
