@@ -2,7 +2,7 @@ import { useTrans } from "lib/trans";
 
 export const AreaItem = ({ name, description }) => (
   <div className="col-12">
-    <div className="card-item">
+    <div className="card card.item card-item">
       <p className="label-lg">{name}</p>
       <p className="label-sm">{description}</p>
     </div>
@@ -27,7 +27,9 @@ const AreasTile = ({ children, areaName }) => {
             })}
           </p>
         </div>
-        <div className="row gy-1">{children}</div>
+        <div className="col-12">
+          <div className="row gy-1">{children}</div>
+        </div>
       </div>
     </div>
   );
