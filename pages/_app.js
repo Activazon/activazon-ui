@@ -1,10 +1,16 @@
+import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { SessionProvider } from "next-auth/react";
+
+// styling
 import "../styles/theme.scss";
 import "nprogress/nprogress.css";
-import { useEffect } from "react";
 import NProgress from "nprogress";
 
-export default function App({ Component, pageProps }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   const router = useRouter();
   useEffect(() => {
     // handles showing and hiding the loading overlay
@@ -50,5 +56,9 @@ export default function App({ Component, pageProps }) {
     import("bootstrap/dist/js/bootstrap");
   }, []);
 
-  return <Component {...pageProps} />;
+  return (
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
 }

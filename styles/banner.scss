@@ -89,4 +89,19 @@
     @extend .img-fluid;
     padding: 0px;
   }
+
+  .banner-image {
+    width: 100%;
+    background-image: url(/banner-bg/banner-bg.jpg);
+    background-size: cover;
+    background-position: top center;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .banner-logo {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
 }

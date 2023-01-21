@@ -34,7 +34,8 @@ a {
 
 body {
   font-family: "TT-Supermolot-Neue";
-  background-color: $bg-color;
+  // background-color: $bg-color;
+  background-color: #f1f1f6;
   color: $white;
 }
 
@@ -101,5 +102,16 @@ main {
 @include media-breakpoint-up(md) {
   #map {
     height: 20rem;
+  }
+}
+
+.form-control:focus {
+  border-color: $primary;
+  box-shadow: 0 0 0 0.3rem rgba($primary, 0.25);
+}
+
+.form-floating {
+  label {
+    color: $bg-color !important;
   }
 }

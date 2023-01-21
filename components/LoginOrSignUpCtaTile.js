@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useTrans } from "lib/trans";
 
 const LoginOrSignUpCtaTile = ({ alternativeTitle }) => {
@@ -22,9 +23,9 @@ const LoginOrSignUpCtaTile = ({ alternativeTitle }) => {
           </p>
         </div>
         <div className="col-12">
-          <a href="/signup" className="btn btn-tile">
+          <Link href="/signup" className="btn btn-tile">
             {i("Sign Up")}
-          </a>
+          </Link>
         </div>
       </div>
     </div>
