@@ -7,7 +7,7 @@ import GeoWithImagesTile from "components/GeoWithImagesTile";
 import ActivityBreakdownTile, {
   ActivityBreakDownItem,
 } from "components/ActivityBreakdownTile";
-import AreasTile, { AreaItem } from "components/AreasTile";
+import StaticMapImage from "components/StaticMapImage";
 import { useTrans } from "lib/trans";
 import {
   getArea,
@@ -17,10 +17,6 @@ import {
 import { activityPath } from "lib/urls";
 import { isAuthenticatedFromContext } from "lib/auth";
 import { useDate } from "lib/date";
-
-const StaticMapImage = ({ src }) => {
-  return <img src={src} className="banner-static-map-image" />;
-};
 
 const AreaPage = ({
   isAuthenticated,
