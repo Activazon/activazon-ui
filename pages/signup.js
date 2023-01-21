@@ -17,7 +17,7 @@ const Page = ({ cities, isAuthenticated }) => {
       <Head title={null} />
       <body>
         <div className="page">
-          <Nav />
+          <Nav pageTitle="Sign Up" />
           <Bannerv2 dark={true}>
             <div className="row">
               <div className="banner-image">
