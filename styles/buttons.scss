@@ -58,3 +58,18 @@
 .btn.btn-cta {
   border: 0px !important;
 }
+
+.btn.btn-secondary {
+  @include button-variant($bg-color, $bg-color);
+  color: $bg-color;
+  background-color: transparent;
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+}
+
+.btn.btn-primary {
+  @include button-variant($primary, $primary);
+  color: $bg-color;
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+}

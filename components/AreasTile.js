@@ -2,7 +2,7 @@ import { useTrans } from "lib/trans";
 import Link from "next/link";
 
 export const AreaItem = ({ name, description, href }) => (
-  <div className="col-12">
+  <div className="col-12 px-0">
     <Link href={href}>
       <div className="card card.item card-item">
         <p className="label-lg">{name}</p>

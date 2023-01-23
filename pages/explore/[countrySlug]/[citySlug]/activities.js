@@ -1,36 +1,26 @@
-import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
 import Col from "components/Col";
 import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
-import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 import GeoWithImagesTile from "components/GeoWithImagesTile";
 import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
-import ActivityBreakdownTile, {
-  ActivityBreakDownItem,
-} from "components/ActivityBreakdownTile";
-import StaticMapImage from "components/StaticMapImage";
 
 import { useTrans } from "lib/trans";
-import {
-  getArea,
-  getAreaActivities,
-  getAreaActivityBreakdown,
-} from "lib/api-v2";
-import { activityPath, explorePath } from "lib/urls";
+import { getCity, getCityActivities } from "lib/api-v2";
+import { explorePath, activityPath } from "lib/urls";
 import { getSessionFromContext } from "lib/auth";
 import { useDate } from "lib/date";
 
-const AreaPage = ({ isAuthenticated, area, activities, activityBreakdown }) => {
+const Page = ({ isAuthenticated, city, activities }) => {
   const { t, p, locale } = useTrans();
   const { displayDate } = useDate();
   const activitesText = p(
     "1 activity",
     "{{count}} activities",
-    area.activity_total_last5months
+    city.activity_total_last5months
   );
-  const address = `${area.display_name}, ${area.city.display_name}, ${area.city.country.display_name}`;
+  const address = `${city.display_name}, ${city.country.display_name}`;
   const seoTitle = `${address} (${activitesText})`;
   const seoDescription = t(
     "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
@@ -38,7 +28,7 @@ const AreaPage = ({ isAuthenticated, area, activities, activityBreakdown }) => {
       address,
     }
   );
-  const seoImageUrl = area.image_wide_url;
+  const seoImageUrl = city.image_wide_url;
 
   return (
     <>
@@ -51,25 +41,9 @@ const AreaPage = ({ isAuthenticated, area, activities, activityBreakdown }) => {
       <body>
         <div className="page">
           <Nav
-            title={area.city.display_name}
-            backHref={explorePath(area.city.slug_path)}
+            backHref={explorePath(city.slug_path)}
+            title={city.display_name}
           />
-
-          <Bannerv2
-            title={area.display_name}
-            description={
-              area.city.display_name + ", " + area.city.country.display_name
-            }
-            showSearch={false}
-            searchCountry={null}
-            dark={true}
-          >
-            <>
-              <div className="row">
-                <StaticMapImage src={area.image_wide_url} />
-              </div>
-            </>
-          </Bannerv2>
           <Main>
             <Col>
               <GeoWithImagesTileContainer description={activitesText}>
@@ -96,29 +70,6 @@ const AreaPage = ({ isAuthenticated, area, activities, activityBreakdown }) => {
               </GeoWithImagesTileContainer>
             </Col>
 
-            {!isAuthenticated && (
-              <Col>
-                <LoginOrSignUpCtaTile
-                  alternativeTitle={t("Sign Up To View More")}
-                />
-              </Col>
-            )}
-
-            <Col>
-              <ActivityBreakdownTile areaName={area.display_name}>
-                <>
-                  {activityBreakdown?.data?.map((breakdown) => (
-                    <ActivityBreakDownItem
-                      key={`ab-item-${breakdown.activity_type_name}`}
-                      name={t(breakdown.activity_type_name + "__plural")}
-                      count={isAuthenticated ? breakdown.count : null}
-                      percentage={breakdown.percentage}
-                    />
-                  ))}
-                </>
-              </ActivityBreakdownTile>
-            </Col>
-
             <Footer />
           </Main>
         </div>
@@ -127,32 +78,27 @@ const AreaPage = ({ isAuthenticated, area, activities, activityBreakdown }) => {
   );
 };
 
-export default AreaPage;
+export default Page;
 
 export async function getServerSideProps(context) {
-  const { countrySlug, citySlug, areaSlug } = context.params;
+  const { countrySlug, citySlug } = context.params;
 
   const session = await getSessionFromContext(context);
-  const area = await getArea(countrySlug, citySlug, areaSlug);
 
-  if (isNaN(area.id)) {
+  const city = await getCity(countrySlug, citySlug);
+
+  if (isNaN(city.id)) {
     return {
       notFound: true,
     };
   }
-
-  const activitiesLimit = 3; // TODO: set to get from store, value can change automaticallty once authed
-  const [activities, activityBreakdown] = await Promise.all([
-    getAreaActivities(area.id, activitiesLimit),
-    getAreaActivityBreakdown(area.id),
-  ]);
+  const [activities] = await Promise.all([getCityActivities(city.id, null)]);
 
   return {
     props: {
       isAuthenticated: session.isAuthenticated,
-      area,
+      city,
       activities,
-      activityBreakdown,
     },
   };
 }

@@ -361,5 +361,13 @@
   "Areas with the most activity in {{area_name}}": {
     "en": "Areas with the most activity in {{area_name}}",
     "es": "Áreas con más actividad en {{area_name}}"
+  },
+  "Load {{count}} more": {
+    "en": "Load {{count}} more",
+    "es": "Cargar {{count}} más"
+  },
+  "Areas in {{city}} actively being tracked": {
+    "en": "Areas in {{city}} actively being tracked",
+    "es": "Áreas en {{city}} activamente monitoreadas"
   }
 }
