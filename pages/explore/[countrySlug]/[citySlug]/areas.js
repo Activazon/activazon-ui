@@ -8,11 +8,10 @@ import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
 
 import { useTrans } from "lib/trans";
 import { getCity, getCityAreas } from "lib/api-v2";
-import { explorePath, activityPath } from "lib/urls";
-import { getSessionFromContext } from "lib/auth";
+import { explorePath } from "lib/urls";
 import { useDate } from "lib/date";
 
-const Page = ({ isAuthenticated, city, areas }) => {
+const Page = ({ city, areas }) => {
   const { t, p, locale } = useTrans();
   const { displayDate } = useDate();
   const areasText = t("Areas in {{city}} actively being tracked", {
@@ -72,8 +71,6 @@ export default Page;
 export async function getServerSideProps(context) {
   const { countrySlug, citySlug } = context.params;
 
-  const session = await getSessionFromContext(context);
-
   const city = await getCity(countrySlug, citySlug);
 
   if (isNaN(city.id)) {
@@ -85,7 +82,6 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      isAuthenticated: session.isAuthenticated,
       city,
       areas,
     },

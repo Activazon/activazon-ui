@@ -8,12 +8,11 @@ import { useSession, signOut } from "next-auth/react";
 const Nav = ({ title, backHref }) => {
   const { status } = useSession();
 
-  const isAuthenticated = status === "authenticated";
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
   const localButtonLabel =
     router.locale === "en" ? "Verlo en Español" : "View in English";
+  const isAuthenticated = status === "authenticated";
   const toggleLocale = () => {
     // switch to the other locale
     const nextLocale = router.locale === "en" ? "es" : "en";

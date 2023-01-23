@@ -11,9 +11,13 @@ import { useTrans } from "lib/trans";
 import { getCities } from "lib/api-v2";
 import { explorePath } from "lib/urls";
 import { getSessionFromContext } from "lib/auth";
+import { useSession } from "next-auth/react";
 
-const Page = ({ cities, session, isAuthenticated }) => {
+const Page = ({ cities }) => {
+  const { status } = useSession();
   const { i, t, p, locale } = useTrans();
+
+  const isAuthenticated = status === "authenticated";
 
   return (
     <>
@@ -75,7 +79,6 @@ export async function getServerSideProps(context) {
     props: {
       cities,
       canLoadMore,
-      isAuthenticated: session.isAuthenticated,
     },
   };
 }

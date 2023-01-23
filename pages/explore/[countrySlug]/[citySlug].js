@@ -13,6 +13,7 @@ import ActivityBreakdownTile, {
 import AreasTile, { AreaItem } from "components/AreasTile";
 import StaticMapImage from "components/StaticMapImage";
 import { useTrans } from "lib/trans";
+import { useSession } from "next-auth/react";
 import {
   getCity,
   getCityActivities,
@@ -21,11 +22,9 @@ import {
   getCityAreas,
 } from "lib/api-v2";
 import { explorePath, activityPath } from "lib/urls";
-import { getSessionFromContext } from "lib/auth";
 import { useDate } from "lib/date";
 
 const Page = ({
-  isAuthenticated,
   city,
   activities,
   activitesSurplus,
@@ -34,6 +33,7 @@ const Page = ({
   areas,
   areasSurplus,
 }) => {
+  const { status } = useSession();
   const { t, p, locale } = useTrans();
   const { displayDate } = useDate();
   const activitesText = p(
@@ -50,6 +50,7 @@ const Page = ({
     }
   );
   const seoImageUrl = city.image_wide_url;
+  const isAuthenticated = status === "authenticated";
 
   return (
     <>
@@ -184,8 +185,6 @@ export default Page;
 export async function getServerSideProps(context) {
   const { countrySlug, citySlug } = context.params;
 
-  const session = await getSessionFromContext(context);
-
   const city = await getCity(countrySlug, citySlug);
 
   if (isNaN(city.id)) {
@@ -207,7 +206,6 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      isAuthenticated: session.isAuthenticated,
       city,
       activities,
       activitesSurplus,

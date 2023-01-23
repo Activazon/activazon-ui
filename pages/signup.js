@@ -5,10 +5,9 @@ import Footer from "components/Footer";
 import Head from "components/Head";
 import LoginFormTile from "components/LoginFormTile";
 import { useTrans } from "lib/trans";
-import { getSessionFromContext } from "lib/auth";
 import Bannerv2 from "components/Bannerv2";
 
-const Page = ({ cities }) => {
+const Page = ({}) => {
   const { i, t, p, locale } = useTrans();
 
   return (
@@ -40,11 +39,7 @@ const Page = ({ cities }) => {
 export default Page;
 
 export async function getServerSideProps(context) {
-  const session = await getSessionFromContext(context);
-
   return {
-    props: {
-      isAuthenticated: session.isAuthenticated,
-    },
+    props: {},
   };
 }

@@ -11,7 +11,7 @@ import ActivityBreakdownTile, {
   ActivityBreakDownItem,
 } from "components/ActivityBreakdownTile";
 import StaticMapImage from "components/StaticMapImage";
-
+import { useSession } from "next-auth/react";
 import { useTrans } from "lib/trans";
 import {
   getArea,
@@ -19,16 +19,15 @@ import {
   getAreaActivityBreakdown,
 } from "lib/api-v2";
 import { activityPath, explorePath } from "lib/urls";
-import { getSessionFromContext } from "lib/auth";
 import { useDate } from "lib/date";
 
 const AreaPage = ({
-  isAuthenticated,
   area,
   activities,
   activitesSurplus,
   activityBreakdown,
 }) => {
+  const { status } = useSession();
   const { t, p, locale } = useTrans();
   const { displayDate } = useDate();
   const activitesText = p(
@@ -45,6 +44,7 @@ const AreaPage = ({
     }
   );
   const seoImageUrl = area.image_wide_url;
+  const isAuthenticated = status === "authenticated";
 
   return (
     <>
@@ -148,7 +148,6 @@ export default AreaPage;
 export async function getServerSideProps(context) {
   const { countrySlug, citySlug, areaSlug } = context.params;
 
-  const session = await getSessionFromContext(context);
   const area = await getArea(countrySlug, citySlug, areaSlug);
 
   if (isNaN(area.id)) {
@@ -167,7 +166,6 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      isAuthenticated: session.isAuthenticated,
       area,
       activities,
       activitesSurplus,

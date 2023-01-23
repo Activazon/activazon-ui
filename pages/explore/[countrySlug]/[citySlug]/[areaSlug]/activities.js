@@ -9,10 +9,9 @@ import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
 import { useTrans } from "lib/trans";
 import { getArea, getAreaActivities } from "lib/api-v2";
 import { explorePath, activityPath } from "lib/urls";
-import { getSessionFromContext } from "lib/auth";
 import { useDate } from "lib/date";
 
-const Page = ({ isAuthenticated, area, activities }) => {
+const Page = ({ area, activities }) => {
   const { t, p, locale } = useTrans();
   const { displayDate } = useDate();
   const activitesText = p(
@@ -83,8 +82,6 @@ export default Page;
 export async function getServerSideProps(context) {
   const { countrySlug, citySlug, areaSlug } = context.params;
 
-  const session = await getSessionFromContext(context);
-
   const area = await getArea(countrySlug, citySlug, areaSlug);
 
   if (isNaN(area.id)) {
@@ -96,7 +93,6 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      isAuthenticated: session.isAuthenticated,
       area,
       activities,
     },

@@ -5,15 +5,16 @@ import Head from "components/Head";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 import { useTrans } from "lib/trans";
 import { getActivity } from "lib/api-v2";
-import { getSessionFromContext } from "lib/auth";
 import { useDate } from "lib/date";
 import { explorePath } from "lib/urls";
+import { useSession } from "next-auth/react";
 
 const StaticMapImage = ({ src }) => {
   return <img src={src} className="banner-static-map-image" />;
 };
 
-const Page = ({ isAuthenticated, activity }) => {
+const Page = ({ activity }) => {
+  const { status } = useSession;
   const { t, p, locale } = useTrans();
   const { displayDate } = useDate();
   const activitesText = p(
@@ -29,6 +30,7 @@ const Page = ({ isAuthenticated, activity }) => {
       address,
     }
   );
+  const isAuthenticated = status === "authenticated";
   const mapImageUrl = activity.area.image_wide_url;
   const summary = {
     en: activity.summary_en,
@@ -97,7 +99,6 @@ export default Page;
 
 export async function getServerSideProps(context) {
   const { activityId } = context.params;
-  const session = await getSessionFromContext(context);
   const activity = await getActivity(activityId);
 
   if (isNaN(activity.id)) {
@@ -108,7 +109,6 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      isAuthenticated: session.isAuthenticated,
       activity,
     },
   };
