@@ -40,6 +40,16 @@ export const authOptions = {
         user: token.user || user,
       };
     },
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
+    },
+  },
+  pages: {
+    signIn: "/signin",
   },
 };
 export default NextAuth(authOptions);

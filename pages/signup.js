@@ -1,4 +1,3 @@
-import Banner from "components/Banner";
 import Nav from "components/Nav";
 import Col from "components/Col";
 import Main from "components/Main";
@@ -6,10 +5,10 @@ import Footer from "components/Footer";
 import Head from "components/Head";
 import LoginFormTile from "components/LoginFormTile";
 import { useTrans } from "lib/trans";
-import { isAuthenticatedFromContext } from "lib/auth";
+import { getSessionFromContext } from "lib/auth";
 import Bannerv2 from "components/Bannerv2";
 
-const Page = ({ cities, isAuthenticated }) => {
+const Page = ({ cities }) => {
   const { i, t, p, locale } = useTrans();
 
   return (
@@ -41,11 +40,11 @@ const Page = ({ cities, isAuthenticated }) => {
 export default Page;
 
 export async function getServerSideProps(context) {
-  const isAuthenticated = isAuthenticatedFromContext(context);
+  const session = await getSessionFromContext(context);
 
   return {
     props: {
-      isAuthenticated, // use to determine to show signin / login card
+      isAuthenticated: session.isAuthenticated,
     },
   };
 }

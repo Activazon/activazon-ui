@@ -5,8 +5,9 @@ import Head from "components/Head";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 import { useTrans } from "lib/trans";
 import { getActivity } from "lib/api-v2";
-import { isAuthenticatedFromContext } from "lib/auth";
+import { getSessionFromContext } from "lib/auth";
 import { useDate } from "lib/date";
+import { explorePath } from "lib/urls";
 
 const StaticMapImage = ({ src }) => {
   return <img src={src} className="banner-static-map-image" />;
@@ -44,7 +45,10 @@ const Page = ({ isAuthenticated, activity }) => {
       />
       <body>
         <div className="page">
-          <Nav />
+          <Nav
+            title={activity.area.display_name}
+            backHref={explorePath(activity.area.slug_path)}
+          />
           <main>
             <Bannerv2
               title={activity.area.display_name}
@@ -93,7 +97,7 @@ export default Page;
 
 export async function getServerSideProps(context) {
   const { activityId } = context.params;
-  const isAuthenticated = isAuthenticatedFromContext(context);
+  const session = await getSessionFromContext(context);
   const activity = await getActivity(activityId);
 
   if (isNaN(activity.id)) {
@@ -104,7 +108,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      isAuthenticated, // use to determine to show signin / login card
+      isAuthenticated: session.isAuthenticated,
       activity,
     },
   };

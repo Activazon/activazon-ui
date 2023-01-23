@@ -21,7 +21,7 @@ import {
   getCityAreas,
 } from "lib/api-v2";
 import { explorePath, activityPath } from "lib/urls";
-import { isAuthenticatedFromContext } from "lib/auth";
+import { getSessionFromContext } from "lib/auth";
 import { useDate } from "lib/date";
 
 const Page = ({
@@ -59,7 +59,7 @@ const Page = ({
       />
       <body>
         <div className="page">
-          <Nav />
+          <Nav backHref={explorePath()} />
 
           <Bannerv2
             title={city.display_name}
@@ -164,7 +164,7 @@ export default Page;
 export async function getServerSideProps(context) {
   const { countrySlug, citySlug } = context.params;
 
-  const isAuthenticated = isAuthenticatedFromContext(context);
+  const session = await getSessionFromContext(context);
 
   const city = await getCity(countrySlug, citySlug);
 
@@ -183,7 +183,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      isAuthenticated, // use to determine to show signin / login card
+      isAuthenticated: session.isAuthenticated,
       city,
       activities,
       activityBreakdown,

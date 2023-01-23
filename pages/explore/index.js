@@ -10,9 +10,9 @@ import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 import { useTrans } from "lib/trans";
 import { getCities } from "lib/api-v2";
 import { explorePath } from "lib/urls";
-import { isAuthenticatedFromContext } from "lib/auth";
+import { getSessionFromContext } from "lib/auth";
 
-const Page = ({ cities, isAuthenticated }) => {
+const Page = ({ cities, session, isAuthenticated }) => {
   const { i, t, p, locale } = useTrans();
 
   return (
@@ -20,7 +20,7 @@ const Page = ({ cities, isAuthenticated }) => {
       <Head title={null} />
       <body>
         <div className="page">
-          <Nav />
+          <Nav backHref={null} />
 
           <Banner
             title={i("Get to know your neighbourhood")}
@@ -66,16 +66,16 @@ const Page = ({ cities, isAuthenticated }) => {
 export default Page;
 
 export async function getServerSideProps(context) {
-  const isAuthenticated = isAuthenticatedFromContext(context);
-  const paginationLimit = isAuthenticated ? 15 : 6;
-  const canLoadMore = isAuthenticated;
+  const session = await getSessionFromContext(context);
+  const paginationLimit = session.isAuthenticated ? 15 : 6;
+  const canLoadMore = session.isAuthenticated;
   const cities = await getCities(paginationLimit);
 
   return {
     props: {
-      isAuthenticated, // use to determine to show signin / login card
       cities,
       canLoadMore,
+      isAuthenticated: session.isAuthenticated,
     },
   };
 }

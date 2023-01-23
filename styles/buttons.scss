@@ -30,10 +30,17 @@
   }
 }
 
-.btn.btn-locale-change {
+// .btn.btn-locale-change {
+//   border: 0px;
+//   color: $primary;
+//   font-weight: 600;
+// }
+
+.btn.btn-nav-menu {
   border: 0px;
   color: $primary;
-  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 0.2rem 0.5rem;
 }
 
 .btn.btn-cta-banner,

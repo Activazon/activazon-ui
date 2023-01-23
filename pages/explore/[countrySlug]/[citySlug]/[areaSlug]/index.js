@@ -18,8 +18,8 @@ import {
   getAreaActivities,
   getAreaActivityBreakdown,
 } from "lib/api-v2";
-import { activityPath } from "lib/urls";
-import { isAuthenticatedFromContext } from "lib/auth";
+import { activityPath, explorePath } from "lib/urls";
+import { getSessionFromContext } from "lib/auth";
 import { useDate } from "lib/date";
 
 const AreaPage = ({ isAuthenticated, area, activities, activityBreakdown }) => {
@@ -50,7 +50,10 @@ const AreaPage = ({ isAuthenticated, area, activities, activityBreakdown }) => {
       />
       <body>
         <div className="page">
-          <Nav />
+          <Nav
+            title={area.city.display_name}
+            backHref={explorePath(area.city.slug_path)}
+          />
 
           <Bannerv2
             title={area.display_name}
@@ -129,7 +132,7 @@ export default AreaPage;
 export async function getServerSideProps(context) {
   const { countrySlug, citySlug, areaSlug } = context.params;
 
-  const isAuthenticated = isAuthenticatedFromContext(context);
+  const session = await getSessionFromContext(context);
   const area = await getArea(countrySlug, citySlug, areaSlug);
 
   if (isNaN(area.id)) {
@@ -146,7 +149,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      isAuthenticated, // use to determine to show signin / login card
+      isAuthenticated: session.isAuthenticated,
       area,
       activities,
       activityBreakdown,

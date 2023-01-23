@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { trackLocaleChange } from "lib/track";
 import { explorePath } from "lib/urls";
 
-const Nav = ({ pageTitle, backUrl }) => {
+const Nav = ({ title, backHref }) => {
   const router = useRouter();
-  const localButtonLabel = router.locale === "en" ? "ES" : "EN";
+  // const localButtonLabel = router.locale === "en" ? "ES" : "EN";
   const toggleLocale = () => {
     // switch to the other locale
     const nextLocale = router.locale === "en" ? "es" : "en";
@@ -22,20 +22,21 @@ const Nav = ({ pageTitle, backUrl }) => {
   return (
     <nav className="navbar sticky-top">
       <div className="container">
-        <Link className="navbar-brand" href={backUrl || explorePath()}>
-          {!backUrl ? (
+        <Link className="navbar-brand" href={backHref || explorePath()}>
+          {!backHref ? (
             <i className="bi bi-activity"></i>
           ) : (
-            <i className="bi bi-caret-left-fill"></i>
+            <i className="bi bi-chevron-left"></i>
           )}{" "}
-          Activazon
+          {title || "Activazon"}
         </Link>
 
-        <p className="page-title">{pageTitle}</p>
         <div className="flex-grow-1"></div>
-        <button className="btn btn-locale-change" onClick={toggleLocale}>
-          {" "}
+        {/* <button className="btn btn-locale-change" onClick={toggleLocale}>
           <i className="bi bi-translate" /> {localButtonLabel}
+        </button> */}
+        <button className="btn btn-nav-menu" onClick={toggleLocale}>
+          <i className="bi bi-list" />
         </button>
       </div>
     </nav>
