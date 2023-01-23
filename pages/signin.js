@@ -68,7 +68,7 @@ const Page = ({}) => {
                       onChange={(e) => setEmail(e.target.value)}
                       required={true}
                     />
-                    <label for="email">Email address</label>
+                    <label htmlFor="email">Email address</label>
                   </div>
 
                   <div className="form-floating mb-3">
@@ -80,7 +80,7 @@ const Page = ({}) => {
                       onChange={(e) => setPassword(e.target.value)}
                       required={true}
                     />
-                    <label for="password">Password</label>
+                    <label htmlFor="password">Password</label>
                   </div>
                   <div className="mb-3">
                     <button
@@ -112,7 +112,6 @@ export default Page;
 export async function getServerSideProps(context) {
   const session = await getSession(context);
 
-  console.log("session", session);
   return {
     props: {
       session,

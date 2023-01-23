@@ -4,11 +4,11 @@ const LoginFormTile = ({}) => {
       <form className="mt-0">
         <div className="form-floating mb-3">
           <input type="email" className="form-control" id="email" />
-          <label for="email">Email address</label>
+          <label htmlFor="email">Email address</label>
         </div>
         {/* <div className="form-floating mb-3">
           <input type="pasword" className="form-control" id="pasword" />
-          <label for="pasword">Password</label>
+          <label htmlFor="pasword">Password</label>
         </div> */}
         <div className="mb-3">
           <button
