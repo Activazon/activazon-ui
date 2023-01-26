@@ -20,24 +20,40 @@
       color: $white;
     }
   }
-  .navigation-overlay {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba($bg-color, 0.97);
-    z-index: 100;
-    backdrop-filter: blur(10px);
-    display: none;
-    &.open {
-      display: block;
+}
+
+.nav-menu-dropdown {
+  background-color: darken($bg-color, 5%);
+  position: absolute;
+  width: 100vw;
+  z-index: 10000;
+  box-shadow: 0px 0px 30px rgba(#000, 0.2);
+  @extend .py-3;
+  .nav-link {
+    color: $primary;
+    border-bottom: 1px solid rgba($primary, 0.15);
+    border-radius: 0px;
+    &:last-child,
+    &:active {
+      border-bottom: none;
+    }
+    &.active {
+      @include border-radius(3px);
+      background-color: $primary;
+      color: $bg-color;
     }
 
-    .btn.btn-menu {
-      @include button-variant(lighten($bg-color, 3%), transparent);
-      font-size: 1.2rem;
-      color: lighten($primary, 10%);
+    p {
+      margin-bottom: 0px;
     }
   }
+}
+
+.nav-overlay-fill {
+  position: fixed;
+  height: 100vh;
+  width: 100vh;
+  // top: 0px;
+  background-color: rgba($bg-color, 0.8);
+  backdrop-filter: blur(5px);
 }
