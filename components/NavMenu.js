@@ -103,6 +103,7 @@ const NavMenu = ({ open, close }) => {
           )}
         </div>
       </div>
+      <div className="nav-overlay" onClick={close}></div>
     </>
   );
 };
