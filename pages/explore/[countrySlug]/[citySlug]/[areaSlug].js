@@ -99,17 +99,15 @@ const AreaPage = ({
                     />
                   </div>
                 ))}
-                {isAuthenticated && activitesSurplus > 0 && (
-                  <Col>
-                    <a
-                      href={explorePath(area.slug_path + "/activities")}
-                      className="btn btn-secondary w-100"
-                    >
-                      {t("Load {{count}} more", { count: activitesSurplus })}
-                    </a>
-                  </Col>
-                )}
               </GeoWithImagesTileContainer>
+              {isAuthenticated && activitesSurplus > 0 && (
+                <a
+                  href={explorePath(city.slug_path + "/activities")}
+                  className="btn btn-load-more w-100 mt-2"
+                >
+                  {t("Load {{count}} more", { count: activitesSurplus })}
+                </a>
+              )}
             </Col>
 
             {!isAuthenticated && (
