@@ -14,7 +14,7 @@ const StaticMapImage = ({ src }) => {
 };
 
 const Page = ({ activity }) => {
-  const { status } = useSession;
+  const { status } = useSession();
   const { t, p, locale } = useTrans();
   const { displayDate } = useDate();
   const activitesText = p(

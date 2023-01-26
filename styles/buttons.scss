@@ -74,3 +74,10 @@
   @include button-variant($primary, $primary);
   color: $bg-color;
 }
+
+.btn.btn-load-more {
+  @include button-variant($primary, $primary);
+  color: $primary;
+  background-color: $white;
+  // border: 0px;
+}

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useCallback } from "react";
-import { signIn, getSession, getProviders } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 // components
 import Nav from "components/Nav";
 import Col from "components/Col";

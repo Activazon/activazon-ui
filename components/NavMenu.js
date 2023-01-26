@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const NavMenuItem = ({ icon, label, active, href, onClick }) => {
   return (
@@ -88,8 +88,9 @@ const NavMenu = ({ open, close }) => {
             <NavMenuItem
               icon={<i className="bi bi-box-arrow-left me-3" />}
               label="Sign Out"
-              active={isActive("/signout")}
-              href="/signout"
+              href="#"
+              active={false}
+              onClick={() => signOut()}
             />
           )}
         </div>
