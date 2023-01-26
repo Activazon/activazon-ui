@@ -102,7 +102,7 @@ const AreaPage = ({
               </GeoWithImagesTileContainer>
               {isAuthenticated && activitesSurplus > 0 && (
                 <a
-                  href={explorePath(city.slug_path + "/activities")}
+                  href={explorePath(area.slug_path + "/activities")}
                   className="btn btn-load-more w-100 mt-2"
                 >
                   {t("Load {{count}} more", { count: activitesSurplus })}
