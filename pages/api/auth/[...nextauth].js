@@ -1,4 +1,4 @@
-import { authSignIn } from "lib/api-v2";
+import { authSignIn, authSignUp } from "lib/api-v2";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -9,7 +9,8 @@ export const authOptions = {
   },
   providers: [
     CredentialsProvider({
-      name: "Credentials",
+      id: "signin",
+      name: "signin",
       credentials: {
         username: { label: "username", type: "text" },
         password: { label: "Password", type: "password" },
@@ -17,6 +18,24 @@ export const authOptions = {
       async authorize(credentials, req) {
         const { username, password } = credentials;
         const response = await authSignIn(username, password);
+
+        if (response.error || !response.pk || !response.access) {
+          return null;
+        }
+
+        return response;
+      },
+    }),
+    CredentialsProvider({
+      id: "signup",
+      name: "signup",
+      credentials: {
+        username: { label: "username", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials, req) {
+        const { username, password } = credentials;
+        const response = await authSignUp(username, password);
 
         if (response.error || !response.pk || !response.access) {
           return null;

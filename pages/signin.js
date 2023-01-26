@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useCallback } from "react";
 import { signIn, getSession, getProviders } from "next-auth/react";
@@ -25,7 +26,7 @@ const Page = ({}) => {
   const onFormSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      await signIn("credentials", {
+      await signIn("signin", {
         redirect: true,
         callbackUrl: "/explore",
         username: email,
@@ -82,7 +83,7 @@ const Page = ({}) => {
                     />
                     <label htmlFor="password">Password</label>
                   </div>
-                  <div className="mb-3">
+                  <div>
                     <button
                       type="submit"
                       className="btn btn-primary w-100 btn-lg fw-bolder"
@@ -90,11 +91,12 @@ const Page = ({}) => {
                     >
                       Sign In
                     </button>
-                  </div>
-                  <div className="mb-3">
-                    <a className="btn btn-primary-outline w-100" href="">
-                      Tap here to Sign Up
-                    </a>
+                    <Link
+                      className="btn btn-primary-outline w-100"
+                      href="/signup"
+                    >
+                      Or tap here to <b>Sign Up</b>
+                    </Link>
                   </div>
                 </form>
               </div>
