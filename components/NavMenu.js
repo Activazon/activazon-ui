@@ -77,13 +77,6 @@ const NavMenu = ({ open, close }) => {
               href="/signup"
             />
           )}
-          <NavMenuItem
-            icon={<i className="bi bi-translate me-3" />}
-            label={localButtonLabel}
-            href="#"
-            active={false}
-            onClick={toggleLocale}
-          />
           {isAuthenticated && (
             <NavMenuItem
               icon={<i className="bi bi-person-circle me-3" />}
@@ -92,6 +85,13 @@ const NavMenu = ({ open, close }) => {
               active={isActive("/account")}
             />
           )}
+          <NavMenuItem
+            icon={<i className="bi bi-translate me-3" />}
+            label={localButtonLabel}
+            href="#"
+            active={false}
+            onClick={toggleLocale}
+          />
           {isAuthenticated && (
             <NavMenuItem
               icon={<i className="bi bi-box-arrow-left me-3" />}
