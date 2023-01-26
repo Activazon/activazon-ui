@@ -86,6 +86,14 @@ const NavMenu = ({ open, close }) => {
           />
           {isAuthenticated && (
             <NavMenuItem
+              icon={<i className="bi bi-person-circle me-3" />}
+              label="Account Settings"
+              href="/account"
+              active={isActive("/account")}
+            />
+          )}
+          {isAuthenticated && (
+            <NavMenuItem
               icon={<i className="bi bi-box-arrow-left me-3" />}
               label="Sign Out"
               href="#"
