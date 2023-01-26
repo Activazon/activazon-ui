@@ -17,9 +17,8 @@ const Page = ({}) => {
   const {
     query: { error },
   } = useRouter();
-  const [email, setEmail] = useState("");
-  const [emailVerify, setEmailVerify] = useState("");
-  const [password, setPassword] = useState("");
+  const [pin, setPin] = useState("");
+
   const { i, t, p, locale } = useTrans();
 
   const errorCredentials = error === "CredentialsSignin";
@@ -27,13 +26,9 @@ const Page = ({}) => {
   const onFormSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      const signUpResp = await signIn("signup", {
-        redirect: false,
-        username: email,
-        password,
-      });
+      //
     },
-    [email, password]
+    [pin]
   );
 
   return (
@@ -45,7 +40,11 @@ const Page = ({}) => {
           <Bannerv2 dark={true}>
             <div className="row">
               <div className="banner-image">
-                <p className="banner-image-title">Sign Up</p>
+                <p className="banner-image-title">Almost there</p>
+                <p>
+                  We've sent you a 6 digit pin to your email, enter it below to
+                  verify your email.
+                </p>
                 {/* <img className="banner-logo" src="/banner-bg/banner-logo.png" /> */}
               </div>
             </div>
@@ -63,39 +62,15 @@ const Page = ({}) => {
 
                   <div className="form-floating mb-3">
                     <input
-                      type="email"
+                      type="number"
                       className="form-control"
-                      id="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      id="pin"
+                      value={pin}
+                      onChange={(e) => setPin(e.target.value)}
                       required={true}
                       autofocus={true}
                     />
-                    <label htmlFor="email">Email address</label>
-                  </div>
-
-                  <div className="form-floating mb-3">
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="email"
-                      value={emailVerify}
-                      onChange={(e) => setEmailVerify(e.target.value)}
-                      required={true}
-                    />
-                    <label htmlFor="email">Verify Email address</label>
-                  </div>
-
-                  <div className="form-floating mb-3">
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required={true}
-                    />
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="email">Verification Pin</label>
                   </div>
 
                   <div>
@@ -104,7 +79,7 @@ const Page = ({}) => {
                       className="btn btn-cta w-100 btn-lg fw-bolder"
                       id="submit"
                     >
-                      Sign Up
+                      Verify
                     </button>
                     <Link
                       className="btn btn-primary-outline w-100"

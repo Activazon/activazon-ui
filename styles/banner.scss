@@ -95,13 +95,22 @@
     background-image: url(/banner-bg/banner-bg.jpg);
     background-size: cover;
     background-position: top center;
-    height: 40vh;
+    height: 30vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     .banner-logo {
       max-width: 100%;
       max-height: 100%;
+    }
+    .banner-image-title {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    p {
+      margin-bottom: 0px;
+      text-align: center;
     }
   }
 }

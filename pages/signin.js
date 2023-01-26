@@ -45,7 +45,8 @@ const Page = ({}) => {
           <Bannerv2 dark={true}>
             <div className="row">
               <div className="banner-image">
-                <img className="banner-logo" src="/banner-bg/banner-logo.png" />
+                <p className="banner-image-title">Sign In</p>
+                {/* <img className="banner-logo" src="/banner-bg/banner-logo.png" /> */}
               </div>
             </div>
           </Bannerv2>
@@ -68,6 +69,7 @@ const Page = ({}) => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required={true}
+                      autofocus={true}
                     />
                     <label htmlFor="email">Email address</label>
                   </div>
