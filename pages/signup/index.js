@@ -12,7 +12,7 @@ const Page = ({}) => {
 
   return (
     <>
-      <Head title={null} />
+      <Head title="Sign Up" />
       <body>
         <div className="page">
           <Nav pageTitle="Sign Up" />

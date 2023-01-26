@@ -37,7 +37,7 @@ const Page = ({}) => {
 
   return (
     <>
-      <Head title={null} />
+      <Head title="Sign In" />
       <body>
         <div className="page">
           <Nav pageTitle="Sign Up" />
