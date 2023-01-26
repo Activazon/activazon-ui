@@ -9,7 +9,7 @@ const GeoWithImagesTile = ({ image, lead, title, description, href }) => {
             <img src={image} className="img-thumbnail" />
           </div>
           <div className="col-7 col-md-10 ps-0">
-            <div className="row gy-2">
+            <div className="row gy-0">
               {lead && (
                 <div className="col-12">
                   <p className="tile-lead">{lead}</p>
