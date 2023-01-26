@@ -4,7 +4,7 @@ import Link from "next/link";
 export const AreaItem = ({ name, description, href }) => (
   <div className="col-12 px-0">
     <Link href={href}>
-      <div className="card card.item card-item">
+      <div className="card card card-item">
         <p className="label-lg">{name}</p>
         <p className="label-sm">{description}</p>
       </div>
@@ -31,7 +31,7 @@ const AreasTile = ({ children, areaName }) => {
           </p>
         </div>
         <div className="col-12">
-          <div className="row gy-1">{children}</div>
+          <div className="row gy-2">{children}</div>
         </div>
       </div>
     </div>

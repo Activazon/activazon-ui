@@ -86,7 +86,7 @@ const Page = ({}) => {
                   <div>
                     <button
                       type="submit"
-                      className="btn btn-primary w-100 btn-lg fw-bolder"
+                      className="btn btn-cta w-100 btn-lg fw-bolder"
                       id="submit"
                     >
                       Sign In
