@@ -62,10 +62,10 @@ const Page = ({
       />
       <body>
         <div className="page">
-          <Nav backHref={explorePath()} />
+          <Nav title={city.display_name} backHref={explorePath()} />
 
           <Bannerv2
-            title={city.display_name}
+            // title={city.display_name}
             description={city.country.display_name}
             showSearch={false}
             searchCountry={null}

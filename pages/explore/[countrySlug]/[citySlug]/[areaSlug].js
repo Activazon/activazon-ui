@@ -57,12 +57,12 @@ const AreaPage = ({
       <body>
         <div className="page">
           <Nav
-            title={area.city.display_name}
+            title={area.display_name}
             backHref={explorePath(area.city.slug_path)}
           />
 
           <Bannerv2
-            title={area.display_name}
+            // title={area.display_name}
             description={
               area.city.display_name + ", " + area.city.country.display_name
             }

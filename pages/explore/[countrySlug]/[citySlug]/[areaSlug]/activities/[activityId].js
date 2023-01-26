@@ -53,7 +53,7 @@ const Page = ({ activity }) => {
           />
           <main>
             <Bannerv2
-              title={activity.area.display_name}
+              // title={activity.area.display_name}
               // description={p(
               //   "1 activity in the last 5 months",
               //   "{{count}} activities in the last 5 months",
