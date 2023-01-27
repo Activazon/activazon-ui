@@ -14,26 +14,34 @@ import Bannerv2 from "components/Bannerv2";
 import { useTrans } from "lib/trans";
 
 const Page = ({}) => {
-  const {
-    query: { error },
-  } = useRouter();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [emailVerify, setEmailVerify] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const { i, t, p, locale } = useTrans();
-
-  const errorCredentials = error === "CredentialsSignin";
 
   const onFormSubmit = useCallback(
     async (e) => {
       e.preventDefault();
+      setError(null);
       const signUpResp = await signIn("signup", {
         redirect: false,
         username: email,
+        usernameVerify: emailVerify,
         password,
       });
+
+      if (signUpResp.error) {
+        setError(signUpResp.error);
+        return;
+      }
+
+      if (signUpResp.ok) {
+        router.push("/signup/verify");
+      }
     },
-    [email, password]
+    [email, emailVerify, password, emailVerify]
   );
 
   return (
@@ -41,11 +49,11 @@ const Page = ({}) => {
       <Head title="Sign Up" />
       <body>
         <div className="page">
-          <Nav pageTitle="Sign Up" />
+          <Nav pageTitle={t("Sign Up")} />
           <Bannerv2 dark={true}>
             <div className="row">
               <div className="banner-image">
-                <p className="banner-image-title">Sign Up</p>
+                <p className="banner-image-title">{t("Sign Up")}</p>
                 {/* <img className="banner-logo" src="/banner-bg/banner-logo.png" /> */}
               </div>
             </div>
@@ -55,9 +63,9 @@ const Page = ({}) => {
             <Col>
               <div className="mt-3">
                 <form className="mt-0" onSubmit={onFormSubmit}>
-                  {errorCredentials && (
+                  {error && (
                     <div class="alert alert-danger mb-3 border-0" role="alert">
-                      Email/Password does not match, please try again.
+                      {t(error)}
                     </div>
                   )}
 
@@ -71,7 +79,7 @@ const Page = ({}) => {
                       required={true}
                       autofocus={true}
                     />
-                    <label htmlFor="email">Email address</label>
+                    <label htmlFor="email">{t("Email address")}</label>
                   </div>
 
                   <div className="form-floating mb-3">
@@ -83,7 +91,7 @@ const Page = ({}) => {
                       onChange={(e) => setEmailVerify(e.target.value)}
                       required={true}
                     />
-                    <label htmlFor="email">Verify Email address</label>
+                    <label htmlFor="email">{t("Verify Email address")}</label>
                   </div>
 
                   <div className="form-floating mb-3">
@@ -95,7 +103,7 @@ const Page = ({}) => {
                       onChange={(e) => setPassword(e.target.value)}
                       required={true}
                     />
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">{t("Password")}</label>
                   </div>
 
                   <div>
@@ -104,13 +112,13 @@ const Page = ({}) => {
                       className="btn btn-cta w-100 btn-lg fw-bolder"
                       id="submit"
                     >
-                      Sign Up
+                      {t("Sign Up")}
                     </button>
                     <Link
                       className="btn btn-primary-outline w-100"
                       href="/signin"
                     >
-                      Or tap here to <b>Sign In</b>
+                      {t("Or tap here to <b>Sign In</b>")}
                     </Link>
                   </div>
                 </form>

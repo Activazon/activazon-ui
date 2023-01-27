@@ -31,14 +31,16 @@ export const authOptions = {
       name: "signup",
       credentials: {
         username: { label: "username", type: "text" },
+        usernameVerify: { label: "Verify Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        const { username, password } = credentials;
-        const response = await authSignUp(username, password);
+        const { username, password, usernameVerify } = credentials;
+        const response = await authSignUp(username, usernameVerify, password);
 
         if (response.error || !response.pk || !response.access) {
-          return null;
+          console.log("response", response);
+          throw new Error(response.error || "UNKNOWN_ERROR");
         }
 
         return response;

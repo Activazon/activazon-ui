@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useCallback } from "react";
-import { signIn, getSession, getProviders } from "next-auth/react";
+import { getSession, getProviders } from "next-auth/react";
+import { postVerifyPin } from "lib/client-api";
 // components
 import Nav from "components/Nav";
 import Col from "components/Col";
@@ -14,19 +15,24 @@ import Bannerv2 from "components/Bannerv2";
 import { useTrans } from "lib/trans";
 
 const Page = ({}) => {
-  const {
-    query: { error },
-  } = useRouter();
+  const router = useRouter();
   const [pin, setPin] = useState("");
+  const [error, setError] = useState(null);
 
   const { i, t, p, locale } = useTrans();
-
-  const errorCredentials = error === "CredentialsSignin";
 
   const onFormSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      //
+      setError(null);
+      const resp = await postVerifyPin(pin);
+
+      if (resp.success) {
+        router.push("/explore?welcome=1&new=1");
+        return;
+      }
+
+      setError(resp.error || "UNKNOWN_ERROR");
     },
     [pin]
   );
@@ -54,9 +60,9 @@ const Page = ({}) => {
             <Col>
               <div className="mt-3">
                 <form className="mt-0" onSubmit={onFormSubmit}>
-                  {errorCredentials && (
+                  {error && (
                     <div class="alert alert-danger mb-3 border-0" role="alert">
-                      Email/Password does not match, please try again.
+                      {t(error)}
                     </div>
                   )}
 

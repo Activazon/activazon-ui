@@ -327,8 +327,8 @@
     "es": "Regístrate para mantenerte un paso adelante al recibir informes de delitos en tu barrio o en el lugar de tu próximo viaje."
   },
   "Sign Up": {
-    "en": "Sign Up Now",
-    "es": "Regístrate Ahora"
+    "en": "Sign Up",
+    "es": "Regístrate"
   },
   "{{count}} activities": {
     "en": "{{count}} activities",
@@ -369,5 +369,41 @@
   "Areas in {{city}} actively being tracked": {
     "en": "Areas in {{city}} actively being tracked",
     "es": "Áreas en {{city}} activamente monitoreadas"
+  },
+  "Email address": {
+    "en": "Email address",
+    "es": "Dirección de correo electrónico"
+  },
+  "Verify Email address": {
+    "en": "Verify Email",
+    "es": "Verificar correo electrónico"
+  },
+  "Password": {
+    "en": "Password",
+    "es": "Contraseña"
+  },
+  "Or tap here to <b>Sign Up</b>": {
+    "en": "Or tap here to <b>Sign Up</b>",
+    "es": "O toca aquí para <b>Registrarse</b>"
+  },
+  "Or tap here to <b>Sign In</b>": {
+    "en": "Or tap here to <b>Sign In</b>",
+    "es": "O toca aquí para <b>Iniciar Sesión</b>"
+  },
+  "USERNAME_MISMATCH": {
+    "en": "Email addresses entered does not match",
+    "es": "Las direcciones de correo electrónico no coinciden"
+  },
+  "USER_ALREADY_EXISTS": {
+    "en": "Email address already in use",
+    "es": "La dirección de correo electrónico ya está en uso"
+  },
+  "INVALID_FORM_DATA": {
+    "en": "Please fill in the form below",
+    "es": "Por favor, complete el siguiente formulario"
+  },
+  "INVALID_PIN": {
+    "en": "Incorrect Pin",
+    "es": "Pin incorrecto"
   }
 }
