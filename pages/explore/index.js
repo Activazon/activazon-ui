@@ -12,10 +12,17 @@ import { getCities } from "lib/api-v2";
 import { explorePath } from "lib/urls";
 import { getSessionFromContext } from "lib/auth";
 import { useSession } from "next-auth/react";
+import { track } from "lib/track";
+import { useEffect } from "react";
 
 const Page = ({ cities }) => {
   const { status } = useSession();
   const { i, t, p } = useTrans();
+  useEffect(() => {
+    track("page.explore", {
+      authStatus: status,
+    });
+  }, [status]);
 
   const isAuthenticated = status === "authenticated";
 

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { signIn, getSession } from "next-auth/react";
+import { track } from "lib/track";
 // components
 import Nav from "components/Nav";
 import Col from "components/Col";
@@ -20,6 +21,11 @@ const Page = ({}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { i, t, p, locale } = useTrans();
+  useEffect(() => {
+    track("page.signin", {
+      error,
+    });
+  }, [error]);
 
   const errorCredentials = error === "CredentialsSignin";
 

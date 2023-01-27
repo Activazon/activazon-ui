@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useCallback } from "react";
-import { signIn, getSession, getProviders } from "next-auth/react";
+import { useState, useCallback, useEffect } from "react";
+import { signIn, getSession } from "next-auth/react";
+import { track } from "lib/track";
 // components
 import Nav from "components/Nav";
 import Col from "components/Col";
@@ -20,6 +21,9 @@ const Page = ({}) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { i, t, p, locale } = useTrans();
+  useEffect(() => {
+    track("page.signup", { error });
+  }, [error]);
 
   const onFormSubmit = useCallback(
     async (e) => {

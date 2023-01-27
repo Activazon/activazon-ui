@@ -10,9 +10,13 @@ import { useTrans } from "lib/trans";
 import { getArea, getAreaActivities } from "lib/api-v2";
 import { explorePath, activityPath } from "lib/urls";
 import { useDate } from "lib/date";
+import { track } from "lib/track";
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 const Page = ({ area, activities }) => {
   const { t, p, locale } = useTrans();
+  const session = useSession();
   const { displayDate } = useDate();
   const activitesText = p(
     "1 activity",
@@ -28,6 +32,12 @@ const Page = ({ area, activities }) => {
     }
   );
   const seoImageUrl = area.image_wide_url;
+  useEffect(() => {
+    track("page.explore.area.activities", {
+      authStatus: session.status,
+      areaSlug: area.slug,
+    });
+  }, [area, session]);
 
   return (
     <>

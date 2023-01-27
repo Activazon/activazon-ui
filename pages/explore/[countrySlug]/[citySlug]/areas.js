@@ -10,9 +10,13 @@ import { useTrans } from "lib/trans";
 import { getCity, getCityAreas } from "lib/api-v2";
 import { explorePath } from "lib/urls";
 import { useDate } from "lib/date";
+import { track } from "lib/track";
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 const Page = ({ city, areas }) => {
   const { t, p, locale } = useTrans();
+  const session = useSession();
   const { displayDate } = useDate();
   const areasText = t("Areas in {{city}} actively being tracked", {
     city: city.display_name,
@@ -26,6 +30,12 @@ const Page = ({ city, areas }) => {
     }
   );
   const seoImageUrl = city.image_wide_url;
+  useEffect(() => {
+    track("page.explore.city.areas", {
+      citySlug: city.slug,
+      authStatus: session.status,
+    });
+  }, [session, city]);
 
   return (
     <>

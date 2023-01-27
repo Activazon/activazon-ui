@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
-
 import { useSession } from "next-auth/react";
+import { track } from "lib/track";
 // components
 import Nav from "components/Nav";
 import Col from "components/Col";
@@ -12,11 +11,14 @@ import Bannerv2 from "components/Bannerv2";
 
 // libs
 import { useTrans } from "lib/trans";
+import { useEffect } from "react";
 
 const Page = ({}) => {
   const router = useRouter();
   const session = useSession();
-  console.log("session", session);
+  useEffect(() => {
+    track("page.account");
+  }, []);
 
   const { i, t, p, locale } = useTrans();
 
@@ -43,7 +45,7 @@ const Page = ({}) => {
                     type="email"
                     className="form-control"
                     id="id"
-                    value={session.data.user.pk}
+                    value={session?.data?.user?.pk}
                     disabled={true}
                   />
                   <label htmlFor="email">ID</label>
@@ -54,7 +56,7 @@ const Page = ({}) => {
                     type="email"
                     className="form-control"
                     id="email"
-                    value={session.data.user.email}
+                    value={session?.data?.user?.email}
                     disabled={true}
                   />
                   <label htmlFor="email">{t("Email address")}</label>

@@ -23,6 +23,8 @@ import {
 } from "lib/api-v2";
 import { explorePath, activityPath } from "lib/urls";
 import { useDate } from "lib/date";
+import { track } from "lib/track";
+import { useEffect } from "react";
 
 const Page = ({
   city,
@@ -51,6 +53,12 @@ const Page = ({
   );
   const seoImageUrl = city.image_wide_url;
   const isAuthenticated = status === "authenticated";
+  useEffect(() => {
+    track("page.explore.city", {
+      authStatus: status,
+      citySlug: city.slug,
+    });
+  }, [status, city]);
 
   return (
     <>

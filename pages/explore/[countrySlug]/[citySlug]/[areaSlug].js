@@ -20,6 +20,8 @@ import {
 } from "lib/api-v2";
 import { activityPath, explorePath } from "lib/urls";
 import { useDate } from "lib/date";
+import { track } from "lib/track";
+import { useEffect } from "react";
 
 const AreaPage = ({
   area,
@@ -45,6 +47,12 @@ const AreaPage = ({
   );
   const seoImageUrl = area.image_wide_url;
   const isAuthenticated = status === "authenticated";
+  useEffect(() => {
+    track("page.explore.area", {
+      authStatus: status,
+      areaSlug: area.slug,
+    });
+  }, [status, area]);
 
   return (
     <>

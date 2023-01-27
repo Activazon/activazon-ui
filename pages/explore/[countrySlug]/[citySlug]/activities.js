@@ -10,9 +10,13 @@ import { useTrans } from "lib/trans";
 import { getCity, getCityActivities } from "lib/api-v2";
 import { explorePath, activityPath } from "lib/urls";
 import { useDate } from "lib/date";
+import { track } from "lib/track";
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 const Page = ({ city, activities }) => {
   const { t, p, locale } = useTrans();
+  const session = useSession();
   const { displayDate } = useDate();
   const activitesText = p(
     "1 activity",
@@ -28,6 +32,12 @@ const Page = ({ city, activities }) => {
     }
   );
   const seoImageUrl = city.image_wide_url;
+  useEffect(() => {
+    track("page.explore.city.activities", {
+      citySlug: city.slug,
+      authStatus: session.status,
+    });
+  }, [session, city]);
 
   return (
     <>
