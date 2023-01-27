@@ -27,7 +27,10 @@ const Page = ({ activity }) => {
     activity.area.activity_total_last5months
   );
   const address = activity.area.display_name;
-  const seoTitle = `${address} (${activitesText})`;
+  const seoTitle = t("{{activity_type_name}} in {{neighbourhood_name}}", {
+    activity_type_name: t(activity.activity_type.name),
+    neighbourhood_name: activity.area.display_name,
+  });
   const seoDescription = t(
     "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
     {
