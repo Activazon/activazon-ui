@@ -6,7 +6,7 @@ import { signOut, useSession } from "next-auth/react";
 const NavMenuItem = ({ icon, label, active, href, onClick }) => {
   return (
     <Link
-      class={`nav-link${active ? " active" : ""}`}
+      className={`nav-link${active ? " active" : ""}`}
       id="v-pills-home-tab"
       data-toggle="pill"
       href={href}
@@ -80,7 +80,7 @@ const NavMenu = ({ open, close }) => {
           {isAuthenticated && (
             <NavMenuItem
               icon={<i className="bi bi-person-circle me-3" />}
-              label="Account Settings"
+              label="Account"
               href="/account"
               active={isActive("/account")}
             />

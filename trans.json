@@ -429,5 +429,9 @@
   "Email/Password does not match, please try again.": {
     "en": "Email/Password does not match, please try again.",
     "es": "El correo electrónico/contraseña no coincide, por favor inténtelo de nuevo."
+  },
+  "Account": {
+    "en": "Account",
+    "es": "Cuenta"
   }
 }

@@ -38,7 +38,8 @@ const Page = ({}) => {
       }
 
       if (signUpResp.ok) {
-        router.push("/signup/verify");
+        // router.push("/signup/verify");
+        router.push("/explore");
       }
     },
     [email, emailVerify, password, emailVerify]
@@ -64,7 +65,10 @@ const Page = ({}) => {
               <div className="mt-3">
                 <form className="mt-0" onSubmit={onFormSubmit}>
                   {error && (
-                    <div class="alert alert-danger mb-3 border-0" role="alert">
+                    <div
+                      className="alert alert-danger mb-3 border-0"
+                      role="alert"
+                    >
                       {t(error)}
                     </div>
                   )}
