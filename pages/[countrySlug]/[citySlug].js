@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
 import Col from "components/Col";
@@ -112,12 +113,12 @@ const Page = ({
                 ))}
               </GeoWithImagesTileContainer>
               {isAuthenticated && activitesSurplus > 0 && (
-                <a
+                <Link
                   href={explorePath(city.slug_path + "/activities")}
                   className="btn btn-load-more w-100 mt-2"
                 >
                   {t("Load {{count}} more", { count: activitesSurplus })}
-                </a>
+                </Link>
               )}
             </Col>
 
@@ -160,12 +161,12 @@ const Page = ({
                     />
                   ))}
                   {isAuthenticated && areasSurplus > 0 && (
-                    <a
+                    <Link
                       href={explorePath(city.slug_path + "/activities")}
                       className="btn btn-load-more w-100 mt-2"
                     >
                       {t("Load {{count}} more", { count: areasSurplus })}
-                    </a>
+                    </Link>
                   )}
                 </>
               </AreasTile>

@@ -1,84 +1,89 @@
+import Bannerv2 from "components/Bannerv2";
+import Nav from "components/Nav";
+import Col from "components/Col";
+import Main from "components/Main";
+import Footer from "components/Footer";
+import Head from "components/Head";
+import GeoWithImagesTile from "components/GeoWithImagesTile";
+import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
+import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
+import { useTrans } from "lib/trans";
+import { getCities } from "lib/api-v2";
+import { explorePath } from "lib/urls";
+import { getSessionFromContext } from "lib/auth";
+import { useSession } from "next-auth/react";
+import { track } from "lib/track";
 import { useEffect } from "react";
-import Banner from "../components/Banner";
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
-import Head from "../components/Head";
-import CountrySelector from "../components/CountrySelector";
-import { useTrans } from "../lib/trans";
-import { getCountries } from "../lib/api";
-import { trackHome } from "../lib/track";
 
-export default function Home({ countries }) {
-  const { i, t, locale } = useTrans();
+const Page = ({ cities }) => {
+  const { status } = useSession();
+  const { i, t, p } = useTrans();
   useEffect(() => {
-    trackHome(locale);
-  }, []);
+    track("page.explore", {
+      authStatus: status,
+    });
+  }, [status]);
+
+  const isAuthenticated = status === "authenticated";
+
   return (
     <>
       <Head title={null} />
       <body>
         <div className="page">
-          <Nav />
-          <main>
-            <Banner
-              title={i("Get to know your neighbourhood")}
-              showSearch={true}
-              searchCountry={null}
-            />
+          <Nav backHref={null} />
 
-            <div className="container pt-3">
-              <CountrySelector countries={countries} />
-            </div>
-            {/* <div className="container mt-3">
-              <p className="lead">
-                <i className="bi bi-chat-fill" /> {i("What is Activazon")}
-              </p>
-              <p>
-                {i(
-                  "Activazon is an artificial intelligence service designed to keep you informed and safe with real-time updates on crimes in your neighborhood. Our advanced technology does all the work for you, without the need for human intervention. Relax and let Activazon take care of keeping you informed and safe. We're here to help!"
-                )}
-              </p>
-            </div> */}
-
-            <div className="container mt-3">
-              <div className="card card-body promo-card promo-card-light">
-                <h2 className="lead text-center mb-4">
-                  {t("Stay Safe and Informed with Activazon")}
-                </h2>
-                <p className="mb-0">
-                  {t(
-                    "We understand that staying informed and safe is a top priority, and that's where we come in. Our service analyzes and detects crime in neighborhoods to help residents and travelers stay informed and make informed decisions about where to go and when to be extra cautious."
-                  )}
-                </p>
-              </div>
-            </div>
-
-            <div className="container mt-3">
-              <div className="card card-body promo-card">
-                <h2 className="lead text-center mb-4">
-                  {t("We are always on the look out for you")}
-                </h2>
-                <p className="mb-0">
-                  {t(
-                    "Activazon is always analyzing and looking for updates on incidents to keep you informed and safe. We use publicly available information to generate summaries and alerts, so you can stay informed about crime in your neighborhood or destination."
-                  )}
-                </p>
-              </div>
-            </div>
+          <Bannerv2 dark={true} title={i("Get to know your neighbourhood")}>
+            <div className="p-2" />
+          </Bannerv2>
+          <Main>
+            <Col>
+              <GeoWithImagesTileContainer>
+                {cities?.results?.map((c) => (
+                  <div className="col-12">
+                    <GeoWithImagesTile
+                      href={explorePath(c.slug_path)}
+                      key={`city-card-${c.id}`}
+                      image={c.image_square_url}
+                      lead={c.country.display_name}
+                      title={c.display_name}
+                      description={p(
+                        "1 activity in the last 5 months",
+                        "{{count}} activities in the last 5 months",
+                        c.activity_total_last5months
+                      )}
+                    />
+                  </div>
+                ))}
+              </GeoWithImagesTileContainer>
+            </Col>
+            {!isAuthenticated && (
+              <Col>
+                <LoginOrSignUpCtaTile
+                  alternativeTitle={t("Sign Up To View More")}
+                />
+              </Col>
+            )}
             <Footer />
-          </main>
+          </Main>
         </div>
       </body>
     </>
   );
-}
+};
+
+export default Page;
 
 export async function getServerSideProps(context) {
-  const countries = await getCountries(100);
+  const session = await getSessionFromContext(context);
+  const paginationLimit = session.isAuthenticated ? 15 : 6;
+  const canLoadMore = session.isAuthenticated;
+  const cities = await getCities(paginationLimit);
 
   return {
     props: {
-      countries,
+      cities,
+      canLoadMore,
     },
   };
 }
