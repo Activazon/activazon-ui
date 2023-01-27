@@ -46,7 +46,7 @@ const Page = ({}) => {
 
   return (
     <>
-      <Head title="Sign Up" />
+      <Head title={t("Sign Up")} />
       <body>
         <div className="page">
           <Nav pageTitle={t("Sign Up")} />
@@ -118,7 +118,7 @@ const Page = ({}) => {
                       className="btn btn-primary-outline w-100"
                       href="/signin"
                     >
-                      {t("Or tap here to <b>Sign In</b>")}
+                      {t("Or tap here to Sign In")}
                     </Link>
                   </div>
                 </form>

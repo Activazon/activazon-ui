@@ -38,14 +38,14 @@ const Page = ({}) => {
 
   return (
     <>
-      <Head title="Sign In" />
+      <Head title={t("Sign In")} />
       <body>
         <div className="page">
-          <Nav pageTitle="Sign Up" />
+          <Nav pageTitle={t("Sign In")} />
           <Bannerv2 dark={true}>
             <div className="row">
               <div className="banner-image">
-                <p className="banner-image-title">Sign In</p>
+                <p className="banner-image-title">{t("Sign In")}</p>
                 {/* <img className="banner-logo" src="/banner-bg/banner-logo.png" /> */}
               </div>
             </div>
@@ -57,7 +57,7 @@ const Page = ({}) => {
                 <form className="mt-0" onSubmit={onFormSubmit}>
                   {errorCredentials && (
                     <div class="alert alert-danger mb-3 border-0" role="alert">
-                      Email/Password does not match, please try again.
+                      {t("Email/Password does not match, please try again.")}
                     </div>
                   )}
 
@@ -71,7 +71,7 @@ const Page = ({}) => {
                       required={true}
                       autofocus={true}
                     />
-                    <label htmlFor="email">Email address</label>
+                    <label htmlFor="email">{t("Email address")}</label>
                   </div>
 
                   <div className="form-floating mb-3">
@@ -83,7 +83,7 @@ const Page = ({}) => {
                       onChange={(e) => setPassword(e.target.value)}
                       required={true}
                     />
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">{t("Password")}</label>
                   </div>
                   <div>
                     <button
@@ -91,13 +91,13 @@ const Page = ({}) => {
                       className="btn btn-cta w-100 btn-lg fw-bolder"
                       id="submit"
                     >
-                      Sign In
+                      {t("Sign In")}
                     </button>
                     <Link
                       className="btn btn-primary-outline w-100"
                       href="/signup"
                     >
-                      Or tap here to <b>Sign Up</b>
+                      {t("Or tap here to Sign Up")}
                     </Link>
                   </div>
                 </form>

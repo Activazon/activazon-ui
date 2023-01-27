@@ -54,10 +54,11 @@ const Page = ({}) => {
           <Bannerv2 dark={true}>
             <div className="row">
               <div className="banner-image">
-                <p className="banner-image-title">Almost there</p>
+                <p className="banner-image-title">{t("Almost there")}</p>
                 <p>
-                  We've sent you a 6 digit pin to your email, enter it below to
-                  verify your email.
+                  {t(
+                    "We've sent you a 6 digit pin to your email, enter it below to verify your email."
+                  )}
                 </p>
                 {/* <img className="banner-logo" src="/banner-bg/banner-logo.png" /> */}
               </div>
@@ -84,7 +85,7 @@ const Page = ({}) => {
                       required={true}
                       autofocus={true}
                     />
-                    <label htmlFor="email">Verification Pin</label>
+                    <label htmlFor="email">{t("Verification Pin")}</label>
                   </div>
 
                   <div>
@@ -93,13 +94,13 @@ const Page = ({}) => {
                       className="btn btn-cta w-100 btn-lg fw-bolder"
                       id="submit"
                     >
-                      Verify
+                      {t("Verify")}
                     </button>
                     <Link
                       className="btn btn-primary-outline w-100"
                       href="/signin"
                     >
-                      Or tap here to <b>Sign In</b>
+                      {t("Or tap here to Sign In")}
                     </Link>
                   </div>
                 </form>
