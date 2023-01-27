@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useCallback } from "react";
-import { getSession, getProviders } from "next-auth/react";
+import { getSession, getProviders, useSession } from "next-auth/react";
 import { postVerifyPin } from "lib/client-api";
 // components
 import Nav from "components/Nav";
@@ -15,6 +15,7 @@ import Bannerv2 from "components/Bannerv2";
 import { useTrans } from "lib/trans";
 
 const Page = ({}) => {
+  const session = useSession();
   const router = useRouter();
   const [pin, setPin] = useState("");
   const [error, setError] = useState(null);
@@ -36,6 +37,13 @@ const Page = ({}) => {
     },
     [pin]
   );
+
+  if (session.status === "loading") {
+    return null;
+  }
+  if (session.status === "unauthenticated") {
+    router.push("/signup");
+  }
 
   return (
     <>

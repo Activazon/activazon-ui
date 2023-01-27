@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
 import Footer from "components/Footer";
@@ -14,6 +15,7 @@ const StaticMapImage = ({ src }) => {
 };
 
 const Page = ({ activity }) => {
+  const router = useRouter();
   const { status } = useSession();
   const { t, p, locale } = useTrans();
   const { displayDate } = useDate();
@@ -36,6 +38,10 @@ const Page = ({ activity }) => {
     en: activity.summary_en,
     es: activity.summary_es,
   }[locale];
+
+  if (status === "unauthenticated") {
+    router.push("/signup?callbackUrl=" + router.asPath);
+  }
 
   return (
     <>
