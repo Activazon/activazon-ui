@@ -1,6 +1,7 @@
 .navbar {
+  position: relative;
   background-color: $bg-color !important;
-  box-shadow: 0px 7px 0px $primary;
+  // box-shadow: 0px 7px 0px $primary;
   .container {
     justify-content: start !important;
   }
@@ -19,4 +20,43 @@
       color: $white;
     }
   }
+}
+
+.nav-menu-dropdown {
+  background-color: darken($bg-color, 5%);
+  position: absolute;
+  width: 100vw;
+  z-index: 10000;
+  box-shadow: 0px 0px 30px rgba(#000, 0.2);
+  @extend .py-3;
+  .nav-link {
+    color: $primary;
+    border-bottom: 1px solid rgba($primary, 0.15);
+    border-radius: 0px;
+    font-size: 1.1rem;
+
+    &:last-child,
+    &:active {
+      border-bottom: none;
+    }
+    &.active {
+      @include border-radius(3px);
+      background-color: $primary;
+      color: $bg-color;
+    }
+
+    p {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.nav-overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  z-index: 9999;
 }

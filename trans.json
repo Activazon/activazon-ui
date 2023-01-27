@@ -173,6 +173,14 @@
     "en": "Drugs",
     "es": "Drugas"
   },
+  "maltreatment": {
+    "en": "Cruelty",
+    "es": "Crueldad"
+  },
+  "maltreatment__plural": {
+    "en": "Cruelties",
+    "es": "Crueldades"
+  },
   "drugtrafficking": {
     "en": "Drug Trafficking",
     "es": "el tráfico de drogas"
@@ -309,5 +317,121 @@
   "More from {{neighbourhood_name}}": {
     "en": "More from {{neighbourhood_name}}",
     "es": "Más de {{neighbourhood_name}}"
+  },
+  "Take Control of Your Safety": {
+    "en": "Take Control of Your Safety",
+    "es": "Toma el control de tu seguridad"
+  },
+  "Sign Up to stay one step ahead by getting crime reports for your neighborhood or where your next trip will be.": {
+    "en": "Sign Up to stay one step ahead by getting crime reports for your neighborhood or where your next trip will be.",
+    "es": "Regístrate para mantenerte un paso adelante al recibir informes de delitos en tu barrio o en el lugar de tu próximo viaje."
+  },
+  "Sign Up": {
+    "en": "Sign Up",
+    "es": "Regístrate"
+  },
+  "{{count}} activities": {
+    "en": "{{count}} activities",
+    "es": "{{count}} actividades"
+  },
+  "1 activity": {
+    "en": "1 activity",
+    "es": "1 actividad"
+  },
+  "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.": {
+    "en": "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
+    "es": "Obtén un análisis detallado de las tendencias delictivas en {{address}} con Activazon. Regístrate para obtener una cuenta gratuita y acceder a informes de delitos personalizados y mantenerte informado sobre la actividad local."
+  },
+  "Sign Up To View More": {
+    "en": "Sign Up To View More",
+    "es": "Regístrate para ver más"
+  },
+  "Activity Breakdown": {
+    "en": "Activity Breakdown",
+    "es": "Desglose de actividad"
+  },
+  "Top 3 activities detected in {{area_name}}": {
+    "en": "Top 3 activities detected in {{area_name}}",
+    "es": "Top 3 actividades detectada en {{area_name}}"
+  },
+  "Most Active Areas": {
+    "en": "Most Active Areas",
+    "es": "Áreas más activas"
+  },
+  "Areas with the most activity in {{area_name}}": {
+    "en": "Areas with the most activity in {{area_name}}",
+    "es": "Áreas con más actividad en {{area_name}}"
+  },
+  "Load {{count}} more": {
+    "en": "Load {{count}} more",
+    "es": "Cargar {{count}} más"
+  },
+  "Areas in {{city}} actively being tracked": {
+    "en": "Areas in {{city}} actively being tracked",
+    "es": "Áreas en {{city}} activamente monitoreadas"
+  },
+  "Email address": {
+    "en": "Email address",
+    "es": "Dirección de correo electrónico"
+  },
+  "Verify Email address": {
+    "en": "Verify Email",
+    "es": "Verificar correo electrónico"
+  },
+  "Password": {
+    "en": "Password",
+    "es": "Contraseña"
+  },
+  "Or tap here to Sign Up": {
+    "en": "Or tap here to Sign Up",
+    "es": "O toca aquí para Registrarse"
+  },
+  "Or tap here to Sign In": {
+    "en": "Or tap here to Sign In",
+    "es": "O toca aquí para Iniciar Sesión"
+  },
+  "USERNAME_MISMATCH": {
+    "en": "Email addresses entered does not match",
+    "es": "Las direcciones de correo electrónico no coinciden"
+  },
+  "USER_ALREADY_EXISTS": {
+    "en": "Email address already in use",
+    "es": "La dirección de correo electrónico ya está en uso"
+  },
+  "INVALID_FORM_DATA": {
+    "en": "Please fill in the form below",
+    "es": "Por favor, complete el siguiente formulario"
+  },
+  "INVALID_PIN": {
+    "en": "Incorrect Pin",
+    "es": "Pin incorrecto"
+  },
+  "Verify": {
+    "en": "Verify",
+    "es": "Verificar"
+  },
+  "Verification Pin": {
+    "en": "Verification Pin",
+    "es": "Pin de verificación"
+  },
+  "Almost there": {
+    "en": "Almost there",
+    "es": "Casi has terminado"
+  },
+  "We've sent you a 6 digit pin to your email, enter it below to verify your email.": {
+    "en": "We've sent you a 6 digit pin to your email, enter it below to verify your email.",
+    "es": "Le hemos enviado un código de 6 dígitos a su correo electrónico, ingréselo a continuación para verificar su correo electrónico."
+  },
+  "Sign In": {
+    "en": "Sign In",
+    "es": "Iniciar Sesión"
+  },
+  "Email/Password does not match, please try again.": {
+    "en": "Email/Password does not match, please try again.",
+    "es": "El correo electrónico/contraseña no coincide, por favor inténtelo de nuevo."
+  },
+  "Account": {
+    "en": "Account",
+    "es": "Cuenta"
   }
 }

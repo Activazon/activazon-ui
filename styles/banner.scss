@@ -1,11 +1,19 @@
 .banner {
   background-color: $primary;
+  color: $bg-color;
   padding: $spacer * 1.5 0px;
+
+  &.banner-dark {
+    background-color: $bg-color;
+    color: $primary;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
 
   .banner-text {
     font-family: "TT-Supermolot-Neue";
 
-    color: $bg-color;
+    color: inherit;
     &.banner-title {
       @extend .display-3;
       font-weight: 700;
@@ -74,6 +82,35 @@
         padding: auto $spacer * 1.5;
         font-size: 1.15rem;
       }
+    }
+  }
+
+  .banner-static-map-image {
+    @extend .img-fluid;
+    padding: 0px;
+  }
+
+  .banner-image {
+    width: 100%;
+    background-image: url(/banner-bg/banner-bg.jpg);
+    background-size: cover;
+    background-position: top center;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .banner-logo {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .banner-image-title {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    p {
+      margin-bottom: 0px;
+      text-align: center;
     }
   }
 }

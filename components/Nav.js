@@ -1,43 +1,41 @@
+import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { trackLocaleChange } from "../lib/track";
+import { explorePath } from "lib/urls";
+import NavMenu from "./NavMenu";
 
-const Nav = ({ pageTitle, backUrl }) => {
-  const router = useRouter();
-  const localButtonLabel = router.locale === "en" ? "ES" : "EN";
-  const toggleLocale = () => {
-    // switch to the other locale
-    const nextLocale = router.locale === "en" ? "es" : "en";
-    trackLocaleChange(nextLocale);
-    router.push(
-      { pathname: router.pathname, query: router.query },
-      router.asPath,
-      {
-        locale: nextLocale,
-      }
-    );
-  };
+const Nav = ({ title, backHref, hideMenu }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="navbar sticky-top">
-      <div className="container">
-        <Link className="navbar-brand" href={backUrl || "/"}>
-          {!backUrl ? (
-            <i className="bi bi-activity"></i>
-          ) : (
-            <i className="bi bi-caret-left-fill"></i>
-          )}{" "}
-          Activazon
-        </Link>
+    <div className="sticky-top">
+      <nav className="navbar">
+        <div className="container">
+          <Link className="navbar-brand" href={backHref || explorePath()}>
+            {!backHref ? (
+              <i className="bi bi-activity"></i>
+            ) : (
+              <i className="bi bi-chevron-left"></i>
+            )}{" "}
+            {title || "Activazon"}
+          </Link>
 
-        <p className="page-title">{pageTitle}</p>
-        <div className="flex-grow-1"></div>
-        <button className="btn btn-locale-change" onClick={toggleLocale}>
-          {" "}
-          <i className="bi bi-translate" /> {localButtonLabel}
-        </button>
-      </div>
-    </nav>
+          <div className="flex-grow-1"></div>
+          {!hideMenu && (
+            <button
+              className="btn btn-nav-menu"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? (
+                <i className="bi bi-x-lg"></i>
+              ) : (
+                <i className="bi bi-list" />
+              )}
+            </button>
+          )}
+        </div>
+      </nav>
+      <NavMenu open={isMenuOpen} close={() => setIsMenuOpen(false)} />
+    </div>
   );
 };
 

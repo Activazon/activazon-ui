@@ -30,24 +30,43 @@
   }
 }
 
-.btn.btn-locale-change {
+// .btn.btn-locale-change {
+//   border: 0px;
+//   color: $primary;
+//   font-weight: 600;
+// }
+
+.btn.btn-nav-menu {
   border: 0px;
   color: $primary;
+  font-size: 1.5rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.btn {
+  padding: 0.8rem 1rem;
   font-weight: 600;
 }
 
-.btn.btn-cta-banner,
-.btn.btn-cta {
-  border: 0px;
-  color: $primary;
-  background-color: $bg-color;
-  border: 3px solid darken($primary, 10%);
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 1.2rem;
-  padding: 0.6rem 1rem;
+.btn.btn-secondary {
+  @include button-variant($bg-color, $bg-color);
+  color: $bg-color;
+  background-color: transparent;
+}
+
+.btn.btn-primary {
+  @include button-variant($primary, $primary);
+  color: $bg-color;
+}
+
+.btn.btn-load-more {
+  @include button-variant($primary, $primary);
+  color: $primary !important;
+  background-color: rgba($primary, 0.05);
 }
 
 .btn.btn-cta {
-  border: 0px !important;
+  @include button-variant($primary, $primary);
+  color: $primary !important;
+  background-color: rgba($primary, 0.05);
 }

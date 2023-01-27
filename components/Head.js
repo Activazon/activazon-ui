@@ -5,17 +5,23 @@ import Script from "next/script";
 
 const TITLE = "Activazon";
 
-const AppHead = ({ title }) => {
+const AppHead = ({ title, seoDescription, seoKeywords, seoImageUrl }) => {
   const { pathname } = useRouter();
   const { i } = useTrans();
   const titleText = title ? `${title} - ${TITLE}` : TITLE;
-  const descriptionText = i("AI-powered insights for your neighborhood");
+  seoDescription =
+    seoDescription || i("AI-powered insights for your neighborhood");
+  seoImageUrl = seoImageUrl || "https://www.activazon.com/social-share.png";
+  seoKeywords = seoKeywords || [];
   const urlNoLocale = pathname.replace("/en", "").replace("/es", "");
   return (
     <Head>
       <title>{titleText}</title>
-      <meta name="description" content={descriptionText} />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="description" content={seoDescription} />
+      <meta
+        name="viewport"
+        content="width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no"
+      />
       <link rel="icon" href="/favicon.ico" />
       <link
         rel="apple-touch-icon"
@@ -48,20 +54,14 @@ const AppHead = ({ title }) => {
       {/* Meta tags */}
       <meta property="og:site_name" content={TITLE} />
       <meta property="og:title" content={titleText} />
-      <meta property="og:description" content={descriptionText} />
-      <meta
-        property="og:image"
-        itemProp="image"
-        content="https://www.activazon.com/social-share.png"
-      />
+      <meta property="og:description" content={seoDescription} />
+      <meta property="og:image" itemProp="image" content={seoImageUrl} />
       <meta property="og:type" content="website" />
       <meta
         name="keywords"
-        content="Honduras, Advisory, Honduras Safety, Safety, Neighbourhoods, Is Honduras Safe, Safe Neighbourhoods, Crime, Ai, Ai Analysis, Activa Zone, Activazon, Travel Saftey, San Pedro Sula, Tegucigalpa, Roatan, La Ceiba, Honduras Crime, Francisco Morazan Department, viajar a honduras es seguro?, vaijar a honduras"
-      />
-      <meta
-        name="facebook-domain-verification"
-        content="epcsdmcxlma42kz82fhyo2mz5ntomp"
+        content={`Honduras, Advisory, Honduras Safety, Safety, Neighbourhoods, Is Honduras Safe, Safe Neighbourhoods, Crime, Ai, Ai Analysis, Activa Zone, Activazon, Travel Saftey, San Pedro Sula, Tegucigalpa, Roatan, La Ceiba, Honduras Crime, Francisco Morazan Department, viajar a honduras es seguro?, vaijar a honduras${
+          seoKeywords.length > 0 ? "," : ""
+        }${seoKeywords.join(",")}`}
       />
     </Head>
   );
