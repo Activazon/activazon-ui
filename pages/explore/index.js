@@ -15,7 +15,7 @@ import { useSession } from "next-auth/react";
 
 const Page = ({ cities }) => {
   const { status } = useSession();
-  const { i, t, p, locale } = useTrans();
+  const { i, t, p } = useTrans();
 
   const isAuthenticated = status === "authenticated";
 

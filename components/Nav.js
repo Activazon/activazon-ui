@@ -3,7 +3,7 @@ import Link from "next/link";
 import { explorePath } from "lib/urls";
 import NavMenu from "./NavMenu";
 
-const Nav = ({ title, backHref }) => {
+const Nav = ({ title, backHref, hideMenu }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -20,16 +20,18 @@ const Nav = ({ title, backHref }) => {
           </Link>
 
           <div className="flex-grow-1"></div>
-          <button
-            className="btn btn-nav-menu"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <i className="bi bi-x-lg"></i>
-            ) : (
-              <i className="bi bi-list" />
-            )}
-          </button>
+          {!hideMenu && (
+            <button
+              className="btn btn-nav-menu"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? (
+                <i className="bi bi-x-lg"></i>
+              ) : (
+                <i className="bi bi-list" />
+              )}
+            </button>
+          )}
         </div>
       </nav>
       <NavMenu open={isMenuOpen} close={() => setIsMenuOpen(false)} />

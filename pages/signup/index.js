@@ -49,7 +49,7 @@ const Page = ({}) => {
       <Head title={t("Sign Up")} />
       <body>
         <div className="page">
-          <Nav pageTitle={t("Sign Up")} />
+          <Nav pageTitle={t("Sign Up")} hideMenu={true} />
           <Bannerv2 dark={true}>
             <div className="row">
               <div className="banner-image">
