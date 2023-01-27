@@ -1,4 +1,4 @@
-import Banner from "components/Banner";
+import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
 import Col from "components/Col";
 import Main from "components/Main";
@@ -26,11 +26,9 @@ const Page = ({ cities }) => {
         <div className="page">
           <Nav backHref={null} />
 
-          <Banner
-            title={i("Get to know your neighbourhood")}
-            showSearch={true}
-            searchCountry={null}
-          />
+          <Bannerv2 dark={true} title={i("Get to know your neighbourhood")}>
+            <div className="p-2" />
+          </Bannerv2>
           <Main>
             <Col>
               <GeoWithImagesTileContainer>
