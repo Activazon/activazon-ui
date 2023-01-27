@@ -34,7 +34,7 @@ const Page = ({}) => {
       e.preventDefault();
       await signIn("signin", {
         redirect: true,
-        callbackUrl: "/explore",
+        callbackUrl: "/",
         username: email,
         password,
       });

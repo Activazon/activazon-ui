@@ -66,8 +66,8 @@ const NavMenu = ({ open, close }) => {
           <NavMenuItem
             icon={<i className="bi bi-binoculars me-3" />}
             label="Explore"
-            active={isActive("/explore")}
-            href="/explore"
+            active={isActive("/")}
+            href="/"
           />
           {!isAuthenticated && (
             <NavMenuItem

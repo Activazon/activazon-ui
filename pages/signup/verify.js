@@ -29,7 +29,7 @@ const Page = ({}) => {
       const resp = await postVerifyPin(pin);
 
       if (resp.success) {
-        router.push("/explore?welcome=1&new=1");
+        router.push("/?welcome=1&new=1");
         return;
       }
 

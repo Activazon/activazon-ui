@@ -433,5 +433,21 @@
   "Account": {
     "en": "Account",
     "es": "Cuenta"
+  },
+  "fraud": {
+    "en": "Fraud",
+    "es": "Fraude"
+  },
+  "fraud__plural": {
+    "en": "Frauds",
+    "es": "Fraudes"
+  },
+  "sexual_abuse": {
+    "en": "Sexual Abuse",
+    "es": "Abuso sexual"
+  },
+  "sexual_abuse__plural": {
+    "en": "Sexual Abuses",
+    "es": "Abusos sexuales"
   }
 }

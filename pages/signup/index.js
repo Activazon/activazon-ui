@@ -43,7 +43,7 @@ const Page = ({}) => {
 
       if (signUpResp.ok) {
         // router.push("/signup/verify");
-        router.push("/explore");
+        router.push("/");
       }
     },
     [email, emailVerify, password, emailVerify]
