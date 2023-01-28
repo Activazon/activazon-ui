@@ -32,8 +32,8 @@ const Page = ({ cities }) => {
         <div className="page">
           <Nav backHref={null} />
 
-          <Bannerv2 title={i("Get to know your neighbourhood")}>
-            <div className="row mt-3">
+          <Bannerv2 title={i("Get to know your neighbourhood")} dark={true}>
+            <div className="row mt-4 mb-4">
               <div className="col-12">
                 <SearchWidget />
               </div>

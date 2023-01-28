@@ -1,7 +1,7 @@
 .search {
   @extend .w-100;
   background-color: $white;
-  border: 1px solid $primary;
+  border: 0px;
   display: flex;
   @include border-radius(7px);
 
