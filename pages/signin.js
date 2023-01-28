@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { signIn, getSession } from "next-auth/react";
-import { track } from "lib/track";
 // components
 import Nav from "components/Nav";
 import Col from "components/Col";
@@ -13,18 +12,17 @@ import Bannerv2 from "components/Bannerv2";
 
 // libs
 import { useTrans } from "lib/trans";
+import { useTrackOnce } from "lib/track";
 
 const Page = ({}) => {
   const router = useRouter();
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { i, t, p, locale } = useTrans();
-  useEffect(() => {
-    track("page.signin", {
-      error,
-    });
-  }, [error]);
+  const { t, locale } = useTrans();
+  useTrackOnce("page.signin", {
+    error,
+  });
 
   const { callbackUrl } = router.query;
 

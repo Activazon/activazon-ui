@@ -24,8 +24,7 @@ import {
 } from "lib/api-v2";
 import { explorePath, activityPath } from "lib/urls";
 import { useDate } from "lib/date";
-import { track } from "lib/track";
-import { useEffect } from "react";
+import { useTrackOnce } from "lib/track";
 
 const Page = ({
   city,
@@ -37,7 +36,7 @@ const Page = ({
   areasSurplus,
 }) => {
   const { status } = useSession();
-  const { t, p, locale } = useTrans();
+  const { t, p } = useTrans();
   const { displayDate } = useDate();
   const activitesText = p(
     "1 activity",
@@ -54,12 +53,11 @@ const Page = ({
   );
   const seoImageUrl = city.image_wide_url;
   const isAuthenticated = status === "authenticated";
-  useEffect(() => {
-    track("page.explore.city", {
-      authStatus: status,
-      citySlug: city.slug,
-    });
-  }, [status, city]);
+
+  useTrackOnce("page.explore.city", {
+    authStatus: status,
+    citySlug: city.slug,
+  });
 
   return (
     <>

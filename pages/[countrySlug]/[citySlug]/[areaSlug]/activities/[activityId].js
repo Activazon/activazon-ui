@@ -10,8 +10,7 @@ import { getActivity } from "lib/api-v2";
 import { useDate } from "lib/date";
 import { explorePath } from "lib/urls";
 import { useSession } from "next-auth/react";
-import { track } from "lib/track";
-import { useEffect } from "react";
+import { useTrackOnce } from "lib/track";
 
 const StaticMapImage = ({ src }) => {
   return <img src={src} className="banner-static-map-image" />;
@@ -40,11 +39,9 @@ const Page = ({ activity }) => {
     es: activity.summary_es,
   }[locale];
 
-  useEffect(() => {
-    track("page.explore.area.activity", {
-      authStatus: status,
-      activityId: activity.id,
-    });
+  useTrackOnce("page.explore.area.activity", {
+    authStatus: status,
+    activityId: activity.id,
   });
 
   if (status === "unauthenticated") {

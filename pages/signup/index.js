@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useCallback, useEffect } from "react";
 import { signIn, getSession } from "next-auth/react";
-import { track } from "lib/track";
+import { useTrackOnce } from "lib/track";
 // components
 import Nav from "components/Nav";
 import Col from "components/Col";
@@ -20,10 +20,9 @@ const Page = ({}) => {
   const [emailVerify, setEmailVerify] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { i, t, p, locale } = useTrans();
-  useEffect(() => {
-    track("page.signup", { error });
-  }, [error]);
+  const { t, locale } = useTrans();
+
+  useTrackOnce("page.signup");
 
   const { callbackUrl } = router.query;
 
