@@ -76,7 +76,10 @@ const NavMenu = ({ open, close }) => {
               icon={<i className="bi bi-box-arrow-in-right me-3" />}
               label="Sign In"
               active={isActive("/signin")}
-              href="/signin"
+              href={{
+                pathname: "/signin",
+                query: { callbackUrl: router.pathname },
+              }}
             />
           )}
           {isAuthenticated && (
