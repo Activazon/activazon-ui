@@ -3,8 +3,9 @@ import { useState } from "react";
 const SearchInput = ({ onSearch, disableAutoSearch }) => {
   const [value, setValue] = useState("");
   const [timeoutId, setTimeoutId] = useState(null);
-  const handleSearch = (e) => {
+  const handleAutoSearch = (e) => {
     // will search after typing delay
+    e.preventDefault();
     setValue(e.target.value);
     timeoutId && clearTimeout(timeoutId);
     const timeout = setTimeout(() => {
@@ -12,10 +13,14 @@ const SearchInput = ({ onSearch, disableAutoSearch }) => {
     }, 500);
     setTimeoutId(timeout);
   };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    onSearch(value);
+  };
   return (
     <div className="search">
       <input
-        onChange={handleSearch}
+        onChange={handleAutoSearch}
         className="search__input"
         type="text"
         placeholder="Search"
@@ -23,7 +28,7 @@ const SearchInput = ({ onSearch, disableAutoSearch }) => {
         autoFocus={true}
       />
       <div className="search__button">
-        <button type="submit" className="btn ">
+        <button type="submit" className="btn" onClick={handleSearch}>
           <i class="bi bi-search" />
         </button>
       </div>

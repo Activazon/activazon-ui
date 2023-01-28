@@ -453,5 +453,9 @@
   "Cities": {
     "en": "Cities",
     "es": "Ciudades"
+  },
+  "{{count}} results found": {
+    "en": "{{count}} results found",
+    "es": "{{count}} resultados encontrados"
   }
 }

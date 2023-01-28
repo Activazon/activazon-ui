@@ -55,7 +55,7 @@ const Page = ({ city, areas }) => {
                       href={explorePath(area.slug_path)}
                       key={`area-card-${area.id}`}
                       image={area.image_square_red_url || area.image_square_url}
-                      lead={city.display_date}
+                      lead={city.display_name}
                       title={area.display_name}
                     />
                   </div>
