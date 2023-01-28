@@ -48,8 +48,10 @@
     padding: 0px;
   }
 
-  &:hover {
-    background-color: rgba($primary, 0.2);
+  @media (hover: hover) {
+    &:hover {
+      background-color: rgba($primary, 0.2);
+    }
   }
 }
 
@@ -168,8 +170,10 @@
       color: $text-default-color;
     }
 
-    &:hover {
-      background-color: rgba($primary, 0.2);
+    @media (hover: hover) {
+      &:hover {
+        background-color: rgba($primary, 0.2);
+      }
     }
   }
 }

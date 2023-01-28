@@ -49,11 +49,13 @@
       margin-bottom: 0px;
     }
 
-    &:hover {
-      @include border-radius(3px);
-      background-color: rgba($primary, 0.2);
-      color: $primary;
-      border-bottom: 1px solid transparent;
+    @media (hover: hover) {
+      &:hover {
+        @include border-radius(3px);
+        background-color: rgba($primary, 0.2);
+        color: $primary;
+        border-bottom: 1px solid transparent;
+      }
     }
   }
 }
