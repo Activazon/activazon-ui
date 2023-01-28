@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { track } from "lib/track";
+import { useUser } from "lib/user";
 
 const NavMenuItem = ({ icon, label, active, href, onClick }) => {
   return (
@@ -26,8 +27,8 @@ const NavMenuItem = ({ icon, label, active, href, onClick }) => {
 
 const NavMenu = ({ open, close }) => {
   const router = useRouter();
-  const { status } = useSession();
-  const isAuthenticated = status === "authenticated";
+  const user = useUser();
+  const isAuthenticated = !!user;
   const localButtonLabel =
     router.locale === "en"
       ? "Cambiar idioma a Español"

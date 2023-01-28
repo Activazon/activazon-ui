@@ -22,6 +22,16 @@
   }
 }
 
+.btn.btn-nav-menu {
+  border: 0px;
+  color: $primary;
+  font-size: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  &.active {
+    background-color: darken($bg-color, 5%);
+  }
+}
+
 .nav-menu-dropdown {
   background-color: darken($bg-color, 5%);
   position: absolute;
