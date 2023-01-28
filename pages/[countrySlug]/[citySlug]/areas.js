@@ -9,14 +9,12 @@ import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
 import { useTrans } from "lib/trans";
 import { getCity, getCityAreas } from "lib/api-v2";
 import { explorePath } from "lib/urls";
-import { useDate } from "lib/date";
 import { useTrackOnce } from "lib/track";
-import { useSession } from "next-auth/react";
+import { useUser } from "lib/user";
 
 const Page = ({ city, areas }) => {
-  const { t, p, locale } = useTrans();
-  const session = useSession();
-  const { displayDate } = useDate();
+  const { t } = useTrans();
+  const user = useUser();
   const areasText = t("Areas in {{city}} actively being tracked", {
     city: city.display_name,
   });
@@ -31,7 +29,7 @@ const Page = ({ city, areas }) => {
   const seoImageUrl = city.image_wide_url;
   useTrackOnce("page.explore.city.areas", {
     citySlug: city.slug,
-    authStatus: session.status,
+    isAuthenticated: !!user,
   });
 
   return (

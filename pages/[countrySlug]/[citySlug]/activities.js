@@ -10,12 +10,12 @@ import { useTrans } from "lib/trans";
 import { getCity, getCityActivities } from "lib/api-v2";
 import { explorePath, activityPath } from "lib/urls";
 import { useDate } from "lib/date";
-import { useSession } from "next-auth/react";
 import { useTrackOnce } from "lib/track";
+import { useUser } from "lib/user";
 
 const Page = ({ city, activities }) => {
-  const { t, p, locale } = useTrans();
-  const session = useSession();
+  const { t, p } = useTrans();
+  const user = useUser();
   const { displayDate } = useDate();
   const activitesText = p(
     "1 activity",
@@ -33,7 +33,7 @@ const Page = ({ city, activities }) => {
   const seoImageUrl = city.image_wide_url;
   useTrackOnce("page.explore.city.activities", {
     citySlug: city.slug,
-    authStatus: session.status,
+    isAuthenticated: !!user,
   });
 
   return (

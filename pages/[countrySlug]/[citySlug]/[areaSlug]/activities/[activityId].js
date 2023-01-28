@@ -9,8 +9,8 @@ import { useTrans } from "lib/trans";
 import { getActivity } from "lib/api-v2";
 import { useDate } from "lib/date";
 import { explorePath } from "lib/urls";
-import { useSession } from "next-auth/react";
 import { useTrackOnce } from "lib/track";
+import { useUserRequired } from "lib/user";
 
 const StaticMapImage = ({ src }) => {
   return <img src={src} className="banner-static-map-image" />;
@@ -18,7 +18,7 @@ const StaticMapImage = ({ src }) => {
 
 const Page = ({ activity }) => {
   const router = useRouter();
-  const { status } = useSession();
+  const user = useUserRequired();
   const { t, locale } = useTrans();
   const { displayDate } = useDate();
   const address = activity.area.display_name;
@@ -32,7 +32,7 @@ const Page = ({ activity }) => {
       address,
     }
   );
-  const isAuthenticated = status === "authenticated";
+  const isAuthenticated = !!user;
   const mapImageUrl = activity.area.image_wide_url;
   const summary = {
     en: activity.summary_en,
@@ -40,13 +40,9 @@ const Page = ({ activity }) => {
   }[locale];
 
   useTrackOnce("page.explore.area.activity", {
-    authStatus: status,
+    isAuthenticated: !!user,
     activityId: activity.id,
   });
-
-  if (status === "unauthenticated") {
-    router.push("/signup?callbackUrl=" + router.asPath);
-  }
 
   return (
     <>

@@ -11,11 +11,12 @@ import { getArea, getAreaActivities } from "lib/api-v2";
 import { explorePath, activityPath } from "lib/urls";
 import { useDate } from "lib/date";
 import { useTrackOnce } from "lib/track";
-import { useSession } from "next-auth/react";
+import { useUser } from "lib/user";
 
 const Page = ({ area, activities }) => {
-  const { t, p, locale } = useTrans();
-  const session = useSession();
+  const { t, p } = useTrans();
+  const user = useUser();
+
   const { displayDate } = useDate();
   const activitesText = p(
     "1 activity",
@@ -32,7 +33,7 @@ const Page = ({ area, activities }) => {
   );
   const seoImageUrl = area.image_wide_url;
   useTrackOnce("page.explore.area.activities", {
-    authStatus: session.status,
+    isAuthenticated: !!user,
     areaSlug: area.slug,
   });
 

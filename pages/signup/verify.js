@@ -13,14 +13,16 @@ import Bannerv2 from "components/Bannerv2";
 
 // libs
 import { useTrans } from "lib/trans";
+import { useUserRequired } from "lib/user";
 
 const Page = ({}) => {
   const session = useSession();
   const router = useRouter();
   const [pin, setPin] = useState("");
   const [error, setError] = useState(null);
+  const user = useUserRequired();
 
-  const { i, t, p, locale } = useTrans();
+  const { t } = useTrans();
 
   const onFormSubmit = useCallback(
     async (e) => {
@@ -37,13 +39,6 @@ const Page = ({}) => {
     },
     [pin]
   );
-
-  if (session.status === "loading") {
-    return null;
-  }
-  if (session.status === "unauthenticated") {
-    router.push("/signup");
-  }
 
   return (
     <>

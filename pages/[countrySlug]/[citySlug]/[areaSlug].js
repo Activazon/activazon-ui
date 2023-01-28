@@ -12,7 +12,6 @@ import ActivityBreakdownTile, {
   ActivityBreakDownItem,
 } from "components/ActivityBreakdownTile";
 import StaticMapImage from "components/StaticMapImage";
-import { useSession } from "next-auth/react";
 import { useTrans } from "lib/trans";
 import {
   getArea,
@@ -22,6 +21,7 @@ import {
 import { activityPath, explorePath } from "lib/urls";
 import { useDate } from "lib/date";
 import { useTrackOnce } from "lib/track";
+import { useUser } from "lib/user";
 
 const AreaPage = ({
   area,
@@ -29,7 +29,7 @@ const AreaPage = ({
   activitesSurplus,
   activityBreakdown,
 }) => {
-  const { status } = useSession();
+  const user = useUser();
   const { t, p } = useTrans();
   const { displayDate } = useDate();
   const activitesText = p(
@@ -46,10 +46,10 @@ const AreaPage = ({
     }
   );
   const seoImageUrl = area.image_wide_url;
-  const isAuthenticated = status === "authenticated";
+  const isAuthenticated = !!user;
 
   useTrackOnce("page.explore.area", {
-    authStatus: status,
+    isAuthenticated: !!user,
     areaSlug: area.slug,
   });
 

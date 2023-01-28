@@ -25,6 +25,7 @@ import {
 import { explorePath, activityPath } from "lib/urls";
 import { useDate } from "lib/date";
 import { useTrackOnce } from "lib/track";
+import { useUser } from "lib/user";
 
 const Page = ({
   city,
@@ -35,7 +36,7 @@ const Page = ({
   areas,
   areasSurplus,
 }) => {
-  const { status } = useSession();
+  const user = useUser();
   const { t, p } = useTrans();
   const { displayDate } = useDate();
   const activitesText = p(
@@ -52,10 +53,10 @@ const Page = ({
     }
   );
   const seoImageUrl = city.image_wide_url;
-  const isAuthenticated = status === "authenticated";
+  const isAuthenticated = !!user;
 
   useTrackOnce("page.explore.city", {
-    authStatus: status,
+    isAuthenticated: !!user,
     citySlug: city.slug,
   });
 
@@ -160,7 +161,7 @@ const Page = ({
                   ))}
                   {isAuthenticated && areasSurplus > 0 && (
                     <Link
-                      href={explorePath(city.slug_path + "/activities")}
+                      href={explorePath(city.slug_path + "/areas")}
                       className="btn btn-load-more w-100 mt-2"
                     >
                       {t("Load {{count}} more", { count: areasSurplus })}

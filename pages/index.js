@@ -11,17 +11,18 @@ import { useTrans } from "lib/trans";
 import { getCities } from "lib/api-v2";
 import { explorePath } from "lib/urls";
 import { getSessionFromContext } from "lib/auth";
-import { useSession } from "next-auth/react";
 import { useTrackOnce } from "lib/track";
+import { useUser } from "lib/user";
 
 const Page = ({ cities }) => {
-  const { status } = useSession();
+  const user = useUser();
   const { i, t, p } = useTrans();
-  useTrackOnce("page.explore", {
-    authStatus: status,
-  });
 
-  const isAuthenticated = status === "authenticated";
+  const isAuthenticated = !!user;
+
+  useTrackOnce("page.explore", {
+    isAuthenticated,
+  });
 
   return (
     <>
