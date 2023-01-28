@@ -3,7 +3,7 @@ import Link from "next/link";
 const GeoWithImagesTile = ({ image, lead, title, description, href }) => {
   return (
     <div className="card card-body tile tile-geo-with-images">
-      <Link href={href}>
+      <Link href={href} target={href.startsWith("/") ? "_self" : "_blank"}>
         <div className="row">
           <div className="col-5 col-md-4">
             <img src={image} className="img-thumbnail" />

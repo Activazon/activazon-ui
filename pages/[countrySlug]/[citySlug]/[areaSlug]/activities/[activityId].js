@@ -4,6 +4,7 @@ import Nav from "components/Nav";
 import Footer from "components/Footer";
 import Head from "components/Head";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
+import GeoWithImagesTile from "components/GeoWithImagesTile";
 import { useTrans } from "lib/trans";
 import { getActivity } from "lib/api-v2";
 import { useDate } from "lib/date";
@@ -95,6 +96,22 @@ const Page = ({ activity }) => {
                 <b>{displayDate(activity.date_occured)}</b>
               </p>
               <p>{summary}</p>
+
+              <p className="mt-4">
+                <b>
+                  {t(
+                    "Learn more about this incident with these in-depth news articles"
+                  )}
+                </b>
+              </p>
+              <GeoWithImagesTile
+                image={
+                  "/sources/" + activity.source_article.source_name + ".jpg"
+                }
+                title={activity.source_article.source_display_name}
+                description={activity.source_article.source_title}
+                href={activity.source_article.source_url}
+              />
             </div>
 
             {!isAuthenticated && (
@@ -124,6 +141,8 @@ export async function getServerSideProps(context) {
       notFound: true,
     };
   }
+
+  console.log("activity", activity.source_article);
 
   return {
     props: {
