@@ -63,6 +63,10 @@
   @include button-variant($primary, $primary);
   color: $primary !important;
   background-color: rgba($primary, 0.05);
+
+  &:hover {
+    background-color: rgba($primary, 0.2);
+  }
 }
 
 .btn.btn-cta {
