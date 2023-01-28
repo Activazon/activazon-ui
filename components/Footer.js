@@ -21,12 +21,6 @@ const Footer = () => {
   return (
     <div className="container my-5 text-center">
       <p>
-        <i className="bi bi-c-square"></i> Activazon 2023 |{" "}
-        <Link href="/legal" className="link">
-          {t("Terms of Use")}
-        </Link>{" "}
-      </p>
-      <p>
         <ProductHunt />
       </p>
       <p>
@@ -37,6 +31,12 @@ const Footer = () => {
         >
           <i className="bi bi-instagram"></i> Instagram
         </Link>
+      </p>
+      <p>
+        <i className="bi bi-c-square"></i> Activazon 2023 |{" "}
+        <Link href="/legal" className="link">
+          {t("Terms of Use")}
+        </Link>{" "}
       </p>
     </div>
   );
