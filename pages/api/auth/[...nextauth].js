@@ -1,3 +1,4 @@
+import moment from "moment";
 import { authSignIn, authSignUp } from "lib/api-v2";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -40,7 +41,6 @@ export const authOptions = {
         const response = await authSignUp(username, usernameVerify, password);
 
         if (response.error || !response.pk || !response.access) {
-          console.log("response", response);
           throw new Error(response.error || "UNKNOWN_ERROR");
         }
 
@@ -54,13 +54,30 @@ export const authOptions = {
       return session;
     },
     async jwt({ token, user }) {
-      return {
-        ...token,
-        id: token.id || user.pk,
-        refresh_token: token.refresh_token || user.refresh.token,
-        access_token: token.access_token || user.access.token,
-        user: token.user || user,
-      };
+      // just logged in (form jwt)
+      if (user) {
+        console.log("first time logging in, forming jwt");
+        return {
+          id: user.pk,
+          username: user.username,
+          email: user.email,
+          refresh_token: user.refresh.token,
+          access_token: user.access.token,
+          exp: user.access.payload.exp,
+          iat: user.access.payload.iat,
+          jti: user.access.payload.jti,
+        };
+      }
+
+      const exp = token.exp;
+
+      // user is logged in and token should be valid, do nothing
+      if (moment.utc().unix() < exp) {
+        return token;
+      }
+
+      // TODO: refresh token, right now we are just logging out
+      return null;
     },
     async redirect({ url, baseUrl }) {
       // Allows relative callback URLs
