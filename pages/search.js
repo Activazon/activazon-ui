@@ -14,6 +14,7 @@ import { explorePath } from "lib/urls";
 import { useTrans } from "lib/trans";
 import { useEffect, useState } from "react";
 import { searchCities, searchAreas } from "lib/client-api";
+import { useTrackOnce } from "lib/track";
 
 const SEARCH_LIMIT = 25;
 
@@ -26,6 +27,8 @@ export default function Home() {
   const [cities, setCities] = useState([]);
   const [areas, setAreas] = useState([]);
   const [isBusy, setIsBusy] = useState(false);
+
+  useTrackOnce("page.search", {});
 
   useEffect(() => {
     // search on page load if there is a querystring
