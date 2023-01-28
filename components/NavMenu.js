@@ -4,6 +4,7 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { track } from "lib/track";
 import { useUser } from "lib/user";
+import { useTrans } from "lib/trans";
 
 const NavMenuItem = ({ icon, label, active, href, onClick }) => {
   return (
@@ -28,6 +29,7 @@ const NavMenuItem = ({ icon, label, active, href, onClick }) => {
 const NavMenu = ({ open, close }) => {
   const router = useRouter();
   const user = useUser();
+  const { t } = useTrans();
   const isAuthenticated = !!user;
   const localButtonLabel =
     router.locale === "en"
@@ -68,14 +70,14 @@ const NavMenu = ({ open, close }) => {
         <div className="container">
           <NavMenuItem
             icon={<i className="bi bi-binoculars me-3" />}
-            label="Explore"
+            label={t("Explore")}
             active={isActive("/")}
             href="/"
           />
           {!isAuthenticated && (
             <NavMenuItem
               icon={<i className="bi bi-box-arrow-in-right me-3" />}
-              label="Sign In"
+              label={t("Sign In")}
               active={isActive("/signin")}
               href={{
                 pathname: "/signin",
@@ -86,7 +88,7 @@ const NavMenu = ({ open, close }) => {
           {isAuthenticated && (
             <NavMenuItem
               icon={<i className="bi bi-person-circle me-3" />}
-              label="Account"
+              label={t("Account")}
               href="/account"
               active={isActive("/account")}
             />
@@ -101,10 +103,15 @@ const NavMenu = ({ open, close }) => {
           {isAuthenticated && (
             <NavMenuItem
               icon={<i className="bi bi-box-arrow-left me-3" />}
-              label="Sign Out"
+              label={t("Log Out")}
               href="#"
               active={false}
-              onClick={() => signOut()}
+              onClick={async () => {
+                await signOut({
+                  redirect: false,
+                });
+                router.push("/logout");
+              }}
             />
           )}
         </div>

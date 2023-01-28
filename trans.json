@@ -457,5 +457,21 @@
   "{{count}} results found": {
     "en": "{{count}} results found",
     "es": "{{count}} resultados encontrados"
+  },
+  "See yah!": {
+    "en": "See yah!",
+    "es": "¡Hasta luego!"
+  },
+  "Stay Informed, Stay Safe.": {
+    "en": "Stay Informed, Stay Safe.",
+    "es": "Mantente informado, mantente seguro."
+  },
+  "Explore": {
+    "en": "Explore",
+    "es": "Explorar"
+  },
+  "Log Out": {
+    "en": "Log Out",
+    "es": "Cerrar Sesión"
   }
 }
