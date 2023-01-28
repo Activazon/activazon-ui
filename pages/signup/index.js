@@ -25,6 +25,8 @@ const Page = ({}) => {
     track("page.signup", { error });
   }, [error]);
 
+  const { callbackUrl } = router.query;
+
   const onFormSubmit = useCallback(
     async (e) => {
       e.preventDefault();
@@ -43,7 +45,7 @@ const Page = ({}) => {
 
       if (signUpResp.ok) {
         // router.push("/signup/verify");
-        router.push("/");
+        router.push(callbackUrl || "/");
       }
     },
     [email, emailVerify, password, emailVerify]
@@ -124,7 +126,7 @@ const Page = ({}) => {
                     </button>
                     <Link
                       className="btn btn-primary-outline w-100"
-                      href="/signin"
+                      href={{ pathname: "/signin", query: { callbackUrl } }}
                     >
                       {t("Or tap here to Sign In")}
                     </Link>

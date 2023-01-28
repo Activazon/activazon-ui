@@ -15,9 +15,8 @@ import Bannerv2 from "components/Bannerv2";
 import { useTrans } from "lib/trans";
 
 const Page = ({}) => {
-  const {
-    query: { error },
-  } = useRouter();
+  const router = useRouter();
+  const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { i, t, p, locale } = useTrans();
@@ -27,17 +26,27 @@ const Page = ({}) => {
     });
   }, [error]);
 
+  const { callbackUrl } = router.query;
+
   const errorCredentials = error === "CredentialsSignin";
 
   const onFormSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      await signIn("signin", {
-        redirect: true,
-        callbackUrl: "/",
+      const resp = await signIn("signin", {
+        redirect: false,
         username: email,
         password,
       });
+
+      if (resp.error) {
+        setError(resp.error);
+        return;
+      }
+
+      if (resp.ok) {
+        router.push(callbackUrl || "/");
+      }
     },
     [email, password]
   );
@@ -104,7 +113,7 @@ const Page = ({}) => {
                     </button>
                     <Link
                       className="btn btn-primary-outline w-100"
-                      href="/signup"
+                      href={{ pathname: "/signup", query: { callbackUrl } }}
                     >
                       {t("Or tap here to Sign Up")}
                     </Link>
