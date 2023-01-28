@@ -473,5 +473,9 @@
   "Log Out": {
     "en": "Log Out",
     "es": "Cerrar Sesión"
+  },
+  "Logged Out": {
+    "en": "Logged Out",
+    "es": "Sesión Cerrada"
   }
 }
