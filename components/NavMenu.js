@@ -38,7 +38,7 @@ const NavMenu = ({ open, close }) => {
     const nextLocale = router.locale === "en" ? "es" : "en";
     track("nav.menu.locale", { locale: nextLocale });
     await router.push(
-      { pathname: router.pathname, query: router.query },
+      { pathname: router.asPath, query: router.query },
       router.asPath,
       {
         locale: nextLocale,
@@ -48,9 +48,9 @@ const NavMenu = ({ open, close }) => {
   };
   const isActive = useCallback(
     (path) => {
-      return path === router.pathname;
+      return path === router.asPath;
     },
-    [router.pathname]
+    [router.asPath]
   );
 
   if (!open) {
@@ -79,7 +79,7 @@ const NavMenu = ({ open, close }) => {
               active={isActive("/signin")}
               href={{
                 pathname: "/signin",
-                query: { callbackUrl: router.pathname },
+                query: { callbackUrl: router.asPath },
               }}
             />
           )}
