@@ -2,10 +2,13 @@ import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
 import Footer from "components/Footer";
 import Head from "components/Head";
+import SearchWidget from "components/SearchWidget";
+
 import { useTrans } from "lib/trans";
 
 export default function Home() {
   const { i } = useTrans();
+
   return (
     <>
       <Head title={"Page Not Found"} />
@@ -13,7 +16,13 @@ export default function Home() {
         <div className="page">
           <Nav />
           <main>
-            <Bannerv2 title={i("Try searching instead")} />
+            <Bannerv2 title={i("Try searching instead")}>
+              <div className="row mt-3">
+                <div className="col-12">
+                  <SearchWidget />
+                </div>
+              </div>
+            </Bannerv2>
 
             <div className="container mt-3 lead">
               <p className="mt-5 text-center display-1">

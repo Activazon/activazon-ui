@@ -7,7 +7,7 @@ const SearchTypeSelector = ({ searchType, onSearchTypeChange }) => {
     onSearchTypeChange(st);
   };
   return (
-    <ul class="nav justify-content-center search-type-select mt-4">
+    <ul class="nav justify-content-center search-type-select">
       <li class="nav-item">
         <a
           class={`nav-link${searchType === "city" ? " active" : ""}`}

@@ -13,6 +13,7 @@ import { explorePath } from "lib/urls";
 import { getSessionFromContext } from "lib/auth";
 import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
+import SearchWidget from "components/SearchWidget";
 
 const Page = ({ cities }) => {
   const user = useUser();
@@ -31,8 +32,12 @@ const Page = ({ cities }) => {
         <div className="page">
           <Nav backHref={null} />
 
-          <Bannerv2 dark={true} title={i("Get to know your neighbourhood")}>
-            <div className="p-2" />
+          <Bannerv2 title={i("Get to know your neighbourhood")}>
+            <div className="row mt-3">
+              <div className="col-12">
+                <SearchWidget />
+              </div>
+            </div>
           </Bannerv2>
           <Main>
             <Col>

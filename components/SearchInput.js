@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-const SearchInput = ({ onSearch, disableAutoSearch }) => {
-  const [value, setValue] = useState("");
+const SearchInput = ({ onSearch, disableAutoSearch, setValue, value }) => {
   const [timeoutId, setTimeoutId] = useState(null);
   const handleAutoSearch = (e) => {
     // will search after typing delay
@@ -13,6 +12,10 @@ const SearchInput = ({ onSearch, disableAutoSearch }) => {
     }, 500);
     setTimeoutId(timeout);
   };
+  const handleJustSetValue = (e) => {
+    e.preventDefault();
+    setValue(e.target.value);
+  };
   const handleSearch = (e) => {
     e.preventDefault();
     onSearch(value);
@@ -20,7 +23,7 @@ const SearchInput = ({ onSearch, disableAutoSearch }) => {
   return (
     <div className="search">
       <input
-        onChange={handleAutoSearch}
+        onChange={disableAutoSearch ? handleJustSetValue : handleAutoSearch}
         className="search__input"
         type="text"
         placeholder="Search"
