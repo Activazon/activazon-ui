@@ -57,7 +57,7 @@ const Page = ({ city, activities }) => {
             <Col>
               <GeoWithImagesTileContainer description={activitesText}>
                 {activities?.results?.map((activity) => (
-                  <div className="col-12">
+                  <div className="col-12 col-md-6">
                     <GeoWithImagesTile
                       href={activityPath(activity.area.slug_path, activity.id)}
                       key={`activity-card-${activity.id}`}

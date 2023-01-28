@@ -41,6 +41,7 @@
 .card.card-body.tile.tile-geo-with-images {
   @extend .p-2;
   border: 1px solid $primary;
+  background-color: rgba($primary, 0.05);
 
   .img-thumbnail {
     border: 0px;

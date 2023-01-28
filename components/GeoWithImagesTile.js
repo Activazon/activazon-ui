@@ -5,10 +5,10 @@ const GeoWithImagesTile = ({ image, lead, title, description, href }) => {
     <div className="card card-body tile tile-geo-with-images">
       <Link href={href}>
         <div className="row">
-          <div className="col-5 col-md-2">
+          <div className="col-5 col-md-4">
             <img src={image} className="img-thumbnail" />
           </div>
-          <div className="col-7 col-md-10 ps-0">
+          <div className="col-7 col-md-8 ps-0">
             <div className="row gy-0">
               {lead && (
                 <div className="col-12">

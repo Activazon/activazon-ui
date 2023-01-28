@@ -55,7 +55,7 @@ const Page = ({ city, areas }) => {
             <Col>
               <GeoWithImagesTileContainer description={areasText}>
                 {areas?.results?.map((area) => (
-                  <div className="col-12">
+                  <div className="col-12 col-md-6">
                     <GeoWithImagesTile
                       href={explorePath(area.slug_path)}
                       key={`area-card-${area.id}`}

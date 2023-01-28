@@ -9,7 +9,7 @@ const ProductHunt = () => (
     <img
       src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=376912&theme=light"
       alt="Activazon - AI&#0032;crime&#0032;analytics&#0032;for&#0032;travellers&#0032;and&#0032;residence | Product Hunt"
-      style="width: 250px; height: 54px;"
+      style={{ width: "250px", height: "54px" }}
       width="250"
       height="54"
     />
@@ -27,6 +27,9 @@ const Footer = () => {
         </Link>{" "}
       </p>
       <p>
+        <ProductHunt />
+      </p>
+      <p>
         <Link
           href="https://www.instagram.com/activazon/"
           target="_blank"
@@ -34,9 +37,6 @@ const Footer = () => {
         >
           <i className="bi bi-instagram"></i> Instagram
         </Link>
-      </p>
-      <p>
-        <ProductHunt />
       </p>
     </div>
   );
