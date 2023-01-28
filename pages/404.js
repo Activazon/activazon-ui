@@ -1,19 +1,19 @@
-import Banner from "../components/Banner";
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
-import Head from "../components/Head";
-import { useTrans } from "../lib/trans";
+import Bannerv2 from "components/Bannerv2";
+import Nav from "components/Nav";
+import Footer from "components/Footer";
+import Head from "components/Head";
+import { useTrans } from "lib/trans";
 
 export default function Home() {
   const { i } = useTrans();
   return (
     <>
-      <Head title={null} />
+      <Head title={"Page Not Found"} />
       <body>
         <div className="page">
           <Nav />
           <main>
-            <Banner title={i("Try searching instead")} showSearch={true} />
+            <Bannerv2 title={i("Try searching instead")} />
 
             <div className="container mt-3 lead">
               <p className="mt-5 text-center display-1">
