@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
+import { track } from "lib/track";
 
 const NavMenuItem = ({ icon, label, active, href, onClick }) => {
   return (
@@ -31,17 +32,18 @@ const NavMenu = ({ open, close }) => {
     router.locale === "en"
       ? "Cambiar idioma a Español"
       : "Change Language to English";
-  const toggleLocale = () => {
+  const toggleLocale = async () => {
     // switch to the other locale
     const nextLocale = router.locale === "en" ? "es" : "en";
-    // trackLocaleChange(nextLocale);
-    router.push(
+    track("nav.menu.locale", { locale: nextLocale });
+    await router.push(
       { pathname: router.pathname, query: router.query },
       router.asPath,
       {
         locale: nextLocale,
       }
     );
+    close();
   };
   const isActive = useCallback(
     (path) => {
@@ -72,9 +74,9 @@ const NavMenu = ({ open, close }) => {
           {!isAuthenticated && (
             <NavMenuItem
               icon={<i className="bi bi-box-arrow-in-right me-3" />}
-              label="Sign Up"
-              active={isActive("/signup")}
-              href="/signup"
+              label="Sign In"
+              active={isActive("/signin")}
+              href="/signin"
             />
           )}
           {isAuthenticated && (

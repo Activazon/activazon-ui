@@ -20,13 +20,8 @@ const StaticMapImage = ({ src }) => {
 const Page = ({ activity }) => {
   const router = useRouter();
   const { status } = useSession();
-  const { t, p, locale } = useTrans();
+  const { t, locale } = useTrans();
   const { displayDate } = useDate();
-  const activitesText = p(
-    "1 activity",
-    "{{count}} activities",
-    activity.area.activity_total_last5months
-  );
   const address = activity.area.display_name;
   const seoTitle = t("{{activity_type_name}} in {{neighbourhood_name}}", {
     activity_type_name: t(activity.activity_type.name),
