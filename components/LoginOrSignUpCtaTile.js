@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { useTrans } from "lib/trans";
+import { useRouter } from "next/router";
 
 const LoginOrSignUpCtaTile = ({ alternativeTitle }) => {
-  //   const { isAuthenticated } = useAuth();
+  const router = useRouter();
   const { i } = useTrans();
   return (
     <div className="card card-body tile tile-login-or-signup-cta">
@@ -23,7 +24,13 @@ const LoginOrSignUpCtaTile = ({ alternativeTitle }) => {
           </p>
         </div>
         <div className="col-12">
-          <Link href="/signup" className="btn btn-tile">
+          <Link
+            href={{
+              pathname: "/signup",
+              query: { callbackUrl: router.asPath },
+            }}
+            className="btn btn-tile"
+          >
             {i("Sign Up")}
           </Link>
         </div>
