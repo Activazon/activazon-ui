@@ -11,12 +11,11 @@ import { getArea, getAreaActivities } from "lib/api-v2";
 import { explorePath, activityPath } from "lib/urls";
 import { useDate } from "lib/date";
 import { useTrackOnce } from "lib/track";
-import { useUser } from "lib/user";
+import { useUserRequired } from "lib/user";
 
 const Page = ({ area, activities }) => {
   const { t, p } = useTrans();
-  const user = useUser();
-
+  const user = useUserRequired();
   const { displayDate } = useDate();
   const activitesText = p(
     "1 activity",

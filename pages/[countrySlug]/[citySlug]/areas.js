@@ -10,11 +10,11 @@ import { useTrans } from "lib/trans";
 import { getCity, getCityAreas } from "lib/api-v2";
 import { explorePath } from "lib/urls";
 import { useTrackOnce } from "lib/track";
-import { useUser } from "lib/user";
+import { useUserRequired } from "lib/user";
 
 const Page = ({ city, areas }) => {
   const { t } = useTrans();
-  const user = useUser();
+  const user = useUserRequired();
   const areasText = t("Areas in {{city}} actively being tracked", {
     city: city.display_name,
   });
