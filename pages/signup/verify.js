@@ -86,7 +86,7 @@ const Page = ({}) => {
                       value={pin}
                       onChange={(e) => setPin(e.target.value)}
                       required={true}
-                      autofocus={true}
+                      autoFocus={true}
                     />
                     <label htmlFor="email">{t("Verification Pin")}</label>
                   </div>

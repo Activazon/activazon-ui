@@ -86,7 +86,7 @@ const Page = ({}) => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required={true}
-                      autofocus={true}
+                      autoFocus={true}
                     />
                     <label htmlFor="email">{t("Email address")}</label>
                   </div>
