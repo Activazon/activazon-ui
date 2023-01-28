@@ -24,6 +24,7 @@ $theme-colors: (
 @import "./navbar.scss";
 @import "./cta.scss";
 @import "./tiles.scss";
+@import "./search.scss";
 
 a {
   color: $primary;

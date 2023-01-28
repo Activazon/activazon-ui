@@ -1,0 +1,46 @@
+.search {
+  @extend .w-100;
+  background-color: $white;
+  border: 1px solid rgba($bg-color, 0.4);
+  display: flex;
+  @include border-radius(7px);
+
+  .search__input {
+    flex: 1;
+    border: none;
+    background-color: transparent;
+    @extend .px-3;
+    @extend .py-2;
+    outline: 0px;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .search__button {
+    @extend .p-2;
+
+    .btn {
+      @include button-variant($primary, $primary);
+      @extend .px-3;
+      @extend .py-1;
+      color: $white;
+    }
+  }
+}
+
+.nav.search-type-select {
+  .nav-item {
+    flex: 1;
+
+    .nav-link {
+      @include border-radius(7px);
+      color: $bg-color;
+      text-align: center;
+      font-weight: 600;
+      &.active {
+        border: 1px solid $primary;
+        background-color: rgba($primary, 0.2);
+      }
+    }
+  }
+}

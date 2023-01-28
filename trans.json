@@ -449,5 +449,9 @@
   "sexual abuse__plural": {
     "en": "Sexual Abuses",
     "es": "Abusos sexuales"
+  },
+  "Cities": {
+    "en": "Cities",
+    "es": "Ciudades"
   }
 }
