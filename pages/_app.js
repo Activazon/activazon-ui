@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
+import * as FullStory from "@fullstory/browser";
 
 // styling
 import "../styles/theme.scss";
@@ -38,6 +39,10 @@ export default function App({
       router.events.off("routeChangeError", handleStop);
     };
   }, [router]);
+
+  useEffect(() => {
+    FullStory.init({ orgId: "o-1GXTF6-na1" });
+  }, []);
 
   useEffect(() => {
     // handles facebook pixel
