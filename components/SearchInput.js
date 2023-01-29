@@ -24,8 +24,9 @@ const SearchInput = ({ onSearch, disableAutoSearch, setValue, value }) => {
     <div className="search">
       <input
         onChange={disableAutoSearch ? handleJustSetValue : handleAutoSearch}
-        className="search__input"
+        className="search__input safe"
         type="text"
+        id="search__input"
         placeholder="Search"
         value={value}
         autoFocus={true}
