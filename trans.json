@@ -477,5 +477,9 @@
   "Logged Out": {
     "en": "Logged Out",
     "es": "Sesión Cerrada"
+  },
+  "shoplifting": {
+    "en": "Shoplifting",
+    "es": "Robo en tienda"
   }
 }
