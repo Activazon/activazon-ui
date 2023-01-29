@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useCallback, useEffect } from "react";
 import { signIn, getSession } from "next-auth/react";
-import { useTrackOnce } from "lib/track";
+import { useTrackOnce, track } from "lib/track";
 // components
 import Nav from "components/Nav";
 import Col from "components/Col";
@@ -43,7 +43,7 @@ const Page = ({}) => {
       }
 
       if (signUpResp.ok) {
-        // router.push("/signup/verify");
+        track("signup.complete", {});
         router.push(callbackUrl || "/");
       }
     },
