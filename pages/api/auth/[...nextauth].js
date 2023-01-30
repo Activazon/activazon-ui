@@ -35,10 +35,16 @@ export const authOptions = {
         username: { label: "username", type: "text" },
         usernameVerify: { label: "Verify Username", type: "text" },
         password: { label: "Password", type: "password" },
+        locale: { label: "Locale", type: "text" },
       },
       async authorize(credentials, req) {
         const { username, password, usernameVerify } = credentials;
-        const response = await authSignUp(username, usernameVerify, password);
+        const response = await authSignUp(
+          username,
+          usernameVerify,
+          password,
+          locale
+        );
 
         if (response.error || !response.pk || !response.access) {
           throw new Error(response.error || "UNKNOWN_ERROR");

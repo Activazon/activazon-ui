@@ -35,6 +35,7 @@ const Page = ({}) => {
         username: email,
         usernameVerify: emailVerify,
         password,
+        locale,
       });
 
       if (signUpResp.error) {
