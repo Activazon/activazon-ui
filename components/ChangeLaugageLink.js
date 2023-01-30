@@ -24,7 +24,7 @@ const ChangeLanguageLink = () => {
 
   return (
     <p>
-      <Link onClick={toggleLocale} href="#" className="link ms-3">
+      <Link onClick={toggleLocale} href="#" className="link">
         <i className="bi bi-translate"></i> {localButtonLabel}
       </Link>
     </p>
