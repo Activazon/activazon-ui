@@ -7,10 +7,10 @@ const SearchTypeSelector = ({ searchType, onSearchTypeChange }) => {
     onSearchTypeChange(st);
   };
   return (
-    <ul class="nav justify-content-center search-type-select">
-      <li class="nav-item">
+    <ul className="nav justify-content-center search-type-select">
+      <li className="nav-item">
         <a
-          class={`nav-link${searchType === "city" ? " active" : ""}`}
+          className={`nav-link${searchType === "city" ? " active" : ""}`}
           aria-current="page"
           href="#"
           onClick={onChange("city")}
@@ -18,9 +18,9 @@ const SearchTypeSelector = ({ searchType, onSearchTypeChange }) => {
           {t("Cities")}
         </a>
       </li>
-      <li class="nav-item">
+      <li className="nav-item">
         <a
-          class={`nav-link${searchType === "area" ? " active" : ""}`}
+          className={`nav-link${searchType === "area" ? " active" : ""}`}
           href="#"
           onClick={onChange("area")}
         >

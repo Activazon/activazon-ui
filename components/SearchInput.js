@@ -33,7 +33,7 @@ const SearchInput = ({ onSearch, disableAutoSearch, setValue, value }) => {
       />
       <div className="search__button">
         <button type="submit" className="btn" onClick={handleSearch}>
-          <i class="bi bi-search" />
+          <i className="bi bi-search" />
         </button>
       </div>
     </div>

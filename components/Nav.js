@@ -23,7 +23,7 @@ const Nav = ({ title, backHref, hideMenu }) => {
 
           <div className="flex-grow-1"></div>
           <Link className="btn btn-nav-menu" href="/search">
-            <i class="bi bi-search" />
+            <i className="bi bi-search" />
           </Link>
           {!hideMenu && (
             <button
