@@ -5,6 +5,7 @@ import Footer from "components/Footer";
 import Head from "components/Head";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 import GeoWithImagesTile from "components/GeoWithImagesTile";
+import ChangeLanguageLink from "components/ChangeLaugageLink";
 import { useTrans } from "lib/trans";
 import { getActivity } from "lib/api-v2";
 import { useDate } from "lib/date";
@@ -84,6 +85,8 @@ const Page = ({ activity }) => {
                 <b>{displayDate(activity.date_occured)}</b>
               </p>
               <p>{summary}</p>
+
+              <ChangeLanguageLink />
 
               <p className="mt-4">
                 <b>
