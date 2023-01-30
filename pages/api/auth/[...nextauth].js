@@ -38,7 +38,7 @@ export const authOptions = {
         locale: { label: "Locale", type: "text" },
       },
       async authorize(credentials, req) {
-        const { username, password, usernameVerify } = credentials;
+        const { username, password, usernameVerify, locale } = credentials;
         const response = await authSignUp(
           username,
           usernameVerify,
