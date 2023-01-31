@@ -205,9 +205,7 @@ export default function Home({}) {
           <main>
             <Banner title={i("Terms of Use")} showSearch={false} />
 
-            <div className="container pt-3">
-              <ReactMarkdown>{content}</ReactMarkdown>
-            </div>
+            <div className="container pt-3">{content}</div>
             <Footer />
           </main>
         </div>
