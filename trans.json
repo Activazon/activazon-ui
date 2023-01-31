@@ -481,5 +481,13 @@
   "shoplifting": {
     "en": "Shoplifting",
     "es": "Robo en tienda"
+  },
+  "First Name": {
+    "en": "First Name",
+    "es": "Nombre"
+  },
+  "Last Name": {
+    "en": "Last Name",
+    "es": "Apellido"
   }
 }

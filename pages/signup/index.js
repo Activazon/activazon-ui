@@ -19,6 +19,8 @@ const Page = ({}) => {
   const [email, setEmail] = useState("");
   const [emailVerify, setEmailVerify] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [error, setError] = useState("");
   const { t, locale } = useTrans();
 
@@ -35,6 +37,8 @@ const Page = ({}) => {
         username: email,
         usernameVerify: emailVerify,
         password,
+        firstName,
+        lastName,
         locale,
       });
 
@@ -48,7 +52,7 @@ const Page = ({}) => {
         router.push(callbackUrl || "/");
       }
     },
-    [email, emailVerify, password, emailVerify]
+    [email, emailVerify, password, emailVerify, firstName, lastName]
   );
 
   return (
@@ -78,6 +82,37 @@ const Page = ({}) => {
                       {t(error)}
                     </div>
                   )}
+                  <div className="row">
+                    <div className="form-floating mb-3 col-6">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="first_name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        required={true}
+                        autoFocus={true}
+                      />
+                      <label className="ms-2" htmlFor="first_name">
+                        {t("First Name")}
+                      </label>
+                    </div>
+
+                    <div className="form-floating mb-3 col-6">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="last_name"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        required={true}
+                        autoFocus={true}
+                      />
+                      <label className="ms-2" htmlFor="last_name">
+                        {t("Last Name")}
+                      </label>
+                    </div>
+                  </div>
 
                   <div className="form-floating mb-3">
                     <input
