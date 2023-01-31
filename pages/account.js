@@ -34,6 +34,34 @@ const Page = ({}) => {
           <Main>
             <Col>
               <div className="mt-3">
+                <div className="row">
+                  <div className="form-floating mb-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="first_name"
+                      value={user.first_name}
+                      disabled={true}
+                    />
+                    <label className="ms-2" htmlFor="first_name">
+                      {t("First Name")}
+                    </label>
+                  </div>
+
+                  <div className="form-floating mb-3 col-6">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="last_name"
+                      value={user.last_name}
+                      disabled={true}
+                    />
+                    <label className="ms-2" htmlFor="last_name">
+                      {t("Last Name")}
+                    </label>
+                  </div>
+                </div>
+
                 <div className="form-floating mb-3">
                   <input
                     type="email"
