@@ -6,11 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@fullstory/browser": "^1.6.2",
     "@googlemaps/react-wrapper": "^1.1.35",
+    "@next/bundle-analyzer": "^13.1.6",
     "@next/font": "13.1.1",
     "@sentry/nextjs": "^7.28.1",
     "bootstrap": "^5.2.3",
@@ -24,8 +26,6 @@
     "raw-loader": "^4.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-facebook-pixel": "^1.0.4",
-    "react-markdown": "^8.0.4",
     "sass": "^1.57.1"
   },
   "devDependencies": {

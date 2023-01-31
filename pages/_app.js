@@ -44,23 +44,6 @@ export default function App({
     loadFullStory();
   }, []);
 
-  useEffect(() => {
-    // handles facebook pixel
-    import("react-facebook-pixel")
-      .then((x) => x.default)
-      .then((ReactPixel) => {
-        ReactPixel.init("1244744206472430");
-        ReactPixel.pageView();
-
-        router.events.on("routeChangeComplete", () => {
-          ReactPixel.pageView();
-        });
-      });
-  }, [router.events]);
-  useEffect(() => {
-    import("bootstrap/dist/js/bootstrap");
-  }, []);
-
   return (
     <SessionProvider session={session}>
       <Component {...pageProps} />

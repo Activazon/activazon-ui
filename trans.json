@@ -3,23 +3,6 @@
     "en": "AI-powered insights for your neighborhood",
     "es": "Información impulsada por AI para tu barrio"
   },
-  "Explore the neighborhoods of countries, see what is going on": {
-    "en": "Explore the neighborhoods of countries, see what is going on",
-    "es": "Explora los barrios de los países, ve lo que está pasando"
-  },
-  "Explore Countries": {
-    "en": "Explore Countries",
-    "es": "Explora países"
-  },
-  "What is Activazon": {
-    "en": "What is Activazon",
-    "es": "¿Qué es Activazon?"
-  },
-  "Activazon is an artificial intelligence service designed to keep you informed and safe with real-time updates on crimes in your neighborhood. Our advanced technology does all the work for you, without the need for human intervention. Relax and let Activazon take care of keeping you informed and safe. We're here to help!": {
-    "en": "Activazon is an artificial intelligence service designed to keep you informed and safe with real-time updates on crimes in your neighborhood. Our advanced technology does all the work for you, without the need for human intervention. Relax and let Activazon take care of keeping you informed and safe. We're here to help!",
-    "es": "Activazon es un servicio de inteligencia artificial diseñado para mantenerte informado y seguro con actualizaciones en tiempo real sobre delitos en tu barrio. Nuestra tecnología avanzada hace todo el trabajo por ti, sin necesidad de intervención humana. Relájate y deja que Activazon se encargue de mantenerte informado y seguro. ¡Estamos aquí para ayudarte!"
-  },
-
   "robbery": {
     "en": "Robbery",
     "es": "Robo"
@@ -32,7 +15,6 @@
     "en": "Arrest",
     "es": "Arresto"
   },
-
   "arrest__plural": {
     "en": "Arrests",
     "es": "Arrestos"
