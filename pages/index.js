@@ -7,23 +7,26 @@ import Head from "components/Head";
 import GeoWithImagesTile from "components/GeoWithImagesTile";
 import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
+import SearchWidget from "components/SearchWidget";
+import SpinnerWhenBusy from "components/SpinnerWhenBusy";
 import { useTrans } from "lib/trans";
-import { getCities } from "lib/api-v2";
+import { getCities } from "lib/client-api";
 import { explorePath } from "lib/urls";
 import { getSessionFromContext } from "lib/auth";
 import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
-import SearchWidget from "components/SearchWidget";
+import { useApi } from "lib/api-helper";
 
-const Page = ({ cities }) => {
+const Page = ({ paginationLimit }) => {
   const user = useUser();
   const { i, t, p } = useTrans();
-
   const isAuthenticated = !!user;
 
   useTrackOnce("page.explore", {
     isAuthenticated,
   });
+
+  const cities = useApi(() => getCities(paginationLimit), null);
 
   return (
     <>
@@ -40,33 +43,38 @@ const Page = ({ cities }) => {
             </div>
           </Bannerv2>
           <Main>
-            <Col>
-              <GeoWithImagesTileContainer>
-                {cities?.results?.map((c) => (
-                  <div className="col-12 col-md-6">
-                    <GeoWithImagesTile
-                      href={explorePath(c.slug_path)}
-                      key={`city-card-${c.id}`}
-                      image={c.image_square_url}
-                      lead={c.country.display_name}
-                      title={c.display_name}
-                      description={p(
-                        "1 activity in the last 5 months",
-                        "{{count}} activities in the last 5 months",
-                        c.activity_total_last5months
-                      )}
+            <SpinnerWhenBusy isBusy={!cities.ready}>
+              <>
+                <Col>
+                  <GeoWithImagesTileContainer>
+                    {cities?.data?.results?.map((c) => (
+                      <div className="col-12 col-md-6">
+                        <GeoWithImagesTile
+                          href={explorePath(c.slug_path)}
+                          key={`city-card-${c.id}`}
+                          image={c.image_square_url}
+                          lead={c.country.display_name}
+                          title={c.display_name}
+                          description={p(
+                            "1 activity in the last 5 months",
+                            "{{count}} activities in the last 5 months",
+                            c.activity_total_last5months
+                          )}
+                        />
+                      </div>
+                    ))}
+                  </GeoWithImagesTileContainer>
+                </Col>
+                {!isAuthenticated && (
+                  <Col>
+                    <LoginOrSignUpCtaTile
+                      alternativeTitle={t("Sign Up To View More")}
                     />
-                  </div>
-                ))}
-              </GeoWithImagesTileContainer>
-            </Col>
-            {!isAuthenticated && (
-              <Col>
-                <LoginOrSignUpCtaTile
-                  alternativeTitle={t("Sign Up To View More")}
-                />
-              </Col>
-            )}
+                  </Col>
+                )}
+              </>
+            </SpinnerWhenBusy>
+
             <Footer />
           </Main>
         </div>
@@ -81,12 +89,11 @@ export async function getServerSideProps(context) {
   const session = await getSessionFromContext(context);
   const paginationLimit = session.isAuthenticated ? 15 : 6;
   const canLoadMore = session.isAuthenticated;
-  const cities = await getCities(paginationLimit);
 
   return {
     props: {
-      cities,
       canLoadMore,
+      paginationLimit,
     },
   };
 }
