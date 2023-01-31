@@ -5,6 +5,7 @@ import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
 import Bannerv2 from "components/Bannerv2";
+import SpinnerWhenBusy from "components/SpinnerWhenBusy";
 
 // libs
 import { useTrans } from "lib/trans";
@@ -33,57 +34,59 @@ const Page = ({}) => {
 
           <Main>
             <Col>
-              <div className="mt-3">
-                <div className="row">
-                  <div className="form-floating mb-3 col-6">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="first_name"
-                      value={user.first_name}
-                      disabled={true}
-                    />
-                    <label className="ms-2" htmlFor="first_name">
-                      {t("First Name")}
-                    </label>
+              <SpinnerWhenBusy isBusy={!user}>
+                <div className="mt-3">
+                  <div className="row">
+                    <div className="form-floating mb-3 col-6">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="first_name"
+                        value={user?.first_name}
+                        disabled={true}
+                      />
+                      <label className="ms-2" htmlFor="first_name">
+                        {t("First Name")}
+                      </label>
+                    </div>
+
+                    <div className="form-floating mb-3 col-6">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="last_name"
+                        value={user?.last_name}
+                        disabled={true}
+                      />
+                      <label className="ms-2" htmlFor="last_name">
+                        {t("Last Name")}
+                      </label>
+                    </div>
                   </div>
 
-                  <div className="form-floating mb-3 col-6">
+                  <div className="form-floating mb-3">
                     <input
-                      type="text"
+                      type="email"
                       className="form-control"
-                      id="last_name"
-                      value={user.last_name}
+                      id="id"
+                      value={user?.pk}
                       disabled={true}
                     />
-                    <label className="ms-2" htmlFor="last_name">
-                      {t("Last Name")}
-                    </label>
+                    <label htmlFor="email">ID</label>
+                  </div>
+
+                  <div className="form-floating mb-3">
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      value={user?.email}
+                      disabled={true}
+                    />
+                    <label htmlFor="email">{t("Email address")}</label>
                   </div>
                 </div>
-
-                <div className="form-floating mb-3">
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="id"
-                    value={user?.pk}
-                    disabled={true}
-                  />
-                  <label htmlFor="email">ID</label>
-                </div>
-
-                <div className="form-floating mb-3">
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    value={user?.email}
-                    disabled={true}
-                  />
-                  <label htmlFor="email">{t("Email address")}</label>
-                </div>
-              </div>
+              </SpinnerWhenBusy>
             </Col>
             <Footer />
           </Main>
