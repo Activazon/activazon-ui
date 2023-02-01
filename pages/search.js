@@ -63,6 +63,45 @@ const CityList = ({ cities, t }) => (
   </Col>
 );
 
+const CtaSafe = ({ searchValue }) => {
+  const { t } = useTrans();
+
+  return (
+    <Col>
+      <div className="card card-body tile tile-login-or-signup-cta">
+        <div className="row text-center gy-3">
+          <div className="col-12">
+            <i className="tile-icon bi bi-binoculars-fill" />
+          </div>
+          <div className="col-12">
+            <h2 className="tile-title">
+              {t("Don't see your neighborhood? Help us expand!")}
+            </h2>
+          </div>
+          <div className="col-12">
+            <p className="tile-description">
+              {t(
+                "We're sorry that we don't currently have information for your desired location, but you can help us change that! By signing up, you'll become a part of our community of users who are working to make Activazon the most comprehensive resource for community safety."
+              )}
+            </p>
+          </div>
+          <div className="col-12">
+            <Link
+              href={{
+                pathname: "/signup",
+                query: { callbackUrl: "/", ref: "activazon.search" },
+              }}
+              className="btn btn-tile"
+            >
+              {t("Sign Up")}
+            </Link>
+          </div>
+        </div>
+      </div>
+    </Col>
+  );
+};
+
 export default function Page() {
   const { t } = useTrans();
   const router = useRouter();
@@ -104,6 +143,9 @@ export default function Page() {
     }
     if (c.count === 0 && a.count > 0) {
       setSearchType("area");
+    }
+    if (c.count === 0 && a.count === 0) {
+      setSearchType("cta_safe");
     }
 
     setIsBusy(false);
@@ -151,7 +193,7 @@ export default function Page() {
             {hasSearched && searchType === "city" && (
               <CityList cities={cities} t={t} />
             )}
-
+            {searchType === "cta_safe" && <CtaSafe searchValue={searchValue} />}
             <Footer />
           </Main>
         </div>

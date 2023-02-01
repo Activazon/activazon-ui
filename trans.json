@@ -471,5 +471,13 @@
   "Last Name": {
     "en": "Last Name",
     "es": "Apellido"
+  },
+  "Don't see your neighborhood? Help us expand!": {
+    "en": "Don't see your neighborhood? Help us expand!",
+    "es": "Todavía no cubrimos esa área"
+  },
+  "We're sorry that we don't currently have information for your desired location, but you can help us change that! By signing up, you'll become a part of our community of users who are working to make Activazon the most comprehensive resource for community safety.": {
+    "en": "We're sorry that we don't currently have information for your desired location, but you can help us change that! By signing up, you'll become a part of our community of users who are working to make Activazon the most comprehensive resource for community safety.",
+    "es": "¿Quieres ser uno de los primeros en saber cuándo llegamos a tu vecindario? Regístrate hoy y te mantendremos informado de nuestro progreso. Juntos, podemos marcar la diferencia en la seguridad de nuestras comunidades. ¡Únete a nosotros hoy!"
   }
 }

@@ -24,7 +24,9 @@ const Page = ({}) => {
   const [error, setError] = useState("");
   const { t, locale } = useTrans();
 
-  useTrackOnce("page.signup");
+  useTrackOnce("page.signup", {
+    ref: router.query.ref,
+  });
 
   const { callbackUrl } = router.query;
 
@@ -48,7 +50,7 @@ const Page = ({}) => {
       }
 
       if (signUpResp.ok) {
-        track("signup.complete", {});
+        track("signup.complete", { ref: router.query.ref });
         router.push(callbackUrl || "/");
       }
     },
