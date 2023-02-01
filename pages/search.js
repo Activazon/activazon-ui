@@ -15,7 +15,7 @@ import { explorePath } from "lib/urls";
 import { useTrans } from "lib/trans";
 import { useEffect, useState } from "react";
 import { searchCities, searchAreas } from "lib/client-api";
-import { useTrackOnce } from "lib/track";
+import { useTrackOnce, track } from "lib/track";
 
 const SEARCH_LIMIT = 25;
 
@@ -63,7 +63,7 @@ const CityList = ({ cities, t }) => (
   </Col>
 );
 
-const CtaSafe = ({ searchValue }) => {
+const CtaSafe = ({}) => {
   const { t } = useTrans();
 
   return (
@@ -130,6 +130,8 @@ export default function Page() {
     setIsBusy(true);
     setHasSearched(true);
 
+    track("search", { query: value });
+
     const [c, a] = await Promise.all([
       searchCities(value, SEARCH_LIMIT),
       searchAreas(value, SEARCH_LIMIT),
@@ -193,7 +195,7 @@ export default function Page() {
             {hasSearched && searchType === "city" && (
               <CityList cities={cities} t={t} />
             )}
-            {searchType === "cta_safe" && <CtaSafe searchValue={searchValue} />}
+            {searchType === "cta_safe" && <CtaSafe />}
             <Footer />
           </Main>
         </div>
