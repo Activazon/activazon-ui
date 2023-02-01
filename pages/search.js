@@ -8,6 +8,7 @@ import Main from "components/Main";
 import Col from "components/Col";
 import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
 import GeoWithImagesTile from "components/GeoWithImagesTile";
+import Link from "next/link";
 
 import { useRouter } from "next/router";
 import { explorePath } from "lib/urls";
@@ -18,8 +19,52 @@ import { useTrackOnce } from "lib/track";
 
 const SEARCH_LIMIT = 25;
 
-export default function Home() {
-  const { t, p } = useTrans();
+const AreaList = ({ areas, t }) => (
+  <Col>
+    <GeoWithImagesTileContainer
+      description={t("{{count}} results found", {
+        count: areas?.count || 0,
+      })}
+    >
+      {areas?.results?.map((area) => (
+        <div className="col-12 col-md-6">
+          <GeoWithImagesTile
+            href={explorePath(area.slug_path)}
+            key={`area-card-${area.id}`}
+            image={area.image_square_red_url || area.image_square_url}
+            title={area.display_name}
+            lead={area.city.display_name}
+          />
+        </div>
+      ))}
+    </GeoWithImagesTileContainer>
+  </Col>
+);
+
+const CityList = ({ cities, t }) => (
+  <Col>
+    <GeoWithImagesTileContainer
+      description={t("{{count}} results found", {
+        count: cities?.count || 0,
+      })}
+    >
+      {cities?.results?.map((c) => (
+        <div className="col-12 col-md-6">
+          <GeoWithImagesTile
+            href={explorePath(c.slug_path)}
+            key={`city-card-${c.id}`}
+            image={c.image_square_url}
+            lead={c.country.display_name}
+            title={c.display_name}
+          />
+        </div>
+      ))}
+    </GeoWithImagesTileContainer>
+  </Col>
+);
+
+export default function Page() {
+  const { t } = useTrans();
   const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
   const [searchType, setSearchType] = useState("city");
@@ -40,6 +85,9 @@ export default function Home() {
   }, [router.query.v]);
 
   const onSearch = async (value) => {
+    if (value.trim() === "") {
+      return;
+    }
     setIsBusy(true);
     setHasSearched(true);
 
@@ -51,11 +99,12 @@ export default function Home() {
     setCities(c);
     setAreas(a);
 
-    // console.log("search results", {
-    //   value,
-    //   cities,
-    //   areas,
-    // });
+    if (c.count > 0 && a.count === 0) {
+      setSearchType("city");
+    }
+    if (c.count === 0 && a.count > 0) {
+      setSearchType("area");
+    }
 
     setIsBusy(false);
   };
@@ -78,7 +127,7 @@ export default function Home() {
             </div>
           </Bannerv2>
           <Main>
-            {hasSearched && (
+            {hasSearched && searchType !== "cta_safe" && (
               <Col>
                 <SearchTypeSelector
                   searchType={searchType}
@@ -96,55 +145,12 @@ export default function Home() {
                 ></div>
               </div>
             )}
-
-            <Col>
-              {searchType === "area" && (
-                <GeoWithImagesTileContainer
-                  description={
-                    hasSearched &&
-                    t("{{count}} results found", {
-                      count: areas?.count || 0,
-                    })
-                  }
-                >
-                  {areas?.results?.map((area) => (
-                    <div className="col-12 col-md-6">
-                      <GeoWithImagesTile
-                        href={explorePath(area.slug_path)}
-                        key={`area-card-${area.id}`}
-                        image={
-                          area.image_square_red_url || area.image_square_url
-                        }
-                        title={area.display_name}
-                        lead={area.city.display_name}
-                      />
-                    </div>
-                  ))}
-                </GeoWithImagesTileContainer>
-              )}
-              {searchType === "city" && (
-                <GeoWithImagesTileContainer
-                  description={
-                    hasSearched &&
-                    t("{{count}} results found", {
-                      count: cities?.count || 0,
-                    })
-                  }
-                >
-                  {cities?.results?.map((c) => (
-                    <div className="col-12 col-md-6">
-                      <GeoWithImagesTile
-                        href={explorePath(c.slug_path)}
-                        key={`city-card-${c.id}`}
-                        image={c.image_square_url}
-                        lead={c.country.display_name}
-                        title={c.display_name}
-                      />
-                    </div>
-                  ))}
-                </GeoWithImagesTileContainer>
-              )}
-            </Col>
+            {hasSearched && searchType === "area" && (
+              <AreaList areas={areas} t={t} />
+            )}
+            {hasSearched && searchType === "city" && (
+              <CityList cities={cities} t={t} />
+            )}
 
             <Footer />
           </Main>
