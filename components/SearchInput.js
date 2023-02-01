@@ -9,7 +9,7 @@ const SearchInput = ({ onSearch, disableAutoSearch, setValue, value }) => {
     timeoutId && clearTimeout(timeoutId);
     const timeout = setTimeout(() => {
       onSearch(e.target.value);
-    }, 500);
+    }, 800);
     setTimeoutId(timeout);
   };
   const handleJustSetValue = (e) => {
