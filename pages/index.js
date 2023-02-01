@@ -24,13 +24,16 @@ const LoginOrSignUpCtaTile = dynamic(
 );
 
 const Page = () => {
-  useTrackOnce("page.explore", {
-    isAuthenticated,
-  });
-
   const { i, t, p } = useTrans();
   const user = useUser();
   const isAuthenticated = !!user;
+  useTrackOnce(
+    "page.explore",
+    {
+      isAuthenticated,
+    },
+    [isAuthenticated]
+  );
 
   // load initial cities, to improve time to interact
   // then after the user is authenticated, load more cities
