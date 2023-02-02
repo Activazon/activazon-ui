@@ -479,5 +479,21 @@
   "We're sorry that we don't currently have information for your desired location, but you can help us change that! By signing up, you'll become a part of our community of users who are working to make Activazon the most comprehensive resource for community safety.": {
     "en": "We're sorry that we don't currently have information for your desired location, but you can help us change that! By signing up, you'll become a part of our community of users who are working to make Activazon the most comprehensive resource for community safety.",
     "es": "¿Quieres ser uno de los primeros en saber cuándo llegamos a tu vecindario? Regístrate hoy y te mantendremos informado de nuestro progreso. Juntos, podemos marcar la diferencia en la seguridad de nuestras comunidades. ¡Únete a nosotros hoy!"
+  },
+  "caraccident": {
+    "en": "Car Accident",
+    "es": "Accidente de auto"
+  },
+  "caraccident__plural": {
+    "en": "Car Accidents",
+    "es": "Accidentes de auto"
+  },
+  "extradition:": {
+    "en": "Extradition",
+    "es": "Extradición"
+  },
+  "extradition:__plural": {
+    "en": "Extraditions",
+    "es": "Extradiciones"
   }
 }
