@@ -74,7 +74,6 @@ export const authOptions = {
     async jwt({ token, user }) {
       // just logged in (form jwt)
       if (user) {
-        console.log("first time logging in, forming jwt");
         return {
           id: user.pk,
           username: user.username,
