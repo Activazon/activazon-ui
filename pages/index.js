@@ -16,19 +16,13 @@ import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
 import { useApi } from "lib/api-helper";
 
-import { useEffect, useState } from "react";
-
 const Page = () => {
   const { i, t, p } = useTrans();
   const user = useUser();
   const isAuthenticated = !!user;
-  useTrackOnce(
-    "page.explore",
-    {
-      isAuthenticated,
-    },
-    [isAuthenticated]
-  );
+  useTrackOnce("page.explore", {
+    isAuthenticated,
+  });
 
   // load initial cities, to improve time to interact
   // then after the user is authenticated, load more cities
