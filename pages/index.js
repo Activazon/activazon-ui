@@ -8,20 +8,15 @@ import GeoWithImagesTile from "components/GeoWithImagesTile";
 import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
 import SearchWidget from "components/SearchWidget";
 import SpinnerWhenBusy from "components/SpinnerWhenBusy";
+import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 import { useTrans } from "lib/trans";
 import { getCities } from "lib/client-api";
 import { explorePath } from "lib/urls";
-import { getSessionFromContext } from "lib/auth";
 import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
 import { useApi } from "lib/api-helper";
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
 
-const LoginOrSignUpCtaTile = dynamic(
-  () => import("components/LoginOrSignUpCtaTile"),
-  { ssr: false }
-);
+import { useEffect, useState } from "react";
 
 const Page = () => {
   const { i, t, p } = useTrans();
@@ -37,22 +32,7 @@ const Page = () => {
 
   // load initial cities, to improve time to interact
   // then after the user is authenticated, load more cities
-  const citiesInitial = useApi(() => getCities(4), null);
-  const [citiesMore, setCitiesMore] = useState(null);
-  useEffect(() => {
-    // load more cities later (if user is authenticated)
-    if (citiesInitial.ready && !citiesMore && isAuthenticated) {
-      // limit, offset
-      getCities(3, 15).then((data) => {
-        setCitiesMore(data);
-      });
-    }
-  }, [citiesInitial, citiesMore, isAuthenticated]);
-
-  const results = [
-    ...(citiesInitial?.data?.results || []),
-    ...(citiesMore?.results || []),
-  ];
+  const cities = useApi(() => getCities(4));
 
   return (
     <>
@@ -69,11 +49,11 @@ const Page = () => {
             </div>
           </Bannerv2>
           <Main>
-            <SpinnerWhenBusy isBusy={!citiesInitial.ready}>
+            <SpinnerWhenBusy isBusy={!cities.ready}>
               <>
                 <Col>
                   <GeoWithImagesTileContainer>
-                    {results?.map((c) => (
+                    {cities?.data?.results?.map((c) => (
                       <div
                         key={`city-${c.slug_path}`}
                         className="col-12 col-md-6"
