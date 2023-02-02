@@ -488,11 +488,11 @@
     "en": "Car Accidents",
     "es": "Accidentes de auto"
   },
-  "extradition:": {
+  "extradition": {
     "en": "Extradition",
     "es": "Extradición"
   },
-  "extradition:__plural": {
+  "extradition__plural": {
     "en": "Extraditions",
     "es": "Extradiciones"
   }
