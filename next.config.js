@@ -10,7 +10,7 @@ module.exports = withBundleAnalyzer({
   },
   i18n: {
     locales: ["en", "es"],
-    defaultLocale: "en",
+    defaultLocale: "es",
     localeDetection: true,
   },
   webpack: (config) => {
