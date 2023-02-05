@@ -171,6 +171,14 @@
     "en": "Drug Trafficking",
     "es": "el tráfico de drogas"
   },
+  "trafficking": {
+    "en": "Trafficking",
+    "es": "Tráfico"
+  },
+  "trafficking__plural": {
+    "en": "Trafficking",
+    "es": "Tráfico"
+  },
   "Total": {
     "en": "Total",
     "es": "Total"
@@ -495,5 +503,9 @@
   "extradition__plural": {
     "en": "Extraditions",
     "es": "Extradiciones"
+  },
+  "You have to Sign Up to continue": {
+    "en": "You have to Sign Up to continue",
+    "es": "Tiene que Registrarse para continuar"
   }
 }

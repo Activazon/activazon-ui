@@ -29,6 +29,7 @@ const Page = ({}) => {
   });
 
   const { callbackUrl } = router.query;
+  const mustSignUp = router.query.mustSignUp === "1";
 
   const onFormSubmit = useCallback(
     async (e) => {
@@ -67,6 +68,7 @@ const Page = ({}) => {
             <div className="row">
               <div className="banner-image">
                 <p className="banner-image-title">{t("Sign Up")}</p>
+                {mustSignUp && <p>{t("You have to Sign Up to continue")}</p>}
                 {/* <img className="banner-logo" src="/banner-bg/banner-logo.png" /> */}
               </div>
             </div>

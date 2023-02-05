@@ -9,6 +9,7 @@ import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
 import SearchWidget from "components/SearchWidget";
 import SpinnerWhenBusy from "components/SpinnerWhenBusy";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
+// import Tip from "components/Tip";
 import { useTrans } from "lib/trans";
 import { getCities } from "lib/client-api";
 import { explorePath } from "lib/urls";
@@ -34,7 +35,7 @@ const Page = () => {
       <body>
         <div className="page">
           <Nav backHref={null} />
-
+          {/* <Tip /> */}
           <Bannerv2 title={i("Get to know your neighbourhood")} dark={true}>
             <div className="row mt-4 mb-4">
               <div className="col-12">
