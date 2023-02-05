@@ -503,5 +503,9 @@
   "extradition__plural": {
     "en": "Extraditions",
     "es": "Extradiciones"
+  },
+  "You have to Sign Up to continue": {
+    "en": "You have to Sign Up to continue",
+    "es": "Tiene que Registrarse para continuar"
   }
 }
