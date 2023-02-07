@@ -1,11 +1,8 @@
-import Banner from "../components/Banner";
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
-import Head from "../components/Head";
+import Bannerv2 from "components/Bannerv2";
+import Nav from "components/Nav";
+import Footer from "components/Footer";
+import Head from "components/Head";
 import { useTrans } from "../lib/trans";
-
-import TermsOfUseEs from "../contents/legal_es.md";
-import TermsOfUseEn from "../contents/legal_en.md";
 
 const LegalEn = () => (
   <>
@@ -203,7 +200,9 @@ export default function Home({}) {
         <div className="page">
           <Nav />
           <main>
-            <Banner title={i("Terms of Use")} showSearch={false} />
+            <Bannerv2 title={i("Terms of Use")} dark={true}>
+              <div className="container p-3" />
+            </Bannerv2>
 
             <div className="container pt-3">{content}</div>
             <Footer />
