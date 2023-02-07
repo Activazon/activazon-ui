@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { useTrans } from "../lib/trans";
+import { useTrans } from "lib/trans";
 import { useRouter } from "next/router";
-import { track } from "../lib/track";
+import { track } from "lib/track";
 
 const ProductHunt = () => (
   <a

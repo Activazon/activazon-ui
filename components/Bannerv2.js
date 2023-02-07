@@ -1,10 +1,3 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { useTrans } from "../lib/trans";
-import { trackBannerSearch } from "../lib/track";
-
-let searchTimeout = null;
-
 const Bannerv2 = ({ title, description, dark, children }) => {
   return (
     <div className={`banner ${dark ? " banner-dark" : ""}`}>

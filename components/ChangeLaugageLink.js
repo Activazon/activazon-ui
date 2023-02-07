@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { track } from "../lib/track";
+import { track } from "lib/track";
 
 const ChangeLanguageLink = () => {
   const router = useRouter();

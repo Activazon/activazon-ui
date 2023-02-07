@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { useTrans } from "../lib/trans";
-import Script from "next/script";
+import { useTrans } from "lib/trans";
 
 const TITLE = "Activazon";
 
