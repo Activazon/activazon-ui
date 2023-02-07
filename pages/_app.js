@@ -7,12 +7,14 @@ import { loadFullStory } from "lib/track";
 import "../styles/theme.scss";
 import "nprogress/nprogress.css";
 import NProgress from "nprogress";
+import { usePanelbear } from "@panelbear/panelbear-nextjs";
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
   const router = useRouter();
+  usePanelbear("IQemxXNOhlr");
   useEffect(() => {
     // handles showing and hiding the loading overlay
     // when the router is changing routes
