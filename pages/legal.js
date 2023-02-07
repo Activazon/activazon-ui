@@ -2,7 +2,7 @@ import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
 import Footer from "components/Footer";
 import Head from "components/Head";
-import { useTrans } from "../lib/trans";
+import { useTrans } from "lib/trans";
 
 const LegalEn = () => (
   <>
