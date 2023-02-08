@@ -507,5 +507,13 @@
   "You have to Sign Up to continue": {
     "en": "You have to Sign Up to continue",
     "es": "Tiene que Registrarse para continuar"
+  },
+  "childabandonment": {
+    "en": "Child Abandonment",
+    "es": "Abandono de niño"
+  },
+  "childabandonment__plural": {
+    "en": "Child Abandonments",
+    "es": "Abandonos de niño"
   }
 }
