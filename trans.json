@@ -52,11 +52,11 @@
     "es": "Disparos"
   },
   "kidnapping": {
-    "en": "Kid Napping",
+    "en": "Kidnapping",
     "es": "Secuestro"
   },
   "kidnapping__plural": {
-    "en": "Kid Nappings",
+    "en": "Kidnappings",
     "es": "Secuestros"
   },
   "extortion": {
@@ -515,5 +515,13 @@
   "childabandonment__plural": {
     "en": "Child Abandonments",
     "es": "Abandonos de niño"
+  },
+  "extradition-hearing": {
+    "en": "Extradition Hearing",
+    "es": "Juicio de extradición"
+  },
+  "extradition-hearing__plural": {
+    "en": "Extradition Hearings",
+    "es": "Juicios de extradición"
   }
 }
