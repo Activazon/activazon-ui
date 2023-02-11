@@ -523,5 +523,21 @@
   "extradition-hearing__plural": {
     "en": "Extradition Hearings",
     "es": "Juicios de extradición"
+  },
+  "narcotics": {
+    "en": "Narcotics",
+    "es": "Narcóticos"
+  },
+  "narcotics__plural": {
+    "en": "Narcotics",
+    "es": "Narcóticos"
+  },
+  "poisonedfood": {
+    "en": "Poisoned Food",
+    "es": "Comida envenenada"
+  },
+  "poisonedfood__plural": {
+    "en": "Poisoned Foods",
+    "es": "Comidas envenenadas"
   }
 }
