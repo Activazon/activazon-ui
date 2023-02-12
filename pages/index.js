@@ -11,7 +11,7 @@ import SpinnerWhenBusy from "components/SpinnerWhenBusy";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 // import Tip from "components/Tip";
 import { useTrans } from "lib/trans";
-import { getCities } from "lib/client-api";
+import { getCities, getCachedCities } from "lib/client-api";
 import { explorePath } from "lib/urls";
 import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
@@ -27,7 +27,8 @@ const Page = () => {
 
   // load initial cities, to improve time to interact
   // then after the user is authenticated, load more cities
-  const cities = useApi(() => getCities(4));
+  const getCitiesApiCall = isAuthenticated ? getCities(20) : getCachedCities();
+  const cities = useApi(() => getCitiesApiCall);
 
   return (
     <>
