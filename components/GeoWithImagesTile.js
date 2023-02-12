@@ -7,14 +7,17 @@ const GeoWithImagesTile = ({ image, lead, title, description, href }) => {
       <Link href={href} target={href.startsWith("/") ? "_self" : "_blank"}>
         <div className="row">
           <div className="col-5 col-md-4">
-            {/* <img src={image} className="img-thumbnail" /> */}
-            <Image
-              src={image}
-              alt={title}
-              width={299}
-              height={299}
-              className="img-thumbnail"
-            />
+            {image.startsWith("/") ? (
+              <Image
+                src={image}
+                alt={title}
+                width={299}
+                height={299}
+                className="img-thumbnail"
+              />
+            ) : (
+              <img src={image} className="img-thumbnail" />
+            )}
           </div>
           <div className="col-7 col-md-8 ps-0">
             <div className="row gy-0">
