@@ -539,5 +539,21 @@
   "poisonedfood__plural": {
     "en": "Poisoned Foods",
     "es": "Comidas envenenadas"
+  },
+  "coca": {
+    "en": "Illegal Plants",
+    "es": "Plantas ilegales"
+  },
+  "coca__plural": {
+    "en": "Illegal Plants",
+    "es": "Plantas ilegales"
+  },
+  "prison": {
+    "en": "Prison",
+    "es": "Prisión"
+  },
+  "prison__plural": {
+    "en": "Prisons",
+    "es": "Prisiones"
   }
 }
