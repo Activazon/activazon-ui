@@ -57,7 +57,7 @@ const Page = () => {
                   <Col>
                     <GeoWithImagesTileContainer>
                       <p className="tile-title mb-0">
-                        {i("Activities detected today")}
+                        {i("Activities detected")}
                       </p>
                       {activites?.data?.results?.map((activity) => (
                         <div
