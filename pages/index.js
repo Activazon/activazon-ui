@@ -11,15 +11,17 @@ import SpinnerWhenBusy from "components/SpinnerWhenBusy";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 // import Tip from "components/Tip";
 import { useTrans } from "lib/trans";
-import { getCities, getCachedCities } from "lib/client-api";
+import { getCities, getCachedCities, getActivities } from "lib/client-api";
 import { explorePath } from "lib/urls";
 import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
 import { useApi } from "lib/api-helper";
+import { useDate } from "lib/date";
 
 const Page = () => {
   const { i, t, p } = useTrans();
   const user = useUser();
+  const { displayDate } = useDate();
   const isAuthenticated = !!user;
   useTrackOnce("page.explore", {
     isAuthenticated,
@@ -27,8 +29,12 @@ const Page = () => {
 
   // load initial cities, to improve time to interact
   // then after the user is authenticated, load more cities
-  const getCitiesApiCall = isAuthenticated ? getCities(20) : getCachedCities();
-  const cities = useApi(() => getCitiesApiCall);
+  const cities = useApi(
+    () => (isAuthenticated ? getCities(20) : getCachedCities()),
+    null,
+    [isAuthenticated]
+  );
+  const activites = useApi(() => getActivities(5), null);
 
   return (
     <>
@@ -47,6 +53,49 @@ const Page = () => {
           <Main>
             <SpinnerWhenBusy isBusy={!cities.ready}>
               <>
+                {activites && (
+                  <Col>
+                    <div className="card card-body tile tile-list-with-title">
+                      {/*  */}
+                      <p className="tile-title mb-3">
+                        {i("Activities detected today")}
+                      </p>
+                      <GeoWithImagesTileContainer>
+                        {activites?.data?.results?.map((activity) => (
+                          <div
+                            key={`activiy-${activity.id}`}
+                            className="col-12 col-md-6"
+                          >
+                            <GeoWithImagesTile
+                              href={explorePath(
+                                [
+                                  activity.area.slug_path,
+                                  "activities",
+                                  activity.id,
+                                ].join("/")
+                              )}
+                              image={
+                                activity.area.image_square_red_url ||
+                                activity.area.image_square_url
+                              }
+                              lead={displayDate(activity.date_occured)}
+                              title={t(
+                                "{{activity_type_name}} in {{neighbourhood_name}}",
+                                {
+                                  activity_type_name: t(
+                                    activity.activity_type.name
+                                  ),
+                                  neighbourhood_name:
+                                    activity.area.display_name,
+                                }
+                              )}
+                            />
+                          </div>
+                        ))}
+                      </GeoWithImagesTileContainer>
+                    </div>
+                  </Col>
+                )}
                 <Col>
                   <GeoWithImagesTileContainer>
                     {cities?.data?.results?.map((c) => (

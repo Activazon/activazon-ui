@@ -555,5 +555,9 @@
   "prison__plural": {
     "en": "Prisons",
     "es": "Prisiones"
+  },
+  "Activities detected today": {
+    "en": "Activities detected today",
+    "es": "Actividades detectadas hoy"
   }
 }
