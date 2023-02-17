@@ -556,6 +556,14 @@
     "en": "Prisons",
     "es": "Prisiones"
   },
+  "collision": {
+    "en": "Collision",
+    "es": "Colisión"
+  },
+  "collision__plural": {
+    "en": "Collisions",
+    "es": "Colisiones"
+  },
   "Activities detected today": {
     "en": "Activities detected today",
     "es": "Actividades detectadas hoy"
