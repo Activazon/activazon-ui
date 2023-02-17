@@ -55,49 +55,46 @@ const Page = () => {
               <>
                 {activites && (
                   <Col>
-                    <div className="card card-body tile tile-list-with-title">
-                      {/*  */}
-                      <p className="tile-title mb-3">
+                    <GeoWithImagesTileContainer>
+                      <p className="tile-title mb-0">
                         {i("Activities detected today")}
                       </p>
-                      <GeoWithImagesTileContainer>
-                        {activites?.data?.results?.map((activity) => (
-                          <div
-                            key={`activiy-${activity.id}`}
-                            className="col-12 col-md-6"
-                          >
-                            <GeoWithImagesTile
-                              href={explorePath(
-                                [
-                                  activity.area.slug_path,
-                                  "activities",
-                                  activity.id,
-                                ].join("/")
-                              )}
-                              image={
-                                activity.area.image_square_red_url ||
-                                activity.area.image_square_url
+                      {activites?.data?.results?.map((activity) => (
+                        <div
+                          key={`activiy-${activity.id}`}
+                          className="col-12 col-md-6"
+                        >
+                          <GeoWithImagesTile
+                            href={explorePath(
+                              [
+                                activity.area.slug_path,
+                                "activities",
+                                activity.id,
+                              ].join("/")
+                            )}
+                            image={
+                              activity.area.image_square_red_url ||
+                              activity.area.image_square_url
+                            }
+                            lead={displayDate(activity.date_occured)}
+                            title={t(
+                              "{{activity_type_name}} in {{neighbourhood_name}}",
+                              {
+                                activity_type_name: t(
+                                  activity.activity_type.name
+                                ),
+                                neighbourhood_name: activity.area.display_name,
                               }
-                              lead={displayDate(activity.date_occured)}
-                              title={t(
-                                "{{activity_type_name}} in {{neighbourhood_name}}",
-                                {
-                                  activity_type_name: t(
-                                    activity.activity_type.name
-                                  ),
-                                  neighbourhood_name:
-                                    activity.area.display_name,
-                                }
-                              )}
-                            />
-                          </div>
-                        ))}
-                      </GeoWithImagesTileContainer>
-                    </div>
+                            )}
+                          />
+                        </div>
+                      ))}
+                    </GeoWithImagesTileContainer>
                   </Col>
                 )}
                 <Col>
                   <GeoWithImagesTileContainer>
+                    <p className="tile-title mb=0">{i("Cities")}</p>
                     {cities?.data?.results?.map((c) => (
                       <div
                         key={`city-${c.slug_path}`}

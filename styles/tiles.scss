@@ -55,6 +55,11 @@
   }
 }
 
+.card.card-body.tile.tile-transparent {
+  background-color: transparent;
+  border: 0px;
+}
+
 .card.card-body.tile.tile-login-or-signup-cta {
   padding: $spacer * 1.5;
   background-color: $primary;
