@@ -59,61 +59,66 @@ const Page = () => {
                       <p className="tile-title mb-0">
                         {i("Activities detected")}
                       </p>
-                      {activites?.data?.results?.map((activity) => (
-                        <div
-                          key={`activiy-${activity.id}`}
-                          className="col-12 col-md-6"
-                        >
-                          <GeoWithImagesTile
-                            href={explorePath(
-                              [
-                                activity.area.slug_path,
-                                "activities",
-                                activity.id,
-                              ].join("/")
-                            )}
-                            image={
-                              activity.area.image_square_red_url ||
-                              activity.area.image_square_url
-                            }
-                            lead={displayDate(activity.date_occured)}
-                            title={t(
-                              "{{activity_type_name}} in {{neighbourhood_name}}",
-                              {
-                                activity_type_name: t(
-                                  activity.activity_type.name
-                                ),
-                                neighbourhood_name: activity.area.display_name,
+                      <div className="row">
+                        {activites?.data?.results?.map((activity) => (
+                          <div
+                            key={`activiy-${activity.id}`}
+                            className="col-12 col-md-6"
+                          >
+                            <GeoWithImagesTile
+                              href={explorePath(
+                                [
+                                  activity.area.slug_path,
+                                  "activities",
+                                  activity.id,
+                                ].join("/")
+                              )}
+                              image={
+                                activity.area.image_square_red_url ||
+                                activity.area.image_square_url
                               }
-                            )}
-                          />
-                        </div>
-                      ))}
+                              lead={displayDate(activity.date_occured)}
+                              title={t(
+                                "{{activity_type_name}} in {{neighbourhood_name}}",
+                                {
+                                  activity_type_name: t(
+                                    activity.activity_type.name
+                                  ),
+                                  neighbourhood_name:
+                                    activity.area.display_name,
+                                }
+                              )}
+                            />
+                          </div>
+                        ))}
+                      </div>
                     </GeoWithImagesTileContainer>
                   </Col>
                 )}
                 <Col>
                   <GeoWithImagesTileContainer>
                     <p className="tile-title mb=0">{i("Cities")}</p>
-                    {cities?.data?.results?.map((c) => (
-                      <div
-                        key={`city-${c.slug_path}`}
-                        className="col-12 col-md-6"
-                      >
-                        <GeoWithImagesTile
-                          href={explorePath(c.slug_path)}
-                          key={`city-card-${c.id}`}
-                          image={c.image_square_url}
-                          lead={c.country.display_name}
-                          title={c.display_name}
-                          description={p(
-                            "1 activity in the last 5 months",
-                            "{{count}} activities in the last 5 months",
-                            c.activity_total_last5months
-                          )}
-                        />
-                      </div>
-                    ))}
+                    <div className="row">
+                      {cities?.data?.results?.map((c) => (
+                        <div
+                          key={`city-${c.slug_path}`}
+                          className="col-12 col-md-6"
+                        >
+                          <GeoWithImagesTile
+                            href={explorePath(c.slug_path)}
+                            key={`city-card-${c.id}`}
+                            image={c.image_square_url}
+                            lead={c.country.display_name}
+                            title={c.display_name}
+                            description={p(
+                              "1 activity in the last 5 months",
+                              "{{count}} activities in the last 5 months",
+                              c.activity_total_last5months
+                            )}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </GeoWithImagesTileContainer>
                 </Col>
                 {!isAuthenticated && (
