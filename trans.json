@@ -567,5 +567,13 @@
   "Activities detected": {
     "en": "Activities detected",
     "es": "Actividades detectadas"
+  },
+  "domesticviolence": {
+    "en": "Domestic Violence",
+    "es": "Violencia doméstica"
+  },
+  "domesticviolence__plural": {
+    "en": "Domestic Violences",
+    "es": "Violencias Domesticas"
   }
 }
