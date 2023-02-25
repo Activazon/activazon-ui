@@ -575,5 +575,29 @@
   "domesticviolence__plural": {
     "en": "Domestic Violences",
     "es": "Violencias Domesticas"
+  },
+  "Subscribe to Alerts": {
+    "en": "Subscribe to Alerts",
+    "es": "Suscribir Alertas"
+  },
+  "Subscribed": {
+    "en": "Subscribed",
+    "es": "Subscrito"
+  },
+  "Turn on push notifications": {
+    "en": "Turn on push notifications",
+    "es": "Activar notificaciones"
+  },
+  "To receive alerts about activity that happens in {{placeDisplayName}}, turn on push notification. You'll also receive them when you are not on the site. You can turn them off at any time.": {
+    "en": "To receive alerts about activity that happens in {{placeDisplayName}}, turn on push notification. You'll also receive them when you are not on the site. You can turn them off at any time.",
+    "es": "Para recibir alertas sobre la actividad que ocurre en {{placeDisplayName}}, active las notificaciones push. También las recibirá cuando no esté en el sitio. Puede desactivarlas en cualquier momento."
+  },
+  "Can't turn on push notifications": {
+    "en": "Can't turn on push notifications",
+    "es": "No se pueden activar las notificaciones"
+  },
+  "It seems like we can't turn on push notifications for you. You can try turning them on manually in your browser settings or try a different device.": {
+    "en": "It seems like we can't turn on push notifications for you. You can try turning them on manually in your browser settings or try a different device.",
+    "es": "Parece que no podemos activar las notificaciones push para usted. Puede intentar activarlas manualmente en la configuración de su navegador o probar un dispositivo diferente."
   }
 }

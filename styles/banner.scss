@@ -59,4 +59,18 @@
       text-align: center;
     }
   }
+
+  .banner-interactive-actions {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    @extend .m-3;
+
+    .btn {
+      border-radius: 3rem;
+    }
+    .btn-outline-primary {
+      background-color: rgba($bg-color, 0.75);
+    }
+  }
 }

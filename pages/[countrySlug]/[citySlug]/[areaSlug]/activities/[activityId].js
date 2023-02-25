@@ -6,16 +6,14 @@ import Head from "components/Head";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 import GeoWithImagesTile from "components/GeoWithImagesTile";
 import ChangeLanguageLink from "components/ChangeLaugageLink";
+import StaticMapImage from "components/StaticMapImage";
+import InteractiveActions from "components/InteractiveActions";
 import { useTrans } from "lib/trans";
 import { getActivity } from "lib/api-v2";
 import { useDate } from "lib/date";
 import { explorePath } from "lib/urls";
 import { useTrackOnce } from "lib/track";
 import { useUserRequired } from "lib/user";
-
-const StaticMapImage = ({ src }) => {
-  return <img src={src} className="banner-static-map-image" />;
-};
 
 const Page = ({ activity }) => {
   const router = useRouter();
@@ -76,6 +74,13 @@ const Page = ({ activity }) => {
                 <div className="row">
                   <StaticMapImage src={mapImageUrl} />
                 </div>
+                <InteractiveActions
+                  placeType="area"
+                  areaDisplayName={activity.area.display_name}
+                  cityDisplayName={activity.area.city.display_name}
+                  areadId={activity.area.id}
+                  cityId={activity.area.city.id}
+                />
               </>
             </Bannerv2>
 
