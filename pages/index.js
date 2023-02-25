@@ -59,7 +59,7 @@ const Page = () => {
                       <p className="tile-title mb-0">
                         {i("Activities detected")}
                       </p>
-                      <div className="row">
+                      <div className="row gy-3">
                         {activites?.data?.results?.map((activity) => (
                           <div
                             key={`activiy-${activity.id}`}
@@ -98,7 +98,7 @@ const Page = () => {
                 <Col>
                   <GeoWithImagesTileContainer>
                     <p className="tile-title mb=0">{i("Cities")}</p>
-                    <div className="row">
+                    <div className="row gy-3">
                       {cities?.data?.results?.map((c) => (
                         <div
                           key={`city-${c.slug_path}`}
