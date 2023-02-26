@@ -14,9 +14,13 @@ import { useDate } from "lib/date";
 import { explorePath } from "lib/urls";
 import { useTrackOnce } from "lib/track";
 import { useUserRequired } from "lib/user";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setByArea } from "lib/redux/features/area";
 
 const Page = ({ activity }) => {
-  const router = useRouter();
+  const dispatch = useDispatch();
+  // const jff = useSelector();
   const user = useUserRequired();
   const { t, locale } = useTrans();
   const { displayDate } = useDate();
@@ -42,6 +46,10 @@ const Page = ({ activity }) => {
     isAuthenticated: !!user,
     activityId: activity.id,
   });
+
+  useEffect(() => {
+    dispatch(setByArea(activity.area));
+  }, [activity.area]);
 
   return (
     <>

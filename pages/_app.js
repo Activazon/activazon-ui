@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
 import { loadFullStory } from "lib/track";
-
+import { Provider } from "react-redux";
+import store from "lib/redux/store";
 // styling
 import "../styles/theme.scss";
 import "nprogress/nprogress.css";
@@ -47,8 +48,10 @@ export default function App({
   }, []);
 
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+    <Provider store={store}>
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+    </Provider>
   );
 }
