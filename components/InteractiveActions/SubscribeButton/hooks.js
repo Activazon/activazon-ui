@@ -4,6 +4,7 @@ import {
   subscribeUserToArea,
   unsubscribeUserFromArea,
 } from "lib/redux/features/area";
+import { storePushSubscription } from "lib/client-api";
 
 const urlBase64ToUint8Array = (base64String) => {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -76,15 +77,14 @@ export const useSubscriptionManager = () => {
           ),
         });
 
-        new window.Notification("Hey cool notification", {
-          icon: "https://www.activazon.com/apple-touch-icon.png",
-          body: "You will now receive notifications from Activazon as we detect activity in areas and cities that you subscribe to.",
-          tag: "simple-push-demo-notification",
-          image: "https://activazon.com/banner-bg/banner-bg.jpg",
+        const subscriptionJson = subscription.toJSON();
+        const apiRespose = await storePushSubscription({
+          endpoint: subscription.endpoint,
+          expiration_time: subscription.expirationTime,
+          auth: subscriptionJson.keys.auth,
+          p256dh: subscriptionJson.keys.p256dh,
+          user_agent: navigator.userAgent,
         });
-
-        console.log("subscription", JSON.stringify(subscription));
-        // TODO: store in database
 
         // subscribe user
         doSubscribeUserToArea();
