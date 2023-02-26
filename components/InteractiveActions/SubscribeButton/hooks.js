@@ -5,25 +5,7 @@ import {
   unsubscribeUserFromArea,
 } from "lib/redux/features/area";
 
-export const canReceiveNotifications = () => {
-  if (!("serviceWorker" in navigator)) {
-    return false;
-  }
-  if (!("PushManager" in window)) {
-    return false;
-  }
-  return true;
-};
-
-export const loadServiceWorker = () => {
-  navigator.serviceWorker.register("/sw.js");
-};
-
-export const requestPermissionStatus = () => {
-  return Notification.permission;
-};
-
-export const usePushNotifications = () => {
+export const useSubscriptionManager = () => {
   /**
    * this hook is the brains of the subscribe button.
    * this exposes functionality to subscribe and unsubscribe the user to the area or city
@@ -45,10 +27,11 @@ export const usePushNotifications = () => {
     /**
      * this will check if we have permission to send notifications
      */
-    if (!canReceiveNotifications()) {
+    if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
       return "unsupported";
     }
-    return requestPermissionStatus();
+
+    return Notification.permission;
   };
 
   const requestNotificationPermissionAndSubscribe = ({
@@ -66,7 +49,7 @@ export const usePushNotifications = () => {
       if (permission === "granted") {
         onGranted();
         // register service worker, for first time
-        loadServiceWorker();
+        navigator.serviceWorker.register("/sw.js");
         // subscribe user
         doSubscribeUserToArea();
         return;

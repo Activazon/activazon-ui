@@ -4,7 +4,7 @@ import {
   TOASTS,
 } from "components/Toast";
 import { useTrans } from "lib/trans";
-import { usePushNotifications } from "components/InteractiveActions/SubscribeButton/hooks";
+import { useSubscriptionManager } from "components/InteractiveActions/SubscribeButton/hooks";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectPlaceDisplayName } from "lib/redux/features/area";
@@ -25,7 +25,7 @@ const SubscribeButton = ({}) => {
     isSubscribed,
     subscribeUserToArea,
     unsubscribeUserFromArea,
-  } = usePushNotifications();
+  } = useSubscriptionManager();
   const placeDisplayName = useSelector(selectPlaceDisplayName());
 
   const onSubscribe = (e) => {
