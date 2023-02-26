@@ -8,6 +8,7 @@ import { useCallback, useState } from "react";
 import {
   canReceiveNotifications,
   requestPermissionStatus,
+  requestPermission,
 } from "lib/notifications";
 
 const InteractiveActions = ({
@@ -24,7 +25,7 @@ const InteractiveActions = ({
   const placeDisplayName =
     placeType === "area" ? areaDisplayName : cityDisplayName;
 
-  // api requests
+  // handles subscribing and unsubscribing the user
   const subscribeUserToArea = useCallback(() => {
     // TODO: subscribe user to area
     setIsSubscribed(true);
@@ -36,35 +37,60 @@ const InteractiveActions = ({
 
   // button event handlers
   const onSubscribeClick = (e) => {
-    if (canReceiveNotifications()) {
-      switch (requestPermissionStatus()) {
-        case "denied":
-          setToastType(TOASTS.PUSH_NOTIFICATIONS_DENIED);
-          break;
-        case "default":
-          setToastType(TOASTS.PUSH_NOTIFICATIONS_DEFAULT);
-          break;
-        case "granted":
-          subscribeUserToArea();
-      }
-    } else {
+    /**
+     * this will try to subscribe the user to the area.
+     * before subscribing, check if we have permission to send
+     * notifications through this device and prompt the user if
+     * we have to
+     */
+    if (!canReceiveNotifications()) {
+      // user is on a browser that doesn't support notifications
       setToastType(TOASTS.PUSH_NOTIFICATIONS_DENIED);
+      return;
+    }
+
+    const status = requestPermissionStatus();
+
+    if (status === "granted") {
+      // we already have permission, so just subscribe the user
+      subscribeUserToArea();
+      return;
+    }
+
+    if (status === "denied") {
+      // user has denied notifications, so show them a toast
+      setToastType(TOASTS.PUSH_NOTIFICATIONS_DENIED);
+      return;
+    }
+
+    if (status === "default") {
+      // user has not yet been asked for permission, so ask them
+      setToastType(TOASTS.PUSH_NOTIFICATIONS_DEFAULT);
+      return;
     }
   };
   const onUnSubscribeClick = (e) => {
     unsubscribeUserToArea();
   };
-  const requestNotificationPermission = useCallback((e) => {
-    e.preventDefault();
-    Notification.requestPermission((permission) => {
-      console.debug("requestNotificationPermission", { permission });
-      if (permission === "granted") {
-        setToastType(null);
-        return;
-      }
-      setToastType(TOASTS.PUSH_NOTIFICATIONS_DENIED);
-    });
-  }, []);
+  const requestNotificationPermission = useCallback(
+    (e) => {
+      /**
+       * This is a callback for the "Turn On" button in the toast.
+       * this will request permission from the user to send notifications
+       * and then subscribe the user to the area.
+       */
+      e.preventDefault();
+      requestPermission({
+        onGranted: () => {
+          setToastType(null);
+          // subscribed to area
+          subscribeUserToArea();
+        },
+        onError: () => setToastType(TOASTS.PUSH_NOTIFICATIONS_DENIED),
+      });
+    },
+    [subscribeUserToArea]
+  );
 
   // determines what type of toast to display
   const toast = {
