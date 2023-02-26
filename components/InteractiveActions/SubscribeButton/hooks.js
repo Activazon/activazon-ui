@@ -75,6 +75,13 @@ export const useSubscriptionManager = () => {
           ),
         });
 
+        new window.Notification("Hey cool notification", {
+          icon: "https://www.activazon.com/apple-touch-icon.png",
+          body: "You will now receive notifications from Activazon as we detect activity in areas and cities that you subscribe to.",
+          tag: "simple-push-demo-notification",
+          image: "https://activazon.com/banner-bg/banner-bg.jpg",
+        });
+
         console.log("subscription", JSON.stringify(subscription));
         // TODO: store in database
 
