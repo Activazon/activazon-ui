@@ -63,8 +63,9 @@ export const useSubscriptionManager = () => {
     window?.Notification.requestPermission(async (permission) => {
       if (permission === "granted") {
         onGranted();
-        // register service worker, for first time
-        navigator.serviceWorker.register("/sw.js");
+        // TODO: doing this in app
+        // // register service worker, for first time
+        // navigator.serviceWorker.register("/sw.js");
 
         // get subscription
         const registration = await navigator.serviceWorker.ready;

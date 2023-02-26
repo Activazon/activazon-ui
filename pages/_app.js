@@ -4,11 +4,12 @@ import { SessionProvider } from "next-auth/react";
 import { loadFullStory } from "lib/track";
 import { Provider } from "react-redux";
 import store from "lib/redux/store";
+import { onLoad } from "lib/pwa";
+import { usePanelbear } from "@panelbear/panelbear-nextjs";
 // styling
 import "../styles/theme.scss";
 import "nprogress/nprogress.css";
 import NProgress from "nprogress";
-import { usePanelbear } from "@panelbear/panelbear-nextjs";
 
 export default function App({
   Component,
@@ -45,6 +46,7 @@ export default function App({
 
   useEffect(() => {
     loadFullStory();
+    onLoad();
   }, []);
 
   return (
