@@ -1,10 +1,15 @@
 import SubscribeButton from "./InteractiveActions/SubscribeButton";
 
-const InteractiveActions = ({}) => {
+const InteractiveActions = ({ placeManager, subscriptionManager }) => {
   return (
     <>
       <div className="banner-interactive-actions">
-        <SubscribeButton />
+        {placeManager.isLoaded && subscriptionManager?.isLoaded && (
+          <SubscribeButton
+            placeManager={placeManager}
+            subscriptionManager={subscriptionManager}
+          />
+        )}
       </div>
     </>
   );

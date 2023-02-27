@@ -14,20 +14,25 @@ import { useDate } from "lib/date";
 import { explorePath } from "lib/urls";
 import { useTrackOnce } from "lib/track";
 import { useUserRequired } from "lib/user";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { setByArea } from "lib/redux/features/area";
 
-const Page = ({ activity }) => {
-  const dispatch = useDispatch();
-  // const jff = useSelector();
+import { useSubscriptionManager } from "lib/subscriptionManager";
+import { usePlaceManager } from "lib/placeManager";
+
+const Page = ({ countrySlug, citySlug, areaSlug, activity }) => {
   const user = useUserRequired();
   const { t, locale } = useTrans();
   const { displayDate } = useDate();
-  const address = activity.area.display_name;
+  const placeManager = usePlaceManager(countrySlug, citySlug, areaSlug, {
+    includeActivities: false,
+    includeActivityBreakdown: false,
+  });
+  const subscriptionManager = useSubscriptionManager(placeManager);
+  const { area, isLoaded } = placeManager;
+
+  const address = isLoaded && area.display_name;
   const seoTitle = t("{{activity_type_name}} in {{neighbourhood_name}}", {
     activity_type_name: t(activity.activity_type.name),
-    neighbourhood_name: activity.area.display_name,
+    neighbourhood_name: isLoaded && area.display_name,
   });
   const seoDescription = t(
     "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
@@ -36,7 +41,7 @@ const Page = ({ activity }) => {
     }
   );
   const isAuthenticated = !!user;
-  const mapImageUrl = activity.area.image_wide_url;
+  const mapImageUrl = isLoaded && area.image_wide_url;
   const summary = {
     en: activity.summary_en,
     es: activity.summary_es,
@@ -47,10 +52,6 @@ const Page = ({ activity }) => {
     activityId: activity.id,
   });
 
-  useEffect(() => {
-    dispatch(setByArea(activity.area));
-  }, [activity.area]);
-
   return (
     <>
       <Head
@@ -60,75 +61,68 @@ const Page = ({ activity }) => {
         seoImageUrl={mapImageUrl}
       />
       <body>
-        <div className="page">
-          <Nav
-            title={activity.area.display_name}
-            backHref={explorePath(activity.area.slug_path)}
-          />
-          <main>
-            <Bannerv2
-              // title={activity.area.display_name}
-              // description={p(
-              //   "1 activity in the last 5 months",
-              //   "{{count}} activities in the last 5 months",
-              //   city.activity_total_last5months
-              // )}
-              description={activity.area.city.display_name}
-              showSearch={false}
-              searchCountry={null}
-              dark={true}
-            >
-              <>
-                <div className="row">
-                  <StaticMapImage src={mapImageUrl} />
-                </div>
-                <InteractiveActions
-                  placeType="area"
-                  areaDisplayName={activity.area.display_name}
-                  cityDisplayName={activity.area.city.display_name}
-                  areadId={activity.area.id}
-                  cityId={activity.area.city.id}
-                />
-              </>
-            </Bannerv2>
+        {isLoaded && (
+          <div className="page">
+            <Nav
+              title={area.display_name}
+              backHref={explorePath(area.slug_path)}
+            />
+            <main>
+              <Bannerv2
+                description={area.city.display_name}
+                showSearch={false}
+                searchCountry={null}
+                dark={true}
+              >
+                <>
+                  <div className="row">
+                    <StaticMapImage src={mapImageUrl} />
+                  </div>
+                  <InteractiveActions
+                    placeManager={placeManager}
+                    subscriptionManager={subscriptionManager}
+                  />
+                </>
+              </Bannerv2>
 
-            <div className="container pt-3">
-              <p className="lead mb-1 text-capitalized">{t("Summary")}</p>
-              <p className="text-capitalize mb-2">
-                <b>{displayDate(activity.date_occured)}</b>
-              </p>
-              <p>{summary}</p>
-
-              <ChangeLanguageLink />
-
-              <p className="mt-4">
-                <b>
-                  {t(
-                    "Learn more about this incident with these in-depth news articles"
-                  )}
-                </b>
-              </p>
-              <GeoWithImagesTile
-                image={
-                  "/sources/" + activity.source_article.source_name + ".jpg"
-                }
-                title={activity.source_article.source_display_name}
-                description={activity.source_article.source_title}
-                href={activity.source_article.source_url}
-              />
-            </div>
-
-            {!isAuthenticated && (
               <div className="container pt-3">
-                <LoginOrSignUpCtaTile
-                  alternativeTitle={t("Sign Up To View More")}
+                <p className="lead mb-1 text-capitalized">{t("Summary")}</p>
+                <p className="text-capitalize mb-2">
+                  <b>{displayDate(activity.date_occured)}</b>
+                </p>
+                <p>{summary}</p>
+
+                <ChangeLanguageLink />
+
+                <p className="mt-4">
+                  <b>
+                    {t(
+                      "Learn more about this incident with these in-depth news articles"
+                    )}
+                  </b>
+                </p>
+                <GeoWithImagesTile
+                  image={
+                    "/sources/" + activity.source_article.source_name + ".jpg"
+                  }
+                  title={activity.source_article.source_display_name}
+                  description={activity.source_article.source_title}
+                  href={activity.source_article.source_url}
                 />
               </div>
-            )}
 
-            <Footer />
-          </main>
-        </div>
+              {!isAuthenticated && (
+                <div className="container pt-3">
+                  <LoginOrSignUpCtaTile
+                    alternativeTitle={t("Sign Up To View More")}
+                  />
+                </div>
+              )}
+
+              <Footer />
+            </main>
+          </div>
+        )}
       </body>
     </>
   );
@@ -137,7 +131,7 @@ const Page = ({ activity }) => {
 export default Page;
 
 export async function getServerSideProps(context) {
-  const { activityId } = context.params;
+  const { activityId, countrySlug, citySlug, areaSlug } = context.params;
   const activity = await getActivity(activityId);
 
   if (isNaN(activity.id)) {
@@ -148,6 +142,9 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
+      countrySlug,
+      citySlug,
+      areaSlug,
       activity,
     },
   };
