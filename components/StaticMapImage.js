@@ -6,11 +6,13 @@ const StaticMapImage = ({ src }) => {
     track("el.staticmap.pointer_move", {});
   };
   return (
-    <img
-      onPointerMove={onPointerMove}
-      src={src}
-      className="banner-static-map-image"
-    />
+    <div className="row">
+      <img
+        onPointerMove={onPointerMove}
+        src={src}
+        className="banner-static-map-image"
+      />
+    </div>
   );
 };
 

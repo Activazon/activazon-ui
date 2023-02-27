@@ -80,9 +80,7 @@ const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
               dark={true}
             >
               <>
-                <div className="row">
-                  <StaticMapImage src={area.image_wide_url} />
-                </div>
+                <StaticMapImage src={area.image_wide_url} />
                 <InteractiveActions
                   placeManager={placeManager}
                   subscriptionManager={subscriptionManager}

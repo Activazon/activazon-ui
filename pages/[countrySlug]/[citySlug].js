@@ -80,11 +80,9 @@ const Page = ({
             dark={true}
           >
             <>
-              <div className="row">
-                <StaticMapImage
-                  src={brandImage?.image_url || city.image_wide_url}
-                />
-              </div>
+              <StaticMapImage
+                src={brandImage?.image_url || city.image_wide_url}
+              />
             </>
           </Bannerv2>
           <Main>

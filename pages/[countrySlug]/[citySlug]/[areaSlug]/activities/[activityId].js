@@ -75,9 +75,7 @@ const Page = ({ countrySlug, citySlug, areaSlug, activity }) => {
                 dark={true}
               >
                 <>
-                  <div className="row">
-                    <StaticMapImage src={mapImageUrl} />
-                  </div>
+                  <StaticMapImage src={mapImageUrl} />
                   <InteractiveActions
                     placeManager={placeManager}
                     subscriptionManager={subscriptionManager}
