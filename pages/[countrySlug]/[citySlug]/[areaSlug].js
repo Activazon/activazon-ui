@@ -12,6 +12,7 @@ import ActivityBreakdownTile, {
   ActivityBreakDownItem,
 } from "components/ActivityBreakdownTile";
 import StaticMapImage from "components/StaticMapImage";
+import InteractiveActions from "components/InteractiveActions";
 import { useTrans } from "lib/trans";
 import { activityPath, explorePath } from "lib/urls";
 import { useDate } from "lib/date";
@@ -19,12 +20,14 @@ import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
 
 import { usePlaceManager } from "lib/placeManager";
+import { useSubscriptionManager } from "lib/subscriptionManager";
 
 const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
   const placeManager = usePlaceManager(countrySlug, citySlug, areaSlug, {
     includeActivities: true,
     includeActivityBreakdown: true,
   });
+  const subscriptionManager = useSubscriptionManager(placeManager);
   const { area, city, country, activityBreakdown, activities, isLoaded } =
     placeManager;
   const user = useUser();
@@ -80,6 +83,10 @@ const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
                 <div className="row">
                   <StaticMapImage src={area.image_wide_url} />
                 </div>
+                <InteractiveActions
+                  placeManager={placeManager}
+                  subscriptionManager={subscriptionManager}
+                />
               </>
             </Bannerv2>
             <Main>
