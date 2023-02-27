@@ -1,10 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectIsSubscribed,
-  subscribeUserToArea,
-  unsubscribeUserFromArea,
+  selectArea,
+  selectCity,
+  subscribeUser,
+  unsubscribeUser,
+  fetchSubscription,
 } from "lib/redux/features/area";
 import { storePushSubscription } from "lib/client-api";
+import { useCallback, useEffect } from "react";
 
 const urlBase64ToUint8Array = (base64String) => {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -26,18 +30,25 @@ export const useSubscriptionManager = () => {
    * this hook is the brains of the subscribe button.
    * this exposes functionality to subscribe and unsubscribe the user to the area or city
    */
-
   const dispatch = useDispatch();
   const isSubscribed = useSelector(selectIsSubscribed());
+  const area = useSelector(selectArea());
+  const city = useSelector(selectCity());
+  useEffect(() => {
+    // find out if the user is subscribed to the area
+    if (city) {
+      dispatch(fetchSubscription(city, area));
+    }
+  }, [city, area]);
 
   // handles subscribing and unsubscribing the user
   // area must be loaded in redux for this to work
-  const doSubscribeUserToArea = () => {
-    dispatch(subscribeUserToArea());
-  };
-  const doUnsubscribeUserFromArea = () => {
-    dispatch(unsubscribeUserFromArea());
-  };
+  const doSubscribeUserToArea = useCallback(() => {
+    dispatch(subscribeUser(city, area));
+  }, [city, area]);
+  const doUnsubscribeUserFromArea = useCallback(() => {
+    dispatch(unsubscribeUser());
+  }, [city, area]);
 
   const checkPermissions = () => {
     /**
@@ -77,6 +88,7 @@ export const useSubscriptionManager = () => {
           ),
         });
 
+        // store subscription
         const subscriptionJson = subscription.toJSON();
         const apiRespose = await storePushSubscription({
           endpoint: subscription.endpoint,
@@ -85,6 +97,12 @@ export const useSubscriptionManager = () => {
           p256dh: subscriptionJson.keys.p256dh,
           user_agent: navigator.userAgent,
         });
+
+        if (!apiRespose.id) {
+          console.debug("error subscribing user to area", apiRespose);
+          onError();
+          return;
+        }
 
         // subscribe user
         doSubscribeUserToArea();
