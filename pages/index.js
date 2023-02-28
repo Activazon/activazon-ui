@@ -4,11 +4,9 @@ import Col from "components/Col";
 import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
-import GeoWithImagesTile from "components/GeoWithImagesTile";
-import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
+
 import PlaceList from "components/PlaceList";
 import SearchWidget from "components/SearchWidget";
-import SpinnerWhenBusy from "components/SpinnerWhenBusy";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 // import Tip from "components/Tip";
 import { useTrans } from "lib/trans";
