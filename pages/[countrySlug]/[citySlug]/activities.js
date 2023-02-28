@@ -47,7 +47,7 @@ const Page = ({ city, activities }) => {
       <body>
         <div className="page">
           <Nav
-            backHref={explorePath(city.slug_path)}
+            backHref={explorePath(city?.slug_path)}
             title={city.display_name}
           />
           <Main>

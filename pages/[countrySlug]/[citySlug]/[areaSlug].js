@@ -6,11 +6,6 @@ import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
-import GeoWithImagesTile from "components/GeoWithImagesTile";
-import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
-import ActivityBreakdownTile, {
-  ActivityBreakDownItem,
-} from "components/ActivityBreakdownTile";
 import StaticMapImage from "components/StaticMapImage";
 import InteractiveActions from "components/InteractiveActions";
 
@@ -36,7 +31,8 @@ const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
     },
   });
   const subscriptionManager = useSubscriptionManager(placeManager);
-  const { area, city, country, activities, isLoaded } = placeManager;
+  const { area, city, country, activities, activityBreakdown, isLoaded } =
+    placeManager;
 
   const activitesSurplus =
     activities && Math.max(activities.count - activitiesLimit, 0);

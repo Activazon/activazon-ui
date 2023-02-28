@@ -121,7 +121,7 @@ const Page = ({ countrySlug, citySlug }) => {
                 />
                 {isAuthenticated && activitesSurplus > 0 && (
                   <Link
-                    href={explorePath(city.slug_path + "/activities")}
+                    href={explorePath(city?.slug_path + "/activities")}
                     className="btn btn-load-more w-100 mt-2"
                   >
                     {t("Load {{count}} more", { count: activitesSurplus })}
