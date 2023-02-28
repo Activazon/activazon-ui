@@ -9,7 +9,8 @@
     font-weight: 700;
     font-size: $spacer * 1.5;
     color: $primary;
-    margin-right: $spacer * 0.3;
+    margin-right: 0px;
+    text-overflow: ellipsis;
   }
   .page-title {
     @extend .navbar-brand;
