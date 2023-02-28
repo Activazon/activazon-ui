@@ -4,12 +4,10 @@ const InteractiveActions = ({ placeManager, subscriptionManager }) => {
   return (
     <>
       <div className="banner-interactive-actions">
-        {placeManager.isLoaded && subscriptionManager?.isLoaded && (
-          <SubscribeButton
-            placeManager={placeManager}
-            subscriptionManager={subscriptionManager}
-          />
-        )}
+        <SubscribeButton
+          placeManager={placeManager}
+          subscriptionManager={subscriptionManager}
+        />
       </div>
     </>
   );

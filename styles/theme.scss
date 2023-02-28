@@ -19,6 +19,7 @@ $theme-colors: (
   "dark": $dark,
 );
 
+@import "./shimmer.scss";
 @import "./buttons.scss";
 @import "./banner.scss";
 @import "./navbar.scss";

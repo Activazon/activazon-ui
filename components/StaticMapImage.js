@@ -1,17 +1,14 @@
-import { track } from "lib/track";
-
+import classNames from "classnames";
 const StaticMapImage = ({ src }) => {
-  const onPointerMove = (e) => {
-    e?.preventDefault();
-    track("el.staticmap.pointer_move", {});
-  };
   return (
     <div className="row">
-      <img
-        onPointerMove={onPointerMove}
-        src={src}
-        className="banner-static-map-image"
-      />
+      <div
+        className={classNames("banner-static-map-image-container", {
+          shimmer: !src,
+        })}
+      >
+        {src && <img src={src} className="banner-static-map-image" />}
+      </div>
     </div>
   );
 };

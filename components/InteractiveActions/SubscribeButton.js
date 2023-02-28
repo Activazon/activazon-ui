@@ -24,6 +24,7 @@ const SubscribeButton = ({ placeManager, subscriptionManager }) => {
     unsubscribeUserFromArea,
   } = subscriptionManager;
   const { placeDisplayName } = placeManager;
+  const isLoaded = subscriptionManager.isLoaded;
 
   const onSubscribe = (e) => {
     e.preventDefault();
@@ -72,7 +73,14 @@ const SubscribeButton = ({ placeManager, subscriptionManager }) => {
         />
       )}
       {/* subscribe button */}
-      {!isSubscribed && (
+      {!isLoaded && (
+        <button className="btn btn-primary py-2 disabled" disabled={true}>
+          <p className="m-0 fs-5">
+            <i className="bi bi-bell-fill"></i>
+          </p>
+        </button>
+      )}
+      {isLoaded && !isSubscribed && (
         <button className="btn btn-primary py-2" onClick={onSubscribe}>
           <p className="m-0 fs-5">
             <i className="bi bi-bell-fill me-2"></i>
@@ -80,7 +88,7 @@ const SubscribeButton = ({ placeManager, subscriptionManager }) => {
           </p>
         </button>
       )}
-      {isSubscribed && (
+      {isLoaded && isSubscribed && (
         <button
           className="btn btn-outline-primary py-2"
           onClick={onUnsubscribe}

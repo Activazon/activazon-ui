@@ -1,0 +1,62 @@
+@keyframes place-holder-shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.shimmer {
+  animation-duration: 6s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: place-holder-shimmer;
+  animation-timing-function: linear;
+}
+.shimmer-bg-color {
+  background: linear-gradient(
+    to right,
+    darken($bg-color, 3%) 8%,
+    $bg-color 38%,
+    darken($bg-color, 3%) 54%
+  );
+  @extend .shimmer;
+}
+.shimmer-primary {
+  background: linear-gradient(
+    to right,
+    darken($primary, 3%) 8%,
+    $primary 38%,
+    darken($primary, 3%) 54%
+  );
+  @extend .shimmer;
+}
+
+.line {
+  opacity: 0.4;
+  @extend .shimmer-bg-color;
+  height: 1.3rem;
+  border-radius: 3px;
+
+  &.line-ws {
+    width: 4rem;
+  }
+  &.line-wm {
+    width: 7rem;
+  }
+  &.line-wl {
+    width: 10rem;
+  }
+  &.line-wxl {
+    width: 15rem;
+  }
+  &.line-title {
+    @extend .shimmer-primary;
+    height: 1.7rem;
+  }
+  &.line-small {
+    @extend .shimmer-bg-color;
+    height: 0.9rem;
+  }
+}
