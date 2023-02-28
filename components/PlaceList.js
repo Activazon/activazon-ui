@@ -9,21 +9,23 @@ const PlaceList = ({
   accessorImageUrl,
   accessorLead,
   accessorTitle,
+  accessorDescription,
   shimmerLimit,
   name,
 }) => {
   const shimmerItems = Array.from(Array(shimmerLimit).keys());
   return (
-    <>
-      <GeoWithImagesTileContainer description={description}>
+    <GeoWithImagesTileContainer description={description}>
+      <div className="row gy-2">
         {items?.map((item, key) => (
           <div className="col-12 col-md-6" key={name + "--" + key}>
             <GeoWithImagesTile
               href={accessorHref(item)}
               key={`item-card-${item.id}`}
               image={accessorImageUrl(item)}
-              lead={accessorLead(item)}
+              lead={accessorLead && accessorLead(item)}
               title={accessorTitle(item)}
+              description={accessorDescription && accessorDescription(item)}
             />
           </div>
         ))}
@@ -33,8 +35,8 @@ const PlaceList = ({
               <GeoWithImagesTileShimmer />
             </div>
           ))}
-      </GeoWithImagesTileContainer>
-    </>
+      </div>
+    </GeoWithImagesTileContainer>
   );
 };
 
