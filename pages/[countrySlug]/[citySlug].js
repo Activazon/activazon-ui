@@ -117,7 +117,6 @@ const Page = ({ countrySlug, citySlug }) => {
                       neighbourhood_name: activity.area.display_name,
                     })
                   }
-                  shimmer={true}
                   shimmerLimit={activitiesLimit}
                 />
                 {isAuthenticated && activitesSurplus > 0 && (

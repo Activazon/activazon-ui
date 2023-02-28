@@ -13,6 +13,10 @@ import ActivityBreakdownTile, {
 } from "components/ActivityBreakdownTile";
 import StaticMapImage from "components/StaticMapImage";
 import InteractiveActions from "components/InteractiveActions";
+
+import PlaceList from "components/PlaceList";
+import ActivityBreakDownList from "components/ActivityBreakdownList";
+
 import { useTrans } from "lib/trans";
 import { activityPath, explorePath } from "lib/urls";
 import { useDate } from "lib/date";
@@ -23,21 +27,28 @@ import { usePlaceManager } from "lib/placeManager";
 import { useSubscriptionManager } from "lib/subscriptionManager";
 
 const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
+  const activitiesLimit = 3;
   const placeManager = usePlaceManager(countrySlug, citySlug, areaSlug, {
     includeActivities: true,
     includeActivityBreakdown: true,
+    activitiesOptions: {
+      limit: activitiesLimit,
+    },
   });
   const subscriptionManager = useSubscriptionManager(placeManager);
-  const { area, city, country, activityBreakdown, activities, isLoaded } =
-    placeManager;
+  const { area, city, country, activities, isLoaded } = placeManager;
+
+  const activitesSurplus =
+    activities && Math.max(activities.count - activitiesLimit, 0);
+
   const user = useUser();
   const { t, p } = useTrans();
   const { displayDate } = useDate();
   const activitesText =
-    isLoaded &&
+    area &&
     p("1 activity", "{{count}} activities", area.activity_total_last5months);
   const address =
-    isLoaded &&
+    area &&
     `${area.display_name}, ${city.display_name}, ${country.display_name}`;
   const seoTitle = isLoaded && `${address} (${activitesText})`;
   const seoDescription =
@@ -48,7 +59,7 @@ const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
         address,
       }
     );
-  const seoImageUrl = isLoaded && area.image_wide_url;
+  const seoImageUrl = area && area.image_wide_url;
   const isAuthenticated = !!user;
 
   useTrackOnce("page.explore.area", {
@@ -65,92 +76,83 @@ const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
         seoImageUrl={seoImageUrl}
       />
       <body>
-        {isLoaded && (
-          <div className="page">
-            <Nav
-              title={area.display_name}
-              backHref={explorePath(city.slug_path)}
-            />
+        <div className="page">
+          <Nav
+            title={area?.display_name}
+            backHref={city && explorePath(city.slug_path)}
+          />
 
-            <Bannerv2
-              // title={area.display_name}
-              description={city.display_name + ", " + country.display_name}
-              showSearch={false}
-              searchCountry={null}
-              dark={true}
-            >
-              <>
-                <StaticMapImage src={area.image_wide_url} />
-                <InteractiveActions
-                  placeManager={placeManager}
-                  subscriptionManager={subscriptionManager}
-                />
-              </>
-            </Bannerv2>
-            <Main>
-              <Col>
-                <GeoWithImagesTileContainer description={activitesText}>
-                  {activities?.results?.map((activity) => (
-                    <div className="col-12 col-md-6">
-                      <GeoWithImagesTile
-                        href={activityPath(
-                          activity.area.slug_path,
-                          activity.id
-                        )}
-                        key={`activity-card-${activity.id}`}
-                        image={
-                          activity.area.image_square_red_url ||
-                          activity.area.image_square_url
-                        }
-                        lead={displayDate(activity.date_occured)}
-                        title={t(
-                          "{{activity_type_name}} in {{neighbourhood_name}}",
-                          {
-                            activity_type_name: t(activity.activity_type.name),
-                            neighbourhood_name: activity.area.display_name,
-                          }
-                        )}
-                      />
-                    </div>
-                  ))}
-                </GeoWithImagesTileContainer>
-                {/* {isAuthenticated && activitesSurplus > 0 && (
-                  <Link
-                    href={explorePath(area.slug_path + "/activities")}
-                    className="btn btn-load-more w-100 mt-2"
-                  >
-                    {t("Load {{count}} more", { count: activitesSurplus })}
-                  </Link>
-                )} */}
-              </Col>
-
-              {!isAuthenticated && (
-                <Col>
-                  <LoginOrSignUpCtaTile
-                    alternativeTitle={t("Sign Up To View More")}
-                  />
-                </Col>
+          <Bannerv2
+            // title={area.display_name}
+            description={
+              city && country
+                ? city.display_name + ", " + country.display_name
+                : null
+            }
+            showSearch={false}
+            searchCountry={null}
+            dark={true}
+          >
+            <>
+              <StaticMapImage src={area?.image_wide_url} />
+              <InteractiveActions
+                placeManager={placeManager}
+                subscriptionManager={subscriptionManager}
+              />
+            </>
+          </Bannerv2>
+          <Main>
+            <Col>
+              <PlaceList
+                name="area-activities"
+                description={activitesText}
+                items={activities?.results}
+                accessorHref={(activity) =>
+                  activityPath(activity.area.slug_path, activity.id)
+                }
+                accessorImageUrl={(activity) =>
+                  activity.area.image_square_red_url ||
+                  activity.area.image_square_url
+                }
+                accessorLead={(activity) => displayDate(activity.date)}
+                accessorTitle={(activity) =>
+                  t("{{activity_type_name}} in {{neighbourhood_name}}", {
+                    activity_type_name: t(activity.activity_type.name),
+                    neighbourhood_name: activity.area.display_name,
+                  })
+                }
+                shimmerLimit={activitiesLimit}
+              />
+              {isAuthenticated && activitesSurplus > 0 && (
+                <Link
+                  href={explorePath(city?.slug_path + "/activities")}
+                  className="btn btn-load-more w-100 mt-2"
+                >
+                  {t("Load {{count}} more", { count: activitesSurplus })}
+                </Link>
               )}
+            </Col>
 
+            {!isAuthenticated && (
               <Col>
-                <ActivityBreakdownTile areaName={area.display_name}>
-                  <>
-                    {activityBreakdown?.data?.map((breakdown) => (
-                      <ActivityBreakDownItem
-                        key={`ab-item-${breakdown.activity_type_name}`}
-                        name={t(breakdown.activity_type_name + "__plural")}
-                        count={isAuthenticated ? breakdown.count : null}
-                        percentage={breakdown.percentage}
-                      />
-                    ))}
-                  </>
-                </ActivityBreakdownTile>
+                <LoginOrSignUpCtaTile
+                  alternativeTitle={t("Sign Up To View More")}
+                />
               </Col>
+            )}
 
-              <Footer />
-            </Main>
-          </div>
-        )}
+            <Col>
+              <ActivityBreakDownList
+                name="area-activity-breakdown"
+                areaName={area?.display_name}
+                items={activityBreakdown?.data}
+                showPercentage={isAuthenticated}
+                shimmerLimit={3}
+              />
+            </Col>
+            <Footer />
+          </Main>
+        </div>
       </body>
     </>
   );
