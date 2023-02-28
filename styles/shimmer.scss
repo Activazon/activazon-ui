@@ -55,6 +55,10 @@
     @extend .shimmer-primary;
     height: 1.7rem;
   }
+  &.line-title-bg-color {
+    @extend .shimmer-bg-color;
+    height: 1.7rem;
+  }
   &.line-small {
     @extend .shimmer-bg-color;
     height: 0.9rem;
