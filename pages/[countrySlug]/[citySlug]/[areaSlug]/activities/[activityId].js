@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
 import Footer from "components/Footer";
@@ -16,23 +15,29 @@ import { useTrackOnce } from "lib/track";
 import { useUserRequired } from "lib/user";
 
 import { useSubscriptionManager } from "lib/subscriptionManager";
-import { usePlaceManager } from "lib/placeManager";
+import { usePlaceManager, PLACE_TYPES } from "lib/placeManager";
 
 const Page = ({ countrySlug, citySlug, areaSlug, activity }) => {
   const user = useUserRequired();
   const { t, locale } = useTrans();
   const { displayDate } = useDate();
-  const placeManager = usePlaceManager(countrySlug, citySlug, areaSlug, {
-    includeActivities: false,
-    includeActivityBreakdown: false,
-  });
+  const placeManager = usePlaceManager(
+    PLACE_TYPES.AREA,
+    countrySlug,
+    citySlug,
+    areaSlug,
+    {
+      includeActivities: false,
+      includeActivityBreakdown: false,
+    }
+  );
   const subscriptionManager = useSubscriptionManager(placeManager);
-  const { area, isLoaded } = placeManager;
+  const { area, detailsLoaded } = placeManager;
 
-  const address = isLoaded && area.display_name;
+  const address = detailsLoaded && area.display_name;
   const seoTitle = t("{{activity_type_name}} in {{neighbourhood_name}}", {
     activity_type_name: t(activity.activity_type.name),
-    neighbourhood_name: isLoaded && area.display_name,
+    neighbourhood_name: detailsLoaded && area.display_name,
   });
   const seoDescription = t(
     "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
@@ -41,7 +46,7 @@ const Page = ({ countrySlug, citySlug, areaSlug, activity }) => {
     }
   );
   const isAuthenticated = !!user;
-  const mapImageUrl = isLoaded && area.image_wide_url;
+  const mapImageUrl = detailsLoaded && area.image_wide_url;
   const summary = {
     en: activity.summary_en,
     es: activity.summary_es,
@@ -61,7 +66,7 @@ const Page = ({ countrySlug, citySlug, areaSlug, activity }) => {
         seoImageUrl={mapImageUrl}
       />
       <body>
-        {isLoaded && (
+        {detailsLoaded && (
           <div className="page">
             <Nav
               title={area.display_name}

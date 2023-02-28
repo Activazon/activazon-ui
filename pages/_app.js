@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
 import { loadFullStory } from "lib/track";
-import { Provider } from "react-redux";
-import store from "lib/redux/store";
 import { onLoad } from "lib/pwa";
 import { usePanelbear } from "@panelbear/panelbear-nextjs";
 // styling
@@ -50,10 +48,8 @@ export default function App({
   }, []);
 
   return (
-    <Provider store={store}>
-      <SessionProvider session={session}>
-        <Component {...pageProps} />
-      </SessionProvider>
-    </Provider>
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
   );
 }

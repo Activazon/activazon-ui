@@ -18,20 +18,26 @@ import { useDate } from "lib/date";
 import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
 
-import { usePlaceManager } from "lib/placeManager";
+import { usePlaceManager, PLACE_TYPES } from "lib/placeManager";
 import { useSubscriptionManager } from "lib/subscriptionManager";
 
 const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
   const activitiesLimit = 3;
-  const placeManager = usePlaceManager(countrySlug, citySlug, areaSlug, {
-    includeActivities: true,
-    includeActivityBreakdown: true,
-    activitiesOptions: {
-      limit: activitiesLimit,
-    },
-  });
+  const placeManager = usePlaceManager(
+    PLACE_TYPES.AREA,
+    countrySlug,
+    citySlug,
+    areaSlug,
+    {
+      includeActivities: true,
+      includeActivityBreakdown: true,
+      activitiesOptions: {
+        limit: activitiesLimit,
+      },
+    }
+  );
   const subscriptionManager = useSubscriptionManager(placeManager);
-  const { area, city, country, activities, activityBreakdown, isLoaded } =
+  const { area, city, country, activities, activityBreakdown, detailsLoaded } =
     placeManager;
 
   const activitesSurplus =
@@ -46,9 +52,9 @@ const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
   const address =
     area &&
     `${area.display_name}, ${city.display_name}, ${country.display_name}`;
-  const seoTitle = isLoaded && `${address} (${activitesText})`;
+  const seoTitle = detailsLoaded && `${address} (${activitesText})`;
   const seoDescription =
-    isLoaded &&
+    detailsLoaded &&
     t(
       "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
       {

@@ -17,28 +17,40 @@ import { explorePath, activityPath } from "lib/urls";
 import { useDate } from "lib/date";
 import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
-import { usePlaceManager } from "lib/placeManager";
+import { usePlaceManager, PLACE_TYPES } from "lib/placeManager";
 import { useSubscriptionManager } from "lib/subscriptionManager";
 
 const Page = ({ countrySlug, citySlug }) => {
   const areasLimit = 3;
   const activitiesLimit = 3;
 
-  const placeManager = usePlaceManager(countrySlug, citySlug, null, {
-    includeActivities: true,
-    includeActivityBreakdown: true,
-    includeAreas: true,
-    includeBrandImage: true,
-    areasOptions: {
-      limit: areasLimit,
-    },
-    activitiesOptions: {
-      limit: activitiesLimit,
-    },
-  });
+  const placeManager = usePlaceManager(
+    PLACE_TYPES.CITY,
+    countrySlug,
+    citySlug,
+    null,
+    {
+      includeActivities: true,
+      includeActivityBreakdown: true,
+      includeAreas: true,
+      includeBrandImage: true,
+      areasOptions: {
+        limit: areasLimit,
+      },
+      activitiesOptions: {
+        limit: activitiesLimit,
+      },
+    }
+  );
   const subscriptionManager = useSubscriptionManager(placeManager);
-  const { city, activities, areas, activityBreakdown, brandImage, isLoaded } =
-    placeManager;
+  const {
+    city,
+    activities,
+    areas,
+    activityBreakdown,
+    brandImage,
+    detailsLoaded,
+  } = placeManager;
 
   const activitesSurplus =
     activities && Math.max(activities.count - activitiesLimit, 0);
@@ -48,20 +60,20 @@ const Page = ({ countrySlug, citySlug }) => {
   const { t, p } = useTrans();
   const { displayDate } = useDate();
   const activitesText =
-    isLoaded &&
+    detailsLoaded &&
     p("1 activity", "{{count}} activities", city.activity_total_last5months);
   const address =
-    isLoaded && `${city.display_name}, ${city.country.display_name}`;
-  const seoTitle = isLoaded && `${address} (${activitesText})`;
+    detailsLoaded && `${city.display_name}, ${city.country.display_name}`;
+  const seoTitle = detailsLoaded && `${address} (${activitesText})`;
   const seoDescription =
-    isLoaded &&
+    detailsLoaded &&
     t(
       "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
       {
         address,
       }
     );
-  const seoImageUrl = isLoaded && city.image_wide_url;
+  const seoImageUrl = detailsLoaded && city.image_wide_url;
   const isAuthenticated = !!user;
 
   useTrackOnce("page.explore.city", {
