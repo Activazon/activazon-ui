@@ -3,7 +3,7 @@ const StaticMapImage = ({ src }) => {
   return (
     <div className="row">
       <div
-        className={classNames("banner-static-map-image-container", {
+        className={classNames("banner-static-map-image-container p-0", {
           shimmer: !src,
         })}
       >
