@@ -127,7 +127,7 @@ const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
               />
               {isAuthenticated && activitesSurplus > 0 && (
                 <Link
-                  href={explorePath(city?.slug_path + "/activities")}
+                  href={explorePath([area.slug_path, "activities"].join("/"))}
                   className="btn btn-load-more w-100 mt-2"
                 >
                   {t("Load {{count}} more", { count: activitesSurplus })}
