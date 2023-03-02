@@ -23,7 +23,7 @@ const Page = ({ countrySlug, citySlug }) => {
   const [areas, setAreas] = useState(null);
   useEffect(() => {
     if (city && !areas) {
-      getCityAreas(city.id).then((resp) => setAreas(resp));
+      getCityAreas(city.id, 30).then((resp) => setAreas(resp));
     }
   }, [city, areas]);
 
