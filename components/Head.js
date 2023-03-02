@@ -28,11 +28,13 @@ const AppHead = ({ title, seoDescription, seoKeywords, seoImageUrl }) => {
       />
       <link rel="icon" href="/favicon.ico" />
       <link rel="manifest" href={`${baseUrl}/manifest.webmanifest`} />
+      <meta name="theme-color" content="#0b2442" />
       <link
         rel="alternate"
         hrefLang="en"
         href={[baseUrl, "en", urlNoLocale].join("/")}
       />
+      <link rel="apple-touch-icon" href={`${baseUrl}/apple-touch-icon.png`} />
       <link
         rel="alternate"
         hrefLang="es"
