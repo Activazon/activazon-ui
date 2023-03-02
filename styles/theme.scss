@@ -19,6 +19,7 @@ $theme-colors: (
   "dark": $dark,
 );
 
+@import "./shimmer.scss";
 @import "./buttons.scss";
 @import "./banner.scss";
 @import "./navbar.scss";
@@ -26,6 +27,7 @@ $theme-colors: (
 @import "./tiles.scss";
 @import "./search.scss";
 @import "./tip.scss";
+@import "./toast.scss";
 
 a {
   color: $primary;

@@ -1,7 +1,7 @@
-const Bannerv2 = ({ title, description, dark, children }) => {
+const Bannerv2 = ({ title, description, dark, children, footer }) => {
   return (
     <div className={`banner ${dark ? " banner-dark" : ""}`}>
-      <div className="container">
+      <div className="container position-relative">
         {title && (
           <p className="banner-text banner-title text-capitalize mb-1">
             {title}

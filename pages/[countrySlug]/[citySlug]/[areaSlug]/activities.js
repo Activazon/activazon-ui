@@ -3,37 +3,58 @@ import Col from "components/Col";
 import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
-import GeoWithImagesTile from "components/GeoWithImagesTile";
-import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
+import PlaceList from "components/PlaceList";
 
 import { useTrans } from "lib/trans";
-import { getArea, getAreaActivities } from "lib/api-v2";
-import { explorePath, activityPath } from "lib/urls";
+import { getAreaActivities } from "lib/client-api";
+import { explorePath } from "lib/urls";
 import { useDate } from "lib/date";
 import { useTrackOnce } from "lib/track";
 import { useUserRequired } from "lib/user";
+import { usePlaceManager } from "lib/placeManager";
+import { useEffect, useState } from "react";
 
-const Page = ({ area, activities }) => {
+const Page = ({ countrySlug, citySlug, areaSlug }) => {
   const { t, p } = useTrans();
   const user = useUserRequired();
   const { displayDate } = useDate();
-  const activitesText = p(
-    "1 activity",
-    "{{count}} activities",
-    area.activity_total
+
+  const placeManager = usePlaceManager(
+    "area",
+    countrySlug,
+    citySlug,
+    areaSlug,
+    {}
   );
-  const address = `${area.display_name}, ${area.city.display_name}, , ${area.city.country.display_name}`;
-  const seoTitle = `${address} (${activitesText})`;
-  const seoDescription = t(
-    "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
-    {
-      address,
+  const { area } = placeManager;
+  const seoLoaded = !!area;
+
+  const [activities, setActivities] = useState(null);
+
+  useEffect(() => {
+    if (area && !activities) {
+      getAreaActivities(area.id, null).then((resp) => setActivities(resp));
     }
-  );
-  const seoImageUrl = area.image_wide_url;
+  }, [area, activities]);
+
+  const activitesText =
+    seoLoaded && p("1 activity", "{{count}} activities", area.activity_total);
+  const address =
+    seoLoaded &&
+    `${area.display_name}, ${area.city.display_name}, , ${area.city.country.display_name}`;
+  const seoTitle = seoLoaded && `${address} (${activitesText})`;
+  const seoDescription =
+    seoLoaded &&
+    t(
+      "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
+      {
+        address,
+      }
+    );
+  const seoImageUrl = seoLoaded && area.image_wide_url;
   useTrackOnce("page.explore.area.activities", {
     isAuthenticated: !!user,
-    areaSlug: area.slug,
+    areaSlug: areaSlug,
   });
 
   return (
@@ -47,33 +68,37 @@ const Page = ({ area, activities }) => {
       <body>
         <div className="page">
           <Nav
-            backHref={explorePath(area.slug_path)}
-            title={area.display_name}
+            backHref={area && explorePath(area.slug_path)}
+            title={area?.display_name}
           />
           <Main>
             <Col>
-              <GeoWithImagesTileContainer description={activitesText}>
-                {activities?.results?.map((activity) => (
-                  <div className="col-12 col-md-6">
-                    <GeoWithImagesTile
-                      href={activityPath(activity.area.slug_path, activity.id)}
-                      key={`activity-card-${activity.id}`}
-                      image={
-                        activity.area.image_square_red_url ||
-                        activity.area.image_square_url
-                      }
-                      lead={displayDate(activity.date_occured)}
-                      title={t(
-                        "{{activity_type_name}} in {{neighbourhood_name}}",
-                        {
-                          activity_type_name: t(activity.activity_type.name),
-                          neighbourhood_name: activity.area.display_name,
-                        }
-                      )}
-                    />
-                  </div>
-                ))}
-              </GeoWithImagesTileContainer>
+              <PlaceList
+                description={t("Activities detected in {{placeDisplayName}}", {
+                  placeDisplayName: area?.display_name,
+                })}
+                name="home-activities"
+                items={activities?.results}
+                accessorHref={(activity) =>
+                  explorePath(
+                    [activity.area.slug_path, "activities", activity.id].join(
+                      "/"
+                    )
+                  )
+                }
+                accessorImageUrl={(activity) =>
+                  activity.area.image_square_red_url ||
+                  activity.area.image_square_url
+                }
+                accessorLead={(activity) => displayDate(activity.date)}
+                accessorTitle={(activity) =>
+                  t("{{activity_type_name}} in {{neighbourhood_name}}", {
+                    activity_type_name: t(activity.activity_type.name),
+                    neighbourhood_name: activity.area.display_name,
+                  })
+                }
+                shimmerLimit={10}
+              />
             </Col>
 
             <Footer />
@@ -89,19 +114,11 @@ export default Page;
 export async function getServerSideProps(context) {
   const { countrySlug, citySlug, areaSlug } = context.params;
 
-  const area = await getArea(countrySlug, citySlug, areaSlug);
-
-  if (isNaN(area.id)) {
-    return {
-      notFound: true,
-    };
-  }
-  const [activities] = await Promise.all([getAreaActivities(area.id, null)]);
-
   return {
     props: {
-      area,
-      activities,
+      countrySlug,
+      citySlug,
+      areaSlug,
     },
   };
 }

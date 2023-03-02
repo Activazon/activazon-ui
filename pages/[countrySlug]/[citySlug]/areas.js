@@ -3,32 +3,49 @@ import Col from "components/Col";
 import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
-import GeoWithImagesTile from "components/GeoWithImagesTile";
-import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
+import PlaceList from "components/PlaceList";
 
 import { useTrans } from "lib/trans";
-import { getCity, getCityAreas } from "lib/api-v2";
+import { getCityAreas } from "lib/client-api";
 import { explorePath } from "lib/urls";
 import { useTrackOnce } from "lib/track";
 import { useUserRequired } from "lib/user";
+import { usePlaceManager } from "lib/placeManager";
+import { useCallback, useEffect, useState } from "react";
 
-const Page = ({ city, areas }) => {
+const Page = ({ countrySlug, citySlug }) => {
   const { t } = useTrans();
   const user = useUserRequired();
-  const areasText = t("Areas in {{city}} actively being tracked", {
-    city: city.display_name,
-  });
-  const address = `${city.display_name}, ${city.country.display_name}`;
-  const seoTitle = `${address} (${areasText})`;
-  const seoDescription = t(
-    "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
-    {
-      address,
+
+  const { city } = usePlaceManager("city", countrySlug, citySlug, null, {});
+  const seoLoaded = !!city;
+
+  const [areas, setAreas] = useState(null);
+  useEffect(() => {
+    if (city && !areas) {
+      getCityAreas(city.id).then((resp) => setAreas(resp));
     }
-  );
-  const seoImageUrl = city.image_wide_url;
+  }, [city, areas]);
+
+  const areasText =
+    seoLoaded &&
+    t("Areas in {{city}} actively being tracked", {
+      city: city.display_name,
+    });
+  const address =
+    seoLoaded && `${city.display_name}, ${city.country.display_name}`;
+  const seoTitle = seoLoaded && `${address} (${areasText})`;
+  const seoDescription =
+    seoLoaded &&
+    t(
+      "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
+      {
+        address,
+      }
+    );
+  const seoImageUrl = seoLoaded && city.image_wide_url;
   useTrackOnce("page.explore.city.areas", {
-    citySlug: city.slug,
+    citySlug: citySlug,
     isAuthenticated: !!user,
   });
 
@@ -43,24 +60,26 @@ const Page = ({ city, areas }) => {
       <body>
         <div className="page">
           <Nav
-            backHref={explorePath(city.slug_path)}
-            title={city.display_name}
+            backHref={city && explorePath(city?.slug_path)}
+            title={city?.display_name}
           />
           <Main>
             <Col>
-              <GeoWithImagesTileContainer description={areasText}>
-                {areas?.results?.map((area) => (
-                  <div className="col-12 col-md-6">
-                    <GeoWithImagesTile
-                      href={explorePath(area.slug_path)}
-                      key={`area-card-${area.id}`}
-                      image={area.image_square_red_url || area.image_square_url}
-                      lead={city.display_name}
-                      title={area.display_name}
-                    />
-                  </div>
-                ))}
-              </GeoWithImagesTileContainer>
+              <PlaceList
+                name="city-areas"
+                description={t("Areas in {{city}}", {
+                  city: city?.display_name,
+                })}
+                items={areas?.results}
+                accessorHref={(area) => explorePath(area.slug_path)}
+                accessorImageUrl={(area) =>
+                  area.image_square_red_url || area.image_square_url
+                }
+                accessorLead={useCallback((area) => city.display_name, [city])}
+                accessorTitle={(area) => area.display_name}
+                accessorDescription={null}
+                shimmerLimit={10}
+              />
             </Col>
 
             <Footer />
@@ -76,19 +95,10 @@ export default Page;
 export async function getServerSideProps(context) {
   const { countrySlug, citySlug } = context.params;
 
-  const city = await getCity(countrySlug, citySlug);
-
-  if (isNaN(city.id)) {
-    return {
-      notFound: true,
-    };
-  }
-  const [areas] = await Promise.all([getCityAreas(city.id, null)]);
-
   return {
     props: {
-      city,
-      areas,
+      countrySlug,
+      citySlug,
     },
   };
 }

@@ -12,6 +12,15 @@ export const AreaItem = ({ name, description, href }) => (
   </div>
 );
 
+export const AreaItemShimmer = ({}) => (
+  <div className="col-12 px-0">
+    <div className="card card card-item">
+      <div className="line line-title line-wl mb-2" />
+      <div className="line line-small line-wxl" />
+    </div>
+  </div>
+);
+
 const AreasTile = ({ children, areaName }) => {
   const { t } = useTrans();
   return (

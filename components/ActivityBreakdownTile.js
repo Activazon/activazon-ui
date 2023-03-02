@@ -15,6 +15,23 @@ export const ActivityBreakDownItem = ({ name, count, percentage }) => (
   </div>
 );
 
+export const ActivityBreakDownItemShimmer = ({}) => (
+  <div className="col-12">
+    <div className="activity-slide">
+      <div className="text-content mb-1">
+        <p className="label-lg">
+          <div className="line line-small line-wm" />
+        </p>
+
+        <p className="label-sm">
+          <div className="line line-small line-ws" />
+        </p>
+      </div>
+      <div className="bar-content"></div>
+    </div>
+  </div>
+);
+
 const ActivityBreakdownTile = ({ children, areaName }) => {
   const { t } = useTrans();
   return (

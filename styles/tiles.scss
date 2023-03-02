@@ -1,3 +1,12 @@
+@keyframes place-holder-shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
 .card.card-body.tile {
   margin-bottom: 0px;
   background-color: $white;
@@ -44,6 +53,7 @@
   background-color: rgba($primary, 0.05);
 
   .img-thumbnail {
+    aspect-ratio: 1 / 1;
     border: 0px;
     padding: 0px;
   }
@@ -51,6 +61,13 @@
   @media (hover: hover) {
     &:hover {
       background-color: rgba($primary, 0.2);
+    }
+  }
+
+  &.with-shimmer {
+    .img-thumbnail {
+      opacity: 0.4;
+      @extend .shimmer-bg-color;
     }
   }
 }

@@ -4,10 +4,9 @@ import Col from "components/Col";
 import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
-import GeoWithImagesTile from "components/GeoWithImagesTile";
-import GeoWithImagesTileContainer from "components/GeoWithImagesTileContainer";
+
+import PlaceList from "components/PlaceList";
 import SearchWidget from "components/SearchWidget";
-import SpinnerWhenBusy from "components/SpinnerWhenBusy";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
 // import Tip from "components/Tip";
 import { useTrans } from "lib/trans";
@@ -29,12 +28,14 @@ const Page = () => {
 
   // load initial cities, to improve time to interact
   // then after the user is authenticated, load more cities
+  const citiesLimit = 20;
   const cities = useApi(
-    () => (isAuthenticated ? getCities(20) : getCachedCities()),
+    () => (isAuthenticated ? getCities(citiesLimit) : getCachedCities()),
     null,
     [isAuthenticated]
   );
-  const activites = useApi(() => getActivities(5), null);
+  const activitiesLimit = 3;
+  const activities = useApi(() => getActivities(activitiesLimit), null);
 
   return (
     <>
@@ -51,85 +52,61 @@ const Page = () => {
             </div>
           </Bannerv2>
           <Main>
-            <SpinnerWhenBusy isBusy={!cities.ready}>
-              <>
-                {activites && (
-                  <Col>
-                    <GeoWithImagesTileContainer>
-                      <p className="tile-title mb-0">
-                        {i("Activities detected")}
-                      </p>
-                      <div className="row gy-3">
-                        {activites?.data?.results?.map((activity) => (
-                          <div
-                            key={`activiy-${activity.id}`}
-                            className="col-12 col-md-6"
-                          >
-                            <GeoWithImagesTile
-                              href={explorePath(
-                                [
-                                  activity.area.slug_path,
-                                  "activities",
-                                  activity.id,
-                                ].join("/")
-                              )}
-                              image={
-                                activity.area.image_square_red_url ||
-                                activity.area.image_square_url
-                              }
-                              lead={displayDate(activity.date_occured)}
-                              title={t(
-                                "{{activity_type_name}} in {{neighbourhood_name}}",
-                                {
-                                  activity_type_name: t(
-                                    activity.activity_type.name
-                                  ),
-                                  neighbourhood_name:
-                                    activity.area.display_name,
-                                }
-                              )}
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </GeoWithImagesTileContainer>
-                  </Col>
-                )}
+            <>
+              <Col>
+                <PlaceList
+                  description={i("Activities detected")}
+                  name="home-activities"
+                  items={activities?.data?.results}
+                  accessorHref={(activity) =>
+                    explorePath(
+                      [activity.area.slug_path, "activities", activity.id].join(
+                        "/"
+                      )
+                    )
+                  }
+                  accessorImageUrl={(activity) =>
+                    activity.area.image_square_red_url ||
+                    activity.area.image_square_url
+                  }
+                  accessorLead={(activity) => displayDate(activity.date)}
+                  accessorTitle={(activity) =>
+                    t("{{activity_type_name}} in {{neighbourhood_name}}", {
+                      activity_type_name: t(activity.activity_type.name),
+                      neighbourhood_name: activity.area.display_name,
+                    })
+                  }
+                  shimmerLimit={activitiesLimit}
+                />
+              </Col>
+
+              <Col>
+                <PlaceList
+                  name="home-cities"
+                  description={i("Cities")}
+                  items={cities?.data?.results}
+                  accessorHref={(city) => explorePath(city.slug_path)}
+                  accessorImageUrl={(city) => city.image_square_url}
+                  accessorLead={(city) => city.country.display_name}
+                  accessorTitle={(city) => city.display_name}
+                  accessorDescription={(city) =>
+                    p(
+                      "1 activity in the last 5 months",
+                      "{{count}} activities in the last 5 months",
+                      city.activity_total_last5months
+                    )
+                  }
+                  shimmerLimit={activitiesLimit}
+                />
+              </Col>
+              {!isAuthenticated && (
                 <Col>
-                  <GeoWithImagesTileContainer>
-                    <p className="tile-title mb=0">{i("Cities")}</p>
-                    <div className="row gy-3">
-                      {cities?.data?.results?.map((c) => (
-                        <div
-                          key={`city-${c.slug_path}`}
-                          className="col-12 col-md-6"
-                        >
-                          <GeoWithImagesTile
-                            href={explorePath(c.slug_path)}
-                            key={`city-card-${c.id}`}
-                            image={c.image_square_url}
-                            lead={c.country.display_name}
-                            title={c.display_name}
-                            description={p(
-                              "1 activity in the last 5 months",
-                              "{{count}} activities in the last 5 months",
-                              c.activity_total_last5months
-                            )}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </GeoWithImagesTileContainer>
+                  <LoginOrSignUpCtaTile
+                    alternativeTitle={t("Sign Up To View More")}
+                  />
                 </Col>
-                {!isAuthenticated && (
-                  <Col>
-                    <LoginOrSignUpCtaTile
-                      alternativeTitle={t("Sign Up To View More")}
-                    />
-                  </Col>
-                )}
-              </>
-            </SpinnerWhenBusy>
+              )}
+            </>
 
             <Footer />
           </Main>

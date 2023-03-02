@@ -6,6 +6,10 @@ const TITLE = "Activazon";
 
 const AppHead = ({ title, seoDescription, seoKeywords, seoImageUrl }) => {
   const { pathname } = useRouter();
+  let baseUrl = "";
+  if (typeof window !== "undefined") {
+    baseUrl = window.location.origin;
+  }
   const { i } = useTrans();
   const titleText = title ? `${title} - ${TITLE}` : TITLE;
   seoDescription =
@@ -13,6 +17,7 @@ const AppHead = ({ title, seoDescription, seoKeywords, seoImageUrl }) => {
   seoImageUrl = seoImageUrl || "https://www.activazon.com/social-share.png";
   seoKeywords = seoKeywords || [];
   const urlNoLocale = pathname.replace("/en", "").replace("/es", "");
+
   return (
     <Head>
       <title>{titleText}</title>
@@ -22,33 +27,18 @@ const AppHead = ({ title, seoDescription, seoKeywords, seoImageUrl }) => {
         content="width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no"
       />
       <link rel="icon" href="/favicon.ico" />
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/apple-touch-icon.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="/favicon-32x32.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href="/favicon-16x16.png"
-      />
-      <link rel="manifest" href="/site.webmanifest" />
+      <link rel="manifest" href={`${baseUrl}/manifest.webmanifest`} />
+      <meta name="theme-color" content="#0b2442" />
       <link
         rel="alternate"
         hrefLang="en"
-        href={"https://activazon.com/en/" + urlNoLocale}
+        href={[baseUrl, "en", urlNoLocale].join("/")}
       />
+      <link rel="apple-touch-icon" href={`${baseUrl}/apple-touch-icon.png`} />
       <link
         rel="alternate"
         hrefLang="es"
-        href={"https://activazon.com/es" + urlNoLocale}
+        href={[baseUrl, "es", urlNoLocale].join("/")}
       />
       {/* Meta tags */}
       <meta property="og:site_name" content={TITLE} />
