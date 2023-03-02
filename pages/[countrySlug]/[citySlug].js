@@ -83,12 +83,14 @@ const Page = ({ countrySlug, citySlug }) => {
 
   return (
     <>
-      <Head
-        title={seoTitle}
-        seoDescription={seoDescription}
-        seoKeywords={[address]}
-        seoImageUrl={seoImageUrl}
-      />
+      {detailsLoaded && (
+        <Head
+          title={seoTitle}
+          seoDescription={seoDescription}
+          seoKeywords={[address]}
+          seoImageUrl={seoImageUrl}
+        />
+      )}
       <body>
         <div className="page">
           <Nav title={city?.display_name} backHref={explorePath()} />
