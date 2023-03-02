@@ -4,10 +4,10 @@ const InteractiveActions = ({ placeManager, subscriptionManager }) => {
   return (
     <>
       <div className="banner-interactive-actions">
-        {/* <SubscribeButton
+        <SubscribeButton
           placeManager={placeManager}
           subscriptionManager={subscriptionManager}
-        /> */}
+        />
       </div>
     </>
   );
