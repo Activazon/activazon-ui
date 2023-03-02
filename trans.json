@@ -611,5 +611,17 @@
   "state-of-emergency": {
     "en": "State of Emergency",
     "es": "Estado de Emergencia"
+  },
+  "child-pornography": {
+    "es": "Pornografía infantiles",
+    "en": "Child Pornography"
+  },
+  "child-pornography__plural": {
+    "es": "Pornografía infantiles",
+    "en": "Child Pornography"
+  },
+  "massacre": {
+    "es": "Masacre",
+    "en": "Massacre"
   }
 }
