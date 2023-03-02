@@ -16,8 +16,10 @@ import { useEffect, useState } from "react";
 import { useSubscriptionManager } from "lib/subscriptionManager";
 import { usePlaceManager, PLACE_TYPES } from "lib/placeManager";
 import { getActivity } from "lib/client-api";
+import { useRouter } from "next/router";
 
 const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
+  const router = useRouter();
   const [activity, setActivity] = useState(null);
   const user = useUserRequired();
   const { t, locale } = useTrans();
@@ -37,6 +39,10 @@ const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
   useEffect(() => {
     if (!activity) {
       getActivity(activityId).then((resp) => {
+        if (!resp.id) {
+          router.push("/404");
+          return;
+        }
         setActivity(resp);
       });
       // TODO: handle 404
