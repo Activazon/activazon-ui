@@ -34,6 +34,21 @@
       "label": "Crime Stats for neighbourhoods"
     }
   ],
+  "shortcuts": [
+    {
+      "name": "Tegucigalpa",
+      "url": "/honduras/tegucigalpa",
+      "description": "List of events planned for today"
+    },
+    {
+      "name": "San Pedro Sula",
+      "url": "/honduras/san-pedro-sula"
+    },
+    {
+      "name": "La Ceiba",
+      "url": "/honduras/la-ceiba"
+    }
+  ],
   "icons": [
     {
       "src": "/icon-192x192.png",
