@@ -6,14 +6,13 @@ import Head from "components/Head";
 import PlaceList from "components/PlaceList";
 
 import { useTrans } from "lib/trans";
-import { explorePath, activityPath } from "lib/urls";
+import { explorePath } from "lib/urls";
 import { useDate } from "lib/date";
 import { useTrackOnce } from "lib/track";
 import { useUserRequired } from "lib/user";
 import { usePlaceManager } from "lib/placeManager";
 import { useEffect, useState } from "react";
 import { getCityActivities } from "lib/client-api";
-import { useApi } from "lib/api-helper";
 
 const Page = ({ countrySlug, citySlug }) => {
   const { t, p } = useTrans();
@@ -68,7 +67,9 @@ const Page = ({ countrySlug, citySlug }) => {
           <Main>
             <Col>
               <PlaceList
-                description={t("Activities detected")}
+                description={t("Activities detected in {{placeDisplayName}}", {
+                  placeDisplayName: city?.display_name,
+                })}
                 name="home-activities"
                 items={activities?.results}
                 accessorHref={(activity) =>

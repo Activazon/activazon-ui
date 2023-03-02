@@ -599,5 +599,13 @@
   "It seems like we can't turn on push notifications for you. You can try turning them on manually in your browser settings or try a different device.": {
     "en": "It seems like we can't turn on push notifications for you. You can try turning them on manually in your browser settings or try a different device.",
     "es": "Parece que no podemos activar las notificaciones push para usted. Puede intentar activarlas manualmente en la configuración de su navegador o probar un dispositivo diferente."
+  },
+  "Areas in {{city}}": {
+    "en": "Areas in {{city}}",
+    "es": "Areas en {{city}}"
+  },
+  "Activities detected in {{placeDisplayName}}": {
+    "en": "Activities detected in {{placeDisplayName}}",
+    "es": "Actividades detectadas en {{placeDisplayName}}"
   }
 }

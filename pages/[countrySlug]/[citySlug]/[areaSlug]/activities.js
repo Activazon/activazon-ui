@@ -74,7 +74,9 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
           <Main>
             <Col>
               <PlaceList
-                description={t("Activities detected")}
+                description={t("Activities detected in {{placeDisplayName}}", {
+                  placeDisplayName: area?.display_name,
+                })}
                 name="home-activities"
                 items={activities?.results}
                 accessorHref={(activity) =>
