@@ -607,5 +607,9 @@
   "Activities detected in {{placeDisplayName}}": {
     "en": "Activities detected in {{placeDisplayName}}",
     "es": "Actividades detectadas en {{placeDisplayName}}"
+  },
+  "state-of-emergency": {
+    "en": "State of Emergency",
+    "es": "Estado de Emergencia"
   }
 }

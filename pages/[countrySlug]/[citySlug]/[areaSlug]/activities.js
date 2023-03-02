@@ -33,7 +33,7 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
 
   useEffect(() => {
     if (area && !activities) {
-      getAreaActivities(area.id, null).then((resp) => setActivities(resp));
+      getAreaActivities(area.id, 30).then((resp) => setActivities(resp));
     }
   }, [area, activities]);
 

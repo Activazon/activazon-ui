@@ -26,7 +26,7 @@ const Page = ({ countrySlug, citySlug }) => {
 
   useEffect(() => {
     if (city && !activities) {
-      getCityActivities(city.id).then((resp) => setActivities(resp));
+      getCityActivities(city.id, 30).then((resp) => setActivities(resp));
     }
   }, [city, activities]);
 
