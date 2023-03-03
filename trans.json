@@ -623,5 +623,13 @@
   "massacre": {
     "es": "Masacre",
     "en": "Massacre"
+  },
+  "Stay informed with real-time crime updates in {{placeDisplayName}}": {
+    "en": "Stay informed with real-time crime updates in {{placeDisplayName}}",
+    "es": "Mantente informado con actualizaciones en tiempo real sobre crímenes en {{placeDisplayName}}"
+  },
+  "Get the latest updates on crime in {{placeDisplayName}} straight to your phone or desktop with Activazon. Our platform keeps you informed and aware of what's happening in your community in real-time. Stay safe and aware with Activazon's crime updates.": {
+    "en": "Get the latest updates on crime in {{placeDisplayName}} straight to your phone or desktop with Activazon. Our platform keeps you informed and aware of what's happening in your community in real-time. Stay safe and aware with Activazon's crime updates.",
+    "es": "Obtén las últimas actualizaciones sobre crímenes en {{placeDisplayName}} directamente en tu teléfono móvil o computadora con Activazon. Nuestra plataforma te mantiene informado y al tanto de lo que está sucediendo en tu comunidad en tiempo real. Mantente seguro y consciente con las actualizaciones sobre crímenes de Activazon."
   }
 }

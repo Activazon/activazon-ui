@@ -1,4 +1,5 @@
 import SubscribeButton from "./InteractiveActions/SubscribeButton";
+import ShareButton from "./InteractiveActions/ShareButton";
 
 const InteractiveActions = ({ placeManager, subscriptionManager }) => {
   return (
@@ -8,6 +9,7 @@ const InteractiveActions = ({ placeManager, subscriptionManager }) => {
           placeManager={placeManager}
           subscriptionManager={subscriptionManager}
         /> */}
+        <ShareButton placeManager={placeManager} />
       </div>
     </>
   );
