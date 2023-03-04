@@ -83,7 +83,7 @@ const Page = ({ countrySlug, citySlug }) => {
                   activity.area.image_square_red_url ||
                   activity.area.image_square_url
                 }
-                accessorLead={(activity) => displayDate(activity.date)}
+                accessorLead={(activity) => displayDate(activity.date_occured)}
                 accessorTitle={(activity) =>
                   t("{{activity_type_name}} in {{neighbourhood_name}}", {
                     activity_type_name: t(activity.activity_type.name),
