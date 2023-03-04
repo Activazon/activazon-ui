@@ -1,11 +1,11 @@
 // const ICON_URL = "https://www.activazon.com/apple-touch-icon.png";
-const CACHE_NAME = "activazon-cache-v1";
+const CACHE_NAME = "activazon-cache-v1.0.1";
 
 self.addEventListener("install", function (event) {
   console.debug("Service Worker installed");
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(["/", "/account"]);
+      return cache.addAll(["/", "/en", "/account", "/en/account"]);
     })
   );
 });
@@ -22,33 +22,34 @@ self.addEventListener("fetch", async (event) => {
    */
 
   const url = new URL(event.request.url);
-  const isNexturl = url.pathname.startsWith("/_next");
-  const isLocalImage =
-    url.pathname.startsWith("/") &&
-    (url.pathname.endsWith(".png") ||
-      url.pathname.endsWith(".jpg") ||
-      url.pathname.endsWith(".ttf"));
-  const shouldBeInCache = isNexturl || isLocalImage;
+  const isDeveloplmentUrl = url.pathname.startsWith(
+    "/_next/static/development"
+  );
+  const shouldBeInCache =
+    event.request.url.startsWith(self.location.origin) && !isDeveloplmentUrl;
+  const cache = await caches.open(CACHE_NAME);
 
   if (shouldBeInCache) {
     // check cache
-    const cache = await caches.open(CACHE_NAME);
     const cachedResponse = await cache.match(event.request.url);
 
     if (cachedResponse) {
       // return cached response
       return event.respondWith(cachedResponse);
     }
-    // fetch and cache
+  }
+  try {
+    // fetch
     const response = await fetch(event.request);
-
-    if (response.ok) {
-      cache.add(event.request, response.clone());
+    // cache if needed
+    if (shouldBeInCache && response.ok) {
+      cache.put(event.request, response.clone());
     }
 
     return event.respondWith(response);
+  } catch (error) {
+    return event.respondWith(new Response('{"offline": true}'));
   }
-  event.respondWith(fetch(event.request));
 });
 
 // self.addEventListener("push", (event) => {
