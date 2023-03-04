@@ -3,21 +3,6 @@ import { useTrans } from "lib/trans";
 import { useRouter } from "next/router";
 import { track } from "lib/track";
 
-const ProductHunt = () => (
-  <a
-    href="https://www.producthunt.com/posts/activazon?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-activazon"
-    target="_blank"
-  >
-    <img
-      src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=376912&theme=light"
-      alt="Activazon - AI&#0032;crime&#0032;analytics&#0032;for&#0032;travellers&#0032;and&#0032;residence | Product Hunt"
-      style={{ width: "250px", height: "54px" }}
-      width="250"
-      height="54"
-    />
-  </a>
-);
-
 const Footer = () => {
   const { t } = useTrans();
   const router = useRouter();
@@ -41,9 +26,6 @@ const Footer = () => {
 
   return (
     <div className="container my-5 text-center">
-      <p>
-        <ProductHunt />
-      </p>
       <p>
         <Link
           href="https://www.instagram.com/activazon/"
