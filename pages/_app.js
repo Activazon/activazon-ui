@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
 import { loadFullStory } from "lib/track";
+import Script from "next/script";
 import { onLoad } from "lib/pwa";
-import { usePanelbear } from "@panelbear/panelbear-nextjs";
 // styling
 import "../styles/theme.scss";
 import "nprogress/nprogress.css";
@@ -14,7 +14,6 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   const router = useRouter();
-  usePanelbear("IQemxXNOhlr");
   useEffect(() => {
     // handles showing and hiding the loading overlay
     // when the router is changing routes
@@ -50,6 +49,20 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <Component {...pageProps} />
+      {/* google tag */}
+      <Script
+        async={true}
+        src="https://www.googletagmanager.com/gtag/js?id=G-QWY03DH2W4"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-QWY03DH2W4');
+        `}
+      </Script>
     </SessionProvider>
   );
 }
