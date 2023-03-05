@@ -7,6 +7,7 @@ import { useTrans } from "lib/trans";
 import { useUser } from "lib/user";
 import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
+import { track } from "lib/track";
 
 const SubscribeButton = ({ placeManager, subscriptionManager }) => {
   /**
@@ -35,6 +36,7 @@ const SubscribeButton = ({ placeManager, subscriptionManager }) => {
       e.preventDefault();
 
       if (!user) {
+        track("subscribe.click.not-logged-in");
         // can't subscribe if not logged in
         router.push({
           pathname: "/signup",
@@ -46,14 +48,17 @@ const SubscribeButton = ({ placeManager, subscriptionManager }) => {
       switch (checkPermissions()) {
         case "granted":
           // we already have permission, so just subscribe the user
+          track("subscribe.click.granted");
           subscribeUserToArea();
           break;
         case "denied":
         case "unsupported":
+          track("subscribe.click.push-notifications-denied-prompt");
           // user has denied notifications or browser doesn't support push notifications
           setToastType(TOASTS.PUSH_NOTIFICATIONS_DENIED);
           break;
         case "default":
+          track("subscribe.click.push-notifications-default-prompt");
           // user has not yet been asked for permission, so ask them
           setToastType(TOASTS.PUSH_NOTIFICATIONS_DEFAULT);
           break;
@@ -62,14 +67,21 @@ const SubscribeButton = ({ placeManager, subscriptionManager }) => {
     [user]
   );
   const onUnsubscribe = (e) => {
+    track("unsubscribe.click");
     e.preventDefault();
     unsubscribeUserFromArea();
   };
   const requestPermissionAndSubscribe = (e) => {
     e.preventDefault();
     requestNotificationPermissionAndSubscribe({
-      onGranted: () => setToastType(null),
-      onError: () => setToastType(TOASTS.PUSH_NOTIFICATIONS_DENIED),
+      onGranted: () => {
+        track("subscribe.click.push-notifications-default-prompt.success");
+        setToastType(null);
+      },
+      onError: () => {
+        track("subscribe.click.push-notifications-default-prompt.failed");
+        setToastType(TOASTS.PUSH_NOTIFICATIONS_DENIED);
+      },
     });
   };
 
