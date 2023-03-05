@@ -51,7 +51,6 @@ export default function App({
       <Component {...pageProps} />
       {/* google tag */}
       <Script
-        async={true}
         src="https://www.googletagmanager.com/gtag/js?id=G-QWY03DH2W4"
         strategy="afterInteractive"
       />
