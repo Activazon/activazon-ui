@@ -7,7 +7,7 @@ const PlaceItemSmall = ({ image, lead, title, description, href }) => {
       <Link href={href} target={href?.startsWith("/") ? "_self" : "_blank"}>
         <div className="row gy-2">
           <div className="col-12">
-            {image.startsWith("/") ? (
+            {image?.startsWith("/") ? (
               <Image
                 src={image}
                 alt={title}

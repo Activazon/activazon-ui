@@ -4,10 +4,10 @@ import Image from "next/image";
 const GeoWithImagesTile = ({ image, lead, title, description, href }) => {
   return (
     <div className="card card-body tile tile-geo-with-images">
-      <Link href={href} target={href.startsWith("/") ? "_self" : "_blank"}>
+      <Link href={href} target={href?.startsWith("/") ? "_self" : "_blank"}>
         <div className="row">
           <div className="col-5 col-md-4">
-            {image.startsWith("/") ? (
+            {image?.startsWith("/") ? (
               <Image
                 src={image}
                 alt={title}
