@@ -12,14 +12,17 @@ const PlaceList = ({
   accessorDescription,
   shimmerLimit,
   name,
+  itemWrapperClassName = "col-12 col-md-6 mb-2",
+  ItemComponent = GeoWithImagesTile,
+  ShimmerComponent = GeoWithImagesTileShimmer,
 }) => {
   const shimmerItems = Array.from(Array(shimmerLimit).keys());
   return (
     <GeoWithImagesTileContainer description={description}>
       <div className="row gy-2">
         {items?.map((item, key) => (
-          <div className="col-12 col-md-6" key={name + "--" + key}>
-            <GeoWithImagesTile
+          <div className={itemWrapperClassName} key={name + "--" + key}>
+            <ItemComponent
               href={accessorHref(item)}
               key={`item-card-${item.id}`}
               image={accessorImageUrl(item)}
@@ -31,8 +34,8 @@ const PlaceList = ({
         ))}
         {!items &&
           shimmerItems?.map((_, key) => (
-            <div className="col-12 col-md-6" key={name + "--" + key}>
-              <GeoWithImagesTileShimmer />
+            <div className={itemWrapperClassName} key={name + "--" + key}>
+              <ShimmerComponent />
             </div>
           ))}
       </div>

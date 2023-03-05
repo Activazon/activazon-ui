@@ -8,6 +8,10 @@ import Head from "components/Head";
 import PlaceList from "components/PlaceList";
 import SearchWidget from "components/SearchWidget";
 import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
+import PlaceItemSmall, {
+  PlaceItemSmallShimmer,
+} from "components/PlaceItemSmall";
+
 // import Tip from "components/Tip";
 import { useTrans } from "lib/trans";
 import { getCities, getCachedCities, getActivities } from "lib/client-api";
@@ -91,12 +95,15 @@ const Page = () => {
                   accessorTitle={(city) => city.display_name}
                   accessorDescription={(city) =>
                     p(
-                      "1 activity in the last 5 months",
-                      "{{count}} activities in the last 5 months",
+                      "1 activity",
+                      "{{count}} activities",
                       city.activity_total_last5months
                     )
                   }
                   shimmerLimit={activitiesLimit}
+                  itemWrapperClassName="col-6 mb-4"
+                  ItemComponent={PlaceItemSmall}
+                  ShimmerComponent={PlaceItemSmallShimmer}
                 />
               </Col>
               {!isAuthenticated && (

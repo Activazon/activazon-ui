@@ -200,3 +200,26 @@
     }
   }
 }
+
+.card.card-body.tile.place-item-small-tile {
+  @extend .p-2;
+  border: 1px solid $primary;
+  background-color: rgba($primary, 0.05);
+  text-align: center;
+
+  .img-thumbnail {
+    aspect-ratio: 1 / 1;
+    border: 0px;
+    padding: 0px;
+    background-color: $bg-color;
+    border-radius: 100% !important;
+    border: 3px solid $primary;
+  }
+
+  .tile-title {
+    color: $text-default-color;
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 0px;
+  }
+}
