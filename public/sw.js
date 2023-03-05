@@ -15,41 +15,43 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-self.addEventListener("fetch", async (event) => {
+self.addEventListener("fetch", (event) => {
   /**
    * This is the service worker that will intercept all requests
    * requirement for a2hs
    */
+  event.respondWith(
+    (async () => {
+      const url = new URL(event.request.url);
+      const isDeveloplmentUrl = url.pathname.startsWith(
+        "/_next/static/development"
+      );
+      const shouldBeInCache =
+        event.request.url.startsWith(self.location.origin) &&
+        !isDeveloplmentUrl;
+      const cache = await caches.open(CACHE_NAME);
+      const cachedResponse = await cache.match(event.request.url);
 
-  const url = new URL(event.request.url);
-  const isDeveloplmentUrl = url.pathname.startsWith(
-    "/_next/static/development"
+      if (cachedResponse) {
+        // return cached response
+        return cachedResponse;
+      }
+
+      let response = null;
+      try {
+        // fetch
+        response = await fetch(event.request);
+      } catch (error) {
+        console.error("Error fetching", error);
+        return new Response('{"offline": true}');
+      }
+      // cache if needed
+      if (shouldBeInCache && response.ok) {
+        cache.put(event.request, response.clone());
+      }
+      return response;
+    })()
   );
-  const shouldBeInCache =
-    event.request.url.startsWith(self.location.origin) && !isDeveloplmentUrl;
-  const cache = await caches.open(CACHE_NAME);
-
-  if (shouldBeInCache) {
-    // check cache
-    const cachedResponse = await cache.match(event.request.url);
-
-    if (cachedResponse) {
-      // return cached response
-      return event.respondWith(cachedResponse);
-    }
-  }
-  try {
-    // fetch
-    const response = await fetch(event.request);
-    // cache if needed
-    if (shouldBeInCache && response.ok) {
-      cache.put(event.request, response.clone());
-    }
-
-    return event.respondWith(response);
-  } catch (error) {
-    return event.respondWith(new Response('{"offline": true}'));
-  }
 });
 
 // self.addEventListener("push", (event) => {
