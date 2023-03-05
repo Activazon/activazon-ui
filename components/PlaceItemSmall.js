@@ -4,7 +4,7 @@ import Image from "next/image";
 const PlaceItemSmall = ({ image, lead, title, description, href }) => {
   return (
     <div className="card card-body tile place-item-small-tile">
-      <Link href={href} target={href.startsWith("/") ? "_self" : "_blank"}>
+      <Link href={href} target={href?.startsWith("/") ? "_self" : "_blank"}>
         <div className="row gy-2">
           <div className="col-12">
             {image.startsWith("/") ? (
