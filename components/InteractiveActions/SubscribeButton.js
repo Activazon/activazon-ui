@@ -4,7 +4,9 @@ import {
   TOASTS,
 } from "components/Toast";
 import { useTrans } from "lib/trans";
-import { useState } from "react";
+import { useUser } from "lib/user";
+import { useRouter } from "next/router";
+import { useCallback, useState } from "react";
 
 const SubscribeButton = ({ placeManager, subscriptionManager }) => {
   /**
@@ -15,6 +17,8 @@ const SubscribeButton = ({ placeManager, subscriptionManager }) => {
    * notifications using toasts
    */
   const { t } = useTrans();
+  const user = useUser();
+  const router = useRouter();
   const [toastType, setToastType] = useState(null);
   const {
     checkPermissions,
@@ -26,25 +30,37 @@ const SubscribeButton = ({ placeManager, subscriptionManager }) => {
   const { placeDisplayName } = placeManager;
   const isLoaded = subscriptionManager.isLoaded;
 
-  const onSubscribe = (e) => {
-    e.preventDefault();
+  const onSubscribe = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    switch (checkPermissions()) {
-      case "granted":
-        // we already have permission, so just subscribe the user
-        subscribeUserToArea();
-        break;
-      case "denied":
-      case "unsupported":
-        // user has denied notifications or browser doesn't support push notifications
-        setToastType(TOASTS.PUSH_NOTIFICATIONS_DENIED);
-        break;
-      case "default":
-        // user has not yet been asked for permission, so ask them
-        setToastType(TOASTS.PUSH_NOTIFICATIONS_DEFAULT);
-        break;
-    }
-  };
+      if (!user) {
+        // can't subscribe if not logged in
+        router.push({
+          pathname: "/signup",
+          query: { callbackUrl: router.asPath, mustSignUp: "1" },
+        });
+        return;
+      }
+
+      switch (checkPermissions()) {
+        case "granted":
+          // we already have permission, so just subscribe the user
+          subscribeUserToArea();
+          break;
+        case "denied":
+        case "unsupported":
+          // user has denied notifications or browser doesn't support push notifications
+          setToastType(TOASTS.PUSH_NOTIFICATIONS_DENIED);
+          break;
+        case "default":
+          // user has not yet been asked for permission, so ask them
+          setToastType(TOASTS.PUSH_NOTIFICATIONS_DEFAULT);
+          break;
+      }
+    },
+    [user]
+  );
   const onUnsubscribe = (e) => {
     e.preventDefault();
     unsubscribeUserFromArea();

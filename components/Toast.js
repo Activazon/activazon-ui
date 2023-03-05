@@ -25,7 +25,7 @@ export const ToastTurnOnPushNotifications = ({
   return (
     <Toast
       header={<img src="/push-notification.png" className="img-fluid" />}
-      title={t("Turn on push notifications")}
+      title={t("Turn on push notifications") + " (Beta)"}
       description={t(
         "To receive alerts about activity that happens in {{placeDisplayName}}, turn on push notification. You'll also receive them when you are not on the site. You can turn them off at any time.",
         { placeDisplayName }
