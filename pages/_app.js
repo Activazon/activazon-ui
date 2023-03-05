@@ -49,22 +49,24 @@ export default function App({
   return (
     <>
       {/* google tag */}
-
       <Script
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         src="https://www.googletagmanager.com/gtag/js?id=G-QWY03DH2W4"
       />
-
-      <Script strategy="lazyOnload">
-        {`
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'G-QWY03DH2W4', {
           page_path: window.location.pathname,
           });
-        `}
-      </Script>
+        `,
+        }}
+      />
       <SessionProvider session={session}>
         <Component {...pageProps} />
       </SessionProvider>
