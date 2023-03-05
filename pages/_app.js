@@ -47,8 +47,7 @@ export default function App({
   }, []);
 
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
+    <>
       {/* google tag */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-QWY03DH2W4"
@@ -62,6 +61,9 @@ export default function App({
           gtag('config', 'G-QWY03DH2W4');
         `}
       </Script>
-    </SessionProvider>
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+    </>
   );
 }
