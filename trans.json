@@ -639,5 +639,13 @@
   "maltrato__plural": {
     "en": "Mistreatments",
     "es": "Maltratos"
+  },
+  "attack": {
+    "en": "Attack",
+    "es": "Ataque"
+  },
+  "attack__plural": {
+    "en": "Attacks",
+    "es": "Ataques"
   }
 }
