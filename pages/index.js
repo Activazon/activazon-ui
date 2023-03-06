@@ -101,7 +101,7 @@ const Page = () => {
                     )
                   }
                   shimmerLimit={activitiesLimit}
-                  itemWrapperClassName="col-6 mb-4"
+                  itemWrapperClassName="col-6 col-md-3 mb-4"
                   ItemComponent={PlaceItemSmall}
                   ShimmerComponent={PlaceItemSmallShimmer}
                 />
