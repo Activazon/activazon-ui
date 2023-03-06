@@ -207,6 +207,12 @@
   background-color: rgba($primary, 0.05);
   text-align: center;
 
+  @media (hover: hover) {
+    &:hover {
+      background-color: rgba($primary, 0.2);
+    }
+  }
+
   .img-thumbnail {
     aspect-ratio: 1 / 1;
     border: 0px;
