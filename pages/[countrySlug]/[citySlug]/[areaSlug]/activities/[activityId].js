@@ -10,7 +10,7 @@ import ActivityDetailShimmer from "components/ActivityDetailShimmer";
 import { useTrans } from "lib/trans";
 import { explorePath } from "lib/urls";
 import { useTrackOnce } from "lib/track";
-import { useUserRequired } from "lib/user";
+import { useUser } from "lib/user";
 import { useEffect, useState } from "react";
 
 import { useSubscriptionManager } from "lib/subscriptionManager";
@@ -21,7 +21,7 @@ import { useRouter } from "next/router";
 const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
   const router = useRouter();
   const [activity, setActivity] = useState(null);
-  const user = useUserRequired();
+  const user = useUser();
   const { t, locale } = useTrans();
   const placeManager = usePlaceManager(
     PLACE_TYPES.AREA,
