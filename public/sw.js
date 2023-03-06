@@ -26,9 +26,12 @@ self.addEventListener("fetch", (event) => {
       const isDeveloplmentUrl = url.pathname.startsWith(
         "/_next/static/development"
       );
+      const isApi = url.pathname.startsWith("/api"); // prevent from caching api (e.g: auth)
+
       const shouldBeInCache =
         event.request.url.startsWith(self.location.origin) &&
-        !isDeveloplmentUrl;
+        !isDeveloplmentUrl &&
+        !isApi;
       const cache = await caches.open(CACHE_NAME);
       const cachedResponse = await cache.match(event.request.url);
 
