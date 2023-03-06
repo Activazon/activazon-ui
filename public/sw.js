@@ -49,7 +49,12 @@ self.addEventListener("fetch", (event) => {
         return new Response('{"offline": true}');
       }
       // cache if needed
-      if (shouldBeInCache && response.ok) {
+      if (
+        shouldBeInCache &&
+        response.ok &&
+        response.status >= 200 &&
+        response.status < 300
+      ) {
         cache.put(event.request, response.clone());
       }
       return response;
