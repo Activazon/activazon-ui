@@ -64,7 +64,7 @@ const SubscribeButton = ({ placeManager, subscriptionManager }) => {
           break;
       }
     },
-    [user]
+    [user, subscribeUserToArea]
   );
   const onUnsubscribe = (e) => {
     track("unsubscribe.click");

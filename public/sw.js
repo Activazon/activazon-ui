@@ -1,5 +1,5 @@
 // const ICON_URL = "https://www.activazon.com/apple-touch-icon.png";
-const CACHE_NAME = "activazon-cache-v1.0.1";
+const CACHE_NAME = "activazon-cache-v1.0.2";
 
 self.addEventListener("install", function (event) {
   console.debug("Service Worker installed");
