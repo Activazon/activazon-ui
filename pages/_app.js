@@ -13,6 +13,7 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   const router = useRouter();
+
   useEffect(() => {
     // handles showing and hiding the loading overlay
     // when the router is changing routes
@@ -60,7 +61,8 @@ export default function App({
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'G-QWY03DH2W4', {
-          page_path: window.location.pathname,
+            page_path: window.location.pathname,
+            user_id: ${session?.data?.token?.id || null},
           });
         `,
         }}
