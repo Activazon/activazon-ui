@@ -647,5 +647,13 @@
   "mistreatment__plural": {
     "en": "Mistreatments",
     "es": "Maltratos"
+  },
+  "human-trafficking": {
+    "en": "Human Trafficking",
+    "es": "Trata de personas"
+  },
+  "human-trafficking__plural": {
+    "en": "Human Traffickings",
+    "es": "Tratas de personas"
   }
 }
