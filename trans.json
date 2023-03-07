@@ -655,5 +655,13 @@
   "human-trafficking__plural": {
     "en": "Human Traffickings",
     "es": "Tratas de personas"
+  },
+  "Offline": {
+    "en": "Offline",
+    "es": "Sin conexión"
+  },
+  "Seems like there is no internet connection": {
+    "en": "Seems like there is no internet connection",
+    "es": "Parece que no hay conexión a internet"
   }
 }

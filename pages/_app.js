@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
 import { loadFullStory } from "lib/track";
 import Script from "next/script";
-import { onLoad } from "lib/pwa";
 // styling
 import "../styles/theme.scss";
 import "nprogress/nprogress.css";
@@ -43,7 +42,6 @@ export default function App({
 
   useEffect(() => {
     loadFullStory();
-    onLoad();
   }, []);
 
   return (
