@@ -1,4 +1,5 @@
 self.addEventListener("push", (event) => {
+  // https://github.com/shadowwalker/next-pwa/blob/master/examples/web-push/worker/index.js
   const data = event.data?.json() ?? {};
   console.log("Notification received", data);
   console.log("Notification permission", self.Notification.permission);

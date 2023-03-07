@@ -2,6 +2,9 @@ const path = require("path");
 
 const withPWA = require("next-pwa")({
   dest: "public",
+  fallbacks: {
+    image: "/offline.png",
+  },
 });
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
