@@ -38,7 +38,7 @@ const Page = () => {
     null,
     [isAuthenticated]
   );
-  const activitiesLimit = 3;
+  const activitiesLimit = 6;
   const activities = useApi(() => getActivities(activitiesLimit), null);
 
   return (
