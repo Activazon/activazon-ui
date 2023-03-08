@@ -25,6 +25,18 @@ const securityHeaders = [
 
 module.exports = withBundleAnalyzer(
   withPWA({
+    async headers() {
+      return [
+        {
+          source: "/",
+          headers: securityHeaders,
+        },
+        {
+          source: "/(.*)",
+          headers: securityHeaders,
+        },
+      ];
+    },
     sassOptions: {
       includePaths: [path.join(__dirname, "styles")],
     },
@@ -40,18 +52,6 @@ module.exports = withBundleAnalyzer(
       });
 
       return config;
-    },
-    async headers() {
-      return [
-        {
-          source: "/",
-          headers: securityHeaders,
-        },
-        {
-          source: "/(.*)",
-          headers: securityHeaders,
-        },
-      ];
     },
   })
 );
