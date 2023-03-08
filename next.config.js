@@ -11,6 +11,18 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
+// prevent clickjacking: https://dev.to/theinfosecguy/how-to-protect-your-nextjs-website-from-clickjacking-2jbg
+const securityHeaders = [
+  {
+    key: "X-Frame-Options",
+    value: "SAMEORIGIN",
+  },
+  {
+    key: "Content-Security-Policy",
+    value: "frame-ancestors 'none'",
+  },
+];
+
 module.exports = withBundleAnalyzer(
   withPWA({
     sassOptions: {
@@ -28,6 +40,14 @@ module.exports = withBundleAnalyzer(
       });
 
       return config;
+    },
+    async headers() {
+      return [
+        {
+          source: "/(.*)",
+          headers: securityHeaders,
+        },
+      ];
     },
   })
 );
