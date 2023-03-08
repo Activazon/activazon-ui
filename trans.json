@@ -671,5 +671,13 @@
   "theft__plural": {
     "en": "Thefts",
     "es": "Robos"
+  },
+  "abduction": {
+    "en": "Abduction",
+    "es": "Secuestro"
+  },
+  "abduction__plural": {
+    "en": "Abductions",
+    "es": "Secuestros"
   }
 }
