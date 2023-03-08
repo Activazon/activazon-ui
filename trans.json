@@ -663,5 +663,13 @@
   "Seems like there is no internet connection": {
     "en": "Seems like there is no internet connection",
     "es": "Parece que no hay conexión a internet"
+  },
+  "theft": {
+    "en": "Theft",
+    "es": "Robo"
+  },
+  "theft__plural": {
+    "en": "Thefts",
+    "es": "Robos"
   }
 }
