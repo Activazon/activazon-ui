@@ -679,5 +679,13 @@
   "abduction__plural": {
     "en": "Abductions",
     "es": "Secuestros"
+  },
+  "protest": {
+    "en": "Protest",
+    "es": "Protesta"
+  },
+  "protest__plural": {
+    "en": "Protests",
+    "es": "Protestas"
   }
 }
