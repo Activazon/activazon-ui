@@ -560,14 +560,6 @@
     "en": "Activities detected",
     "es": "Actividades detectadas"
   },
-  "domesticviolence": {
-    "en": "Domestic Violence",
-    "es": "Violencia doméstica"
-  },
-  "domesticviolence__plural": {
-    "en": "Domestic Violences",
-    "es": "Violencias Domesticas"
-  },
   "Subscribe to Alerts": {
     "en": "Subscribe to Alerts",
     "es": "Suscribir Alertas"
@@ -687,5 +679,13 @@
   "protest__plural": {
     "en": "Protests",
     "es": "Protestas"
+  },
+  "violence": {
+    "en": "Violence",
+    "es": "Violencia"
+  },
+  "violence__plural": {
+    "en": "Violences",
+    "es": "Violencias"
   }
 }
