@@ -1,3 +1,5 @@
+ICON_URL = "https://activazon.com/icon-192x192.png";
+
 self.addEventListener("push", (event) => {
   // https://github.com/shadowwalker/next-pwa/blob/master/examples/web-push/worker/index.js
   const notificationReceived = event.data?.json() ?? {};
@@ -8,22 +10,21 @@ self.addEventListener("push", (event) => {
     return;
   }
 
-  const actionViewTitle = notificationReceived.locale === "en" ? "View" : "Ver";
-
   event.waitUntil(
-    registration.showNotification("Hey cool notification", {
-      icon: ICON_URL,
+    registration.showNotification(notificationReceived.title, {
+      lang: notificationReceived.locale,
+      icon: notificationReceived.image_url || ICON_URL,
       body: notificationReceived.body,
       tag: notificationReceived.tag,
       image:
         notificationReceived.image_url ||
         "https://activazon.com/banner-bg/banner-bg.jpg",
-      actions: [
-        {
-          action: "view",
-          title: actionViewTitle,
-        },
-      ],
+      // actions: [
+      //   {
+      //     action: "view",
+      //     title: notificationReceived.locale === "en" ? "View" : "Ver";,
+      //   },
+      // ],
     })
   );
 });
