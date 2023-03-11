@@ -687,5 +687,13 @@
   "violence__plural": {
     "en": "Violences",
     "es": "Violencias"
+  },
+  "sexual-abuse": {
+    "en": "Sexual Abuse",
+    "es": "Abuso sexual"
+  },
+  "sexual-abuse__plural": {
+    "en": "Sexual Abuses",
+    "es": "Abusos sexuales"
   }
 }
