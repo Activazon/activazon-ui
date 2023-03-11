@@ -28,23 +28,14 @@ self.addEventListener("push", (event) => {
     })
   );
 });
-
-// self.addEventListener("notificationclick", function (event) {
-//   event.notification.close();
-//   event.waitUntil(
-//     clients
-//       .matchAll({ type: "window", includeUncontrolled: true })
-//       .then(function (clientList) {
-//         if (clientList.length > 0) {
-//           let client = clientList[0];
-//           for (let i = 0; i < clientList.length; i++) {
-//             if (clientList[i].focused) {
-//               client = clientList[i];
-//             }
-//           }
-//           return client.focus();
-//         }
-//         return clients.openWindow(`/feed?focus_activity_is=${activityId}`);
-//       })
-//   );
-// });
+self.addEventListener("notificationclick", (event) => {
+  console.log("On notification click: ", event.notification.tag);
+  event.notification.close();
+  if (event.action === "archive") {
+    // User selected the Archive action.
+    archiveEmail();
+  } else {
+    // User selected (e.g., clicked in) the main body of notification.
+    clients.openWindow("/inbox?tag=" + event.notification.tag);
+  }
+});
