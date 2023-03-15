@@ -703,5 +703,13 @@
   "corruption__plural": {
     "en": "Corruptions",
     "es": "Corrupciones"
+  },
+  "disaster": {
+    "en": "Disaster",
+    "es": "Desastre"
+  },
+  "disaster__plural": {
+    "en": "Disasters",
+    "es": "Desastres"
   }
 }
