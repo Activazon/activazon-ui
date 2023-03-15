@@ -695,5 +695,13 @@
   "sexual-abuse__plural": {
     "en": "Sexual Abuses",
     "es": "Abusos sexuales"
+  },
+  "corruption": {
+    "en": "Corruption",
+    "es": "Corrupción"
+  },
+  "corruption__plural": {
+    "en": "Corruptions",
+    "es": "Corrupciones"
   }
 }
