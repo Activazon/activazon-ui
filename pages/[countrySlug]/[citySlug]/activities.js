@@ -13,6 +13,10 @@ import { useUserRequired } from "lib/user";
 import { usePlaceManager } from "lib/placeManager";
 import { useEffect, useState } from "react";
 import { getCityActivities } from "lib/client-api";
+import {
+  accessorActivityTitle,
+  accessorActivityImageUrl,
+} from "lib/activityAcessors";
 
 const Page = ({ countrySlug, citySlug }) => {
   const { t, p } = useTrans();
@@ -80,16 +84,10 @@ const Page = ({ countrySlug, citySlug }) => {
                   )
                 }
                 accessorImageUrl={(activity) =>
-                  activity.area.image_square_red_url ||
-                  activity.area.image_square_url
+                  accessorActivityImageUrl(activity)
                 }
                 accessorLead={(activity) => displayDate(activity.date_occured)}
-                accessorTitle={(activity) =>
-                  t("{{activity_type_name}} in {{neighbourhood_name}}", {
-                    activity_type_name: t(activity.activity_type.name),
-                    neighbourhood_name: activity.area.display_name,
-                  })
-                }
+                accessorTitle={(activity) => accessorActivityTitle(t, activity)}
                 shimmerLimit={10}
               />
             </Col>

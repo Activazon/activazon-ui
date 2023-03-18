@@ -20,6 +20,10 @@ import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
 import { useApi } from "lib/api-helper";
 import { useDate } from "lib/date";
+import {
+  accessorActivityTitle,
+  accessorActivityImageUrl,
+} from "lib/activityAcessors";
 
 const Page = () => {
   const { i, t, p } = useTrans();
@@ -70,17 +74,13 @@ const Page = () => {
                     )
                   }
                   accessorImageUrl={(activity) =>
-                    activity.area.image_square_red_url ||
-                    activity.area.image_square_url
+                    accessorActivityImageUrl(activity)
                   }
                   accessorLead={(activity) =>
                     displayDate(activity.date_occured)
                   }
                   accessorTitle={(activity) =>
-                    t("{{activity_type_name}} in {{neighbourhood_name}}", {
-                      activity_type_name: t(activity.activity_type.name),
-                      neighbourhood_name: activity.area.display_name,
-                    })
+                    accessorActivityTitle(t, activity)
                   }
                   shimmerLimit={activitiesLimit}
                 />
