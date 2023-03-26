@@ -711,5 +711,13 @@
   "disaster__plural": {
     "en": "Disasters",
     "es": "Desastres"
+  },
+  "trafficaccident": {
+    "en": "Traffic Accident",
+    "es": "Acidente de Tráfico"
+  },
+  "trafficaccident__plural": {
+    "en": "Traffic Accidents",
+    "es": "Acidentes de Tráfico"
   }
 }
