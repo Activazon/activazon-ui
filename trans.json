@@ -719,5 +719,9 @@
   "trafficaccident__plural": {
     "en": "Traffic Accidents",
     "es": "Acidentes de Tráfico"
+  },
+  "Inbox": {
+    "en": "Inbox",
+    "es": "Bandeja de entrada"
   }
 }
