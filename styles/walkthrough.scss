@@ -10,8 +10,9 @@
       color: $primary;
       font-size: 1.5rem;
       text-align: center;
-      margin: 1rem 0px;
       font-weight: 600;
+      margin: 0px;
+      @extend .py-4;
       i {
         margin-right: 0.45rem;
       }
@@ -38,12 +39,15 @@
     align-items: center;
 
     .walkthrough-hero {
-      width: 100vw;
+      height: 250px;
       aspect-ratio: 39/20;
       display: flex;
       align-items: center;
+      justify-content: center;
+
       img {
-        width: 100%;
+        width: inherit;
+        height: inherit;
       }
     }
     .walkthrough-title,
