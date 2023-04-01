@@ -2,7 +2,7 @@ import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
 import Footer from "components/Footer";
 import Head from "components/Head";
-import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
+import A2hsCtaTile from "components/A2hsCtaTile";
 import StaticMapImage from "components/StaticMapImage";
 import InteractiveActions from "components/InteractiveActions";
 import ActivityDetail from "components/ActivityDetail";
@@ -106,9 +106,7 @@ const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
 
             {!isAuthenticated && (
               <div className="container pt-3">
-                <LoginOrSignUpCtaTile
-                  alternativeTitle={t("Sign Up To View More")}
-                />
+                <A2hsCtaTile />
               </div>
             )}
 

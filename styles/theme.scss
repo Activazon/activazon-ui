@@ -1,5 +1,6 @@
 @import "bootstrap/scss/bootstrap.scss";
 @import "bootstrap-icons/font/bootstrap-icons.scss";
+@import "animate.css";
 @import "./fonts.scss";
 
 $white: #ffffff;
@@ -28,6 +29,7 @@ $theme-colors: (
 @import "./search.scss";
 @import "./tip.scss";
 @import "./toast.scss";
+@import "./walkthrough.scss";
 
 a {
   color: $primary;

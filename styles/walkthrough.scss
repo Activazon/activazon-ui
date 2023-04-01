@@ -1,0 +1,66 @@
+.walkthrough {
+  background-color: $bg-color;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .nav-placeholder {
+    .nav-placeholder-title {
+      color: $primary;
+      font-size: 1.5rem;
+      text-align: center;
+      margin: 1rem 0px;
+      font-weight: 600;
+      i {
+        margin-right: 0.45rem;
+      }
+    }
+  }
+
+  footer {
+    // height: 65px;
+    padding-bottom: 35px;
+
+    p {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: $primary;
+      text-align: center;
+    }
+  }
+
+  .walkthrough-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+    .walkthrough-hero {
+      width: 100%;
+      aspect-ratio: 10/7;
+    }
+    .walkthrough-title,
+    .walkthrough-description {
+      text-align: center;
+      color: $primary;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 0px;
+    }
+    .walkthrough-description {
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+    .walkthrough-instruction {
+      background-color: rgba($primary, 0.15);
+      border-radius: 0.5rem;
+      padding: 1rem;
+
+      p {
+        margin: 0px;
+      }
+    }
+  }
+}
