@@ -23,7 +23,7 @@
     padding-bottom: 35px;
 
     p {
-      font-size: 1.2rem;
+      // font-size: 1.2rem;
       font-weight: 400;
       color: $primary;
       text-align: center;
@@ -38,19 +38,23 @@
     align-items: center;
 
     .walkthrough-hero {
-      width: 100%;
-      aspect-ratio: 10/7;
+      width: 100vw;
+      aspect-ratio: 39/20;
+      display: flex;
+      align-items: center;
+      img {
+        width: 100%;
+      }
     }
     .walkthrough-title,
     .walkthrough-description {
       text-align: center;
       color: $primary;
-      font-size: 1.6rem;
-      font-weight: 600;
+      font-weight: 700;
       margin: 0px;
     }
     .walkthrough-description {
-      font-size: 1.2rem;
+      // font-size: 1.2rem;
       font-weight: 400;
     }
     .walkthrough-instruction {

@@ -728,12 +728,16 @@
     "en": "Stay alert and stay safe with Activazon",
     "es": "Mantente alerta y mantente seguro con Activazon"
   },
-  "Add us to your home screen to get real-time notifications about crime in your area.": {
-    "en": "Add us to your home screen to get real-time notifications about crime in your area.",
+  "Add Activazon to your home screen to get real-time notifications about crime in your area.": {
+    "en": "Add Activazon to your home screen to get real-time notifications about crime in your area.",
     "es": "Agrega Activazon a tu pantalla de inicio para recibir notificaciones en tiempo real sobre crímenes en tu área."
   },
   "Add To Home Screen": {
     "en": "Add to Home Screen",
     "es": "Agregar a la pantalla de inicio"
+  },
+  "Source": {
+    "en": "Source",
+    "es": "Fuente"
   }
 }

@@ -1,12 +1,14 @@
 const WalkThroughBody = ({ heroImageSrc, title, instructions }) => {
   return (
     <div class="walkthrough-body d-flex flex-direction-column gap-4">
-      <img class="walkthrough-hero" src={heroImageSrc} />
+      <div className="walkthrough-hero">
+        <img src={heroImageSrc} />
+      </div>
       <div className="container">
-        <p class="walkthrough-title">{title}</p>
+        <h1 class="walkthrough-title">{title}</h1>
       </div>
       <div class="container">
-        <div class="d-flex flex-column gap-3">
+        <div class="d-flex flex-column gap-2">
           {instructions.map((instruction, index) => (
             <div key={`instruction-${index}`} class="walkthrough-instruction">
               {instruction}

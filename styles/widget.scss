@@ -1,0 +1,68 @@
+.widget {
+  @extend .card;
+  @extend .card-body;
+  border: 0px;
+  background-color: darken(#ffffff, 5%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+
+  .widget-header {
+    .widget-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: $bg-color;
+      margin: 0px;
+    }
+    .widget-description {
+      font-size: 0.9rem;
+      color: $text-default-color;
+      margin: 0px;
+    }
+  }
+
+  .widget-list {
+    a {
+      text-decoration: none;
+    }
+    .widget-list-item {
+      @extend .row;
+      @extend .col-12;
+      @extend .col-md-6;
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      align-items: start;
+      .widget-list-item-image {
+        width: 90px;
+        height: 90px;
+        aspect-ratio: 1/1;
+
+        img {
+          width: inherit;
+          height: inherit;
+          object-fit: cover;
+          border-radius: $border-radius;
+          border: 1px solid $primary;
+        }
+      }
+      .widget-list-item-content {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        p {
+          margin: 0px;
+        }
+
+        .widget-list-item-text {
+          font-weight: 600;
+          b {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+}

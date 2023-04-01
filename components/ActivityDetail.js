@@ -1,5 +1,5 @@
 import GeoWithImagesTile from "components/GeoWithImagesTile";
-import ChangeLanguageLink from "components/ChangeLaugageLink";
+import SourceArticle from "components/SourceArticle";
 import { useTrans } from "lib/trans";
 import { useDate } from "lib/date";
 
@@ -19,21 +19,7 @@ const ActivityDetail = ({ activity, locale }) => {
       </p>
       <p>{summary}</p>
 
-      <ChangeLanguageLink />
-
-      <p className="mt-4">
-        <b>
-          {t(
-            "Learn more about this incident with these in-depth news articles"
-          )}
-        </b>
-      </p>
-      <GeoWithImagesTile
-        image={"/sources/" + activity.source_article.source_name + ".jpg"}
-        title={activity.source_article.source_display_name}
-        description={activity.source_article.source_title}
-        href={activity.source_article.source_url}
-      />
+      <SourceArticle sourceArticle={activity.source_article} />
     </div>
   );
 };

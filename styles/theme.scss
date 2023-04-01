@@ -30,6 +30,7 @@ $theme-colors: (
 @import "./tip.scss";
 @import "./toast.scss";
 @import "./walkthrough.scss";
+@import "./widget.scss";
 
 a {
   color: $primary;
@@ -41,7 +42,7 @@ a {
 body {
   font-family: "TT-Supermolot-Neue";
   // background-color: $bg-color;
-  background-color: #f1f1f6;
+  background-color: #ffffff;
   color: $white;
   font-weight: 600;
 }
@@ -62,7 +63,7 @@ body {
 
 main {
   @extend .flex-grow-1;
-  background-color: #f1f1f6;
+  // background-color: #f1f1f6;
   color: $text-default-color;
 
   .text-theme-black {

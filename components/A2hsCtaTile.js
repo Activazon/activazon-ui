@@ -33,7 +33,7 @@ const A2hsCtaTile = ({}) => {
         <div className="col-12">
           <p className="tile-description">
             {i(
-              "Add us to your home screen to get real-time notifications about crime in your area."
+              "Add Activazon to your home screen to get real-time notifications about crime in your area."
             )}
           </p>
         </div>
