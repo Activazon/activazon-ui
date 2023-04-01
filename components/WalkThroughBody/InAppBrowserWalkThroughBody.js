@@ -12,6 +12,10 @@ const InAppBrowserWalkThrough = () => {
           Tap the <i class="bi bi-three-dots"></i> button at the top right of
           your screen and select <b>Open in browser</b>.
         </p>,
+        <p class="walkthrough-description">
+          Tap the url <b>www.activazon.com</b> at top if{" "}
+          <i class="bi bi-three-dots"></i> button is not visible.
+        </p>,
       ]}
     />
   );
