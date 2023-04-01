@@ -7,7 +7,10 @@ import Head from "components/Head";
 
 import PlaceList from "components/PlaceList";
 import SearchWidget from "components/SearchWidget";
-import A2hsCtaTile from "components/A2hsCtaTile";
+import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
+import PlaceItemSmall, {
+  PlaceItemSmallShimmer,
+} from "components/PlaceItemSmall";
 
 // import Tip from "components/Tip";
 import { useTrans } from "lib/trans";
@@ -31,6 +34,14 @@ const Page = () => {
     isAuthenticated,
   });
 
+  // load initial cities, to improve time to interact
+  // then after the user is authenticated, load more cities
+  const citiesLimit = 20;
+  const cities = useApi(
+    () => (isAuthenticated ? getCities(citiesLimit) : getCachedCities()),
+    null,
+    [isAuthenticated]
+  );
   const activitiesLimit = 3;
   const activities = useApi(() => getActivities(activitiesLimit), null);
 
@@ -76,8 +87,34 @@ const Page = () => {
               </Col>
 
               <Col>
-                <A2hsCtaTile />
+                <PlaceList
+                  name="home-cities"
+                  description={i("Cities")}
+                  items={cities?.data?.results}
+                  accessorHref={(city) => explorePath(city.slug_path)}
+                  accessorImageUrl={(city) => city.image_square_url}
+                  accessorLead={(city) => city.country.display_name}
+                  accessorTitle={(city) => city.display_name}
+                  accessorDescription={(city) =>
+                    p(
+                      "1 activity",
+                      "{{count}} activities",
+                      city.activity_total_last5months
+                    )
+                  }
+                  shimmerLimit={activitiesLimit}
+                  itemWrapperClassName="col-6 col-md-3 mb-4"
+                  ItemComponent={PlaceItemSmall}
+                  ShimmerComponent={PlaceItemSmallShimmer}
+                />
               </Col>
+              {!isAuthenticated && (
+                <Col>
+                  <LoginOrSignUpCtaTile
+                    alternativeTitle={t("Sign Up To View More")}
+                  />
+                </Col>
+              )}
             </>
 
             <Footer />

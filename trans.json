@@ -723,5 +723,17 @@
   "Inbox": {
     "en": "Inbox",
     "es": "Bandeja de entrada"
+  },
+  "Stay alert and stay safe with Activazon": {
+    "en": "Stay alert and stay safe with Activazon",
+    "es": "Mantente alerta y mantente seguro con Activazon"
+  },
+  "Add us to your home screen to get real-time notifications about crime in your area.": {
+    "en": "Add us to your home screen to get real-time notifications about crime in your area.",
+    "es": "Agrega Activazon a tu pantalla de inicio para recibir notificaciones en tiempo real sobre crímenes en tu área."
+  },
+  "Add To Home Screen": {
+    "en": "Add to Home Screen",
+    "es": "Agregar a la pantalla de inicio"
   }
 }

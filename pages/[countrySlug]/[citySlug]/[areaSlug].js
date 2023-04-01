@@ -5,7 +5,7 @@ import Col from "components/Col";
 import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
-import LoginOrSignUpCtaTile from "components/LoginOrSignUpCtaTile";
+import A2hsCtaTile from "components/A2hsCtaTile";
 import StaticMapImage from "components/StaticMapImage";
 import InteractiveActions from "components/InteractiveActions";
 
@@ -137,9 +137,7 @@ const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
 
             {!isAuthenticated && (
               <Col>
-                <LoginOrSignUpCtaTile
-                  alternativeTitle={t("Sign Up To View More")}
-                />
+                <A2hsCtaTile />
               </Col>
             )}
 
