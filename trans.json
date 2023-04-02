@@ -803,5 +803,9 @@
   "Tap the install App button near navigation bar.": {
     "en": "Tap the install App button near navigation bar.",
     "es": "Toca el botón Instalar aplicación cerca de la barra de navegación."
+  },
+  "{{activity_type_name}} in <b>{{neighbourhood_name}}</b>": {
+    "en": "{{activity_type_name}} in <b>{{neighbourhood_name}}</b>",
+    "es": "{{activity_type_name}} en <b>{{neighbourhood_name}}</b>"
   }
 }

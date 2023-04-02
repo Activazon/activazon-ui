@@ -29,7 +29,7 @@ const SearchInput = ({ onSearch, disableAutoSearch, setValue, value }) => {
         className="search__input safe"
         type="text"
         id="search__input"
-        placeholder={t("Search for your city or neighbourhood")}
+        placeholder={t("Search for your city or neighbourhood", {}, true)}
         value={value}
         autoFocus={true}
       />
