@@ -31,7 +31,7 @@ const WidgetListItemCity = ({ city }) => {
   );
 };
 
-const WidgetListItemSmallActivity = ({ activity }) => {
+const WidgetListItemSmallActivity = ({ activity, index }) => {
   const { t } = useTrans();
   const title = accessorActivityTitle(t, activity);
   const { displayDate } = useDate();
@@ -41,6 +41,9 @@ const WidgetListItemSmallActivity = ({ activity }) => {
   );
   return (
     <a href={url} className="widget-list-item widget-list-item-small">
+      <div className="widget-list-item-icon">
+        <i className={`bi bi-${index}-circle-fill`}></i>
+      </div>
       <div className="widget-list-item-content">
         <p className="widget-list-item-text">{title}</p>
         <p className="widget-list-item-text widget-list-item-text-light widget-list-item-text-small text-capitalize">
@@ -68,8 +71,12 @@ const UserCurrentCityWidget = ({ city, activities }) => {
     >
       <div className="widget-list">
         <WidgetListItemCity city={city} />
-        {activities.map((activity) => (
-          <WidgetListItemSmallActivity key={activity.id} activity={activity} />
+        {activities.map((activity, index) => (
+          <WidgetListItemSmallActivity
+            index={index + 1}
+            key={activity.id}
+            activity={activity}
+          />
         ))}
       </div>
     </WidgetContainer>

@@ -81,12 +81,19 @@
     .widget-list-item-small {
       border-bottom: 1px solid rgba($bg-color, 10%);
       @extend .pb-2;
+      align-items: center;
       &:last-child {
         border-bottom: 0px;
       }
 
       .widget-list-item-content {
         gap: 0px !important;
+      }
+      .widget-list-item-icon {
+        i {
+          @extend .mx-2;
+          @extend .h5;
+        }
       }
     }
   }
