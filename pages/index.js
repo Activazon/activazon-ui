@@ -12,7 +12,7 @@ import UserCurrentCityWidget from "components/UserCurrentCityWidget";
 
 // import Tip from "components/Tip";
 import { useTrans } from "lib/trans";
-import { getActivities } from "lib/client-api";
+import { getActivities, getCityByRequestIp } from "lib/client-api";
 import { explorePath } from "lib/urls";
 import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
@@ -34,6 +34,7 @@ const Page = () => {
 
   const activitiesLimit = 3;
   const activities = useApi(() => getActivities(activitiesLimit), null);
+  const user_recommendation = useApi(() => getCityByRequestIp(), null);
 
   return (
     <>
@@ -51,9 +52,14 @@ const Page = () => {
           </Bannerv2>
           <Main>
             <>
-              <Col>
-                <UserCurrentCityWidget />
-              </Col>
+              {user_recommendation.ready && (
+                <Col>
+                  <UserCurrentCityWidget
+                    city={user_recommendation.data.city}
+                    activities={user_recommendation.data.activities}
+                  />
+                </Col>
+              )}
               <Col>
                 <PlaceList
                   description={i("Activities detected")}

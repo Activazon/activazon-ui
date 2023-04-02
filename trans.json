@@ -743,5 +743,25 @@
   "Stay Informed About Your City": {
     "en": "Stay Informed About Your City",
     "es": "Mantente informado sobre tu ciudad"
+  },
+  "{{CityName}} (City)": {
+    "en": "{{CityName}} (City)",
+    "es": "{{CityName}} (Ciudad)"
+  },
+  "{{ActivityCount}} activities detected in the last 5 months": {
+    "en": "{{ActivityCount}} activities detected in the last 5 months",
+    "es": "{{ActivityCount}} actividades detectadas en los últimos 5 meses"
+  },
+  "{{ActivityCount}} activities detected in the last 7 days": {
+    "en": "{{ActivityCount}} activities detected in the last 7 days",
+    "es": "{{ActivityCount}} actividades detectadas en los últimos 7 días"
+  },
+  "View more from {{CityName}}": {
+    "en": "View more from {{CityName}}",
+    "es": "Ver más de {{CityName}}"
+  },
+  "Stay up-to-date on your city. See recent activity in your area.": {
+    "en": "Stay up-to-date on your city. See recent activity in your area.",
+    "es": "Mantente al día sobre tu ciudad. Ver actividad reciente en tu área."
   }
 }

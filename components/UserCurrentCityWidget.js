@@ -1,49 +1,76 @@
 import { useTrans } from "lib/trans";
 import WidgetContainer from "components/WidgetContainer";
+import { explorePath } from "lib/urls";
+import { accessorActivityTitle } from "lib/activityAcessors";
+import { useDate } from "lib/date";
 
-const WidgetListItem = () => (
-  <a href="#" className="widget-list-item">
-    <div className="widget-list-item-image">
-      <img src="https://api.mapbox.com/styles/v1/activazon/clcwih7xp002c14l6ealh9xmf/static/url-https%3A%2F%2Fstorage.googleapis.com%2Factivazon-ublic%2Fred-marker-sm4.png(-88.2759224,13.9612612)/[-88.27963109999999,13.9594113,-88.27214239999999,13.9641175]/299x299@2x?access_token=pk.eyJ1IjoiYWN0aXZhem9uIiwiYSI6ImNsY3ZuMmNldjFrd3EzcW12Y2ltNTl4ZWoifQ.N_cbWjPrnheehGi7zlqyVw&logo=false" />
-    </div>
-    <div className="widget-list-item-content">
-      <p className="widget-list-item-title">Tegucigalpa (City)</p>
-      <p className="widget-list-item-text widget-list-item-text-light">
-        10 activities detected in the last week
-      </p>
-    </div>
-  </a>
-);
+const WidgetListItemCity = ({ city }) => {
+  const { t } = useTrans();
+  return (
+    <a href={explorePath(city.slug_path)} className="widget-list-item mb-2">
+      <div className="widget-list-item-image">
+        <img src={city.image_square_url} />
+      </div>
+      <div className="widget-list-item-content">
+        <p className="widget-list-item-title">
+          {t("{{CityName}} (City)", {
+            CityName: city.display_name,
+          })}
+        </p>
+        <p className="widget-list-item-text widget-list-item-text-light">
+          {city.activity_total_last7days !== 0
+            ? t("{{ActivityCount}} activities detected in the last week", {
+                ActivityCount: city.activity_total_last7days,
+              })
+            : t("{{ActivityCount}} activities detected in the last 5 months", {
+                ActivityCount: city.activity_total_last5months,
+              })}
+        </p>
+      </div>
+    </a>
+  );
+};
 
-const WidgetListItemSmall = () => (
-  <a href="#" className="widget-list-item widget-list-item-small">
-    <div className="widget-list-item-content">
-      <p className="widget-list-item-text">
-        Protest detected in <b>Colonia Kennedy</b>
-      </p>
-      <p className="widget-list-item-text widget-list-item-text-light widget-list-item-text-small">
-        Thursday
-      </p>
-    </div>
-  </a>
-);
+const WidgetListItemSmallActivity = ({ activity }) => {
+  const { t } = useTrans();
+  const title = accessorActivityTitle(t, activity);
+  const { displayDate } = useDate();
 
-const UserCurrentCityWidget = ({ sourceArticle }) => {
+  const url = explorePath(
+    [activity.area.slug_path, "activities", activity.id].join("/")
+  );
+  return (
+    <a href={url} className="widget-list-item widget-list-item-small">
+      <div className="widget-list-item-content">
+        <p className="widget-list-item-text">{title}</p>
+        <p className="widget-list-item-text widget-list-item-text-light widget-list-item-text-small text-capitalize">
+          {displayDate(activity.date_occured)}
+        </p>
+      </div>
+    </a>
+  );
+};
+
+const UserCurrentCityWidget = ({ city, activities }) => {
   const { t } = useTrans();
   return (
     <WidgetContainer
       title={t("Stay Informed About Your City", {
-        CityName: "Tegucigalpa",
+        CityName: city.display_name,
       })}
-      description={null}
-      viewAllUrl="/"
+      description={t(
+        "Stay up-to-date on your city. See recent activity in your area."
+      )}
+      viewAllText={t("View more from {{CityName}}", {
+        CityName: city.display_name,
+      })}
+      viewAllUrl={explorePath(city.slug_path)}
     >
       <div className="widget-list">
-        <WidgetListItem />
-
-        <WidgetListItemSmall />
-        <WidgetListItemSmall />
-        <WidgetListItemSmall />
+        <WidgetListItemCity city={city} />
+        {activities.map((activity) => (
+          <WidgetListItemSmallActivity key={activity.id} activity={activity} />
+        ))}
       </div>
     </WidgetContainer>
   );
