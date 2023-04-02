@@ -33,8 +33,6 @@
       text-align: center;
       text-decoration: none;
       @extend .py-1;
-      @extend .rounded;
-      background-color: darken(#ffffff, 12%);
     }
   }
   .widget-list {
@@ -95,12 +93,11 @@
     }
 
     .widget-list-item-small {
-      border-bottom: 1px solid rgba($bg-color, 10%);
-      @extend .pb-2;
+      @extend .py-1;
+      @extend .px-2;
+      @extend .rounded;
       align-items: center;
-      &:last-child {
-        border-bottom: 0px;
-      }
+      background-color: darken(#ffffff, 11%);
 
       .widget-list-item-content {
         gap: 0px !important;
