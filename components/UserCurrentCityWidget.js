@@ -13,11 +13,7 @@ const WidgetListItemCity = ({ city }) => {
         <img src={city.image_square_url} />
       </div>
       <div className="widget-list-item-content">
-        <p className="widget-list-item-title">
-          {t("{{CityName}} (City)", {
-            CityName: city.display_name,
-          })}
-        </p>
+        <p className="widget-list-item-title">{city.display_name}</p>
         <p className="widget-list-item-text widget-list-item-text-light">
           {city.activity_total_last7days !== 0
             ? t("{{ActivityCount}} activities detected in the last week", {

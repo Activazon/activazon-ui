@@ -744,10 +744,6 @@
     "en": "Stay informed about your city",
     "es": "Mantente informado sobre tu ciudad"
   },
-  "{{CityName}} (City)": {
-    "en": "{{CityName}} (City)",
-    "es": "{{CityName}} (Ciudad)"
-  },
   "{{ActivityCount}} activities detected in the last 5 months": {
     "en": "{{ActivityCount}} activities detected in the last 5 months",
     "es": "{{ActivityCount}} actividades detectadas en los últimos 5 meses"
