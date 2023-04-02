@@ -24,6 +24,9 @@ const SearchInput = ({ onSearch, disableAutoSearch, setValue, value }) => {
   };
   return (
     <div className="search">
+      <div className="geo__icon">
+        <i className="bi bi-geo-alt-fill" />
+      </div>
       <input
         onChange={disableAutoSearch ? handleJustSetValue : handleAutoSearch}
         className="search__input safe"
@@ -33,11 +36,14 @@ const SearchInput = ({ onSearch, disableAutoSearch, setValue, value }) => {
         value={value}
         autoFocus={true}
       />
-      <div className="search__button">
-        <button type="submit" className="btn" onClick={handleSearch}>
-          <i className="bi bi-search" />
-        </button>
-      </div>
+
+      <button
+        type="submit"
+        className="btn search__button"
+        onClick={handleSearch}
+      >
+        <i className="bi bi-search" />
+      </button>
     </div>
   );
 };
