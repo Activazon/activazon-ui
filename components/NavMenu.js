@@ -74,6 +74,14 @@ const NavMenu = ({ open, close }) => {
             active={isActive("/")}
             href="/"
           />
+
+          <NavMenuItem
+            icon={<i className="bi bi-box-arrow-in-down me-3" />}
+            label={t("Add To Home Screen")}
+            href={{
+              pathname: "/a2hs",
+            }}
+          />
           {!isAuthenticated && (
             <NavMenuItem
               icon={<i className="bi bi-box-arrow-in-right me-3" />}

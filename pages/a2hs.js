@@ -13,7 +13,7 @@ const AnimateIn = ({ children }) => {
 };
 
 export default function Home({ inAppBrowser, browserOs }) {
-  const { i } = useTrans();
+  const { t } = useTrans();
   useTrans("walkthrough.a2hs", {
     isInAppBrowser: inAppBrowser.is,
     appBrowserName: inAppBrowser.name,
@@ -26,7 +26,7 @@ export default function Home({ inAppBrowser, browserOs }) {
 
   return (
     <>
-      <Head title={i("Add To Home Screen")} />
+      <Head title={t("Add To Home Screen")} />
       <body>
         <div class="walkthrough">
           <div class="nav-placeholder">
@@ -46,11 +46,7 @@ export default function Home({ inAppBrowser, browserOs }) {
           )}
           <footer>
             <div className="container animate__animated animate__fadeInUp">
-              <p>
-                You are adding Activazon to your
-                <br />
-                Home Screen
-              </p>
+              <p>{t("You are adding Activazon to your<br />Home Screen")}</p>
             </div>
           </footer>
         </div>

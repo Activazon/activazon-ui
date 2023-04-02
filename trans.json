@@ -767,5 +767,41 @@
   "Cities we are watching": {
     "en": "Cities we are watching",
     "es": "Ciudades que estamos vigilando"
+  },
+  "Tap the <i class=\"bi bi-box-arrow-up\"></i> button at the bottom of your screen and select <b>Add to Home Screen</b> from the menu.": {
+    "en": "Tap the <i class=\"bi bi-box-arrow-up\"></i> button at the bottom of your screen and select <b>Add to Home Screen</b> from the menu.",
+    "es": "Toca el botón <i class=\"bi bi-box-arrow-up\"></i> en la parte inferior de tu pantalla y selecciona <b>Agregar a pantalla de inicio</b> en el menú."
+  },
+  "You are adding Activazon to your<br />Home Screen": {
+    "en": "You are adding Activazon to your<br />Home Screen",
+    "es": "Estás agregando Activazon a tu<br />pantalla de inicio"
+  },
+  "Tap the <i class=\"bi bi-three-dots\"></i> button at the top right of your screen and select <b>Add to Home Screen</b>": {
+    "en": "Tap the <i class=\"bi bi-three-dots\"></i> button at the top right of your screen and select <b>Add to Home Screen</b>",
+    "es": "Toca el botón <i class=\"bi bi-three-dots\"></i> en la parte superior derecha de tu pantalla y selecciona <b>Agregar a pantalla de inicio</b>"
+  },
+  "Then, go to your Home screen and open the Activazon app to continue.": {
+    "en": "Then, go to your Home screen and open the Activazon app to continue.",
+    "es": "Luego, ve a tu pantalla de inicio y abre la aplicación Activazon para continuar."
+  },
+  "Tap the <i class=\"bi bi-three-dots\"></i> button at the top right of your screen and select <b>Open in browser</b>": {
+    "en": "Tap the <i class=\"bi bi-three-dots\"></i> button at the top right of your screen and select <b>Open in browser</b>",
+    "es": "Toca el botón <i class=\"bi bi-three-dots\"></i> en la parte superior derecha de tu pantalla y selecciona <b>Abrir en el navegador</b>"
+  },
+  "Tap the bar with the url <b>www.activazon.com</b> at top if the <i class=\"bi bi-three-dots\"></i> button is not visible.": {
+    "en": "Tap the bar with the url <b>www.activazon.com</b> at top if the <i class=\"bi bi-three-dots\"></i> button is not visible.",
+    "es": "Toca la barra con la url <b>www.activazon.com</b> en la parte superior si el botón <i class=\"bi bi-three-dots\"></i> no es visible."
+  },
+  "Sweet! Now let's Add Activazon to your Home Screen": {
+    "en": "Sweet! Now let's Add Activazon to your Home Screen",
+    "es": "¡Genial! Ahora agreguemos Activazon a tu pantalla de inicio"
+  },
+  "First, open this page in your browser": {
+    "en": "First, open this page in your browser",
+    "es": "Primero, abre esta página en tu navegador"
+  },
+  "Tap the install App button near navigation bar.": {
+    "en": "Tap the install App button near navigation bar.",
+    "es": "Toca el botón Instalar aplicación cerca de la barra de navegación."
   }
 }
