@@ -6,20 +6,11 @@
     justify-content: start !important;
   }
   .navbar-brand {
-    font-weight: 700;
+    font-weight: 600;
     font-size: $spacer * 1.5;
     color: $primary;
     margin-right: 0px;
     text-overflow: ellipsis;
-  }
-  .page-title {
-    @extend .navbar-brand;
-    color: $white;
-    font-weight: 500;
-    margin-bottom: 0px;
-    &:hover {
-      color: $white;
-    }
   }
 }
 
