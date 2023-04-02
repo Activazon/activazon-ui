@@ -71,7 +71,7 @@ const Page = ({ countrySlug, citySlug }) => {
           <Main>
             <Col>
               <PlaceList
-                description={t("Activities detected in {{placeDisplayName}}", {
+                title={t("Activities detected in {{placeDisplayName}}", {
                   placeDisplayName: city?.display_name,
                 })}
                 name="home-activities"

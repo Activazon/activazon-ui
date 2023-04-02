@@ -12,7 +12,7 @@ import UserCurrentCityWidget from "components/UserCurrentCityWidget";
 
 // import Tip from "components/Tip";
 import { useTrans } from "lib/trans";
-import { getActivities, getCityByRequestIp } from "lib/client-api";
+import { getActivities, getCityByRequestIp, getCities } from "lib/client-api";
 import { explorePath } from "lib/urls";
 import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
@@ -33,7 +33,9 @@ const Page = () => {
   });
 
   const activitiesLimit = 3;
+  const citiesLimit = 10;
   const activities = useApi(() => getActivities(activitiesLimit), null);
+  const cities = useApi(() => getCities(citiesLimit), null);
   const user_recommendation = useApi(() => getCityByRequestIp(), null);
 
   return (
@@ -62,7 +64,7 @@ const Page = () => {
               )}
               <Col>
                 <PlaceList
-                  description={i("Activities detected")}
+                  title={i("Activities detected today")}
                   name="home-activities"
                   items={activities?.data?.results}
                   accessorHref={(activity) =>
@@ -80,6 +82,35 @@ const Page = () => {
                   }
                   accessorTitle={(activity) =>
                     accessorActivityTitle(t, activity)
+                  }
+                  shimmerLimit={activitiesLimit}
+                />
+              </Col>
+
+              <Col>
+                <PlaceList
+                  title={i("Cities we are watching")}
+                  name="home-activities"
+                  items={cities?.data?.results}
+                  accessorHref={(city) => explorePath(city.slug_path)}
+                  accessorImageUrl={(city) => city.image_square_url}
+                  accessorLead={null}
+                  accessorTitle={(city) => city.display_name}
+                  // accessorDescription={(city) => city.activity_total_last7days}
+                  accessorDescription={(city) =>
+                    city.activity_total_last7days !== 0
+                      ? t(
+                          "{{ActivityCount}} activities detected in the last week",
+                          {
+                            ActivityCount: city.activity_total_last7days,
+                          }
+                        )
+                      : t(
+                          "{{ActivityCount}} activities detected in the last 5 months",
+                          {
+                            ActivityCount: city.activity_total_last5months,
+                          }
+                        )
                   }
                   shimmerLimit={activitiesLimit}
                 />

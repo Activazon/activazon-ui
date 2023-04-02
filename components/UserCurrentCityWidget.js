@@ -59,7 +59,7 @@ const UserCurrentCityWidget = ({ city, activities }) => {
   const { t } = useTrans();
   return (
     <WidgetContainer
-      title={t("Stay Informed About Your City", {
+      title={t("Stay informed about your city", {
         CityName: city.display_name,
       })}
       description={t(

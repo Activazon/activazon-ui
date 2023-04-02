@@ -107,7 +107,7 @@ const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
             <Col>
               <PlaceList
                 name="area-activities"
-                description={activitesText}
+                title={activitesText}
                 items={activities?.results}
                 accessorHref={(activity) =>
                   activityPath(activity.area.slug_path, activity.id)

@@ -556,9 +556,9 @@
     "en": "Collisions",
     "es": "Colisiones"
   },
-  "Activities detected": {
-    "en": "Activities detected",
-    "es": "Actividades detectadas"
+  "Activities detected today": {
+    "en": "Activities detected today",
+    "es": "Actividades detectadas hoy"
   },
   "Subscribe to Alerts": {
     "en": "Subscribe to Alerts",
@@ -740,8 +740,8 @@
     "en": "Source",
     "es": "Fuente"
   },
-  "Stay Informed About Your City": {
-    "en": "Stay Informed About Your City",
+  "Stay informed about your city": {
+    "en": "Stay informed about your city",
     "es": "Mantente informado sobre tu ciudad"
   },
   "{{CityName}} (City)": {
@@ -763,5 +763,13 @@
   "Stay up-to-date on your city. See recent activity in your area.": {
     "en": "Stay up-to-date on your city. See recent activity in your area.",
     "es": "Mantente al día sobre tu ciudad. Ver actividad reciente en tu área."
+  },
+  "Search for your city or neighbourhood": {
+    "en": "Search for your city or neighbourhood",
+    "es": "Buscar tu ciudad o barrio"
+  },
+  "Cities we are watching": {
+    "en": "Cities we are watching",
+    "es": "Ciudades que estamos vigilando"
   }
 }

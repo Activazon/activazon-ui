@@ -63,7 +63,7 @@ const Page = () => {
             <>
               <Col>
                 <PlaceList
-                  description={i("Activities detected")}
+                  title={i("Activities detected")}
                   name="home-activities"
                   items={activities?.data?.results}
                   accessorHref={(activity) =>
@@ -89,7 +89,7 @@ const Page = () => {
               <Col>
                 <PlaceList
                   name="home-cities"
-                  description={i("Cities")}
+                  title={i("Cities")}
                   items={cities?.data?.results}
                   accessorHref={(city) => explorePath(city.slug_path)}
                   accessorImageUrl={(city) => city.image_square_url}

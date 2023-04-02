@@ -67,7 +67,7 @@ const Page = ({ countrySlug, citySlug }) => {
             <Col>
               <PlaceList
                 name="city-areas"
-                description={t("Areas in {{city}}", {
+                title={t("Areas in {{city}}", {
                   city: city?.display_name,
                 })}
                 items={areas?.results}

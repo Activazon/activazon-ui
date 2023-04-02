@@ -7,6 +7,12 @@
   flex-direction: column;
   gap: 0.7rem;
 
+  &.widget-clear {
+    background-color: transparent;
+    border: 0px;
+    padding: 0px;
+  }
+
   .widget-header {
     .widget-title {
       font-size: 1.1rem;
@@ -20,7 +26,17 @@
       margin: 0px;
     }
   }
-
+  .widget-footer {
+    a {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      @extend .py-1;
+      @extend .rounded;
+      background-color: darken(#ffffff, 12%);
+    }
+  }
   .widget-list {
     @extend .d-flex;
     @extend .flex-column;
@@ -34,8 +50,8 @@
       gap: 0.5rem;
       align-items: start;
       .widget-list-item-image {
-        width: 90px;
-        height: 90px;
+        width: 6rem;
+        height: 6rem;
         aspect-ratio: 1/1;
 
         img {
@@ -95,17 +111,6 @@
           @extend .h5;
         }
       }
-    }
-  }
-  .widget-footer {
-    a {
-      display: block;
-      width: 100%;
-      text-align: center;
-      text-decoration: none;
-      @extend .py-1;
-      @extend .rounded;
-      background-color: darken(#ffffff, 12%);
     }
   }
 }

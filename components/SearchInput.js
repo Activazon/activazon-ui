@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useTrans } from "lib/trans";
 
 const SearchInput = ({ onSearch, disableAutoSearch, setValue, value }) => {
   const [timeoutId, setTimeoutId] = useState(null);
+  const { t } = useTrans();
   const handleAutoSearch = (e) => {
     // will search after typing delay
     e.preventDefault();
@@ -27,7 +29,7 @@ const SearchInput = ({ onSearch, disableAutoSearch, setValue, value }) => {
         className="search__input safe"
         type="text"
         id="search__input"
-        placeholder="Search"
+        placeholder={t("Search for your city or neighbourhood")}
         value={value}
         autoFocus={true}
       />
