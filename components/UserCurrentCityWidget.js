@@ -3,11 +3,12 @@ import WidgetContainer from "components/WidgetContainer";
 import { explorePath } from "lib/urls";
 import { accessorActivityTitle } from "lib/activityAcessors";
 import { useDate } from "lib/date";
+import Link from "next/link";
 
 const WidgetListItemCity = ({ city }) => {
   const { t } = useTrans();
   return (
-    <a href={explorePath(city.slug_path)} className="widget-list-item mb-2">
+    <Link href={explorePath(city.slug_path)} className="widget-list-item mb-2">
       <div className="widget-list-item-image">
         <img src={city.image_square_url} />
       </div>
@@ -27,7 +28,7 @@ const WidgetListItemCity = ({ city }) => {
               })}
         </p>
       </div>
-    </a>
+    </Link>
   );
 };
 
@@ -40,7 +41,7 @@ const WidgetListItemSmallActivity = ({ activity, index }) => {
     [activity.area.slug_path, "activities", activity.id].join("/")
   );
   return (
-    <a href={url} className="widget-list-item widget-list-item-small">
+    <Link href={url} className="widget-list-item widget-list-item-small">
       <div className="widget-list-item-icon">
         <i className={`bi bi-${index}-circle-fill`}></i>
       </div>
@@ -50,7 +51,7 @@ const WidgetListItemSmallActivity = ({ activity, index }) => {
           {displayDate(activity.date_occured)}
         </p>
       </div>
-    </a>
+    </Link>
   );
 };
 
