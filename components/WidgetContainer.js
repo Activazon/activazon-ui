@@ -1,4 +1,4 @@
-const WidgetContainer = ({ title, description, children }) => {
+const WidgetContainer = ({ title, description, children, viewAllUrl }) => {
   return (
     <div className="widget">
       <div className="widget-header">
@@ -6,6 +6,13 @@ const WidgetContainer = ({ title, description, children }) => {
         {description && <p className="widget-description">{description}</p>}
       </div>
       {children}
+      {viewAllUrl && (
+        <div className="widget-footer">
+          <a href={viewAllUrl} className="widget-footer-link">
+            View all
+          </a>
+        </div>
+      )}
     </div>
   );
 };
