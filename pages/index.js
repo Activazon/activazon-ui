@@ -8,10 +8,11 @@ import Head from "components/Head";
 import PlaceList from "components/PlaceList";
 import SearchWidget from "components/SearchWidget";
 import A2hsCtaTile from "components/A2hsCtaTile";
+import UserCurrentCityWidget from "components/UserCurrentCityWidget";
 
 // import Tip from "components/Tip";
 import { useTrans } from "lib/trans";
-import { getCities, getCachedCities, getActivities } from "lib/client-api";
+import { getActivities, getCityByRequestIp } from "lib/client-api";
 import { explorePath } from "lib/urls";
 import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
@@ -23,7 +24,7 @@ import {
 } from "lib/activityAcessors";
 
 const Page = () => {
-  const { i, t, p } = useTrans();
+  const { i, t } = useTrans();
   const user = useUser();
   const { displayDate } = useDate();
   const isAuthenticated = !!user;
@@ -33,6 +34,7 @@ const Page = () => {
 
   const activitiesLimit = 3;
   const activities = useApi(() => getActivities(activitiesLimit), null);
+  const user_recommendation = useApi(() => getCityByRequestIp(), null);
 
   return (
     <>
@@ -50,6 +52,14 @@ const Page = () => {
           </Bannerv2>
           <Main>
             <>
+              {user_recommendation.ready && (
+                <Col>
+                  <UserCurrentCityWidget
+                    city={user_recommendation.data.city}
+                    activities={user_recommendation.data.activities}
+                  />
+                </Col>
+              )}
               <Col>
                 <PlaceList
                   description={i("Activities detected")}
