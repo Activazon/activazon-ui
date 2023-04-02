@@ -752,9 +752,9 @@
     "en": "{{ActivityCount}} activities detected in the last 5 months",
     "es": "{{ActivityCount}} actividades detectadas en los últimos 5 meses"
   },
-  "{{ActivityCount}} activities detected in the last 7 days": {
-    "en": "{{ActivityCount}} activities detected in the last 7 days",
-    "es": "{{ActivityCount}} actividades detectadas en los últimos 7 días"
+  "{{ActivityCount}} activities detected in the last week": {
+    "en": "{{ActivityCount}} activities detected in the last week",
+    "es": "{{ActivityCount}} actividades detectadas en la última semana"
   },
   "View more from {{CityName}}": {
     "en": "View more from {{CityName}}",
