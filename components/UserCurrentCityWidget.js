@@ -4,11 +4,18 @@ import { explorePath } from "lib/urls";
 import { accessorActivityTitle } from "lib/activityAcessors";
 import { useDate } from "lib/date";
 import Link from "next/link";
+import { trackLink } from "lib/track";
 
 const WidgetListItemCity = ({ city }) => {
   const { t } = useTrans();
   return (
-    <Link href={explorePath(city.slug_path)} className="widget-list-item mb-2">
+    <Link
+      onClick={trackLink("ucc-widget.city.click", {
+        city_slug: city?.slug_path,
+      })}
+      href={explorePath(city.slug_path)}
+      className="widget-list-item mb-2"
+    >
       <div className="widget-list-item-image">
         <img src={city.image_square_url} />
       </div>
@@ -28,7 +35,7 @@ const WidgetListItemCity = ({ city }) => {
   );
 };
 
-const WidgetListItemSmallActivity = ({ activity, index }) => {
+const WidgetListItemSmallActivity = ({ city, activity, index }) => {
   const { t } = useTrans();
   const title = accessorActivityTitle(t, activity);
   const { displayDate } = useDate();
@@ -37,7 +44,13 @@ const WidgetListItemSmallActivity = ({ activity, index }) => {
     [activity.area.slug_path, "activities", activity.id].join("/")
   );
   return (
-    <Link href={url} className="widget-list-item widget-list-item-small">
+    <Link
+      onClick={trackLink("ucc-widget.activity.click", {
+        city_slug: city?.slug_path,
+      })}
+      href={url}
+      className="widget-list-item widget-list-item-small"
+    >
       <div className="widget-list-item-icon">
         <i className={`bi bi-${index}-circle-fill`}></i>
       </div>
@@ -73,6 +86,7 @@ const UserCurrentCityWidget = ({ city, activities }) => {
             index={index + 1}
             key={activity.id}
             activity={activity}
+            city={city}
           />
         ))}
       </div>

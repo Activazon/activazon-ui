@@ -22,6 +22,7 @@ import {
   accessorActivityTitle,
   accessorActivityImageUrl,
 } from "lib/activityAcessors";
+import { isDisplayModeStandalone } from "lib/pwa";
 
 const Page = () => {
   const { i, t } = useTrans();
@@ -37,6 +38,11 @@ const Page = () => {
   const activities = useApi(() => getActivities(activitiesLimit), null);
   const cities = useApi(() => getCities(citiesLimit), null);
   const user_recommendation = useApi(() => getCityByRequestIp(), null);
+  const ah2s = !isDisplayModeStandalone() && (
+    <Col>
+      <A2hsCtaTile />
+    </Col>
+  );
 
   return (
     <>
@@ -62,6 +68,7 @@ const Page = () => {
                   />
                 </Col>
               )}
+              {ah2s}
               <Col>
                 <PlaceList
                   title={i("Activities detected today")}
@@ -116,9 +123,7 @@ const Page = () => {
                 />
               </Col>
 
-              <Col>
-                <A2hsCtaTile />
-              </Col>
+              {ah2s}
             </>
 
             <Footer />

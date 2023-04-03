@@ -27,7 +27,7 @@ const A2hsCtaTile = ({}) => {
             </h6>
             <p className="widget-list-item-text widget-list-item-text-light">
               {i(
-                "Add Activazon to your home screen to get real-time notifications about crime in your area."
+                "Unlock features like notifications about crime in areas that matter most to you."
               )}
             </p>
             <button onClick={goToA2hs} className="btn btn-cta">

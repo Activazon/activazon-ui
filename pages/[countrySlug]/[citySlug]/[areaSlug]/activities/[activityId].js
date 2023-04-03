@@ -17,6 +17,7 @@ import { useSubscriptionManager } from "lib/subscriptionManager";
 import { usePlaceManager, PLACE_TYPES } from "lib/placeManager";
 import { getActivity } from "lib/client-api";
 import { useRouter } from "next/router";
+import { isDisplayModeStandalone } from "lib/pwa";
 
 const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
   const router = useRouter();
@@ -104,7 +105,7 @@ const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
             {!activity && <ActivityDetailShimmer />}
             {activity && <ActivityDetail activity={activity} locale={locale} />}
 
-            {!isAuthenticated && (
+            {!isDisplayModeStandalone() && (
               <div className="container pt-3">
                 <A2hsCtaTile />
               </div>

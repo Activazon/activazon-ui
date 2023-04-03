@@ -20,6 +20,7 @@ import { useUser } from "lib/user";
 
 import { usePlaceManager, PLACE_TYPES } from "lib/placeManager";
 import { useSubscriptionManager } from "lib/subscriptionManager";
+import { isDisplayModeStandalone } from "lib/pwa";
 
 const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
   const activitiesLimit = 3;
@@ -135,7 +136,7 @@ const AreaPage = ({ countrySlug, citySlug, areaSlug }) => {
               )}
             </Col>
 
-            {!isAuthenticated && (
+            {!isDisplayModeStandalone() && (
               <Col>
                 <A2hsCtaTile />
               </Col>

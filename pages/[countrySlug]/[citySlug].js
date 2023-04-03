@@ -19,6 +19,7 @@ import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
 import { usePlaceManager, PLACE_TYPES } from "lib/placeManager";
 import { useSubscriptionManager } from "lib/subscriptionManager";
+import { isDisplayModeStandalone } from "lib/pwa";
 
 const Page = ({ countrySlug, citySlug }) => {
   const areasLimit = 3;
@@ -143,7 +144,7 @@ const Page = ({ countrySlug, citySlug }) => {
                 )}
               </Col>
 
-              {!isAuthenticated && (
+              {!isDisplayModeStandalone() && (
                 <Col>
                   <A2hsCtaTile />
                 </Col>
@@ -170,7 +171,7 @@ const Page = ({ countrySlug, citySlug }) => {
                 />
               </Col>
 
-              {!isAuthenticated && (
+              {!isDisplayModeStandalone() && (
                 <Col>
                   <A2hsCtaTile />
                 </Col>

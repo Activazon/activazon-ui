@@ -8,8 +8,13 @@ import { useUser } from "lib/user";
 import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import { track } from "lib/track";
+import { isDisplayModeStandalone } from "lib/pwa";
 
-const SubscribeButton = ({ placeManager, subscriptionManager }) => {
+const SubscribeButton = ({
+  placeManager,
+  subscriptionManager,
+  showA2hsCta,
+}) => {
   /**
    * this is how subscriptions works
    * this is a button that will subscribe the user to the
@@ -35,8 +40,14 @@ const SubscribeButton = ({ placeManager, subscriptionManager }) => {
     (e) => {
       e.preventDefault();
 
+      if (!isDisplayModeStandalone()) {
+        track("subscribe.click.standalone");
+        showA2hsCta();
+        return;
+      }
+
       if (!user) {
-        track("subscribe.click.not-logged-in");
+        track("subscribe.not-logged-in");
         // can't subscribe if not logged in
         router.push({
           pathname: "/signup",
@@ -53,12 +64,12 @@ const SubscribeButton = ({ placeManager, subscriptionManager }) => {
           break;
         case "denied":
         case "unsupported":
-          track("subscribe.click.push-notifications-denied-prompt");
+          track("subscribe.click.denied-prompt");
           // user has denied notifications or browser doesn't support push notifications
           setToastType(TOASTS.PUSH_NOTIFICATIONS_DENIED);
           break;
         case "default":
-          track("subscribe.click.push-notifications-default-prompt");
+          track("subscribe.click.default-prompt");
           // user has not yet been asked for permission, so ask them
           setToastType(TOASTS.PUSH_NOTIFICATIONS_DEFAULT);
           break;
