@@ -65,6 +65,7 @@
 
 .btn.btn-cta {
   @include button-variant($primary, $primary);
-  color: $primary !important;
-  background-color: rgba($primary, 0.05);
+  color: $bg-color;
+  // background-color: rgba($primary, 0.05);
+  @extend .py-2;
 }
