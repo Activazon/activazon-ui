@@ -5,6 +5,7 @@ import { signOut } from "next-auth/react";
 import { track } from "lib/track";
 import { useUser } from "lib/user";
 import { useTrans } from "lib/trans";
+import { isDisplayModeStandalone } from "lib/pwa";
 
 const NavMenuItem = ({ icon, label, active, href, onClick }) => {
   return (
@@ -74,14 +75,15 @@ const NavMenu = ({ open, close }) => {
             active={isActive("/")}
             href="/"
           />
-
-          <NavMenuItem
-            icon={<i className="bi bi-box-arrow-in-down me-3" />}
-            label={t("Add To Home Screen")}
-            href={{
-              pathname: "/a2hs",
-            }}
-          />
+          {!isDisplayModeStandalone() && (
+            <NavMenuItem
+              icon={<i className="bi bi-box-arrow-in-down me-3" />}
+              label={t("Add To Home Screen")}
+              href={{
+                pathname: "/a2hs",
+              }}
+            />
+          )}
           {!isAuthenticated && (
             <NavMenuItem
               icon={<i className="bi bi-box-arrow-in-right me-3" />}
