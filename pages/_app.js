@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
-import { loadFullStory } from "lib/track";
+import { initializeTrackers } from "lib/track";
 import Script from "next/script";
 // styling
 import "../styles/theme.scss";
@@ -42,7 +42,7 @@ export default function App({
   }, [router]);
 
   useEffect(() => {
-    loadFullStory();
+    initializeTrackers();
   }, []);
 
   return (
