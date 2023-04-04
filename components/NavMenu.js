@@ -75,6 +75,12 @@ const NavMenu = ({ open, close }) => {
             active={isActive("/")}
             href="/"
           />
+          <NavMenuItem
+            icon={<i className="bi bi-search me-3" />}
+            label={t("Search")}
+            active={isActive("/search")}
+            href="/search"
+          />
           {!isDisplayModeStandalone() && (
             <NavMenuItem
               icon={<i className="bi bi-box-arrow-in-down me-3" />}
