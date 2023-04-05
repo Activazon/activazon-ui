@@ -21,6 +21,7 @@ const Nav = ({ title, backHref, hideMenu }) => {
             {title || "Activazon"}
           </Link>
 
+          <div className="flex-grow-1"></div>
           {!hideMenu && (
             <button
               className={"btn btn-nav-menu" + (isMenuOpen ? " active" : "")}
