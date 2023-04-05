@@ -1,0 +1,76 @@
+@keyframes pulse {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  50% {
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 100%);
+  }
+}
+
+.app-container {
+  background-color: $bg-color;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+
+  .app-content {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: inherit;
+    height: inherit;
+    @extend .d-flex;
+    @extend .align-items-center;
+    @extend .justify-content-center;
+    @extend .flex-column;
+
+    &-close-animate {
+      animation: fadeOut 0.5s ease-in-out;
+      animation-fill-mode: forwards;
+    }
+
+    .brand {
+      text-align: center;
+      color: $primary;
+      .brand-icon {
+        font-size: 6rem;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      .brand-text {
+        margin: 0px;
+        font-size: 600;
+        text-align: center;
+        margin: 0px;
+
+        &-title {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    .login-form {
+      @extend .card;
+      @extend .card-body;
+      border: 0px;
+      background-color: $white;
+
+      .form-control {
+        border: 0px;
+        border-bottom: 1px solid rgba($bg-color, 0.2);
+        border-radius: 0px;
+        background-color: transparent;
+        @extend .py-2;
+        &:focus {
+          box-shadow: none;
+          border-bottom: 1px solid $primary;
+        }
+        &:last-child {
+          border-bottom: 0px;
+        }
+      }
+    }
+  }
+}

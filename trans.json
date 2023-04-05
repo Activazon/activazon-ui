@@ -807,5 +807,9 @@
   "{{activity_type_name}} in <b>{{neighbourhood_name}}</b>": {
     "en": "{{activity_type_name}} in <b>{{neighbourhood_name}}</b>",
     "es": "{{activity_type_name}} en <b>{{neighbourhood_name}}</b>"
+  },
+  "Safety in your hands.": {
+    "en": "Safety in your hands.",
+    "es": "Seguridad en tus manos."
   }
 }
