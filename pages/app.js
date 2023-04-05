@@ -20,6 +20,7 @@ export default function Home({}) {
   const [currentAction, setCurrentAction] = useState("loading");
   const [previousAction, setPreviousAction] = useState(null);
   const [isBusy, setIsBusy] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const switchAction = useCallback(
     (action) => {
@@ -34,9 +35,12 @@ export default function Home({}) {
     // so we will check if we need the ask the user for notification permission
     // and sign up.
     // if (isDisplayModeStandalone()) {
-    if (!user || pushNotificationPermission() !== "granted") {
-      // setRequiredActions(_requiredActions);
-      switchAction("askToSignIn");
+    if (!user) {
+      // we need to ask the user to sign up
+      switchAction("askToSignUp");
+    } else if (pushNotificationPermission() !== "granted") {
+      // we need to ask the user for permission
+      switchAction("askForPermission");
     } else {
       // we are good to go
       //   TODO: redirect to home page
@@ -56,11 +60,15 @@ export default function Home({}) {
 
   const onSignUpFormSubmit = (e) => {
     e.preventDefault();
-    switchAction("askForPermission");
+    setIsBusy(true);
+    setErrorMessage("Invalid email or password.");
+    // switchAction("askForPermission");
   };
   const onSignInFormSubmit = (e) => {
     e.preventDefault();
-    switchAction("askForPermission");
+    setIsBusy(true);
+    setErrorMessage("Invalid email or password.");
+    // switchAction("askForPermission");
   };
 
   // keeps the current and previous action render so they can be animated
@@ -126,43 +134,60 @@ export default function Home({}) {
             </div>
 
             <div className="container">
-              <form className="login-form" onSubmit={onSignUpFormSubmit}>
+              <form
+                className={classNames("login-form", {
+                  "login-form-disabled": isBusy,
+                })}
+              >
+                {errorMessage && (
+                  <div className="login-form-error">
+                    <p>{errorMessage}</p>
+                  </div>
+                )}
                 <div className="d-flex">
                   <input
                     className="form-control w-50"
                     placeholder="First Name"
+                    disabled={isBusy}
                   />
                   <input
                     className="form-control w-50"
                     placeholder="Last Name"
+                    disabled={isBusy}
                   />
                 </div>
                 <input
                   className="form-control"
                   placeholder="Email"
                   type="email"
+                  disabled={isBusy}
                 />
 
                 <input
                   className="form-control form-control-last"
                   placeholder="Password"
                   type="password"
+                  disabled={isBusy}
                 />
               </form>
             </div>
 
             <div className="container mt-3">
-              <input
+              <button
                 className="btn btn-primary btn-lg w-100"
                 type="submit"
-                value="Sign Up"
-              />
+                onClick={onSignUpFormSubmit}
+                disabled={isBusy}
+              >
+                Sign Up
+              </button>
             </div>
 
             <div className="container mt-3">
               <button
                 className="btn btn-clear text-white w-100"
                 onClick={onAskToSignIn}
+                disabled={isBusy}
               >
                 Already have an Account? Log In
               </button>
@@ -170,7 +195,7 @@ export default function Home({}) {
           </div>
         )}
 
-        {/* journey - login */}
+        {/* journey - sign in */}
         {isOrWasAction("askToSignIn") && (
           <div className={appContentClassNames("askToSignIn")}>
             <div className="brand mb-5">
@@ -182,27 +207,40 @@ export default function Home({}) {
             </div>
 
             <div className="container">
-              <form className="login-form" onSubmit={onSignInFormSubmit}>
+              <form
+                className={classNames("login-form", {
+                  "login-form-disabled": isBusy,
+                })}
+              >
+                {errorMessage && (
+                  <div className="login-form-error">
+                    <p>{errorMessage}</p>
+                  </div>
+                )}
                 <input
                   className="form-control"
                   placeholder="Email"
                   type="email"
+                  disabled={isBusy}
                 />
 
                 <input
                   className="form-control form-control-last"
                   placeholder="Password"
                   type="password"
+                  disabled={isBusy}
                 />
               </form>
             </div>
 
             <div className="container mt-3">
-              <input
+              <button
                 className="btn btn-primary btn-lg w-100"
-                type="submit"
-                value="Sign Up"
-              />
+                onClick={onSignInFormSubmit}
+                disabled={isBusy}
+              >
+                Sign In
+              </button>
             </div>
 
             <div className="container mt-3">
@@ -210,7 +248,7 @@ export default function Home({}) {
                 className="btn btn-clear text-white w-100"
                 onClick={onAskToSignUp}
                 type="submit"
-                value={t("Sign In")}
+                disabled={isBusy}
               >
                 Already have an account? Sign In
               </button>
