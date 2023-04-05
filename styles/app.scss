@@ -39,12 +39,12 @@
     @extend .flex-column;
 
     &-open-animate {
-      animation: fadeInLeft 0.5s ease-in-out;
+      animation: fadeInRight 0.5s ease-in-out;
       animation-fill-mode: forwards;
     }
 
     &-close-animate {
-      animation: fadeOutRight 0.5s ease-in-out;
+      animation: fadeOutLeft 0.5s ease-in-out;
       animation-fill-mode: forwards;
     }
 
