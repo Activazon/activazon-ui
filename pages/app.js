@@ -26,6 +26,7 @@ export default function Home({}) {
     (action) => {
       setPreviousAction(currentAction);
       setCurrentAction(action);
+      errorMessage(null);
     },
     [currentAction]
   );
