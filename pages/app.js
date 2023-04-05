@@ -61,13 +61,20 @@ export default function Home({}) {
   const onSignUpFormSubmit = (e) => {
     e.preventDefault();
     setIsBusy(true);
-    setErrorMessage("Invalid email or password.");
+    setTimeout(() => {
+      setIsBusy(false);
+      setErrorMessage("Invalid email or password.");
+    }, 5000);
     // switchAction("askForPermission");
   };
   const onSignInFormSubmit = (e) => {
     e.preventDefault();
     setIsBusy(true);
-    setErrorMessage("Invalid email or password.");
+    setTimeout(() => {
+      setIsBusy(false);
+      setErrorMessage("Invalid email or password.");
+    }, 5000);
+
     // switchAction("askForPermission");
   };
 
