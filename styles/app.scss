@@ -15,6 +15,7 @@
   width: 100vw;
   height: 100vh;
   position: absolute;
+  overflow: hidden;
 
   .app-content {
     position: absolute;
@@ -27,8 +28,13 @@
     @extend .justify-content-center;
     @extend .flex-column;
 
+    &-open-animate {
+      animation: fadeInLeft 0.5s ease-in-out;
+      animation-fill-mode: forwards;
+    }
+
     &-close-animate {
-      animation: fadeOut 0.5s ease-in-out;
+      animation: fadeOutRight 0.5s ease-in-out;
       animation-fill-mode: forwards;
     }
 
@@ -37,7 +43,9 @@
       color: $primary;
       .brand-icon {
         font-size: 6rem;
-        animation: pulse 2s ease-in-out infinite;
+        &-animate {
+          animation: pulse 2s ease-in-out infinite;
+        }
       }
       .brand-text {
         margin: 0px;
@@ -56,18 +64,20 @@
       @extend .card-body;
       border: 0px;
       background-color: $white;
+      animation-fill-mode: forwards;
 
       .form-control {
         border: 0px;
         border-bottom: 1px solid rgba($bg-color, 0.2);
         border-radius: 0px;
         background-color: transparent;
+        font-size: 600;
         @extend .py-2;
         &:focus {
           box-shadow: none;
           border-bottom: 1px solid $primary;
         }
-        &:last-child {
+        &-last {
           border-bottom: 0px;
         }
       }
