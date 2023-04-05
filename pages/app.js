@@ -144,55 +144,56 @@ export default function Home({}) {
               </p>
             </div>
 
-            <div className="container">
-              <form
-                className={classNames("login-form", {
-                  "login-form-disabled": isBusy,
-                })}
-              >
-                {errorMessage && (
-                  <div className="login-form-error">
-                    <p>{errorMessage}</p>
+            <form onSubmit={onSignUpFormSubmit}>
+              <div className="container">
+                <div
+                  className={classNames("login-form", {
+                    "login-form-disabled": isBusy,
+                  })}
+                >
+                  {errorMessage && (
+                    <div className="login-form-error">
+                      <p>{errorMessage}</p>
+                    </div>
+                  )}
+                  <div className="d-flex">
+                    <input
+                      className="form-control w-50"
+                      placeholder="First Name"
+                      disabled={isBusy}
+                    />
+                    <input
+                      className="form-control w-50"
+                      placeholder="Last Name"
+                      disabled={isBusy}
+                    />
                   </div>
-                )}
-                <div className="d-flex">
                   <input
-                    className="form-control w-50"
-                    placeholder="First Name"
+                    className="form-control"
+                    placeholder="Email"
+                    type="email"
                     disabled={isBusy}
                   />
+
                   <input
-                    className="form-control w-50"
-                    placeholder="Last Name"
+                    className="form-control form-control-last"
+                    placeholder="Password"
+                    type="password"
                     disabled={isBusy}
                   />
                 </div>
-                <input
-                  className="form-control"
-                  placeholder="Email"
-                  type="email"
-                  disabled={isBusy}
-                />
+              </div>
 
-                <input
-                  className="form-control form-control-last"
-                  placeholder="Password"
-                  type="password"
+              <div className="container mt-3">
+                <button
+                  className="btn btn-primary btn-lg w-100"
+                  type="submit"
                   disabled={isBusy}
-                />
-              </form>
-            </div>
-
-            <div className="container mt-3">
-              <button
-                className="btn btn-primary btn-lg w-100"
-                type="submit"
-                onClick={onSignUpFormSubmit}
-                disabled={isBusy}
-              >
-                Sign Up
-              </button>
-            </div>
+                >
+                  Sign Up
+                </button>
+              </div>
+            </form>
 
             <div className="container mt-3">
               <button
@@ -217,42 +218,43 @@ export default function Home({}) {
               </p>
             </div>
 
-            <div className="container">
-              <form
-                className={classNames("login-form", {
-                  "login-form-disabled": isBusy,
-                })}
-              >
-                {errorMessage && (
-                  <div className="login-form-error">
-                    <p>{errorMessage}</p>
-                  </div>
-                )}
-                <input
-                  className="form-control"
-                  placeholder="Email"
-                  type="email"
-                  disabled={isBusy}
-                />
+            <form onSubmit={onSignInFormSubmit}>
+              <div className="container">
+                <div
+                  className={classNames("login-form", {
+                    "login-form-disabled": isBusy,
+                  })}
+                >
+                  {errorMessage && (
+                    <div className="login-form-error">
+                      <p>{errorMessage}</p>
+                    </div>
+                  )}
+                  <input
+                    className="form-control"
+                    placeholder="Email"
+                    type="email"
+                    disabled={isBusy}
+                  />
 
-                <input
-                  className="form-control form-control-last"
-                  placeholder="Password"
-                  type="password"
-                  disabled={isBusy}
-                />
-              </form>
-            </div>
+                  <input
+                    className="form-control form-control-last"
+                    placeholder="Password"
+                    type="password"
+                    disabled={isBusy}
+                  />
+                </div>
+              </div>
 
-            <div className="container mt-3">
-              <button
-                className="btn btn-primary btn-lg w-100"
-                onClick={onSignInFormSubmit}
-                disabled={isBusy}
-              >
-                Sign In
-              </button>
-            </div>
+              <div className="container mt-3">
+                <button
+                  className="btn btn-primary btn-lg w-100"
+                  disabled={isBusy}
+                >
+                  Sign In
+                </button>
+              </div>
+            </form>
 
             <div className="container mt-3">
               <button
