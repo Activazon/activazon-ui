@@ -77,7 +77,7 @@ const NavMenu = ({ open, close }) => {
           />
           <NavMenuItem
             icon={<i className="bi bi-search me-3" />}
-            label={t("Search")}
+            label={t("Search for your city or neighbourhood")}
             active={isActive("/search")}
             href="/search"
           />
