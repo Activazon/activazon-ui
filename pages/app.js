@@ -61,18 +61,21 @@ export default function Home({}) {
   const onSignUpFormSubmit = (e) => {
     e.preventDefault();
     setIsBusy(true);
+    setErrorMessage(null);
+
     setTimeout(() => {
+      switchAction("askForPermission");
       setIsBusy(false);
-      setErrorMessage("Invalid email or password.");
     }, 5000);
-    // switchAction("askForPermission");
   };
   const onSignInFormSubmit = (e) => {
     e.preventDefault();
     setIsBusy(true);
+    setErrorMessage(null);
+
     setTimeout(() => {
-      setIsBusy(false);
       setErrorMessage("Invalid email or password.");
+      setIsBusy(false);
     }, 5000);
 
     // switchAction("askForPermission");
@@ -271,6 +274,11 @@ export default function Home({}) {
               <p className="brand-text-title">{t("Notifications, Yah!")}</p>
               <p className="brand-text">
                 {t("Stay alert and stay safe with Activazon")}
+              </p>
+              {/* TODO: probably ask for location too (like instagram) */}
+              <p>
+                Would you like to subscribe to activity alerts detected in
+                Tegucigalpa
               </p>
             </div>
             {/*  */}
