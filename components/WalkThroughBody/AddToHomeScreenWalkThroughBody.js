@@ -33,7 +33,7 @@ const AddToHomeScreenWalkThroughBody = ({ device }) => {
 
   return (
     <WalkThroughBody
-      heroImageSrc="/walkthrough/install.jpg"
+      heroImageSrc="/undraw/undraw_app_installation_re_h36x.svg"
       title={t("Sweet! Now let's Add Activazon to your Home Screen")}
       instructions={[
         deviceSpecificInstruction,

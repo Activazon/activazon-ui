@@ -7,7 +7,7 @@ const InAppBrowserWalkThrough = () => {
   useTrackOnce("a2hs.open_in_browser");
   return (
     <WalkThroughBody
-      heroImageSrc="/walkthrough/open-in-browser.jpg"
+      heroImageSrc="/undraw/undraw_going_offline_ihag.svg"
       title={t("First, open this page in your browser")}
       instructions={[
         <p class="walkthrough-description">

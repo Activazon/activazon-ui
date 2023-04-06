@@ -26,7 +26,7 @@ export default function Home({ inAppBrowser, browserOs }) {
 
   return (
     <>
-      <Head title={t("Add To Home Screen")} />
+      <Head />
       <body>
         <div class="walkthrough">
           <div class="nav-placeholder">
