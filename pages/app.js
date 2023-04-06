@@ -192,14 +192,15 @@ export default function Home({}) {
                 >
                   Sign Up
                 </button>
+
+                <button
+                  className="btn btn-clear text-white w-100"
+                  onClick={onAskToSignIn}
+                  disabled={isBusy}
+                >
+                  Already have an Account? Log In
+                </button>
               </form>
-              <button
-                className="btn btn-clear text-white w-100"
-                onClick={onAskToSignIn}
-                disabled={isBusy}
-              >
-                Already have an Account? Log In
-              </button>
             </div>
           </div>
         )}
@@ -248,15 +249,15 @@ export default function Home({}) {
                 >
                   Sign In
                 </button>
-              </form>
 
-              <button
-                className="btn btn-clear text-white w-100"
-                onClick={onAskToSignUp}
-                disabled={isBusy}
-              >
-                Don't have an account Sign Up?
-              </button>
+                <button
+                  className="btn btn-clear text-white w-100"
+                  onClick={onAskToSignUp}
+                  disabled={isBusy}
+                >
+                  Don't have an account Sign Up?
+                </button>
+              </form>
             </div>
           </div>
         )}
