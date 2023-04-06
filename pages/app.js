@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import { useTrans } from "lib/trans";
 import { useCallback, useEffect, useState } from "react";
-import { useUser } from "lib/user";
 import Head from "components/Head";
+import { useSession } from "next-auth/react";
 
 const pushNotificationPermission = () => {
   if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
@@ -14,13 +14,24 @@ const pushNotificationPermission = () => {
 
 export default function Home({}) {
   const { t } = useTrans();
-  const user = useUser();
+  const session = useSession();
   //   const [requiredActions, setRequiredActions] = useState([]);
   const [currentAction, setCurrentAction] = useState("loading");
   const [previousAction, setPreviousAction] = useState(null);
   const [isBusy, setIsBusy] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [signUpForm, setSignUpForm] = useState({
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
+  const [signInForm, setSignInForm] = useState({
+    username: "",
+    password: "",
+  });
 
+  // handle switching between actions
   const switchAction = useCallback(
     (action) => {
       setPreviousAction(currentAction);
@@ -35,20 +46,21 @@ export default function Home({}) {
     // so we will check if we need the ask the user for notification permission
     // and sign up.
     // if (isDisplayModeStandalone()) {
-    if (!user) {
+    if (session.status === "unauthenticated") {
       // we need to ask the user to sign up
       switchAction("askToSignUp");
     } else if (pushNotificationPermission() !== "granted") {
       // we need to ask the user for permission
       switchAction("askForPermission");
-    } else {
+    } else if (session.status === "authenticated") {
       // we are good to go
       //   TODO: redirect to home page
     }
 
     // }
-  }, [user]);
+  }, [session]);
 
+  // buttons actions to switch between actions
   const onAskToSignIn = (e) => {
     e.preventDefault();
     switchAction("askToSignIn");
@@ -58,16 +70,22 @@ export default function Home({}) {
     switchAction("askToSignUp");
   };
 
-  const onSignUpFormSubmit = (e) => {
-    e.preventDefault();
-    setIsBusy(true);
-    setErrorMessage(null);
+  // form submissions
+  const onSignUpFormSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      setIsBusy(true);
+      setErrorMessage(null);
 
-    setTimeout(() => {
-      switchAction("askForPermission");
-      setIsBusy(false);
-    }, 5000);
-  };
+      console.log("signUpForm", signUpForm);
+
+      setTimeout(() => {
+        switchAction("askForPermission");
+        setIsBusy(false);
+      }, 5000);
+    },
+    [signUpForm]
+  );
   const onSignInFormSubmit = (e) => {
     e.preventDefault();
     setIsBusy(true);
@@ -101,6 +119,16 @@ export default function Home({}) {
     },
     [currentAction]
   );
+
+  const onSignUpFormFieldChange = (e) => {
+    const { name, value } = e.target;
+    setSignUpForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const onSignInFormFieldChange = (e) => {
+    const { name, value } = e.target;
+    setSignInForm((prev) => ({ ...prev, [name]: value }));
+  };
 
   const appContentClassNames = (action) => {
     return classNames("app-content", {
@@ -163,11 +191,17 @@ export default function Home({}) {
                       className="form-control w-50"
                       placeholder="First Name"
                       disabled={isBusy}
+                      name="firstName"
+                      value={signUpForm.firstName}
+                      onChange={onSignUpFormFieldChange}
                     />
                     <input
                       className="form-control w-50"
                       placeholder="Last Name"
                       disabled={isBusy}
+                      name="lastName"
+                      value={signUpForm.lastName}
+                      onChange={onSignUpFormFieldChange}
                     />
                   </div>
                   <input
@@ -175,6 +209,9 @@ export default function Home({}) {
                     placeholder="Email"
                     type="email"
                     disabled={isBusy}
+                    name="username"
+                    value={signUpForm.username}
+                    onChange={onSignUpFormFieldChange}
                   />
 
                   <input
@@ -182,6 +219,9 @@ export default function Home({}) {
                     placeholder="Password"
                     type="password"
                     disabled={isBusy}
+                    name="password"
+                    value={signUpForm.password}
+                    onChange={onSignUpFormFieldChange}
                   />
                 </div>
 
@@ -232,6 +272,9 @@ export default function Home({}) {
                     placeholder="Email"
                     type="email"
                     disabled={isBusy}
+                    name="username"
+                    value={signInForm.username}
+                    onChange={onSignInFormFieldChange}
                   />
 
                   <input
@@ -239,6 +282,9 @@ export default function Home({}) {
                     placeholder="Password"
                     type="password"
                     disabled={isBusy}
+                    name="password"
+                    value={signInForm.password}
+                    onChange={onSignInFormFieldChange}
                   />
                 </div>
 
