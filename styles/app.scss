@@ -104,7 +104,8 @@
       }
     }
 
-    .app-content-list {
+    .app-content-list,
+    .app-content-list form {
       @extend .container;
       @extend .d-flex;
       @extend .flex-column;
@@ -128,7 +129,7 @@
       @extend .card;
       @extend .card-body;
       border: 0px;
-      background-color: $white;
+      background-color: rgba($bg-color, 0.1);
       animation-fill-mode: forwards;
 
       &-disabled {
@@ -167,5 +168,9 @@
         }
       }
     }
+  }
+
+  .btn-clear {
+    color: $primary !important;
   }
 }

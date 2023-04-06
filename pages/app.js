@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import { useTrans } from "lib/trans";
 import { useCallback, useEffect, useState } from "react";
-import { isDisplayModeStandalone } from "lib/pwa";
 import { useUser } from "lib/user";
 import Head from "components/Head";
 
@@ -110,9 +109,9 @@ export default function Home({}) {
     });
   };
 
-  const brandIconClassNames = classNames("brand-icon bi bi-activity", {
-    "brand-icon-animate": isBusy,
-  });
+  // const brandIconClassNames = classNames("brand-icon bi bi-activity", {
+  //   "brand-icon-animate": isBusy,
+  // });
 
   return (
     <>
@@ -143,12 +142,12 @@ export default function Home({}) {
           <div className={appContentClassNames("askToSignUp")}>
             <div className="brand mb-5">
               <div className="brand-hero">
-                <img src="/undraw/undraw_login_re_4vu2.svg" />
+                <img src="/undraw/undraw_welcoming_re_x0qo.svg" />
               </div>
             </div>
 
-            <form onSubmit={onSignUpFormSubmit}>
-              <div className="container">
+            <div className="app-content-list">
+              <form onSubmit={onSignUpFormSubmit}>
                 <div
                   className={classNames("login-form", {
                     "login-form-disabled": isBusy,
@@ -185,9 +184,7 @@ export default function Home({}) {
                     disabled={isBusy}
                   />
                 </div>
-              </div>
 
-              <div className="container mt-3">
                 <button
                   className="btn btn-primary btn-lg w-100"
                   type="submit"
@@ -195,10 +192,7 @@ export default function Home({}) {
                 >
                   Sign Up
                 </button>
-              </div>
-            </form>
-
-            <div className="container mt-3">
+              </form>
               <button
                 className="btn btn-clear text-white w-100"
                 onClick={onAskToSignIn}
@@ -219,8 +213,8 @@ export default function Home({}) {
               </div>
             </div>
 
-            <form onSubmit={onSignInFormSubmit}>
-              <div className="container">
+            <div className="app-content-list">
+              <form onSubmit={onSignInFormSubmit}>
                 <div
                   className={classNames("login-form", {
                     "login-form-disabled": isBusy,
@@ -231,6 +225,7 @@ export default function Home({}) {
                       <p>{errorMessage}</p>
                     </div>
                   )}
+
                   <input
                     className="form-control"
                     placeholder="Email"
@@ -245,26 +240,22 @@ export default function Home({}) {
                     disabled={isBusy}
                   />
                 </div>
-              </div>
 
-              <div className="container mt-3">
                 <button
                   className="btn btn-primary btn-lg w-100"
+                  type="submit"
                   disabled={isBusy}
                 >
                   Sign In
                 </button>
-              </div>
-            </form>
+              </form>
 
-            <div className="container mt-3">
               <button
                 className="btn btn-clear text-white w-100"
                 onClick={onAskToSignUp}
-                type="submit"
                 disabled={isBusy}
               >
-                Already have an account? Sign In
+                Don't have an account Sign Up?
               </button>
             </div>
           </div>
