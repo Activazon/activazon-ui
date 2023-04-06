@@ -3,6 +3,9 @@ import { useTrans } from "lib/trans";
 import { useCallback, useEffect, useState } from "react";
 import Head from "components/Head";
 import { useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
+import { track } from "lib/track";
+import { useRouter } from "next/router";
 
 const pushNotificationPermission = () => {
   if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
@@ -13,9 +16,9 @@ const pushNotificationPermission = () => {
 };
 
 export default function Home({}) {
-  const { t } = useTrans();
+  const { t, ts, locale } = useTrans();
   const session = useSession();
-  //   const [requiredActions, setRequiredActions] = useState([]);
+  const router = useRouter();
   const [currentAction, setCurrentAction] = useState("loading");
   const [previousAction, setPreviousAction] = useState(null);
   const [isBusy, setIsBusy] = useState(false);
@@ -41,64 +44,6 @@ export default function Home({}) {
     [currentAction]
   );
 
-  useEffect(() => {
-    // this app has been added to the home screen
-    // so we will check if we need the ask the user for notification permission
-    // and sign up.
-    // if (isDisplayModeStandalone()) {
-    if (session.status === "unauthenticated") {
-      // we need to ask the user to sign up
-      switchAction("askToSignUp");
-    } else if (pushNotificationPermission() !== "granted") {
-      // we need to ask the user for permission
-      switchAction("askForPermission");
-    } else if (session.status === "authenticated") {
-      // we are good to go
-      //   TODO: redirect to home page
-    }
-
-    // }
-  }, [session]);
-
-  // buttons actions to switch between actions
-  const onAskToSignIn = (e) => {
-    e.preventDefault();
-    switchAction("askToSignIn");
-  };
-  const onAskToSignUp = (e) => {
-    e.preventDefault();
-    switchAction("askToSignUp");
-  };
-
-  // form submissions
-  const onSignUpFormSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      setIsBusy(true);
-      setErrorMessage(null);
-
-      console.log("signUpForm", signUpForm);
-
-      setTimeout(() => {
-        switchAction("askForPermission");
-        setIsBusy(false);
-      }, 5000);
-    },
-    [signUpForm]
-  );
-  const onSignInFormSubmit = (e) => {
-    e.preventDefault();
-    setIsBusy(true);
-    setErrorMessage(null);
-
-    setTimeout(() => {
-      setErrorMessage("Invalid email or password.");
-      setIsBusy(false);
-    }, 5000);
-
-    // switchAction("askForPermission");
-  };
-
   // keeps the current and previous action render so they can be animated
   const isOrWasAction = useCallback(
     (action) => {
@@ -120,14 +65,107 @@ export default function Home({}) {
     [currentAction]
   );
 
+  useEffect(() => {
+    // this app has been added to the home screen
+    // so we will check if we need the ask the user for notification permission
+    // and sign up.
+    // if (isDisplayModeStandalone()) {
+
+    if (isAction("loading")) {
+      if (session.status === "unauthenticated") {
+        // we need to ask the user to sign up
+        switchAction("askToSignUp");
+      } else if (pushNotificationPermission() !== "granted") {
+        // we need to ask the user for permission
+        switchAction("askForPermission");
+      } else if (session.status === "authenticated") {
+        // we are good to go
+        // TODO: redirect to home page
+        router.push("/");
+      }
+    }
+
+    // }
+  }, [session]);
+
+  // buttons actions to switch between actions
+  const onAskToSignIn = (e) => {
+    e.preventDefault();
+    switchAction("askToSignIn");
+  };
+  const onAskToSignUp = (e) => {
+    e.preventDefault();
+    switchAction("askToSignUp");
+  };
+
+  // form submissions
+  const onSignUpFormSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      setIsBusy(true);
+      setErrorMessage(null);
+
+      if (
+        signUpForm.username === "" ||
+        signUpForm.password === "" ||
+        signUpForm.firstName === "" ||
+        signUpForm.lastName === ""
+      ) {
+        setErrorMessage("INVALID_FORM_DATA");
+      } else {
+        const resp = await signIn("signup", {
+          redirect: false,
+          username: signUpForm.username,
+          usernameVerify: signUpForm.username,
+          password: signUpForm.password,
+          firstName: signUpForm.firstName,
+          lastName: signUpForm.lastName,
+          locale,
+        });
+
+        if (resp.error) {
+          setErrorMessage(resp.error || "UNKNOWN_ERROR");
+        } else if (resp.ok) {
+          track("appentry.signup.complete");
+          switchAction("askForPermission");
+        }
+      }
+      setIsBusy(false);
+    },
+    [signUpForm]
+  );
+  const onSignInFormSubmit = async (e) => {
+    e.preventDefault();
+    setIsBusy(true);
+    setErrorMessage(null);
+
+    if (signInForm.username === "" || !signInForm.password === "") {
+      setErrorMessage("INVALID_FORM_DATA");
+    } else {
+      const resp = await signIn("signin", {
+        redirect: false,
+        username: signInForm.username,
+        password: signInForm.password,
+      });
+
+      if (resp.error) {
+        setErrorMessage(resp.error || "UNKNOWN_ERROR");
+      } else if (resp.ok) {
+        track("appentry.signin.complete");
+        switchAction("askForPermission");
+      }
+    }
+    setIsBusy(false);
+  };
+
   const onSignUpFormFieldChange = (e) => {
     const { name, value } = e.target;
-    setSignUpForm((prev) => ({ ...prev, [name]: value }));
+    setSignUpForm((prev) => ({ ...prev, [name]: value.trim() }));
   };
 
   const onSignInFormFieldChange = (e) => {
     const { name, value } = e.target;
-    setSignInForm((prev) => ({ ...prev, [name]: value }));
+    setSignInForm((prev) => ({ ...prev, [name]: value.trim() }));
   };
 
   const appContentClassNames = (action) => {
@@ -140,6 +178,15 @@ export default function Home({}) {
   // const brandIconClassNames = classNames("brand-icon bi bi-activity", {
   //   "brand-icon-animate": isBusy,
   // });
+
+  const errorMessageDisplay =
+    {
+      INVALID_FORM_DATA: t("Please fill in all the fields."),
+      INVALID_CREDENTIALS: t("Invalid username or password."),
+      USER_ALREADY_EXISTS: t("User already exists with that email."),
+      USERNAME_MISMATCH: t("Email addresses do not match."),
+      CredentialsSignin: t("Invalid email or password."),
+    }[errorMessage] || t("An unknown error occurred.");
 
   return (
     <>
@@ -168,10 +215,11 @@ export default function Home({}) {
         {/* journey - sign up */}
         {isOrWasAction("askToSignUp") && (
           <div className={appContentClassNames("askToSignUp")}>
-            <div className="brand mb-5">
+            <div className="brand">
               <div className="brand-hero">
                 <img src="/undraw/undraw_welcoming_re_x0qo.svg" />
               </div>
+              <p className="brand-text-title">{t("Sign Up")}</p>
             </div>
 
             <div className="app-content-list">
@@ -183,45 +231,49 @@ export default function Home({}) {
                 >
                   {errorMessage && (
                     <div className="login-form-error">
-                      <p>{errorMessage}</p>
+                      <p>{errorMessageDisplay}</p>
                     </div>
                   )}
                   <div className="d-flex">
                     <input
                       className="form-control w-50"
-                      placeholder="First Name"
+                      placeholder={ts("First Name")}
                       disabled={isBusy}
                       name="firstName"
                       value={signUpForm.firstName}
                       onChange={onSignUpFormFieldChange}
+                      required={true}
                     />
                     <input
                       className="form-control w-50"
-                      placeholder="Last Name"
+                      placeholder={ts("Last Name")}
                       disabled={isBusy}
                       name="lastName"
                       value={signUpForm.lastName}
                       onChange={onSignUpFormFieldChange}
+                      required={true}
                     />
                   </div>
                   <input
                     className="form-control"
-                    placeholder="Email"
+                    placeholder={ts("Email address")}
                     type="email"
                     disabled={isBusy}
                     name="username"
                     value={signUpForm.username}
                     onChange={onSignUpFormFieldChange}
+                    required={true}
                   />
 
                   <input
                     className="form-control form-control-last"
-                    placeholder="Password"
+                    placeholder={ts("Password")}
                     type="password"
                     disabled={isBusy}
                     name="password"
                     value={signUpForm.password}
                     onChange={onSignUpFormFieldChange}
+                    required={true}
                   />
                 </div>
 
@@ -248,10 +300,11 @@ export default function Home({}) {
         {/* journey - sign in */}
         {isOrWasAction("askToSignIn") && (
           <div className={appContentClassNames("askToSignIn")}>
-            <div className="brand mb-5">
+            <div className="brand">
               <div className="brand-hero">
                 <img src="/undraw/undraw_login_re_4vu2.svg" />
               </div>
+              <p className="brand-text-title">{t("Sign In")}</p>
             </div>
 
             <div className="app-content-list">
@@ -263,28 +316,30 @@ export default function Home({}) {
                 >
                   {errorMessage && (
                     <div className="login-form-error">
-                      <p>{errorMessage}</p>
+                      <p>{errorMessageDisplay}</p>
                     </div>
                   )}
 
                   <input
                     className="form-control"
-                    placeholder="Email"
+                    placeholder={ts("Email address")}
                     type="email"
                     disabled={isBusy}
                     name="username"
                     value={signInForm.username}
                     onChange={onSignInFormFieldChange}
+                    required={true}
                   />
 
                   <input
                     className="form-control form-control-last"
-                    placeholder="Password"
+                    placeholder={ts("Password")}
                     type="password"
                     disabled={isBusy}
                     name="password"
                     value={signInForm.password}
                     onChange={onSignInFormFieldChange}
+                    required={true}
                   />
                 </div>
 

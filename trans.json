@@ -815,5 +815,25 @@
   "Sign Up to continue": {
     "en": "Sign Up to continue",
     "es": "Regístrate para continuar"
+  },
+  "Please fill in all the fields.": {
+    "en": "Please fill in all the fields.",
+    "es": "Por favor, complete todos los campos."
+  },
+  "Invalid email or password.": {
+    "en": "Invalid email or password.",
+    "es": "Correo electrónico o contraseña no válidos."
+  },
+  "User already exists with that email.": {
+    "en": "User already exists with that email.",
+    "es": "El usuario ya existe con ese correo electrónico."
+  },
+  "Email addresses do not match.": {
+    "en": "Email addresses do not match.",
+    "es": "Las direcciones de correo electrónico no coinciden."
+  },
+  "An unknown error occurred.": {
+    "en": "An unknown error occurred.",
+    "es": "Se produjo un error desconocido."
   }
 }

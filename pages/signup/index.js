@@ -49,7 +49,6 @@ const Page = ({}) => {
         setError(signUpResp.error);
         return;
       }
-
       if (signUpResp.ok) {
         track("signup.complete", { ref: router.query.ref });
         router.push(callbackUrl || "/");
