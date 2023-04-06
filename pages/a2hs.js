@@ -4,14 +4,6 @@ import AddToHomeScreenWalkThroughBody from "components/WalkThroughBody/AddToHome
 import { useTrans } from "lib/trans";
 import { isInAppBrowser, detectDeviceOS } from "lib/walkthrough";
 
-const AnimateIn = ({ children }) => {
-  return (
-    <div className="animate__animated animate__fadeInLeft flex-grow-1">
-      {children}
-    </div>
-  );
-};
-
 export default function Home({ inAppBrowser, browserOs }) {
   const { t } = useTrans();
   useTrans("walkthrough.a2hs", {
@@ -28,21 +20,15 @@ export default function Home({ inAppBrowser, browserOs }) {
     <>
       <Head />
       <body>
-        <div class="walkthrough">
-          <div class="nav-placeholder">
-            <p class="nav-placeholder-title animate__animated animate__fadeInDown">
+        <div className="app-container">
+          <div className="app-header">
+            <p className="app-header-title">
               <i className="bi bi-activity"></i>Activazon
             </p>
           </div>
-          {inAppOnlyWalkThrough && (
-            <AnimateIn>
-              <InAppBrowserWalkThrough />
-            </AnimateIn>
-          )}
+          {inAppOnlyWalkThrough && <InAppBrowserWalkThrough />}
           {addToHomeScreenOnlyWalkThrough && (
-            <AnimateIn>
-              <AddToHomeScreenWalkThroughBody device={device} />
-            </AnimateIn>
+            <AddToHomeScreenWalkThroughBody device={device} />
           )}
           <footer>
             <div className="container animate__animated animate__fadeInUp">

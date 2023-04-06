@@ -1,5 +1,4 @@
 import { useTrackOnce } from "lib/track";
-import WalkThroughBody from "components/WalkThroughBody";
 import { useTrans } from "lib/trans";
 
 const AddToHomeScreenWalkThroughBody = ({ device }) => {
@@ -9,7 +8,7 @@ const AddToHomeScreenWalkThroughBody = ({ device }) => {
 
   if (device === "ios") {
     deviceSpecificInstruction = (
-      <p class="walkthrough-description">
+      <p class="app-content-text">
         {t(
           'Tap the <i class="bi bi-box-arrow-up"></i> button at the bottom of your screen and select <b>Add to Home Screen</b> from the menu.'
         )}
@@ -17,7 +16,7 @@ const AddToHomeScreenWalkThroughBody = ({ device }) => {
     );
   } else if (device === "android") {
     deviceSpecificInstruction = (
-      <p class="walkthrough-description">
+      <p class="app-content-description">
         {t(
           'Tap the <i class="bi bi-three-dots"></i> button at the top right of your screen and select <b>Add to Home Screen</b>'
         )}
@@ -25,25 +24,33 @@ const AddToHomeScreenWalkThroughBody = ({ device }) => {
     );
   } else {
     deviceSpecificInstruction = (
-      <p class="walkthrough-description">
+      <p class="app-content-description">
         {t("Tap the install App button near navigation bar.")}
       </p>
     );
   }
 
   return (
-    <WalkThroughBody
-      heroImageSrc="/undraw/undraw_app_installation_re_h36x.svg"
-      title={t("Sweet! Now let's Add Activazon to your Home Screen")}
-      instructions={[
-        deviceSpecificInstruction,
-        <p class="walkthrough-description">
-          {t(
-            "Then, go to your Home screen and open the Activazon app to continue."
-          )}
-        </p>,
-      ]}
-    />
+    <div className="app-content app-content-open-animate">
+      <div className="brand">
+        <i className="brand-hero">
+          <img src="/undraw/undraw_app_installation_re_h36x.svg" />
+        </i>
+        <p className="brand-text-title">
+          {t("Sweet! Now let's Add Activazon to your Home Screen")}
+        </p>
+      </div>
+      <div className="app-content-list">
+        <div class="app-content-instruction">{deviceSpecificInstruction}</div>
+        <div class="app-content-instruction">
+          <p class="app-content-text">
+            {t(
+              "Then, go to your Home screen and open the Activazon app to continue."
+            )}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
