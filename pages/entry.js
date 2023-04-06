@@ -219,7 +219,7 @@ export default function Home({}) {
         // doSomething(position.coords.latitude, position.coords.longitude);
       });
     } else {
-      /* geolocation IS NOT available */
+      // error and go straight to website
     }
   };
   const onAllowLocationLater = (e) => {
