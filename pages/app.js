@@ -118,6 +118,11 @@ export default function Home({}) {
     <>
       <Head />
       <div className="app-container">
+        <div className="app-header">
+          <p className="app-header-title">
+            <i className="bi bi-activity"></i>Activazon
+          </p>
+        </div>
         {/* loading/spinner screen */}
         {isOrWasAction("loading") && (
           <div
@@ -137,11 +142,9 @@ export default function Home({}) {
         {isOrWasAction("askToSignUp") && (
           <div className={appContentClassNames("askToSignUp")}>
             <div className="brand mb-5">
-              <i className={brandIconClassNames}></i>
-              <p className="brand-text-title">{t("Sign Up to continue")}</p>
-              <p className="brand-text">
-                {t("Stay alert and stay safe with Activazon")}
-              </p>
+              <div className="brand-hero">
+                <img src="/undraw/undraw_login_re_4vu2.svg" />
+              </div>
             </div>
 
             <form onSubmit={onSignUpFormSubmit}>
@@ -211,11 +214,9 @@ export default function Home({}) {
         {isOrWasAction("askToSignIn") && (
           <div className={appContentClassNames("askToSignIn")}>
             <div className="brand mb-5">
-              <i className={brandIconClassNames}></i>
-              <p className="brand-text-title">{t("Sign In")}</p>
-              <p className="brand-text">
-                {t("Stay alert and stay safe with Activazon")}
-              </p>
+              <div className="brand-hero">
+                <img src="/undraw/undraw_login_re_4vu2.svg" />
+              </div>
             </div>
 
             <form onSubmit={onSignInFormSubmit}>
@@ -273,7 +274,9 @@ export default function Home({}) {
         {isOrWasAction("askForPermission") && (
           <div className={appContentClassNames("askForPermission")}>
             <div className="brand mb-5">
-              <i className={brandIconClassNames}></i>
+              <div className="brand-hero">
+                <img src="/undraw/undraw_push_notifications_re_t84m.svg" />
+              </div>
               <p className="brand-text-title">{t("Notifications, Yah!")}</p>
               <p className="brand-text">
                 {t("Stay alert and stay safe with Activazon")}
