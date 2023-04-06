@@ -3,10 +3,11 @@ import InAppBrowserWalkThrough from "components/WalkThroughBody/InAppBrowserWalk
 import AddToHomeScreenWalkThroughBody from "components/WalkThroughBody/AddToHomeScreenWalkThroughBody";
 import { useTrans } from "lib/trans";
 import { isInAppBrowser, detectDeviceOS } from "lib/walkthrough";
+import { useTrackOnce } from "lib/track";
 
 export default function Home({ inAppBrowser, browserOs }) {
   const { t } = useTrans();
-  useTrans("walkthrough.a2hs", {
+  useTrackOnce("a2hs.loaded", {
     isInAppBrowser: inAppBrowser.is,
     appBrowserName: inAppBrowser.name,
     browserOs,
@@ -30,11 +31,6 @@ export default function Home({ inAppBrowser, browserOs }) {
           {addToHomeScreenOnlyWalkThrough && (
             <AddToHomeScreenWalkThroughBody device={device} />
           )}
-          <footer>
-            <div className="container animate__animated animate__fadeInUp">
-              <p>{t("You are adding Activazon to your<br />Home Screen")}</p>
-            </div>
-          </footer>
         </div>
       </body>
     </>

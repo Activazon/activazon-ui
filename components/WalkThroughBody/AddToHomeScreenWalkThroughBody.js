@@ -16,7 +16,7 @@ const AddToHomeScreenWalkThroughBody = ({ device }) => {
     );
   } else if (device === "android") {
     deviceSpecificInstruction = (
-      <p class="app-content-description">
+      <p class="app-content-text">
         {t(
           'Tap the <i class="bi bi-three-dots"></i> button at the top right of your screen and select <b>Add to Home Screen</b>'
         )}
@@ -24,7 +24,7 @@ const AddToHomeScreenWalkThroughBody = ({ device }) => {
     );
   } else {
     deviceSpecificInstruction = (
-      <p class="app-content-description">
+      <p class="app-content-text">
         {t("Tap the install App button near navigation bar.")}
       </p>
     );
