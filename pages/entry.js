@@ -72,7 +72,9 @@ export default function Home({}) {
     // if (isDisplayModeStandalone()) {
 
     if (isAction("loading")) {
-      if (session.status === "unauthenticated") {
+      if (session.status === "loading") {
+        //  do nothing
+      } else if (session.status === "unauthenticated") {
         // we need to ask the user to sign up
         switchAction("askToSignUp");
       } else if (pushNotificationPermission() !== "granted") {
@@ -282,7 +284,7 @@ export default function Home({}) {
                   type="submit"
                   disabled={isBusy}
                 >
-                  Sign Up
+                  {t("Sign Up")}
                 </button>
 
                 <button
@@ -290,7 +292,7 @@ export default function Home({}) {
                   onClick={onAskToSignIn}
                   disabled={isBusy}
                 >
-                  Already have an Account? Log In
+                  {t("Or tap here to Sign In")}
                 </button>
               </form>
             </div>
@@ -348,7 +350,7 @@ export default function Home({}) {
                   type="submit"
                   disabled={isBusy}
                 >
-                  Sign In
+                  {t("Sign In")}
                 </button>
 
                 <button
@@ -356,7 +358,7 @@ export default function Home({}) {
                   onClick={onAskToSignUp}
                   disabled={isBusy}
                 >
-                  Don't have an account Sign Up?
+                  {t("Or tap here to Sign Up")}
                 </button>
               </form>
             </div>

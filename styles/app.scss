@@ -158,7 +158,7 @@
         border-radius: 0px;
         background-color: transparent;
         font-size: 600;
-        @extend .py-2;
+        @extend .py-3;
         &:focus {
           box-shadow: none;
           border-bottom: 1px solid $primary;
