@@ -37,6 +37,8 @@ export default function Home({}) {
   // handle switching between actions
   const switchAction = useCallback(
     (action) => {
+      if (action === currentAction) return;
+      track("appentry." + action, {});
       setPreviousAction(currentAction);
       setCurrentAction(action);
       setErrorMessage(null);
@@ -44,7 +46,7 @@ export default function Home({}) {
     [currentAction]
   );
 
-  // keeps the current and previous action render so they can be animated
+  // facilitate switching between actions / screens
   const isOrWasAction = useCallback(
     (action) => {
       return currentAction === action || previousAction === action;
@@ -64,6 +66,13 @@ export default function Home({}) {
     },
     [currentAction]
   );
+
+  const appContentClassNames = (action) => {
+    return classNames("app-content", {
+      "app-content-open-animate": isAction(action),
+      "app-content-close-animate": wasAction(action),
+    });
+  };
 
   useEffect(() => {
     // this app has been added to the home screen
@@ -86,7 +95,8 @@ export default function Home({}) {
         router.push("/");
       }
     }
-
+    // } else {
+    //  router.push("/");
     // }
   }, [session]);
 
@@ -100,12 +110,24 @@ export default function Home({}) {
     switchAction("askToSignUp");
   };
 
-  // form submissions
+  // form field changes
+  const onSignUpFormFieldChange = (e) => {
+    const { name, value } = e.target;
+    setSignUpForm((prev) => ({ ...prev, [name]: value.trim() }));
+  };
+
+  const onSignInFormFieldChange = (e) => {
+    const { name, value } = e.target;
+    setSignInForm((prev) => ({ ...prev, [name]: value.trim() }));
+  };
+
+  // form submit actions
   const onSignUpFormSubmit = useCallback(
     async (e) => {
       e.preventDefault();
       setIsBusy(true);
       setErrorMessage(null);
+      track("appentry.signup.submit");
 
       if (
         signUpForm.username === "" ||
@@ -114,6 +136,9 @@ export default function Home({}) {
         signUpForm.lastName === ""
       ) {
         setErrorMessage("INVALID_FORM_DATA");
+        track("appentry.signup.error", {
+          error: "INVALID_FORM_DATA",
+        });
       } else {
         const resp = await signIn("signup", {
           redirect: false,
@@ -126,10 +151,13 @@ export default function Home({}) {
         });
 
         if (resp.error) {
+          track("appentry.signup.error", {
+            error: resp.error,
+          });
           setErrorMessage(resp.error || "UNKNOWN_ERROR");
         } else if (resp.ok) {
           track("appentry.signup.complete");
-          switchAction("askForPermission");
+          switchAction("askForPermissionNotification");
         }
       }
       setIsBusy(false);
@@ -140,8 +168,12 @@ export default function Home({}) {
     e.preventDefault();
     setIsBusy(true);
     setErrorMessage(null);
+    track("appentry.signin.submit");
 
     if (signInForm.username === "" || !signInForm.password === "") {
+      track("appentry.signin.error", {
+        error: "INVALID_FORM_DATA",
+      });
       setErrorMessage("INVALID_FORM_DATA");
     } else {
       const resp = await signIn("signin", {
@@ -151,30 +183,50 @@ export default function Home({}) {
       });
 
       if (resp.error) {
+        track("appentry.signin.error", {
+          error: resp.error,
+        });
         setErrorMessage(resp.error || "UNKNOWN_ERROR");
       } else if (resp.ok) {
         track("appentry.signin.complete");
-        switchAction("askForPermission");
+        switchAction("askForPermissionNotification");
       }
     }
     setIsBusy(false);
   };
-
-  const onSignUpFormFieldChange = (e) => {
-    const { name, value } = e.target;
-    setSignUpForm((prev) => ({ ...prev, [name]: value.trim() }));
-  };
-
-  const onSignInFormFieldChange = (e) => {
-    const { name, value } = e.target;
-    setSignInForm((prev) => ({ ...prev, [name]: value.trim() }));
-  };
-
-  const appContentClassNames = (action) => {
-    return classNames("app-content", {
-      "app-content-open-animate": isAction(action),
-      "app-content-close-animate": wasAction(action),
+  const onAllowNotifications = (e) => {
+    e.preventDefault();
+    setIsBusy(true);
+    track("appentry.notification.click");
+    window?.Notification.requestPermission(async (permission) => {
+      if (permission === "granted") {
+        track("appentry.notification.granted");
+        switchAction("askForPermissionLocation");
+      } else {
+        track("appentry.notification.denied");
+        switchAction("askForPermissionLocation");
+      }
+      setIsBusy(false);
     });
+  };
+  const onAllowLocation = (e) => {
+    e.preventDefault();
+    setIsBusy(true);
+    track("appentry.location.click");
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+        // doSomething(position.coords.latitude, position.coords.longitude);
+      });
+    } else {
+      /* geolocation IS NOT available */
+    }
+  };
+  const onAllowLocationLater = (e) => {
+    e.preventDefault();
+    setIsBusy(true);
+    track("appentry.locationlater.click");
+    router.push("/");
   };
 
   // const brandIconClassNames = classNames("brand-icon bi bi-activity", {
@@ -280,7 +332,7 @@ export default function Home({}) {
                 </div>
 
                 <button
-                  className="btn btn-primary btn-lg w-100"
+                  className="btn btn-primary-light btn-lg w-100"
                   type="submit"
                   disabled={isBusy}
                 >
@@ -346,7 +398,7 @@ export default function Home({}) {
                 </div>
 
                 <button
-                  className="btn btn-primary btn-lg w-100"
+                  className="btn btn-primary-light btn-lg w-100"
                   type="submit"
                   disabled={isBusy}
                 >
@@ -365,24 +417,67 @@ export default function Home({}) {
           </div>
         )}
 
-        {/* journey - ask for permission  */}
-        {isOrWasAction("askForPermission") && (
-          <div className={appContentClassNames("askForPermission")}>
-            <div className="brand mb-5">
+        {/* journey - ask for permission (notification)  */}
+        {isOrWasAction("askForPermissionNotification") && (
+          <div className={appContentClassNames("askForPermissionNotification")}>
+            <div className="brand">
               <div className="brand-hero">
                 <img src="/undraw/undraw_push_notifications_re_t84m.svg" />
               </div>
-              <p className="brand-text-title">{t("Notifications, Yah!")}</p>
-              <p className="brand-text">
-                {t("Stay alert and stay safe with Activazon")}
+              <p className="brand-text-title">
+                {t("Get Notified of Relevant Activity Near You")}
               </p>
-              {/* TODO: probably ask for location too (like instagram) */}
-              <p>
-                Would you like to subscribe to activity alerts detected in
-                Tegucigalpa
+              <p className="brand-text">
+                {t(
+                  "Activazon notifications will keep you informed of important events in your community. Allow them now to stay in the know."
+                )}
               </p>
             </div>
-            {/*  */}
+            <div className="app-content-list">
+              <form>
+                <button
+                  className="btn btn-primary-light"
+                  onClick={onAllowNotifications}
+                >
+                  {t("Allow Notifications")}
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* journey - ask for permission (location)  */}
+        {isOrWasAction("askForPermissionLocation") && (
+          <div className={appContentClassNames("askForPermissionLocation")}>
+            <div className="brand">
+              <div className="brand-hero">
+                <img src="/undraw/undraw_best_place_re_lne9.svg" />
+              </div>
+              <p className="brand-text-title">
+                {t("Customize your alerts with personalized locations")}
+              </p>
+              <p className="brand-text">
+                {t(
+                  "Personalize your alerts by sharing your location with Activazon."
+                )}
+              </p>
+            </div>
+            <div className="app-content-list">
+              <form>
+                <button
+                  className="btn btn-primary-light"
+                  onClick={onAllowLocation}
+                >
+                  {t("Allow Location")}
+                </button>
+                <button
+                  className="btn btn-clear"
+                  onClick={onAllowLocationLater}
+                >
+                  {t("I'll do it later")}
+                </button>
+              </form>
+            </div>
           </div>
         )}
       </div>

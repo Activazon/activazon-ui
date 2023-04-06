@@ -835,5 +835,33 @@
   "An unknown error occurred.": {
     "en": "An unknown error occurred.",
     "es": "Se produjo un error desconocido."
+  },
+  "Get Notified of Relevant Activity Near You": {
+    "en": "Get Notified of Relevant Activity Near You",
+    "es": "Recibe notificaciones de actividad relevante cerca de ti"
+  },
+  "Activazon notifications will keep you informed of important events in your community. Allow them now to stay in the know.": {
+    "en": "Activazon notifications will keep you informed of important events in your community. Allow them now to stay in the know.",
+    "es": "Las notificaciones de Activazon te mantendrán informado de los eventos importantes en tu comunidad. Permítalas ahora para mantenerse al tanto."
+  },
+  "Allow Notifications": {
+    "en": "Allow Notifications",
+    "es": "Permitir notificaciones"
+  },
+  "Customize your alerts with personalized locations": {
+    "en": "Customize your alerts with personalized locations",
+    "es": "Personaliza tus alertas con ubicaciones personalizadas"
+  },
+  "Personalize your alerts by sharing your location with Activazon.": {
+    "en": "Personalize your alerts by sharing your location with Activazon.",
+    "es": "Personaliza tus alertas compartiendo tu ubicación con Activazon."
+  },
+  "Allow Location": {
+    "en": "Allow Location",
+    "es": "Permitir ubicación"
+  },
+  "I'll do it later": {
+    "en": "I'll do it later",
+    "es": "Lo haré más tarde"
   }
 }

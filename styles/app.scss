@@ -86,7 +86,7 @@
       .brand-icon {
         font-size: 6rem;
         &-animate {
-          animation: pulse 2s ease-in-out infinite;
+          animation: pulse 5s ease-in-out infinite;
         }
       }
       .brand-text {
@@ -94,8 +94,10 @@
         font-size: 600;
         text-align: center;
         margin: 0px;
+        color: $text-default-color;
 
         &-title {
+          color: $primary;
           font-size: 1.5rem;
           text-align: center;
           font-weight: 700;
@@ -113,9 +115,10 @@
     }
 
     .app-content-text {
-      color: $primary;
+      color: $text-default-color;
     }
     .app-content-instruction {
+      color: $primary;
       background-color: rgba($bg-color, 0.05);
       border-radius: 0.5rem;
       padding: 1rem;
@@ -171,6 +174,21 @@
   }
 
   .btn-clear {
-    color: $primary !important;
+    color: $text-default-color !important;
+  }
+  .btn-primary-light {
+    @include button-variant(
+      rgba($primary, 0.2),
+      transparent,
+      $primary,
+      $white,
+      $primary,
+      $primary,
+      $white,
+      $primary,
+      $primary,
+      $white,
+      $primary
+    );
   }
 }
