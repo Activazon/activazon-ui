@@ -259,23 +259,29 @@ export default function Home({}) {
     e.preventDefault();
     setIsBusy(true);
     track("appentry.location.click");
+    alert("checking geolocation");
     if ("geolocation" in navigator) {
+      alert("supported");
       navigator.geolocation.getCurrentPosition(
         async (position) => {
+          alert("granted");
           track("appentry.location.granted");
           // fetch nearby areas
           switchAction("nearbyAreas");
           setAreasNearby(
             await getAreasNearby({ coords: position.coords, limit: 4 })
           );
+          alert("nearby areas fetched");
           setIsBusy(false);
         },
         () => {
+          alert("denied");
           track("appentry.location.denied");
           router.push("/");
         }
       );
     } else {
+      alert("not supported");
       // TODO: error and go straight to website
       track("appentry.location.unsupported");
       router.push("/");
