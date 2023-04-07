@@ -32,7 +32,7 @@ const ActionAskForPermissionLocation = ({
         },
         {
           enableHighAccuracy: false,
-          timeout: 30000,
+          timeout: 5000,
           maximumAge: 1000,
         }
       );
