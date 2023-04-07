@@ -219,12 +219,16 @@ export default function Home({}) {
         alert("granted");
         const registration = await navigator.serviceWorker.ready;
         alert("service worker ready");
-        const subscription = await registration.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: urlBase64ToUint8Array(
-            process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
-          ),
-        });
+        try {
+          const subscription = await registration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array(
+              process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
+            ),
+          });
+        } catch (e) {
+          alert("error: " + e);
+        }
 
         alert("getting subscription");
 
