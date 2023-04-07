@@ -12,7 +12,7 @@ import UserCurrentCityWidget from "components/UserCurrentCityWidget";
 
 // import Tip from "components/Tip";
 import { useTrans } from "lib/trans";
-import { getActivities, getCityByRequestIp, getCities } from "lib/client-api";
+import { getActivities, getCities, getCityNearby } from "lib/client-api";
 import { explorePath } from "lib/urls";
 import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
@@ -23,6 +23,22 @@ import {
   accessorActivityImageUrl,
 } from "lib/activityAcessors";
 import { isDisplayModeStandalone } from "lib/pwa";
+import {
+  canAllowGeoLocation,
+  hasPermissionGeoLocation,
+  getCurrentCoords,
+} from "lib/permissions";
+
+const getCoordsAndNearyCity = async () => {
+  let coords = null;
+  const canUseGeoLocation =
+    canAllowGeoLocation() && (await hasPermissionGeoLocation());
+
+  if (canUseGeoLocation) {
+    coords = await getCurrentCoords();
+  }
+  return getCityNearby({ coords });
+};
 
 const Page = () => {
   const { i, t } = useTrans();
@@ -35,9 +51,9 @@ const Page = () => {
 
   const activitiesLimit = 3;
   const citiesLimit = 10;
-  const activities = useApi(() => getActivities(activitiesLimit), null);
-  const cities = useApi(() => getCities(citiesLimit), null);
-  const user_recommendation = useApi(() => getCityByRequestIp(), null);
+  const activities = useApi(() => getActivities(activitiesLimit));
+  const cities = useApi(() => getCities(citiesLimit));
+  const nearbyCity = useApi(() => getCoordsAndNearyCity());
   const ah2s = !isDisplayModeStandalone() && (
     <Col>
       <A2hsCtaTile />
@@ -60,11 +76,11 @@ const Page = () => {
           </Bannerv2>
           <Main>
             <>
-              {user_recommendation.ready && (
+              {nearbyCity.success && (
                 <Col>
                   <UserCurrentCityWidget
-                    city={user_recommendation.data.city}
-                    activities={user_recommendation.data.activities}
+                    city={nearbyCity.data.city}
+                    activities={nearbyCity.data.activities}
                   />
                 </Col>
               )}
