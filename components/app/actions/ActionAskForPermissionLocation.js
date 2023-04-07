@@ -33,7 +33,7 @@ const ActionAskForPermissionLocation = ({
         },
         (error) => {
           track("appentry.location.denied");
-          alert("error: " + error);
+          alert("error: " + error?.code);
           tt.add("failed");
           router.push("/");
         },
