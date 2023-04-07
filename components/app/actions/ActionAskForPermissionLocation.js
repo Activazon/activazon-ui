@@ -18,7 +18,7 @@ const ActionAskForPermissionLocation = ({
     track("appentry.location.click");
 
     if ("geolocation" in navigator) {
-      watchId = navigator.geolocation.getCurrentPosition(
+      watchId = navigator.geolocation.watchPosition(
         (position) => {
           track("appentry.location.granted");
           // fetch nearby areas
@@ -27,7 +27,9 @@ const ActionAskForPermissionLocation = ({
           navigator.geolocation.clearWatch(watchId);
         },
         (error) => {
-          track("appentry.location.denied");
+          track("appentry.location.error", {
+            geocode: error?.code,
+          });
           router.push("/");
         },
         {
