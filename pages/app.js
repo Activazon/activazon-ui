@@ -94,7 +94,7 @@ export default function Home({}) {
       //   });
       // }
 
-      navigator.serviceWorker.register("/sw.js").then(() => {
+      navigator.serviceWorker.ready.then((swr) => {
         switchAction("askForPermissionNotification");
       });
     }
