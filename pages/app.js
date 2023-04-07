@@ -256,28 +256,36 @@ export default function Home({}) {
     });
   };
   const onAllowLocation = (e) => {
+    let watchId;
     e.preventDefault();
     setIsBusy(true);
     track("appentry.location.click");
     alert("checking geolocation");
     if ("geolocation" in navigator) {
       alert("supported");
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
+      watchId = navigator.geolocation.watchPosition(
+        (position) => {
           alert("granted");
           track("appentry.location.granted");
           // fetch nearby areas
           switchAction("nearbyAreas");
-          setAreasNearby(
-            await getAreasNearby({ coords: position.coords, limit: 4 })
-          );
-          alert("nearby areas fetched");
-          setIsBusy(false);
+          getAreasNearby({ coords: position.coords, limit: 4 })
+            .then((results) => setAreasNearby)
+            .then(() => {
+              alert("nearby areas fetched");
+              setIsBusy(false);
+              navigator.geolocation.clearWatch(watchId);
+            });
         },
-        () => {
+        (error) => {
           alert("denied");
           track("appentry.location.denied");
           router.push("/");
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 20000,
+          maximumAge: 1000,
         }
       );
     } else {
