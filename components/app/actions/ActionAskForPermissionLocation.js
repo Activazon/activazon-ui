@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 const ActionAskForPermissionLocation = ({
   isOrWasAction,
   appContentClassNames,
+  isBusy,
   setCoords,
   switchAction,
   setIsBusy,
@@ -69,7 +70,11 @@ const ActionAskForPermissionLocation = ({
         </div>
         <div className="app-content-list">
           <form>
-            <button className="btn btn-primary-light" onClick={onAllowLocation}>
+            <button
+              className="btn btn-primary-light"
+              onClick={onAllowLocation}
+              disabled={isBusy}
+            >
               {t("Allow Location")}
             </button>
             <button className="btn btn-clear" onClick={onAllowLocationLater}>

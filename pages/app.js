@@ -152,12 +152,14 @@ export default function Home({}) {
           isOrWasAction={isOrWasAction}
           switchAction={switchAction}
           appContentClassNames={appContentClassNames}
+          isBusy={isBusy}
           setIsBusy={setIsBusy}
         />
         {/* journey - ask for permission (location)  */}
         <ActionAskForPermissionLocation
           isOrWasAction={isOrWasAction}
           switchAction={switchAction}
+          isBusy={isBusy}
           setIsBusy={setIsBusy}
           appContentClassNames={appContentClassNames}
           setCoords={setCoords}
