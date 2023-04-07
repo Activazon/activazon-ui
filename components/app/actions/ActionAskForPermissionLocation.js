@@ -38,8 +38,8 @@ const ActionAskForPermissionLocation = ({
           router.push("/");
         },
         {
-          enableHighAccuracy: true,
-          timeout: 20000,
+          enableHighAccuracy: false,
+          timeout: 30000,
           maximumAge: 1000,
         }
       );
