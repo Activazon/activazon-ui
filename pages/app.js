@@ -230,22 +230,15 @@ export default function Home({}) {
       if (permission === "granted") {
         track("appentry.notification.granted");
         // store subscription
-        alert("granted");
         const registration = await navigator.serviceWorker.ready;
-        alert("service worker ready");
-        let subscription = null;
-        try {
-          subscription = await registration.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array(
-              process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
-            ),
-          });
-        } catch (e) {
-          alert("error:" + e);
-        }
+        const subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(
+            process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
+          ),
+        });
         const subscriptionJson = subscription.toJSON();
-        alert("subscription:" + JSON.stringify(subscriptionJson));
+
         await storePushSubscription({
           endpoint: subscription.endpoint,
           expiration_time: subscription.expirationTime,
@@ -253,7 +246,7 @@ export default function Home({}) {
           p256dh: subscriptionJson.keys.p256dh,
           user_agent: navigator.userAgent,
         });
-        alert("done");
+
         switchAction("askForPermissionLocation");
       } else {
         // switch to location
