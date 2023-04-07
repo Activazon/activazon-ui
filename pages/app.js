@@ -71,29 +71,32 @@ export default function Home({}) {
   };
 
   useEffect(() => {
-    navigator.serviceWorker.register("/sw.js");
-  }, []);
-
-  useEffect(() => {
     // this app has been added to the home screen
     // so we will check if we need the ask the user for notification permission
     // and sign up.
 
     if (isAction("loading")) {
-      if (session.status === "loading") {
-        //  do nothing
-      } else if (session.status === "authenticated") {
-        // we are good to go
-        router.push("/");
-      } else if (session.status === "unauthenticated") {
-        // we need to ask the user to sign up
-        switchAction("askToSignUp");
-      } else if (pushNotificationPermission() !== "granted") {
-        // we need to ask the user for permission
-        switchAction("askForPermissionNotification");
-      }
+      // if (session.status === "loading") {
+      //   //  do nothing
+      // } else if (session.status === "authenticated") {
+      //   // we are good to go
 
-      switchAction("askForPermissionNotification");
+      //   router.push("/");
+      // } else if (session.status === "unauthenticated") {
+      //   // we need to ask the user to sign up
+      //   navigator.serviceWorker.register("/sw.js").then(() => {
+      //     switchAction("askToSignUp");
+      //   });
+      // } else if (pushNotificationPermission() !== "granted") {
+      //   // we need to ask the user for permission
+      //   navigator.serviceWorker.register("/sw.js").then(() => {
+      //     switchAction("askForPermissionNotification");
+      //   });
+      // }
+
+      navigator.serviceWorker.register("/sw.js").then(() => {
+        switchAction("askForPermissionNotification");
+      });
     }
   }, [session]);
 
