@@ -205,11 +205,13 @@ export default function Home({}) {
       if (permission === "granted") {
         track("appentry.notification.granted");
         switchAction("askForPermissionLocation");
+        // TODO: api request to store the user's notification token
+        setIsBusy(false);
       } else {
+        // TODO: error and go straight to website
         track("appentry.notification.denied");
-        switchAction("askForPermissionLocation");
+        router.push("/");
       }
-      setIsBusy(false);
     });
   };
   const onAllowLocation = (e) => {
@@ -217,17 +219,25 @@ export default function Home({}) {
     setIsBusy(true);
     track("appentry.location.click");
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(async (position) => {
-        track("appentry.location.granted");
-        // fetch nearby areas
-        switchAction("nearbyAreas");
-        setAreasNearby(
-          await getAreasNearby({ coords: position.coords, limit: 4 })
-        );
-        setIsBusy(false);
-      });
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          track("appentry.location.granted");
+          // fetch nearby areas
+          switchAction("nearbyAreas");
+          setAreasNearby(
+            await getAreasNearby({ coords: position.coords, limit: 4 })
+          );
+          setIsBusy(false);
+        },
+        () => {
+          track("appentry.location.denied");
+          router.push("/");
+        }
+      );
     } else {
-      // error and go straight to website
+      // TODO: error and go straight to website
+      track("appentry.location.unsupported");
+      router.push("/");
     }
   };
   const onAllowLocationLater = (e) => {
@@ -516,7 +526,13 @@ export default function Home({}) {
                   area.image_square_red_url || area.image_square_url
                 }
                 accessorTitle={(area) => area.display_name}
-                accessorDescription={(area) => area.city.display_name}
+                accessorDescription={(area) => (
+                  <>
+                    {area.city.display_name}
+                    <br />
+                    <a href="#">Subscribe</a>
+                  </>
+                )}
               />
             </div>
             <div className="container">
