@@ -3,29 +3,17 @@
   "background_color": "#0b2442",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/app",
+  "start_url": "/en/app",
   "name": "Activazon",
   "short_name": "Activazon",
   "description": "Activazon is a progressive web app that provides real-time crime data for cities and neighborhoods, empowering users to make informed decisions about their safety.",
   "categories": ["news", "travel", "security"],
   "screenshots": [
     {
-      "src": "https://activazon.com/pwa/pwa-screenshot-1-es.png",
-      "type": "image/png",
-      "sizes": "581x1041",
-      "label": "Conoce tu entorno con Activazon"
-    },
-    {
       "src": "https://activazon.com/pwa/pwa-screenshot-1-en.png",
       "type": "image/png",
       "sizes": "581x1041",
       "label": "Know your surroundings with Activazon"
-    },
-    {
-      "src": "https://activazon.com/pwa/pwa-screenshot-2-es.png",
-      "type": "image/png",
-      "sizes": "581x1041",
-      "label": "Estadísticas de delitos para tu barrio"
     },
     {
       "src": "https://activazon.com/pwa/pwa-screenshot-2-en.png",

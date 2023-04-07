@@ -10,7 +10,7 @@ const AppHead = ({ title, seoDescription, seoKeywords, seoImageUrl }) => {
   if (typeof window !== "undefined") {
     baseUrl = window.location.origin;
   }
-  const { i } = useTrans();
+  const { i, locale } = useTrans();
   const titleText = title ? `${title} - ${TITLE}` : TITLE;
   seoDescription =
     seoDescription || i("AI-powered insights for your neighborhood");
@@ -27,7 +27,7 @@ const AppHead = ({ title, seoDescription, seoKeywords, seoImageUrl }) => {
         content="width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no"
       />
       <link rel="icon" href="/favicon.ico" />
-      <link rel="manifest" href={`${baseUrl}/manifest.webmanifest`} />
+      <link rel="manifest" href={`${baseUrl}/manifest-${locale}.webmanifest`} />
       <meta name="theme-color" content="#0b2442" />
       <link
         rel="alternate"
