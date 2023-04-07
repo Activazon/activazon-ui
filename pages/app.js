@@ -210,7 +210,9 @@ export default function Home({}) {
     e.preventDefault();
     setIsBusy(true);
     track("appentry.notification.click");
+    alert("will try to ask for permission");
     window?.Notification.requestPermission(async (permission) => {
+      alert("permission: " + permission);
       if (permission === "granted") {
         track("appentry.notification.granted");
         // store subscription
@@ -222,7 +224,12 @@ export default function Home({}) {
           ),
         });
 
+        alert("getting subscription");
+
         const subscriptionJson = subscription.toJSON();
+
+        alert("subscription to json");
+
         await storePushSubscription({
           endpoint: subscription.endpoint,
           expiration_time: subscription.expirationTime,
