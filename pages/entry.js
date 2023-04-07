@@ -200,8 +200,6 @@ export default function Home({}) {
     window?.Notification.requestPermission(async (permission) => {
       if (permission === "granted") {
         track("appentry.notification.granted");
-        switchAction("askForPermissionLocation");
-
         // store subscription
         const registration = await navigator.serviceWorker.ready;
         const subscription = await registration.pushManager.subscribe({
@@ -219,11 +217,12 @@ export default function Home({}) {
           p256dh: subscriptionJson.keys.p256dh,
           user_agent: navigator.userAgent,
         });
+        switchAction("askForPermissionLocation");
         setIsBusy(false);
       } else {
-        // TODO: error and go straight to website
-        track("appentry.notification.denied");
-        router.push("/");
+        // switch to location
+        switchAction("askForPermissionLocation");
+        setIsBusy(false);
       }
     });
   };
