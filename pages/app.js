@@ -106,10 +106,9 @@ export default function Home({}) {
         switchAction("askToSignUp");
       } else if (pushNotificationPermission() !== "granted") {
         // we need to ask the user for permission
-        alert("session.status", session.status);
+
         switchAction("askForPermissionNotification");
       }
-      switchAction("askForPermissionLocation");
     }
   }, [session]);
 
