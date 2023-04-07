@@ -71,6 +71,10 @@ export default function Home({}) {
   };
 
   useEffect(() => {
+    navigator.serviceWorker.register("/sw.js");
+  }, []);
+
+  useEffect(() => {
     // this app has been added to the home screen
     // so we will check if we need the ask the user for notification permission
     // and sign up.
