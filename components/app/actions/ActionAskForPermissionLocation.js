@@ -18,7 +18,7 @@ const ActionAskForPermissionLocation = ({
     track("appentry.location.click");
 
     if ("geolocation" in navigator) {
-      watchId = navigator.geolocation.watchPosition(
+      watchId = navigator.geolocation.getCurrentPosition(
         (position) => {
           track("appentry.location.granted");
           // fetch nearby areas
