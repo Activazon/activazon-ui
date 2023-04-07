@@ -216,7 +216,9 @@ export default function Home({}) {
       if (permission === "granted") {
         track("appentry.notification.granted");
         // store subscription
+        alert("granted");
         const registration = await navigator.serviceWorker.ready;
+        alert("service worker ready");
         const subscription = await registration.pushManager.subscribe({
           userVisibleOnly: true,
           applicationServerKey: urlBase64ToUint8Array(
@@ -238,12 +240,11 @@ export default function Home({}) {
           user_agent: navigator.userAgent,
         });
         switchAction("askForPermissionLocation");
-        setIsBusy(false);
       } else {
         // switch to location
         switchAction("askForPermissionLocation");
-        setIsBusy(false);
       }
+      setIsBusy(false);
     });
   };
   const onAllowLocation = (e) => {
