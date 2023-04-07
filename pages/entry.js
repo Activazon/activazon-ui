@@ -6,6 +6,8 @@ import { useSession } from "next-auth/react";
 import { signIn } from "next-auth/react";
 import { track } from "lib/track";
 import { useRouter } from "next/router";
+import PlaceList from "components/PlaceList";
+import { getAreasNearby } from "lib/client-api";
 
 const pushNotificationPermission = () => {
   if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
@@ -33,6 +35,7 @@ export default function Home({}) {
     username: "",
     password: "",
   });
+  const [areasNearby, setAreasNearby] = useState([]);
 
   // handle switching between actions
   const switchAction = useCallback(
@@ -88,10 +91,10 @@ export default function Home({}) {
         switchAction("askToSignUp");
       } else if (pushNotificationPermission() !== "granted") {
         // we need to ask the user for permission
-        switchAction("askForPermission");
+        switchAction("askForPermissionNotification");
       } else if (session.status === "authenticated") {
         // we are good to go
-        // TODO: redirect to home page
+
         router.push("/");
       }
     }
@@ -214,9 +217,14 @@ export default function Home({}) {
     setIsBusy(true);
     track("appentry.location.click");
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
-        // doSomething(position.coords.latitude, position.coords.longitude);
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        track("appentry.location.granted");
+        // fetch nearby areas
+        switchAction("nearbyAreas");
+        setAreasNearby(
+          await getAreasNearby({ coords: position.coords, limit: 4 })
+        );
+        setIsBusy(false);
       });
     } else {
       // error and go straight to website
@@ -226,6 +234,12 @@ export default function Home({}) {
     e.preventDefault();
     setIsBusy(true);
     track("appentry.locationlater.click");
+    router.push("/");
+  };
+
+  const onGoToActivazon = (e) => {
+    e.preventDefault();
+    track("appentry.gotoactivazon.click");
     router.push("/");
   };
 
@@ -477,6 +491,43 @@ export default function Home({}) {
                   {t("I'll do it later")}
                 </button>
               </form>
+            </div>
+          </div>
+        )}
+
+        {/* journey - nearby areas  */}
+        {isOrWasAction("nearbyAreas") && (
+          <div className={appContentClassNames("nearbyAreas")}>
+            <div className="brand">
+              <p className="brand-text-title">{t("Subscribe to some areas")}</p>
+              <p className="brand-text">
+                {t(
+                  "We've found some areas closest to you. Subscribe to some of them to get notified of relevant activity."
+                )}
+              </p>
+            </div>
+            <div className="app-content-list">
+              <PlaceList
+                name="nearby-areas"
+                shimmerLimit={4}
+                items={areasNearby?.results}
+                accessorHref={(item) => "#"}
+                accessorImageUrl={(area) =>
+                  area.image_square_red_url || area.image_square_url
+                }
+                accessorTitle={(area) => area.display_name}
+                accessorDescription={(area) => area.city.display_name}
+              />
+            </div>
+            <div className="container">
+              <button
+                className="btn btn-primary-light btn-lg w-100"
+                type="submit"
+                disabled={isBusy}
+                onClick={onGoToActivazon}
+              >
+                {t("Go to Activazon")}
+              </button>
             </div>
           </div>
         )}

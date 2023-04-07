@@ -863,5 +863,17 @@
   "I'll do it later": {
     "en": "I'll do it later",
     "es": "Lo haré más tarde"
+  },
+  "Subscribe to some areas": {
+    "en": "Subscribe to some areas",
+    "es": "Suscríbete a algunas áreas"
+  },
+  "We've found some areas closest to you. Subscribe to some of them to get notified of relevant activity.": {
+    "en": "We've found some areas closest to you. Subscribe to some of them to get notified of relevant activity.",
+    "es": "Hemos encontrado algunas áreas más cercanas a ti. Suscríbete a algunas de ellas para recibir notificaciones de actividad relevante."
+  },
+  "Go to Activazon": {
+    "en": "Go to Activazon",
+    "es": "Ir a Activazon"
   }
 }
