@@ -92,6 +92,7 @@ const ActionAskToSignIn = ({
                 value={signInForm.username}
                 onChange={onSignInFormFieldChange}
                 required={true}
+                autocomplete="username"
               />
 
               <input
@@ -103,6 +104,7 @@ const ActionAskToSignIn = ({
                 value={signInForm.password}
                 onChange={onSignInFormFieldChange}
                 required={true}
+                autocomplete="current-password"
               />
             </div>
 

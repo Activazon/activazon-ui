@@ -125,6 +125,7 @@ const ActionAskToSignUp = ({
                 value={signUpForm.username}
                 onChange={onSignUpFormFieldChange}
                 required={true}
+                autocomplete="username"
               />
 
               <input
@@ -136,6 +137,7 @@ const ActionAskToSignUp = ({
                 value={signUpForm.password}
                 onChange={onSignUpFormFieldChange}
                 required={true}
+                autocomplete="new-password"
               />
             </div>
 
