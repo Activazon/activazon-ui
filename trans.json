@@ -808,9 +808,9 @@
     "en": "{{activity_type_name}} in <b>{{neighbourhood_name}}</b>",
     "es": "{{activity_type_name}} en <b>{{neighbourhood_name}}</b>"
   },
-  "Safety in your hands.": {
-    "en": "Safety in your hands.",
-    "es": "Seguridad en tus manos."
+  "Loading. This usually takes less than 20 seconds.": {
+    "en": "Loading. This usually takes less than 20 seconds.",
+    "es": "Cargando. Esto generalmente toma menos de 20 segundos."
   },
   "Sign Up to continue": {
     "en": "Sign Up to continue",

@@ -16,7 +16,9 @@ const ActionLoading = ({ isOrWasAction, wasAction }) => {
         <div className="brand">
           <i className="brand-icon brand-icon-animate bi bi-activity"></i>
           <p className="brand-text-title">Activazon</p>
-          <p className="brand-text">{t("Safety in your hands.")}</p>
+          <p className="brand-text">
+            {t("Loading. This usually takes less than 20 seconds.")}
+          </p>
         </div>
       </div>
     )
