@@ -33,6 +33,8 @@ const ActionAskForPermissionLocation = ({
         },
         (error) => {
           track("appentry.location.denied");
+          alert("error: " + error);
+          tt.add("failed");
           router.push("/");
         },
         {
@@ -44,6 +46,7 @@ const ActionAskForPermissionLocation = ({
     } else {
       // TODO: error and go straight to website
       track("appentry.location.unsupported");
+      alert("not supported");
       router.push("/");
     }
   };
