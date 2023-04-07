@@ -7,6 +7,7 @@ import { signIn } from "next-auth/react";
 import { track } from "lib/track";
 import { useRouter } from "next/router";
 import PlaceList from "components/PlaceList";
+import ActionAskForPermissionLocation from "components/app/actions/ActionAskForPermissionLocation";
 import {
   createSubscription,
   deleteSubscription,
@@ -254,52 +255,6 @@ export default function Home({}) {
       }
       setIsBusy(false);
     });
-  };
-  const onAllowLocation = (e) => {
-    let watchId;
-    e.preventDefault();
-    setIsBusy(true);
-    track("appentry.location.click");
-    alert("checking geolocation");
-    if ("geolocation" in navigator) {
-      alert("supported");
-      watchId = navigator.geolocation.watchPosition(
-        (position) => {
-          alert("granted");
-          track("appentry.location.granted");
-          // fetch nearby areas
-          switchAction("nearbyAreas");
-          getAreasNearby({ coords: position.coords, limit: 4 })
-            .then((results) => setAreasNearby)
-            .then(() => {
-              alert("nearby areas fetched");
-              setIsBusy(false);
-              navigator.geolocation.clearWatch(watchId);
-            });
-        },
-        (error) => {
-          alert("denied");
-          track("appentry.location.denied");
-          router.push("/");
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 20000,
-          maximumAge: 1000,
-        }
-      );
-    } else {
-      alert("not supported");
-      // TODO: error and go straight to website
-      track("appentry.location.unsupported");
-      router.push("/");
-    }
-  };
-  const onAllowLocationLater = (e) => {
-    e.preventDefault();
-    setIsBusy(true);
-    track("appentry.locationlater.click");
-    router.push("/");
   };
 
   const onGoToActivazon = (e) => {
@@ -550,39 +505,13 @@ export default function Home({}) {
         )}
 
         {/* journey - ask for permission (location)  */}
-        {isOrWasAction("askForPermissionLocation") && (
-          <div className={appContentClassNames("askForPermissionLocation")}>
-            <div className="brand">
-              <div className="brand-hero">
-                <img src="/undraw/undraw_best_place_re_lne9.svg" />
-              </div>
-              <p className="brand-text-title">
-                {t("Customize your alerts with personalized locations")}
-              </p>
-              <p className="brand-text">
-                {t(
-                  "Personalize your alerts by sharing your location with Activazon."
-                )}
-              </p>
-            </div>
-            <div className="app-content-list">
-              <form>
-                <button
-                  className="btn btn-primary-light"
-                  onClick={onAllowLocation}
-                >
-                  {t("Allow Location")}
-                </button>
-                <button
-                  className="btn btn-clear"
-                  onClick={onAllowLocationLater}
-                >
-                  {t("I'll do it later")}
-                </button>
-              </form>
-            </div>
-          </div>
-        )}
+        <ActionAskForPermissionLocation
+          isOrWasAction={isOrWasAction}
+          switchAction={switchAction}
+          setIsBusy={setIsBusy}
+          appContentClassNames={appContentClassNames}
+          setAreasNearby={setAreasNearby}
+        />
 
         {/* journey - nearby areas  */}
         {isOrWasAction("nearbyAreas") && (
