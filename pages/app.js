@@ -11,7 +11,6 @@ import ActionAskForPermissionLocation from "components/app/actions/ActionAskForP
 import {
   createSubscription,
   deleteSubscription,
-  getAreasNearby,
   storePushSubscription,
 } from "lib/client-api";
 
