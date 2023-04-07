@@ -36,6 +36,7 @@ export default function Home({}) {
     password: "",
   });
   const [areasNearby, setAreasNearby] = useState([]);
+  const [subscribedAreas, setSubscribedAreas] = useState({});
 
   // handle switching between actions
   const switchAction = useCallback(
@@ -68,6 +69,13 @@ export default function Home({}) {
       return currentAction === action;
     },
     [currentAction]
+  );
+
+  const isSubscribed = useCallback(
+    (area) => {
+      return subscribedAreas[area.id];
+    },
+    [subscribedAreas]
   );
 
   const appContentClassNames = (action) => {
@@ -264,11 +272,16 @@ export default function Home({}) {
     track("appentry.gotoactivazon.click");
     router.push("/");
   };
-  const onSubscribeToArea = (area) => async (e) => {
-    e.preventDefault();
-    setIsBusy(true);
-    track("appentry.subscribearea.click", { areaId });
-    // const resp = await subscribeToArea(areaId);
+  const onSubscribeToArea = (area) => {
+    return (e) => {
+      e.preventDefault();
+      setIsBusy(true);
+      track("appentry.subscribearea.click", { areaId: area.id });
+      // TODO:
+      // const resp = await subscribeToArea(areaId);
+      setSubscribedAreas((prev) => ({ ...prev, [area.id]: true }));
+      setIsBusy(false);
+    };
   };
 
   // const brandIconClassNames = classNames("brand-icon bi bi-activity", {
@@ -548,9 +561,16 @@ export default function Home({}) {
                   <>
                     {area.city.display_name}
                     <br />
-                    <a href="#" onClick={onSubscribeToArea(area)}>
-                      Subscribe
-                    </a>
+                    {!isSubscribed(area) && (
+                      <a href="#" onClick={onSubscribeToArea(area)}>
+                        <i className="bi bi-bell me-1"></i>Subscribe
+                      </a>
+                    )}
+                    {isSubscribed(area) && (
+                      <a href="#" onClick={(e) => e.preventDefault()}>
+                        <i className="bi bi-bell-fill me-1"></i>Subscribe
+                      </a>
+                    )}
                   </>
                 )}
               />
