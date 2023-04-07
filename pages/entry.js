@@ -7,7 +7,7 @@ import { signIn } from "next-auth/react";
 import { track } from "lib/track";
 import { useRouter } from "next/router";
 import PlaceList from "components/PlaceList";
-import { getAreasNearby } from "lib/client-api";
+import { getAreasNearby, storePushSubscription } from "lib/client-api";
 
 const pushNotificationPermission = () => {
   if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
@@ -81,7 +81,6 @@ export default function Home({}) {
     // this app has been added to the home screen
     // so we will check if we need the ask the user for notification permission
     // and sign up.
-    // if (isDisplayModeStandalone()) {
 
     if (isAction("loading")) {
       if (session.status === "loading") {
@@ -98,9 +97,6 @@ export default function Home({}) {
         router.push("/");
       }
     }
-    // } else {
-    //  router.push("/");
-    // }
   }, [session]);
 
   // buttons actions to switch between actions
@@ -205,7 +201,24 @@ export default function Home({}) {
       if (permission === "granted") {
         track("appentry.notification.granted");
         switchAction("askForPermissionLocation");
-        // TODO: api request to store the user's notification token
+
+        // store subscription
+        const registration = await navigator.serviceWorker.ready;
+        const subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(
+            process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
+          ),
+        });
+
+        const subscriptionJson = subscription.toJSON();
+        await storePushSubscription({
+          endpoint: subscription.endpoint,
+          expiration_time: subscription.expirationTime,
+          auth: subscriptionJson.keys.auth,
+          p256dh: subscriptionJson.keys.p256dh,
+          user_agent: navigator.userAgent,
+        });
         setIsBusy(false);
       } else {
         // TODO: error and go straight to website
@@ -251,6 +264,12 @@ export default function Home({}) {
     e.preventDefault();
     track("appentry.gotoactivazon.click");
     router.push("/");
+  };
+  const onSubscribeToArea = (area) => async (e) => {
+    e.preventDefault();
+    setIsBusy(true);
+    track("appentry.subscribearea.click", { areaId });
+    // const resp = await subscribeToArea(areaId);
   };
 
   // const brandIconClassNames = classNames("brand-icon bi bi-activity", {
@@ -530,7 +549,9 @@ export default function Home({}) {
                   <>
                     {area.city.display_name}
                     <br />
-                    <a href="#">Subscribe</a>
+                    <a href="#" onClick={onSubscribeToArea(area)}>
+                      Subscribe
+                    </a>
                   </>
                 )}
               />
