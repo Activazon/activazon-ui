@@ -7,7 +7,12 @@ import { signIn } from "next-auth/react";
 import { track } from "lib/track";
 import { useRouter } from "next/router";
 import PlaceList from "components/PlaceList";
-import { getAreasNearby, storePushSubscription } from "lib/client-api";
+import {
+  createSubscription,
+  deleteSubscription,
+  getAreasNearby,
+  storePushSubscription,
+} from "lib/client-api";
 
 const pushNotificationPermission = () => {
   if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
@@ -104,6 +109,7 @@ export default function Home({}) {
 
         router.push("/");
       }
+      switchAction("askForPermissionLocation");
     }
   }, [session]);
 
@@ -273,16 +279,29 @@ export default function Home({}) {
     router.push("/");
   };
   const onSubscribeToArea = (area) => {
-    return (e) => {
+    return async (e) => {
       e.preventDefault();
       setIsBusy(true);
       track("appentry.subscribearea.click", { areaId: area.id });
-      // TODO:
-      // const resp = await subscribeToArea(areaId);
-      setSubscribedAreas((prev) => ({ ...prev, [area.id]: true }));
+      const subscription = await createSubscription(area.city.id, area.id);
+      setSubscribedAreas((prev) => ({ ...prev, [area.id]: subscription }));
       setIsBusy(false);
     };
   };
+
+  const onUnsubscribeToArea = useCallback(
+    (area) => {
+      return async (e) => {
+        e.preventDefault();
+        setIsBusy(true);
+        track("appentry.subscribearea.click", { areaId: area.id });
+        await deleteSubscription(subscribedAreas[area.id]);
+        setSubscribedAreas((prev) => ({ ...prev, [area.id]: undefined }));
+        setIsBusy(false);
+      };
+    },
+    [subscribedAreas]
+  );
 
   // const brandIconClassNames = classNames("brand-icon bi bi-activity", {
   //   "brand-icon-animate": isBusy,
@@ -567,7 +586,7 @@ export default function Home({}) {
                       </a>
                     )}
                     {isSubscribed(area) && (
-                      <a href="#" onClick={(e) => e.preventDefault()}>
+                      <a href="#" onClick={onUnsubscribeToArea(area)}>
                         <i className="bi bi-bell-fill me-1"></i>Subscribe
                       </a>
                     )}
