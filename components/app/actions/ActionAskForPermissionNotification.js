@@ -43,7 +43,7 @@ const ActionAskForPermissionNotification = ({
         });
         const subscriptionJson = subscription.toJSON();
 
-        await storePushSubscription({
+        storePushSubscription({
           endpoint: subscription.endpoint,
           expiration_time: subscription.expirationTime,
           auth: subscriptionJson.keys.auth,

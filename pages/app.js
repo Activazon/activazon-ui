@@ -56,7 +56,6 @@ export default function Home({}) {
     },
     [previousAction]
   );
-
   const isAction = useCallback(
     (action) => {
       return currentAction === action;
@@ -87,11 +86,8 @@ export default function Home({}) {
         switchAction("askToSignUp");
       } else if (pushNotificationPermission() !== "granted") {
         // we need to ask the user for permission
-
         switchAction("askForPermissionNotification");
       }
-
-      switchAction("askForPermissionNotification");
     }
   }, [session]);
 
