@@ -1,13 +1,11 @@
 import { useTrans } from "lib/trans";
-
-const { track } = require("lib/track");
-const { useRouter } = require("next/router");
-import { getAreasNearby } from "lib/client-api";
+import { track } from "lib/track";
+import { useRouter } from "next/router";
 
 const ActionAskForPermissionLocation = ({
   isOrWasAction,
   appContentClassNames,
-  setAreasNearby,
+  setCoords,
   switchAction,
   setIsBusy,
 }) => {
@@ -24,13 +22,9 @@ const ActionAskForPermissionLocation = ({
         (position) => {
           track("appentry.location.granted");
           // fetch nearby areas
+          setCoords(position.coords);
           switchAction("nearbyAreas");
-          getAreasNearby({ coords: position.coords, limit: 4 })
-            .then(setAreasNearby)
-            .then(() => {
-              setIsBusy(false);
-              navigator.geolocation.clearWatch(watchId);
-            });
+          navigator.geolocation.clearWatch(watchId);
         },
         (error) => {
           track("appentry.location.denied");

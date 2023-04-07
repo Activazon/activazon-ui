@@ -3,16 +3,14 @@ import { useTrans } from "lib/trans";
 import { useCallback, useEffect, useState } from "react";
 import Head from "components/Head";
 import { useSession } from "next-auth/react";
-import { signIn } from "next-auth/react";
 import { track } from "lib/track";
 import { useRouter } from "next/router";
-import PlaceList from "components/PlaceList";
 import ActionAskForPermissionLocation from "components/app/actions/ActionAskForPermissionLocation";
-import {
-  createSubscription,
-  deleteSubscription,
-  storePushSubscription,
-} from "lib/client-api";
+import ActionAskForPermissionNotification from "components/app/actions/ActionAskForPermissionNotification";
+import ActionLoading from "components/app/actions/ActionLoading";
+import ActionAskToSignUp from "components/app/actions/ActionAskToSignUp";
+import ActionAskToSignIn from "components/app/actions/ActionAskToSignIn";
+import ActionNearbyAreas from "components/app/actions/ActionNearbyAreas";
 
 const pushNotificationPermission = () => {
   if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
@@ -22,41 +20,16 @@ const pushNotificationPermission = () => {
   return Notification.permission;
 };
 
-const urlBase64ToUint8Array = (base64String) => {
-  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
-  const base64 = (base64String + padding)
-    .replace(/\-/g, "+")
-    .replace(/_/g, "/");
-
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
-};
-
 export default function Home({}) {
-  const { t, ts, locale } = useTrans();
+  const { t } = useTrans();
   const session = useSession();
   const router = useRouter();
   const [currentAction, setCurrentAction] = useState("loading");
   const [previousAction, setPreviousAction] = useState(null);
   const [isBusy, setIsBusy] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [signUpForm, setSignUpForm] = useState({
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-  });
-  const [signInForm, setSignInForm] = useState({
-    username: "",
-    password: "",
-  });
-  const [areasNearby, setAreasNearby] = useState([]);
-  const [subscribedAreas, setSubscribedAreas] = useState({});
+
+  const [coords, setCoords] = useState(null);
 
   // handle switching between actions
   const switchAction = useCallback(
@@ -91,13 +64,6 @@ export default function Home({}) {
     [currentAction]
   );
 
-  const isSubscribed = useCallback(
-    (area) => {
-      return subscribedAreas[area.id];
-    },
-    [subscribedAreas]
-  );
-
   const appContentClassNames = (action) => {
     return classNames("app-content", {
       "app-content-open-animate": isAction(action),
@@ -124,167 +90,10 @@ export default function Home({}) {
 
         switchAction("askForPermissionNotification");
       }
+
+      switchAction("askForPermissionNotification");
     }
   }, [session]);
-
-  // buttons actions to switch between actions
-  const onAskToSignIn = (e) => {
-    e.preventDefault();
-    switchAction("askToSignIn");
-  };
-  const onAskToSignUp = (e) => {
-    e.preventDefault();
-    switchAction("askToSignUp");
-  };
-
-  // form field changes
-  const onSignUpFormFieldChange = (e) => {
-    const { name, value } = e.target;
-    setSignUpForm((prev) => ({ ...prev, [name]: value.trim() }));
-  };
-
-  const onSignInFormFieldChange = (e) => {
-    const { name, value } = e.target;
-    setSignInForm((prev) => ({ ...prev, [name]: value.trim() }));
-  };
-
-  // form submit actions
-  const onSignUpFormSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      setIsBusy(true);
-      setErrorMessage(null);
-      track("appentry.signup.submit");
-
-      if (
-        signUpForm.username === "" ||
-        signUpForm.password === "" ||
-        signUpForm.firstName === "" ||
-        signUpForm.lastName === ""
-      ) {
-        setErrorMessage("INVALID_FORM_DATA");
-        track("appentry.signup.error", {
-          error: "INVALID_FORM_DATA",
-        });
-      } else {
-        const resp = await signIn("signup", {
-          redirect: false,
-          username: signUpForm.username,
-          usernameVerify: signUpForm.username,
-          password: signUpForm.password,
-          firstName: signUpForm.firstName,
-          lastName: signUpForm.lastName,
-          locale,
-        });
-
-        if (resp.error) {
-          track("appentry.signup.error", {
-            error: resp.error,
-          });
-          setErrorMessage(resp.error || "UNKNOWN_ERROR");
-        } else if (resp.ok) {
-          track("appentry.signup.complete");
-          switchAction("askForPermissionNotification");
-        }
-      }
-      setIsBusy(false);
-    },
-    [signUpForm]
-  );
-  const onSignInFormSubmit = async (e) => {
-    e.preventDefault();
-    setIsBusy(true);
-    setErrorMessage(null);
-    track("appentry.signin.submit");
-
-    if (signInForm.username === "" || !signInForm.password === "") {
-      track("appentry.signin.error", {
-        error: "INVALID_FORM_DATA",
-      });
-      setErrorMessage("INVALID_FORM_DATA");
-    } else {
-      const resp = await signIn("signin", {
-        redirect: false,
-        username: signInForm.username,
-        password: signInForm.password,
-      });
-
-      if (resp.error) {
-        track("appentry.signin.error", {
-          error: resp.error,
-        });
-        setErrorMessage(resp.error || "UNKNOWN_ERROR");
-      } else if (resp.ok) {
-        track("appentry.signin.complete");
-        switchAction("askForPermissionNotification");
-      }
-    }
-    setIsBusy(false);
-  };
-  const onAllowNotifications = (e) => {
-    e.preventDefault();
-    setIsBusy(true);
-    track("appentry.notification.click");
-
-    window?.Notification.requestPermission(async (permission) => {
-      if (permission === "granted") {
-        track("appentry.notification.granted");
-        // store subscription
-        const registration = await navigator.serviceWorker.ready;
-        const subscription = await registration.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: urlBase64ToUint8Array(
-            process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
-          ),
-        });
-        const subscriptionJson = subscription.toJSON();
-
-        await storePushSubscription({
-          endpoint: subscription.endpoint,
-          expiration_time: subscription.expirationTime,
-          auth: subscriptionJson.keys.auth,
-          p256dh: subscriptionJson.keys.p256dh,
-          user_agent: navigator.userAgent,
-        });
-
-        switchAction("askForPermissionLocation");
-      } else {
-        // switch to location
-        switchAction("askForPermissionLocation");
-      }
-      setIsBusy(false);
-    });
-  };
-
-  const onGoToActivazon = (e) => {
-    e.preventDefault();
-    track("appentry.gotoactivazon.click");
-    router.push("/");
-  };
-  const onSubscribeToArea = (area) => {
-    return async (e) => {
-      e.preventDefault();
-      setIsBusy(true);
-      track("appentry.subscribearea.click", { areaId: area.id });
-      const subscription = await createSubscription(area.city.id, area.id);
-      setSubscribedAreas((prev) => ({ ...prev, [area.id]: subscription }));
-      setIsBusy(false);
-    };
-  };
-
-  const onUnsubscribeToArea = useCallback(
-    (area) => {
-      return async (e) => {
-        e.preventDefault();
-        setIsBusy(true);
-        track("appentry.subscribearea.click", { areaId: area.id });
-        await deleteSubscription(subscribedAreas[area.id]);
-        setSubscribedAreas((prev) => ({ ...prev, [area.id]: undefined }));
-        setIsBusy(false);
-      };
-    },
-    [subscribedAreas]
-  );
 
   // const brandIconClassNames = classNames("brand-icon bi bi-activity", {
   //   "brand-icon-animate": isBusy,
@@ -309,260 +118,56 @@ export default function Home({}) {
           </p>
         </div>
         {/* loading/spinner screen */}
-        {isOrWasAction("loading") && (
-          <div
-            className={classNames("app-content", {
-              "app-content-close-animate": wasAction("loading"),
-            })}
-          >
-            <div className="brand">
-              <i className="brand-icon brand-icon-animate bi bi-activity"></i>
-              <p className="brand-text-title">Activazon</p>
-              <p className="brand-text">{t("Safety in your hands.")}</p>
-            </div>
-          </div>
-        )}
+        <ActionLoading isOrWasAction={isOrWasAction} wasAction={wasAction} />
 
         {/* journey - sign up */}
-        {isOrWasAction("askToSignUp") && (
-          <div className={appContentClassNames("askToSignUp")}>
-            <div className="brand">
-              <div className="brand-hero">
-                <img src="/undraw/undraw_welcoming_re_x0qo.svg" />
-              </div>
-              <p className="brand-text-title">{t("Sign Up")}</p>
-            </div>
-
-            <div className="app-content-list">
-              <form onSubmit={onSignUpFormSubmit}>
-                <div
-                  className={classNames("login-form", {
-                    "login-form-disabled": isBusy,
-                  })}
-                >
-                  {errorMessage && (
-                    <div className="login-form-error">
-                      <p>{errorMessageDisplay}</p>
-                    </div>
-                  )}
-                  <div className="d-flex">
-                    <input
-                      className="form-control w-50"
-                      placeholder={ts("First Name")}
-                      disabled={isBusy}
-                      name="firstName"
-                      value={signUpForm.firstName}
-                      onChange={onSignUpFormFieldChange}
-                      required={true}
-                    />
-                    <input
-                      className="form-control w-50"
-                      placeholder={ts("Last Name")}
-                      disabled={isBusy}
-                      name="lastName"
-                      value={signUpForm.lastName}
-                      onChange={onSignUpFormFieldChange}
-                      required={true}
-                    />
-                  </div>
-                  <input
-                    className="form-control"
-                    placeholder={ts("Email address")}
-                    type="email"
-                    disabled={isBusy}
-                    name="username"
-                    value={signUpForm.username}
-                    onChange={onSignUpFormFieldChange}
-                    required={true}
-                  />
-
-                  <input
-                    className="form-control form-control-last"
-                    placeholder={ts("Password")}
-                    type="password"
-                    disabled={isBusy}
-                    name="password"
-                    value={signUpForm.password}
-                    onChange={onSignUpFormFieldChange}
-                    required={true}
-                  />
-                </div>
-
-                <button
-                  className="btn btn-primary-light btn-lg w-100"
-                  type="submit"
-                  disabled={isBusy}
-                >
-                  {t("Sign Up")}
-                </button>
-
-                <button
-                  className="btn btn-clear text-white w-100"
-                  onClick={onAskToSignIn}
-                  disabled={isBusy}
-                >
-                  {t("Or tap here to Sign In")}
-                </button>
-              </form>
-            </div>
-          </div>
-        )}
+        <ActionAskToSignUp
+          isOrWasAction={isOrWasAction}
+          appContentClassNames={appContentClassNames}
+          errorMessageDisplay={errorMessageDisplay}
+          isBusy={isBusy}
+          switchAction={switchAction}
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+          setIsBusy={setIsBusy}
+        />
 
         {/* journey - sign in */}
-        {isOrWasAction("askToSignIn") && (
-          <div className={appContentClassNames("askToSignIn")}>
-            <div className="brand">
-              <div className="brand-hero">
-                <img src="/undraw/undraw_login_re_4vu2.svg" />
-              </div>
-              <p className="brand-text-title">{t("Sign In")}</p>
-            </div>
-
-            <div className="app-content-list">
-              <form onSubmit={onSignInFormSubmit}>
-                <div
-                  className={classNames("login-form", {
-                    "login-form-disabled": isBusy,
-                  })}
-                >
-                  {errorMessage && (
-                    <div className="login-form-error">
-                      <p>{errorMessageDisplay}</p>
-                    </div>
-                  )}
-
-                  <input
-                    className="form-control"
-                    placeholder={ts("Email address")}
-                    type="email"
-                    disabled={isBusy}
-                    name="username"
-                    value={signInForm.username}
-                    onChange={onSignInFormFieldChange}
-                    required={true}
-                  />
-
-                  <input
-                    className="form-control form-control-last"
-                    placeholder={ts("Password")}
-                    type="password"
-                    disabled={isBusy}
-                    name="password"
-                    value={signInForm.password}
-                    onChange={onSignInFormFieldChange}
-                    required={true}
-                  />
-                </div>
-
-                <button
-                  className="btn btn-primary-light btn-lg w-100"
-                  type="submit"
-                  disabled={isBusy}
-                >
-                  {t("Sign In")}
-                </button>
-
-                <button
-                  className="btn btn-clear text-white w-100"
-                  onClick={onAskToSignUp}
-                  disabled={isBusy}
-                >
-                  {t("Or tap here to Sign Up")}
-                </button>
-              </form>
-            </div>
-          </div>
-        )}
+        <ActionAskToSignIn
+          isOrWasAction={isOrWasAction}
+          appContentClassNames={appContentClassNames}
+          switchAction={switchAction}
+          isBusy={isBusy}
+          setIsBusy={setIsBusy}
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+          errorMessageDisplay={errorMessageDisplay}
+        />
 
         {/* journey - ask for permission (notification)  */}
-        {isOrWasAction("askForPermissionNotification") && (
-          <div className={appContentClassNames("askForPermissionNotification")}>
-            <div className="brand">
-              <div className="brand-hero">
-                <img src="/undraw/undraw_push_notifications_re_t84m.svg" />
-              </div>
-              <p className="brand-text-title">
-                {t("Get Notified of Relevant Activity Near You")}
-              </p>
-              <p className="brand-text">
-                {t(
-                  "Activazon notifications will keep you informed of important events in your community. Allow them now to stay in the know."
-                )}
-              </p>
-            </div>
-            <div className="app-content-list">
-              <form>
-                <button
-                  className="btn btn-primary-light"
-                  onClick={onAllowNotifications}
-                >
-                  {t("Allow Notifications")}
-                </button>
-              </form>
-            </div>
-          </div>
-        )}
-
+        <ActionAskForPermissionNotification
+          isOrWasAction={isOrWasAction}
+          switchAction={switchAction}
+          appContentClassNames={appContentClassNames}
+          setIsBusy={setIsBusy}
+        />
         {/* journey - ask for permission (location)  */}
         <ActionAskForPermissionLocation
           isOrWasAction={isOrWasAction}
           switchAction={switchAction}
           setIsBusy={setIsBusy}
           appContentClassNames={appContentClassNames}
-          setAreasNearby={setAreasNearby}
+          setCoords={setCoords}
         />
 
         {/* journey - nearby areas  */}
-        {isOrWasAction("nearbyAreas") && (
-          <div className={appContentClassNames("nearbyAreas")}>
-            <div className="brand">
-              <p className="brand-text-title">{t("Subscribe to some areas")}</p>
-              <p className="brand-text">
-                {t(
-                  "We've found some areas closest to you. Subscribe to some of them to get notified of relevant activity."
-                )}
-              </p>
-            </div>
-            <div className="app-content-list">
-              <PlaceList
-                name="nearby-areas"
-                shimmerLimit={4}
-                items={areasNearby?.results}
-                accessorHref={(item) => "#"}
-                accessorImageUrl={(area) =>
-                  area.image_square_red_url || area.image_square_url
-                }
-                accessorTitle={(area) => area.display_name}
-                accessorDescription={(area) => (
-                  <>
-                    {area.city.display_name}
-                    <br />
-                    {!isSubscribed(area) && (
-                      <a href="#" onClick={onSubscribeToArea(area)}>
-                        <i className="bi bi-bell me-1"></i>Subscribe
-                      </a>
-                    )}
-                    {isSubscribed(area) && (
-                      <a href="#" onClick={onUnsubscribeToArea(area)}>
-                        <i className="bi bi-bell-fill me-1"></i>Subscribe
-                      </a>
-                    )}
-                  </>
-                )}
-              />
-            </div>
-            <div className="container">
-              <button
-                className="btn btn-primary-light btn-lg w-100"
-                type="submit"
-                disabled={isBusy}
-                onClick={onGoToActivazon}
-              >
-                {t("Go to Activazon")}
-              </button>
-            </div>
-          </div>
-        )}
+        <ActionNearbyAreas
+          isOrWasAction={isOrWasAction}
+          appContentClassNames={appContentClassNames}
+          isBusy={isBusy}
+          coords={coords}
+          setIsBusy={setIsBusy}
+        />
       </div>
     </>
   );
