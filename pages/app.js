@@ -22,6 +22,21 @@ const pushNotificationPermission = () => {
   return Notification.permission;
 };
 
+const urlBase64ToUint8Array = (base64String) => {
+  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, "+")
+    .replace(/_/g, "/");
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+};
+
 export default function Home({}) {
   const { t, ts, locale } = useTrans();
   const session = useSession();
@@ -210,31 +225,19 @@ export default function Home({}) {
     e.preventDefault();
     setIsBusy(true);
     track("appentry.notification.click");
-    alert("will try to ask for permission");
+
     window?.Notification.requestPermission(async (permission) => {
-      alert("permission: " + permission);
       if (permission === "granted") {
         track("appentry.notification.granted");
         // store subscription
-        alert("granted");
         const registration = await navigator.serviceWorker.ready;
-        alert("service worker ready");
-        try {
-          const subscription = await registration.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array(
-              process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
-            ),
-          });
-        } catch (e) {
-          alert("error: " + e);
-        }
-
-        alert("getting subscription");
-
+        const subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(
+            process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
+          ),
+        });
         const subscriptionJson = subscription.toJSON();
-
-        alert("subscription to json");
 
         await storePushSubscription({
           endpoint: subscription.endpoint,
