@@ -76,27 +76,25 @@ export default function Home({}) {
     // and sign up.
 
     if (isAction("loading")) {
-      // if (session.status === "loading") {
-      //   //  do nothing
-      // } else if (session.status === "authenticated") {
-      //   // we are good to go
+      if (session.status === "loading") {
+        //  do nothing
+      } else if (session.status === "authenticated") {
+        // we are good to go
 
-      //   router.push("/");
-      // } else if (session.status === "unauthenticated") {
-      //   // we need to ask the user to sign up
-      //   navigator.serviceWorker.register("/sw.js").then(() => {
-      //     switchAction("askToSignUp");
-      //   });
-      // } else if (pushNotificationPermission() !== "granted") {
-      //   // we need to ask the user for permission
-      //   navigator.serviceWorker.register("/sw.js").then(() => {
-      //     switchAction("askForPermissionNotification");
-      //   });
-      // }
-
-      navigator.serviceWorker.ready.then((swr) => {
-        switchAction("askForPermissionNotification");
-      });
+        router.push("/");
+      } else if (session.status === "unauthenticated") {
+        // we need to ask the user to sign up
+        // wait for service worker to be ready
+        navigator.serviceWorker.ready.then(() => {
+          switchAction("askToSignUp");
+        });
+      } else if (pushNotificationPermission() !== "granted") {
+        // we need to ask the user for permission
+        // wait for service worker to be ready
+        navigator.serviceWorker.ready.then(() => {
+          switchAction("askForPermissionNotification");
+        });
+      }
     }
   }, [session]);
 

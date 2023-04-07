@@ -1,7 +1,6 @@
 import { useTrans } from "lib/trans";
 const { track } = require("lib/track");
 import { storePushSubscription } from "lib/client-api";
-import { timeTaken } from "lib/debug";
 
 const urlBase64ToUint8Array = (base64String) => {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -31,23 +30,19 @@ const ActionAskForPermissionNotification = ({
     setIsBusy(true);
     track("appentry.notification.click");
 
-    const tt = timeTaken();
-    tt.start();
-
     window?.Notification.requestPermission(async (permission) => {
-      tt.add("requestPermission");
       if (permission === "granted") {
         track("appentry.notification.granted");
         // store subscription
         const registration = await navigator.serviceWorker.ready;
-        tt.add("navigator.serviceWorker.ready");
+
         const subscription = await registration.pushManager.subscribe({
           userVisibleOnly: true,
           applicationServerKey: urlBase64ToUint8Array(
             process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY
           ),
         });
-        tt.add("registration.pushManager.subscribe");
+
         const subscriptionJson = subscription.toJSON();
 
         storePushSubscription({
@@ -58,9 +53,6 @@ const ActionAskForPermissionNotification = ({
           user_agent: navigator.userAgent,
           send_test_notification: false,
         });
-        tt.add("storePushSubscription");
-
-        alert(tt.toString());
 
         switchAction("askForPermissionLocation");
       } else {
