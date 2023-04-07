@@ -18,7 +18,7 @@ const AddToHomeScreenWalkThroughBody = ({ device }) => {
     deviceSpecificInstruction = (
       <p class="app-content-text">
         {t(
-          'Tap the <i class="bi bi-three-dots"></i> button at the top right of your screen and select <b>Add to Home Screen</b>'
+          "Tap the settings button at on your browser and select <b>Add to Home Screen</b>"
         )}
       </p>
     );

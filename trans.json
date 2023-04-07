@@ -776,9 +776,9 @@
     "en": "You are adding Activazon to your<br />Home Screen",
     "es": "Estás agregando Activazon a tu<br />pantalla de inicio"
   },
-  "Tap the <i class=\"bi bi-three-dots\"></i> button at the top right of your screen and select <b>Add to Home Screen</b>": {
-    "en": "Tap the <i class=\"bi bi-three-dots\"></i> button at the top right of your screen and select <b>Add to Home Screen</b>",
-    "es": "Toca el botón <i class=\"bi bi-three-dots\"></i> en la parte superior derecha de tu pantalla y selecciona <b>Agregar a pantalla de inicio</b>"
+  "Tap the settings button at on your browser and select <b>Add to Home Screen</b>": {
+    "en": "Tap the settings button at on your browser and select <b>Add to Home Screen</b>",
+    "es": "Toca el botón de configuración en tu navegador y selecciona <b>Agregar a pantalla de inicio</b>"
   },
   "Then, go to your Home screen and open the Activazon app to continue.": {
     "en": "Then, go to your Home screen and open the Activazon app to continue.",
