@@ -98,16 +98,16 @@ export default function Home({}) {
     if (isAction("loading")) {
       if (session.status === "loading") {
         //  do nothing
+      } else if (session.status === "authenticated") {
+        // we are good to go
+        router.push("/");
       } else if (session.status === "unauthenticated") {
         // we need to ask the user to sign up
         switchAction("askToSignUp");
       } else if (pushNotificationPermission() !== "granted") {
         // we need to ask the user for permission
+        alert("session.status", session.status);
         switchAction("askForPermissionNotification");
-      } else if (session.status === "authenticated") {
-        // we are good to go
-
-        router.push("/");
       }
       switchAction("askForPermissionLocation");
     }
