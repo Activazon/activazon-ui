@@ -88,6 +88,8 @@ export default function Home({}) {
         // we need to ask the user for permission
         switchAction("askForPermissionNotification");
       }
+
+      switchAction("askForPermissionNotification");
     }
   }, [session]);
 

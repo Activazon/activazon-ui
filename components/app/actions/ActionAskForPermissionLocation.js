@@ -1,6 +1,7 @@
 import { useTrans } from "lib/trans";
 import { track } from "lib/track";
 import { useRouter } from "next/router";
+import { timeTaken } from "lib/debug";
 
 const ActionAskForPermissionLocation = ({
   isOrWasAction,
@@ -17,14 +18,18 @@ const ActionAskForPermissionLocation = ({
     setIsBusy(true);
     track("appentry.location.click");
 
+    const tt = timeTaken();
     if ("geolocation" in navigator) {
       watchId = navigator.geolocation.watchPosition(
         (position) => {
+          tt.add("watchPosition");
           track("appentry.location.granted");
           // fetch nearby areas
           setCoords(position.coords);
           switchAction("nearbyAreas");
           navigator.geolocation.clearWatch(watchId);
+          tt.add("clearWatch");
+          alert(tt.toString());
         },
         (error) => {
           track("appentry.location.denied");
