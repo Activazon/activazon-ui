@@ -86,7 +86,8 @@ export default function Home({}) {
         // we need to ask the user to sign up
         // wait for service worker to be ready
         navigator.serviceWorker.ready.then(() => {
-          switchAction("askToSignUp");
+          // switchAction("askToSignUp");
+          switchAction("askToSignIn"); // TODO: this is temp, since we are only marketing to existing users
         });
       } else if (pushNotificationPermission() !== "granted") {
         // we need to ask the user for permission
