@@ -20,7 +20,7 @@ const urlBase64ToUint8Array = (base64String) => {
 const ActionAskForPermissionNotification = ({
   isOrWasAction,
   appContentClassNames,
-  setIsBusy,
+  isBusy,
   switchAction,
   setIsBusy,
 }) => {
@@ -85,7 +85,7 @@ const ActionAskForPermissionNotification = ({
             <button
               className="btn btn-primary-light"
               onClick={onAllowNotifications}
-              disabled={setIsBusy}
+              disabled={isBusy}
             >
               {t("Allow Notifications")}
             </button>
