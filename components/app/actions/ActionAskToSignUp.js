@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useCallback, useState } from "react";
 import { useTrans } from "lib/trans";
-import { track } from "lib/track";
+import { track, useTrackOnce } from "lib/track";
 import { signIn } from "next-auth/react";
 
 const ActionAskToSignUp = ({
@@ -15,6 +15,7 @@ const ActionAskToSignUp = ({
   setIsBusy,
 }) => {
   const { t, ts } = useTrans();
+  useTrackOnce("appentry.signup");
   const [signUpForm, setSignUpForm] = useState({
     username: "",
     password: "",

@@ -1,5 +1,5 @@
 import { useTrans } from "lib/trans";
-import { track } from "lib/track";
+import { track, useTrackOnce } from "lib/track";
 import { useRouter } from "next/router";
 
 const ActionAskForPermissionLocation = ({
@@ -12,6 +12,7 @@ const ActionAskForPermissionLocation = ({
 }) => {
   const { t } = useTrans();
   const router = useRouter();
+  useTrackOnce("appentry.location");
   const onAllowLocation = (e) => {
     let watchId;
     e.preventDefault();

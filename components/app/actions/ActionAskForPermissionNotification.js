@@ -1,5 +1,5 @@
 import { useTrans } from "lib/trans";
-const { track } = require("lib/track");
+const { track, useTrackOnce } = require("lib/track");
 import { storePushSubscription } from "lib/client-api";
 
 const urlBase64ToUint8Array = (base64String) => {
@@ -25,6 +25,7 @@ const ActionAskForPermissionNotification = ({
   setIsBusy,
 }) => {
   const { t } = useTrans();
+  useTrackOnce("appentry.notification");
 
   const onAllowNotifications = (e) => {
     e.preventDefault();

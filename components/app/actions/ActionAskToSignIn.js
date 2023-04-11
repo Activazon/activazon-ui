@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useTrans } from "lib/trans";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { track } from "lib/track";
+import { track, useTrackOnce } from "lib/track";
 
 const ActionAskToSignIn = ({
   isOrWasAction,
@@ -15,6 +15,7 @@ const ActionAskToSignIn = ({
   errorMessageDisplay,
 }) => {
   const { t, ts } = useTrans();
+  useTrackOnce("appentry.signin");
   const [signInForm, setSignInForm] = useState({
     username: "",
     password: "",

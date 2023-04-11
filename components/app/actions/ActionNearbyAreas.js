@@ -13,6 +13,7 @@ const ActionNearbyAreas = ({
   setIsBusy,
 }) => {
   const router = useRouter();
+  useTrackOnce("appentry.nearbyareas");
   const { t } = useTrans();
   const [areasNearby, setAreasNearby] = useState(null);
   const [subscribedAreas, setSubscribedAreas] = useState({});
