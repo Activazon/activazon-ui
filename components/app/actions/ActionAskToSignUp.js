@@ -14,7 +14,7 @@ const ActionAskToSignUp = ({
   setErrorMessage,
   setIsBusy,
 }) => {
-  const { t, ts } = useTrans();
+  const { t, ts, locale } = useTrans();
   useTrackOnce("appentry.signup");
   const [signUpForm, setSignUpForm] = useState({
     username: "",
