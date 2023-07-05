@@ -28,7 +28,7 @@ const AppHead = ({ title, seoDescription, seoKeywords, seoImageUrl }) => {
       />
       <link rel="icon" href="/favicon.ico" />
       <link rel="manifest" href={`${baseUrl}/manifest-${locale}.webmanifest`} />
-      <meta name="theme-color" content="#0b2442" />
+      <meta name="theme-color" content="#FFFFFF" />
       <link
         rel="alternate"
         hrefLang="en"
