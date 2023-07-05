@@ -1,4 +1,3 @@
-import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
 import Col from "components/Col";
 import Main from "components/Main";
@@ -6,7 +5,7 @@ import Footer from "components/Footer";
 import Head from "components/Head";
 
 import PlaceList from "components/PlaceList";
-import SearchWidget from "components/SearchWidget";
+import Map from "components/Map";
 import A2hsCtaTile from "components/A2hsCtaTile";
 import UserCurrentCityWidget from "components/UserCurrentCityWidget";
 
@@ -66,15 +65,11 @@ const Page = () => {
       <body>
         <div className="page">
           <Nav backHref={null} />
-          {/* <Tip /> */}
-          <Bannerv2 title={i("Get to know your neighbourhood")} dark={true}>
-            <div className="row mt-4 mb-4">
-              <div className="col-12">
-                <SearchWidget />
-              </div>
-            </div>
-          </Bannerv2>
+
           <Main>
+            <Col>
+              <Map />
+            </Col>
             <>
               {nearbyCity.success && (
                 <Col>

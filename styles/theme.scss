@@ -1,3 +1,9 @@
+// tailwind
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// bootstrap
 @import "bootstrap/scss/bootstrap.scss";
 @import "bootstrap-icons/font/bootstrap-icons.scss";
 @import "animate.css";
