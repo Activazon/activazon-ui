@@ -5,8 +5,6 @@ import { ItemList, Item, ItemActivityTypePill } from "components/ItemList";
 import Head from "components/Head";
 import ActivityBreakDown from "components/ActivityBreakdownTile";
 import Content from "components/Content/Content";
-import ContentGroup from "components/Content/ContentGroup";
-import ContentGroupTitle from "components/Content/ContentGroupTitle";
 import A2hsCtaTile from "components/A2hsCtaTile";
 import Footer from "components/Footer";
 import { useTrans } from "lib/trans";
