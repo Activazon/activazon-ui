@@ -7,6 +7,8 @@ import ActivityBreakDown from "components/ActivityBreakdownTile";
 import Content from "components/Content/Content";
 import ContentGroup from "components/Content/ContentGroup";
 import ContentGroupTitle from "components/Content/ContentGroupTitle";
+import A2hsCtaTile from "components/A2hsCtaTile";
+import Footer from "components/Footer";
 import { useTrans } from "lib/trans";
 
 import { activityPath, explorePath } from "lib/urls";
@@ -119,6 +121,7 @@ const Page = ({ countrySlug, citySlug }) => {
                   View more
                 </Link>
               </ItemList>
+              <A2hsCtaTile />
               <ActivityBreakDown
                 areaDisplayName={city.display_name}
                 data={activityBreakdown}
@@ -159,6 +162,7 @@ const Page = ({ countrySlug, citySlug }) => {
             </Content>
           )}
         </div>
+        <Footer />
       </body>
     </>
   );

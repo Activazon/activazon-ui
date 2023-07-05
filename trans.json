@@ -903,5 +903,9 @@
   "Areas in {{cityDisplayName}} where activity has been detected": {
     "en": "Areas in {{cityDisplayName}} where activity has been detected",
     "es": "Áreas en {{cityDisplayName}} donde se ha detectado actividad"
+  },
+  "Area": {
+    "en": "Area",
+    "es": "Área"
   }
 }
