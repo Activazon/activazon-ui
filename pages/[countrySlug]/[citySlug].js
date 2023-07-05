@@ -1,25 +1,21 @@
-import Link from "next/link";
-import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
-import Col from "components/Col";
-import Main from "components/Main";
-import Footer from "components/Footer";
+import MapTile from "components/Map/MapTile";
+import MapInfo from "components/Map/MapInfo";
+import { ItemList, Item, ItemActivityTypePill } from "components/ItemList";
 import Head from "components/Head";
-import A2hsCtaTile from "components/A2hsCtaTile";
-import StaticMapImage from "components/StaticMapImage";
-import InteractiveActions from "components/InteractiveActions";
-import PlaceList from "components/PlaceList";
-import AreaList from "components/AreaList";
-import ActivityBreakDownList from "components/ActivityBreakdownList";
+import ActivityBreakDown from "components/ActivityBreakdownTile";
+import Content from "components/Content/Content";
+import ContentGroup from "components/Content/ContentGroup";
+import ContentGroupTitle from "components/Content/ContentGroupTitle";
 import { useTrans } from "lib/trans";
 
-import { explorePath, activityPath } from "lib/urls";
+import { activityPath, explorePath } from "lib/urls";
 import { useDate } from "lib/date";
 import { useTrackOnce } from "lib/track";
 import { useUser } from "lib/user";
 import { usePlaceManager, PLACE_TYPES } from "lib/placeManager";
 import { useSubscriptionManager } from "lib/subscriptionManager";
-import { isDisplayModeStandalone } from "lib/pwa";
+import Link from "next/link";
 
 const Page = ({ countrySlug, citySlug }) => {
   const areasLimit = 3;
@@ -92,93 +88,76 @@ const Page = ({ countrySlug, citySlug }) => {
       />
       <body>
         <div className="page">
-          <Nav title={city?.display_name} backHref={explorePath()} />
-
-          <>
-            <Bannerv2
-              // title={city.display_name}
-              description={city?.country.display_name}
-              showSearch={false}
-              searchCountry={null}
-              dark={true}
-            >
-              <>
-                <StaticMapImage src={brandImage?.image_url} />
-                <InteractiveActions
-                  placeManager={placeManager}
-                  subscriptionManager={subscriptionManager}
+          <Nav />
+          {city && (
+            <Content>
+              <MapTile imgUrl={seoImageUrl} />
+              <MapInfo
+                areaType={t("City")}
+                addressParts={[city.display_name, city.country.display_name]}
+                activityCount={city.activity_total_last5months}
+              />
+              <ItemList>
+                {activities?.results.map((activity) => (
+                  <Item
+                    href={activityPath(activity.area.slug_path, activity.id)}
+                    imgUrl={activity.area.image_square_red_url}
+                    itemType={t("Activity")}
+                    title={activity.area.display_name}
+                    message={displayDate(activity.date_occured)}
+                    pill={
+                      <ItemActivityTypePill
+                        name={t(activity.activity_type.name)}
+                      />
+                    }
+                  />
+                ))}
+                <Link
+                  href={explorePath(city?.slug_path + "/activities")}
+                  className="tw-text-blue-bright tw-text-center tw-no-underline tw-p-3 tw-bg-blue-bright-trans tw-rounded-full"
+                >
+                  View more
+                </Link>
+              </ItemList>
+              <ActivityBreakDown
+                areaDisplayName={city.display_name}
+                data={activityBreakdown}
+              />
+              <ContentGroup>
+                <ContentGroupTitle
+                  title={t("Areas")}
+                  description={t(
+                    "Areas in {{cityDisplayName}} where activity has been detected",
+                    {
+                      cityDisplayName: city.display_name,
+                    }
+                  )}
                 />
-              </>
-            </Bannerv2>
-            <Main>
-              <Col>
-                <PlaceList
-                  name="city-activities"
-                  title={activitesText}
-                  items={activities?.results}
-                  accessorHref={(activity) =>
-                    activityPath(activity.area.slug_path, activity.id)
-                  }
-                  accessorImageUrl={(activity) =>
-                    activity.area.image_square_red_url ||
-                    activity.area.image_square_url
-                  }
-                  accessorLead={(activity) =>
-                    displayDate(activity.date_occured)
-                  }
-                  accessorTitle={(activity) =>
-                    t("{{activity_type_name}} in {{neighbourhood_name}}", {
-                      activity_type_name: t(activity.activity_type.name),
-                      neighbourhood_name: activity.area.display_name,
-                    })
-                  }
-                  shimmerLimit={activitiesLimit}
-                />
-                {isAuthenticated && activitesSurplus > 0 && (
+                <ItemList>
+                  {areas?.results.map((area) => (
+                    <Item
+                      href={area.slug_path}
+                      imgUrl={area.image_square_red_url}
+                      itemType={t("Activity")}
+                      title={area.display_name}
+                      message={t(
+                        "{{ActivityCount}} activities detected in the last 5 months",
+                        {
+                          ActivityCount: area.activity_total_last5months,
+                        }
+                      )}
+                    />
+                  ))}
                   <Link
-                    href={explorePath(city?.slug_path + "/activities")}
-                    className="btn btn-load-more w-100 mt-2"
+                    href={explorePath(city?.slug_path + "/areas")}
+                    className="tw-text-blue-bright tw-text-center tw-no-underline tw-p-3 tw-bg-blue-bright-trans tw-rounded-full"
                   >
-                    {t("Load {{count}} more", { count: activitesSurplus })}
+                    View more
                   </Link>
-                )}
-              </Col>
-
-              {!isDisplayModeStandalone() && (
-                <Col>
-                  <A2hsCtaTile />
-                </Col>
-              )}
-
-              <Col>
-                <ActivityBreakDownList
-                  name="city-activity-breakdown"
-                  areaName={city?.display_name}
-                  items={activityBreakdown?.data}
-                  showPercentage={isAuthenticated}
-                  shimmerLimit={3}
-                />
-              </Col>
-
-              <Col>
-                <AreaList
-                  name="city-areas"
-                  areaName={city?.display_name}
-                  areas={areas}
-                  areasSurplus={isAuthenticated && areasSurplus}
-                  areasSurplusHref={explorePath(city?.slug_path + "/areas")}
-                  shimmerLimit={areasLimit}
-                />
-              </Col>
-
-              {!isDisplayModeStandalone() && (
-                <Col>
-                  <A2hsCtaTile />
-                </Col>
-              )}
-              <Footer />
-            </Main>
-          </>
+                </ItemList>
+              </ContentGroup>
+            </Content>
+          )}
         </div>
       </body>
     </>

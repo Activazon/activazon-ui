@@ -10,7 +10,7 @@ import StaticMapImage from "components/StaticMapImage";
 import InteractiveActions from "components/InteractiveActions";
 
 import PlaceList from "components/PlaceList";
-import ActivityBreakDownList from "components/ActivityBreakdownList";
+import ActivityBreakDownList from "components/ActivityBreakdownListOld";
 
 import { useTrans } from "lib/trans";
 import { activityPath, explorePath } from "lib/urls";

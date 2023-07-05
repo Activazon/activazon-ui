@@ -1,59 +1,49 @@
 import { useTrans } from "lib/trans";
 
-export const ActivityBreakDownItem = ({ name, count, percentage }) => (
-  <div className="col-12">
-    <div className="activity-slide">
-      <div className="text-content">
-        <p className="label-lg">{name}</p>
-        <p className="label-sm">{count}</p>
-        <p className="label-sm">{percentage}%</p>
-      </div>
-      <div className="bar-content">
-        <div className="bar" style={{ width: `${percentage}%` }}></div>
-      </div>
-    </div>
-  </div>
-);
-
-export const ActivityBreakDownItemShimmer = ({}) => (
-  <div className="col-12">
-    <div className="activity-slide">
-      <div className="text-content mb-1">
-        <p className="label-lg">
-          <div className="line line-small line-wm" />
-        </p>
-
-        <p className="label-sm">
-          <div className="line line-small line-ws" />
-        </p>
-      </div>
-      <div className="bar-content"></div>
-    </div>
-  </div>
-);
-
-const ActivityBreakdownTile = ({ children, areaName }) => {
+const ActivityBreakDownItem = ({ activityCount, activityTypeName }) => {
   const { t } = useTrans();
   return (
-    <div className="card card-body tile tile-activity-breakdown">
-      <div className="row text-center gy-3">
-        <div className="col-12">
-          <i className="tile-icon bi bi-activity"></i>
-        </div>
-        <div className="col-12">
-          <h2 className="tile-title">{t("Activity Breakdown")}</h2>
-        </div>
-        <div className="col-12">
-          <p className="tile-description">
-            {t("Top 3 activities detected in {{area_name}}", {
-              area_name: areaName,
-            })}
-          </p>
-        </div>
-        <div className="row gy-1">{children}</div>
+    <div className="tw-border-2 tw-border-blue-dark tw-rounded-lg tw-p-4">
+      <div>
+        <p className="tw-text-blue-dark tw-text-6xl tw-font-bold tw-m-0 tw-inline">
+          {activityCount}
+        </p>
+        <p className="tw-text-blue-dark tw-m-0 tw-inline tw-ms-1 tw-text-sm">
+          {t("Activities")}
+        </p>
+      </div>
+      <p className="tw-text-blue-dark tw-m-0">
+        <i className="bi bi-shield-fill-exclamation"></i> {activityTypeName}
+      </p>
+    </div>
+  );
+};
+
+const ActivityBreakDown = ({ areaDisplayName, data }) => {
+  const { t } = useTrans();
+  return (
+    <div className="tw-w-full tw-flex tw-flex-col tw-gap-3">
+      <div>
+        <p className="tw-m-0 tw-text-blue-dark tw-text-xl">
+          {t("Type of activities")}
+        </p>
+        <p className="tw-m-0">
+          {t("The type of activities detected in <b>{{areaDisplayName}}</b>", {
+            areaDisplayName,
+          })}
+        </p>
+      </div>
+      <div className="tw-grid tw-grid-cols-2 tw-gap-3">
+        {data?.data.map((item, index) => (
+          <ActivityBreakDownItem
+            key={`activity-breakdown-${index}`}
+            activityCount={item.count}
+            activityTypeName={t(item.activity_type_name)}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
-export default ActivityBreakdownTile;
+export default ActivityBreakDown;

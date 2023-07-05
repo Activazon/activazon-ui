@@ -3,9 +3,11 @@ import Col from "components/Col";
 import Main from "components/Main";
 import Footer from "components/Footer";
 import Head from "components/Head";
+import Content from "components/Content/Content";
 
 import PlaceList from "components/PlaceList";
-import Map from "components/Map";
+import MapTile from "components/Map/MapTile";
+import MapInfo from "components/Map/MapInfo";
 import A2hsCtaTile from "components/A2hsCtaTile";
 import UserCurrentCityWidget from "components/UserCurrentCityWidget";
 
@@ -66,10 +68,12 @@ const Page = () => {
         <div className="page">
           <Nav backHref={null} />
 
+          {/* <Content>
+            <MapTile />
+            <MapInfo />
+          </Content> */}
+
           <Main>
-            <Col>
-              <Map />
-            </Col>
             <>
               {nearbyCity.success && (
                 <Col>

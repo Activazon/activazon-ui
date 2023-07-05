@@ -875,5 +875,33 @@
   "Go to Activazon": {
     "en": "Go to Activazon",
     "es": "Ir a Activazon"
+  },
+  "City": {
+    "en": "City",
+    "es": "Ciudad"
+  },
+  "Activity": {
+    "en": "Activity",
+    "es": "Actividad"
+  },
+  "Activities": {
+    "en": "Activities",
+    "es": "Actividades"
+  },
+  "Type of activities": {
+    "en": "Type of activities",
+    "es": "Tipo de actividades"
+  },
+  "The type of activities detected in <b>{{areaDisplayName}}</b>": {
+    "en": "The type of activities detected in <b>{{areaDisplayName}}</b>",
+    "es": "El tipo de actividades detectadas en <b>{{areaDisplayName}}</b>"
+  },
+  "Areas": {
+    "en": "Areas",
+    "es": "Áreas"
+  },
+  "Areas in {{cityDisplayName}} where activity has been detected": {
+    "en": "Areas in {{cityDisplayName}} where activity has been detected",
+    "es": "Áreas en {{cityDisplayName}} donde se ha detectado actividad"
   }
 }

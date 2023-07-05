@@ -2,7 +2,7 @@ import { useTrans } from "lib/trans";
 import ActivityBreakdownTile, {
   ActivityBreakDownItem,
   ActivityBreakDownItemShimmer,
-} from "./ActivityBreakdownTile";
+} from "./ActivityBreakdownTileOld";
 
 const ActivityBreakDownList = ({
   name,
