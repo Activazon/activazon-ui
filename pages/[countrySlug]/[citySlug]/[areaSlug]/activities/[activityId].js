@@ -105,7 +105,7 @@ const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
                   activityCount={area.activity_total_last5months}
                 />
                 <div>
-                  <ItemActivityTypePill name="Theft" />
+                  <ItemActivityTypePill name={activity.activity_type.name} />
                   <span className="ms-3">
                     {displayDate(activity.date_occured)}
                   </span>
