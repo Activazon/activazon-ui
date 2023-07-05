@@ -138,11 +138,7 @@ const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
                 </Link>
               )}
 
-              {!isDisplayModeStandalone() && (
-                <div className="container pt-3">
-                  <A2hsCtaTile />
-                </div>
-              )}
+              {!isDisplayModeStandalone() && <A2hsCtaTile />}
             </Content>
           )}
           <Footer />

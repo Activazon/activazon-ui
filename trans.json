@@ -740,9 +740,13 @@
     "en": "Source",
     "es": "Fuente"
   },
-  "Stay informed about your city": {
-    "en": "Stay informed about your city",
-    "es": "Mantente informado sobre tu ciudad"
+  "Activity detected in {{cityDisplayName}}": {
+    "en": "Activity detected in {{cityDisplayName}}",
+    "es": "Actividad detectada en {{cityDisplayName}}"
+  },
+  "We've detected {{ActivityCount}} activities near you in the last week": {
+    "en": "We've detected {{ActivityCount}} activities near you in the last week",
+    "es": "Hemos detectado {{ActivityCount}} actividades cerca de ti en la última semana"
   },
   "{{ActivityCount}} activities detected in the last 5 months": {
     "en": "{{ActivityCount}} activities detected in the last 5 months",
@@ -907,5 +911,13 @@
   "Area": {
     "en": "Area",
     "es": "Área"
+  },
+  "Cities where we have detected activities in the last 5 months": {
+    "en": "Cities where we have detected activities in the last 5 months",
+    "es": "Ciudades donde hemos detectado actividades en los últimos 5 meses"
+  },
+  "Most recent activities detected in your country": {
+    "en": "Most recent activities detected in your country",
+    "es": "Actividades más recientes detectadas en tu país"
   }
 }

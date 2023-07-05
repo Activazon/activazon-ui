@@ -1,7 +1,7 @@
 .search {
   @extend .w-100;
   background-color: $white;
-  border: 0px;
+  border: 1px solid $primary;
   @extend .d-flex;
   @extend .rounded;
   @extend .align-items-center;

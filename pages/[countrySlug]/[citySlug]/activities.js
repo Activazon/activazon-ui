@@ -1,10 +1,8 @@
 import Nav from "components/Nav";
-import Col from "components/Col";
-import Main from "components/Main";
+import Content from "components/Content/Content";
 import Footer from "components/Footer";
 import Head from "components/Head";
-import PlaceList from "components/PlaceList";
-
+import { ItemList, Item, ItemActivityTypePill } from "components/ItemList";
 import { useTrans } from "lib/trans";
 import { explorePath } from "lib/urls";
 import { useDate } from "lib/date";
@@ -64,35 +62,31 @@ const Page = ({ countrySlug, citySlug }) => {
       />
       <body>
         <div className="page">
-          <Nav
-            backHref={city && explorePath(city.slug_path)}
-            title={city?.display_name}
-          />
-          <Main>
-            <Col>
-              <PlaceList
-                title={t("Activities detected in {{placeDisplayName}}", {
-                  placeDisplayName: city?.display_name,
-                })}
-                name="home-activities"
-                items={activities?.results}
-                accessorHref={(activity) =>
-                  explorePath(
+          <Nav />
+          <Content>
+            <ItemList>
+              {activities?.results?.map((activity) => (
+                <Item
+                  key={`activity-${activity.id}`}
+                  href={explorePath(
                     [activity.area.slug_path, "activities", activity.id].join(
                       "/"
                     )
-                  )
-                }
-                accessorImageUrl={(activity) =>
-                  accessorActivityImageUrl(activity)
-                }
-                accessorLead={(activity) => displayDate(activity.date_occured)}
-                accessorTitle={(activity) => accessorActivityTitle(t, activity)}
-                shimmerLimit={10}
-              />
-            </Col>
-            <Footer />
-          </Main>
+                  )}
+                  imgUrl={accessorActivityImageUrl(activity)}
+                  itemType={t("Activity")}
+                  title={accessorActivityTitle(t, activity)}
+                  message={displayDate(activity.date_occured)}
+                  pill={
+                    <ItemActivityTypePill
+                      name={t(activity.activity_type.name)}
+                    />
+                  }
+                />
+              ))}
+            </ItemList>
+          </Content>
+          <Footer />
         </div>
       </body>
     </>

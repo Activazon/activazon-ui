@@ -118,7 +118,9 @@ const Page = ({ countrySlug, citySlug }) => {
                   href={explorePath(city?.slug_path + "/activities")}
                   className="tw-text-blue-bright tw-text-center tw-no-underline tw-p-3 tw-bg-blue-bright-trans tw-rounded-full"
                 >
-                  View more
+                  {t("View more from {{CityName}}", {
+                    CityName: city.display_name,
+                  })}
                 </Link>
               </ItemList>
               <A2hsCtaTile />
@@ -155,7 +157,9 @@ const Page = ({ countrySlug, citySlug }) => {
                     href={explorePath(city?.slug_path + "/areas")}
                     className="tw-text-blue-bright tw-text-center tw-no-underline tw-p-3 tw-bg-blue-bright-trans tw-rounded-full"
                   >
-                    View more
+                    {t("View more from {{CityName}}", {
+                      CityName: city.display_name,
+                    })}
                   </Link>
                 </ItemList>
               </ContentGroup>

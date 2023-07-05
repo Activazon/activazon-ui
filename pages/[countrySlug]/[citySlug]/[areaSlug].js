@@ -107,7 +107,9 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
                   href={explorePath(area?.slug_path + "/activities")}
                   className="tw-text-blue-bright tw-text-center tw-no-underline tw-p-3 tw-bg-blue-bright-trans tw-rounded-full"
                 >
-                  View more
+                  {t("View more from {{CityName}}", {
+                    CityName: area.display_name,
+                  })}
                 </Link>
               </ItemList>
               <A2hsCtaTile />
