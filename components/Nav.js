@@ -52,8 +52,7 @@ const Nav = ({ title, backHref, hideMenu }) => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             ref={menuIconRef}
           >
-            {user && <i className="bi bi-person-circle" />}
-            {!user && <i className="bi bi-list" />}
+            <i className="bi bi-list" />
           </button>
         )}
       </nav>
