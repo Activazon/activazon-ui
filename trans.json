@@ -919,5 +919,25 @@
   "Most recent activities detected in your country": {
     "en": "Most recent activities detected in your country",
     "es": "Actividades más recientes detectadas en tu país"
+  },
+  "Could not subscribe. Please enable notifications in your notification settings.": {
+    "en": "Could not subscribe. Please enable notifications in your notification settings.",
+    "es": "No se pudo suscribir. Habilita las notificaciones en la configuración de notificaciones."
+  },
+  "Could not subscribe. Your browser does not support notifications.": {
+    "en": "Could not subscribe. Your browser does not support notifications.",
+    "es": "No se pudo suscribir. Tu navegador no admite notificaciones."
+  },
+  "Could not subscribe. Please try again later.": {
+    "en": "Could not subscribe. Please try again later.",
+    "es": "No se pudo suscribir. Por favor, inténtelo de nuevo más tarde."
+  },
+  "Share not supported on this device": {
+    "en": "Share not supported on this device",
+    "es": "Compartir no es compatible con este dispositivo"
+  },
+  "Are you sure you want to unsubscribe from {{placeDisplayName}}": {
+    "en": "Are you sure you want to unsubscribe from {{placeDisplayName}}",
+    "es": "¿Estás seguro de que quieres cancelar la suscripción a {{placeDisplayName}}"
   }
 }

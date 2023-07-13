@@ -31,7 +31,7 @@ const PlaceActionBarButtonStandout = ({ icon, text, onClick, disabled }) => {
 };
 
 const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
-  const { t } = useTrans();
+  const { ts } = useTrans();
   const { asPath, push } = useRouter();
   const user = useUser();
   const canSubscribe = subscriptionManager.isLoaded;
@@ -42,14 +42,14 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
      * makes a requests to try and subscribe user to area/place
      */
     e.preventDefault();
-    // if (!isDisplayModeStandalone()) {
-    //   track("subscribe.click.standalone");
-    //   push({
-    //     pathname: "/a2hs",
-    //     query: { callbackUrl: asPath, mustSignUp: "1" },
-    //   });
-    //   return;
-    // }
+    if (!isDisplayModeStandalone()) {
+      track("subscribe.click.standalone");
+      push({
+        pathname: "/a2hs",
+        query: { callbackUrl: asPath, mustSignUp: "1" },
+      });
+      return;
+    }
     if (!user) {
       track("subscribe.not-logged-in");
       // can't subscribe if not logged in
@@ -64,13 +64,15 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
     if (perms === "denied") {
       track("subscribe.click.denied");
       alert(
-        "Could not subscribe. Please enable notifications in your notification settings."
+        ts(
+          "Could not subscribe. Please enable notifications in your notification settings."
+        )
       );
       return;
     } else if (perms === "unsupported") {
       track("subscribe.click.unsupported");
       alert(
-        "Could not subscribe. Your browser does not support notifications."
+        ts("Could not subscribe. Your browser does not support notifications.")
       );
       return;
     } else if (perms === "granted") {
@@ -79,7 +81,7 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
       return;
     } else {
       track("subscribe.click.unknown_error");
-      alert("Could not subscribe. Please try again later.");
+      alert(ts("Could not subscribe. Please try again later."));
     }
   };
 
@@ -91,7 +93,11 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
     const { placeDisplayName } = placeManager;
 
     if (
-      confirm(`Are you sure you want to unsubscribe from ${placeDisplayName}?`)
+      confirm(
+        ts("Are you sure you want to unsubscribe from {{placeDisplayName}}", {
+          placeDisplayName,
+        })
+      )
     ) {
       subscriptionManager.unsubscribeUserFromArea();
     }
@@ -108,13 +114,13 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
         ? window.location.origin
         : "";
     const shareUrl = `${origin}${asPath}`;
-    const shareTitle = t(
+    const shareTitle = ts(
       "Stay informed with real-time crime updates in {{placeDisplayName}}",
       {
         placeDisplayName: placeManager.placeDisplayName,
       }
     );
-    const shareText = t(
+    const shareText = ts(
       "Get the latest updates on crime in {{placeDisplayName}} straight to your phone or desktop with Activazon. Our platform keeps you informed and aware of what's happening in your community in real-time. Stay safe and aware with Activazon's crime updates.",
       {
         placeDisplayName: placeManager.placeDisplayName,
