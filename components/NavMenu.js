@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, forwardRef } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
@@ -10,7 +10,7 @@ import { isDisplayModeStandalone } from "lib/pwa";
 const NavMenuItem = ({ icon, label, active, href, onClick }) => {
   return (
     <Link
-      className={`nav-link${active ? " active" : ""}`}
+      className={`tw-py-2 tw-no-underline ${active ? " active" : ""}`}
       id="v-pills-home-tab"
       data-toggle="pill"
       href={href}
@@ -19,7 +19,7 @@ const NavMenuItem = ({ icon, label, active, href, onClick }) => {
       aria-selected="true"
       onClick={onClick}
     >
-      <p>
+      <p className="tw-m-0 tw-text-blue-dark">
         {icon}
         {label}
       </p>
@@ -27,7 +27,7 @@ const NavMenuItem = ({ icon, label, active, href, onClick }) => {
   );
 };
 
-const NavMenu = ({ open, close }) => {
+const NavMenu = forwardRef(({ open, close }, ref) => {
   const router = useRouter();
   const user = useUser();
   const { t } = useTrans();
@@ -62,13 +62,14 @@ const NavMenu = ({ open, close }) => {
 
   return (
     <>
-      <div
-        className="nav nav-menu-dropdown flex-column nav-pills"
-        id="v-pills-tab"
-        role="tablist"
-        aria-orientation="vertical"
-      >
-        <div className="container">
+      <div className="tw-px-3 tw-w-full tw-max-w-4xl tw-mx-auto">
+        <div
+          ref={ref}
+          className="tw-w-full tw-mb-3 tw-px-3 tw-flex tw-flex-col tw-bg-blue-bright-trans tw-rounded-lg tw-shadow-md"
+          id="v-pills-tab"
+          role="tablist"
+          aria-orientation="vertical"
+        >
           <NavMenuItem
             icon={<i className="bi bi-binoculars me-3" />}
             label={t("Explore")}
@@ -94,9 +95,9 @@ const NavMenu = ({ open, close }) => {
             <NavMenuItem
               icon={<i className="bi bi-box-arrow-in-right me-3" />}
               label={t("Sign In")}
-              active={isActive("/signin")}
+              active={isActive("/app")}
               href={{
-                pathname: "/signin",
+                pathname: "/app",
                 query: { callbackUrl: router.asPath },
               }}
             />
@@ -132,9 +133,8 @@ const NavMenu = ({ open, close }) => {
           )}
         </div>
       </div>
-      <div className="nav-overlay" onClick={close}></div>
     </>
   );
-};
+});
 
 export default NavMenu;

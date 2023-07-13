@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import { isDisplayModeStandalone } from "lib/pwa";
 import Content from "components/Content/Content";
 import ContentGroup from "components/Content/ContentGroup";
+import PlaceActionBar from "components/PlaceActionBar";
 import { useDate } from "lib/date";
 import Link from "next/link";
 
@@ -93,8 +94,8 @@ const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
           <Nav />
           {area && activity && (
             <Content>
-              <MapTile imgUrl={mapImageUrl} />
               <ContentGroup>
+                <MapTile imgUrl={mapImageUrl} />
                 <MapInfo
                   areaType={t("Area")}
                   addressParts={[
@@ -103,6 +104,10 @@ const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
                     area.city.country.display_name,
                   ]}
                   activityCount={area.activity_total_last5months}
+                />
+                <PlaceActionBar
+                  placeManager={placeManager}
+                  subscriptionManager={subscriptionManager}
                 />
                 <div>
                   <ItemActivityTypePill name={activity.activity_type.name} />
