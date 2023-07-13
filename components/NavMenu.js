@@ -65,7 +65,7 @@ const NavMenu = forwardRef(({ open, close }, ref) => {
       <div className="tw-px-3 tw-w-full tw-max-w-4xl tw-mx-auto">
         <div
           ref={ref}
-          className="tw-w-full tw-mb-3 tw-px-3 tw-flex tw-flex-col tw-bg-blue-bright-trans tw-rounded-lg tw-shadow-md"
+          className="tw-w-full tw-mb-3 tw-px-3 tw-flex tw-flex-col tw-bg-blue-bright-trans tw-rounded-lg tw-shadow-2xl"
           id="v-pills-tab"
           role="tablist"
           aria-orientation="vertical"
