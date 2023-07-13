@@ -8,15 +8,15 @@ const AddToHomeScreenWalkThroughBody = ({ device }) => {
 
   if (device === "ios") {
     deviceSpecificInstruction = (
-      <p class="app-content-text">
+      <p className="app-content-text">
         {t(
-          'Tap the <i class="bi bi-box-arrow-up"></i> button at the bottom of your screen and select <b>Add to Home Screen</b> from the menu.'
+          'Tap the <i className="bi bi-box-arrow-up"></i> button at the bottom of your screen and select <b>Add to Home Screen</b> from the menu.'
         )}
       </p>
     );
   } else if (device === "android") {
     deviceSpecificInstruction = (
-      <p class="app-content-text">
+      <p className="app-content-text">
         {t(
           "Tap the settings button at on your browser and select <b>Add to Home Screen</b>"
         )}
@@ -24,7 +24,7 @@ const AddToHomeScreenWalkThroughBody = ({ device }) => {
     );
   } else {
     deviceSpecificInstruction = (
-      <p class="app-content-text">
+      <p className="app-content-text">
         {t("Tap the install App button near navigation bar.")}
       </p>
     );
@@ -41,9 +41,11 @@ const AddToHomeScreenWalkThroughBody = ({ device }) => {
         </p>
       </div>
       <div className="app-content-list">
-        <div class="app-content-instruction">{deviceSpecificInstruction}</div>
-        <div class="app-content-instruction">
-          <p class="app-content-text">
+        <div className="app-content-instruction">
+          {deviceSpecificInstruction}
+        </div>
+        <div className="app-content-instruction">
+          <p className="app-content-text">
             {t(
               "Then, go to your Home screen and open the Activazon app to continue."
             )}

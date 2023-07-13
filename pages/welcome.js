@@ -28,9 +28,9 @@ export default function Home({ inAppBrowser, browserOs }) {
     <>
       <Head title={i("Add To Home Screen")} />
       <body>
-        <div class="walkthrough">
-          <div class="nav-placeholder">
-            <p class="nav-placeholder-title animate__animated animate__fadeInDown">
+        <div className="walkthrough">
+          <div className="nav-placeholder">
+            <p className="nav-placeholder-title animate__animated animate__fadeInDown">
               <i className="bi bi-activity"></i>Activazon
             </p>
           </div>

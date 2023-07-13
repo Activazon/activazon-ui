@@ -19,7 +19,7 @@ const A2hsCtaTile = ({}) => {
       <div className="widget-list">
         <div className="widget-list-item">
           <div className="widget-list-item-image widget-list-item-image-small d-flex align-items-center justify-content-center">
-            <i class="bi bi-bell-fill display-5 animate-bell"></i>
+            <i className="bi bi-bell-fill display-5 animate-bell"></i>
           </div>
           <div className="widget-list-item-content">
             <h6 className="widget-list-item-title">
@@ -41,7 +41,7 @@ const A2hsCtaTile = ({}) => {
 
   // return (
   //   <div className="card card-body tile tile-cta">
-  //     <div className="row text-center gy-3">
+  //     <div className="text-center row gy-3">
   //       <div className="col-12">
 
   //       </div>

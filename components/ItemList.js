@@ -17,7 +17,7 @@ export const Item = ({ href, imgUrl, itemType, title, message, pill }) => {
       <>
         <div className="tw-flex tw-flex-row tw-gap-3">
           <img
-            className="tw-rounded-lg tw-w-[110px] tw-h-[110px]"
+            className="tw-bg-blue-dark tw-rounded-lg tw-w-[110px] tw-h-[110px]"
             src={imgUrl}
           />
           <div>
