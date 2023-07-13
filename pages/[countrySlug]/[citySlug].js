@@ -100,7 +100,10 @@ const Page = ({ countrySlug, citySlug }) => {
                 addressParts={[city.display_name, city.country.display_name]}
                 activityCount={city.activity_total_last5months}
               />
-              <PlaceActionBar />
+              <PlaceActionBar
+                placeManager={placeManager}
+                subscriptionManager={subscriptionManager}
+              />
               <ItemList>
                 {activities?.results.map((activity) => (
                   <Item

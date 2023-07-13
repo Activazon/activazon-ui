@@ -89,7 +89,10 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
                 ]}
                 activityCount={area.activity_total_last5months}
               />
-              <PlaceActionBar />
+              <PlaceActionBar
+                placeManager={placeManager}
+                subscriptionManager={subscriptionManager}
+              />
               <ItemList>
                 {activities?.results.map((activity) => (
                   <Item
