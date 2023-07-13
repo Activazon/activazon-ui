@@ -3,7 +3,7 @@ import { useTrans } from "lib/trans";
 const ActivityBreakDownItem = ({ activityCount, activityTypeName }) => {
   const { t } = useTrans();
   return (
-    <div className="tw-border-2 tw-border-blue-dark tw-rounded-lg tw-p-4">
+    <div className="tw-border-2 tw-border-blue-dark tw-rounded-lg tw-p-2">
       <div>
         <p className="tw-text-blue-dark tw-text-6xl tw-font-bold tw-m-0 tw-inline">
           {activityCount}
