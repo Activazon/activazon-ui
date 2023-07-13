@@ -94,7 +94,7 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
 
     if (
       confirm(
-        ts("Are you sure you want to unsubscribe from {{placeDisplayName}}", {
+        ts("Are you sure you want to unsubscribe from {{placeDisplayName}}?", {
           placeDisplayName,
         })
       )
