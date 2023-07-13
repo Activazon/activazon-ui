@@ -10,7 +10,7 @@ const AddToHomeScreenWalkThroughBody = ({ device }) => {
     deviceSpecificInstruction = (
       <p className="app-content-text">
         {t(
-          'Tap the <i className="bi bi-box-arrow-up"></i> button at the bottom of your screen and select <b>Add to Home Screen</b> from the menu.'
+          'Tap the <i class="bi bi-box-arrow-up"></i> button at the bottom of your screen and select <b>Add to Home Screen</b> from the menu.'
         )}
       </p>
     );

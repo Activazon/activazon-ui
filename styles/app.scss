@@ -52,6 +52,7 @@
     @extend .justify-content-center;
     @extend .flex-column;
     @extend .gap-4;
+    background-color: white;
 
     &-open-animate {
       animation: fadeInRight 0.5s ease-in-out;

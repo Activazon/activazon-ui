@@ -1,10 +1,14 @@
 import { useTrans } from "lib/trans";
 import { useRouter } from "next/router";
+import { isDisplayModeStandalone } from "lib/pwa";
+import { track } from "lib/track";
+import { useUser } from "lib/user";
 
-const PlaceActionBarButton = ({ icon, text, onClick }) => {
+const PlaceActionBarButton = ({ icon, text, onClick, disabled }) => {
   return (
     <button
       className="tw-flex tw-flex-row tw-items-center tw-text-sm tw-justify-center tw-gap-1 tw-text-blue-dark tw-rounded-lg tw-p-2 tw-bg-blue-bright-trans tw-w-full"
+      disabled={disabled}
       onClick={onClick}
     >
       <i className={`bi bi-${icon}`}></i>
@@ -13,10 +17,11 @@ const PlaceActionBarButton = ({ icon, text, onClick }) => {
   );
 };
 
-const PlaceActionBarButtonStandout = ({ icon, text, onClick }) => {
+const PlaceActionBarButtonStandout = ({ icon, text, onClick, disabled }) => {
   return (
     <button
       className="tw-flex tw-flex-row tw-items-center tw-text-sm tw-justify-center tw-gap-1 tw-text-white tw-rounded-lg tw-p-2 tw-bg-blue-bright tw-w-full"
+      disabled={disabled}
       onClick={onClick}
     >
       <i className={`bi bi-${icon}`}></i>
@@ -27,10 +32,76 @@ const PlaceActionBarButtonStandout = ({ icon, text, onClick }) => {
 
 const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
   const { t } = useTrans();
-  const { asPath } = useRouter();
+  const { asPath, push } = useRouter();
+  const user = useUser();
+  const canSubscribe = subscriptionManager.isLoaded;
+  const isSubscribed = subscriptionManager.isSubscribed;
 
-  const onSubscribeClick = () => {};
+  const onSubscribeClick = (e) => {
+    /**
+     * makes a requests to try and subscribe user to area/place
+     */
+    e.preventDefault();
+    if (!isDisplayModeStandalone()) {
+      track("subscribe.click.standalone");
+      push({
+        pathname: "/a2hs",
+        query: { callbackUrl: asPath, mustSignUp: "1" },
+      });
+      return;
+    }
+    if (!user) {
+      track("subscribe.not-logged-in");
+      // can't subscribe if not logged in
+      push({
+        pathname: "/app",
+        query: { callbackUrl: asPath, mustSignUp: "1" },
+      });
+      return;
+    }
+
+    const perms = subscriptionManager.checkPermissions();
+    if (perms === "denied") {
+      track("subscribe.click.denied");
+      alert(
+        "Could not subscribe. Please enable notifications in your notification settings."
+      );
+      return;
+    } else if (perms === "unsupported") {
+      track("subscribe.click.unsupported");
+      alert(
+        "Could not subscribe. Your browser does not support notifications."
+      );
+      return;
+    } else if (perms === "granted") {
+      track("subscribe.click.granded");
+      subscribeUserToArea();
+      return;
+    } else {
+      track("subscribe.click.unknown_error");
+      alert("Could not subscribe. Please try again later.");
+    }
+  };
+
+  const onUnsubscribeClick = (e) => {
+    /**
+     * makes a requests to try and unsubscribe user from area/place
+     */
+    e.preventDefault();
+    const { placeDisplayName } = placeManager;
+
+    if (
+      confirm(`Are you sure you want to unsubscribe from ${placeDisplayName}?`)
+    ) {
+      unsubscribeUserFromArea();
+    }
+  };
+
   const onShareClick = (e) => {
+    /**
+     * triggers system share dialog
+     * https://web.dev/web-share/
+     */
     e.preventDefault();
     const origin =
       typeof window !== "undefined" && window.location.origin
@@ -63,11 +134,22 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
 
   return (
     <div className="tw-w-full tw-gap-1 tw-flex tw-flex-row">
-      <PlaceActionBarButtonStandout
-        icon="bell"
-        text="Subscribe"
-        onClick={onSubscribeClick}
-      />
+      {!isSubscribed && (
+        <PlaceActionBarButtonStandout
+          disabled={!canSubscribe}
+          icon="bell"
+          text="Subscribe"
+          onClick={onSubscribeClick}
+        />
+      )}
+      {isSubscribed && (
+        <PlaceActionBarButton
+          disabled={!canSubscribe}
+          icon="bell-slash"
+          text="Unsubscribe"
+          onClick={onUnsubscribeClick}
+        />
+      )}
       <PlaceActionBarButton icon="share" text="Share" onClick={onShareClick} />
     </div>
   );

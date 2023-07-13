@@ -113,14 +113,14 @@ const SubscribeButton = ({
       )}
       {/* subscribe button */}
       {!isLoaded && (
-        <button className="btn btn-primary py-2 disabled" disabled={true}>
+        <button className="py-2 btn btn-primary disabled" disabled={true}>
           <p className="m-0 fs-5">
             <i className="bi bi-bell-fill"></i>
           </p>
         </button>
       )}
       {isLoaded && !isSubscribed && (
-        <button className="btn btn-primary py-2" onClick={onSubscribe}>
+        <button className="py-2 btn btn-primary" onClick={onSubscribe}>
           <p className="m-0 fs-5">
             <i className="bi bi-bell-fill me-2"></i>
             <span>{t("Subscribe to Alerts")}</span>
@@ -129,7 +129,7 @@ const SubscribeButton = ({
       )}
       {isLoaded && isSubscribed && (
         <button
-          className="btn btn-outline-primary py-2"
+          className="py-2 btn btn-outline-primary"
           onClick={onUnsubscribe}
         >
           <p className="m-0 fs-5">
