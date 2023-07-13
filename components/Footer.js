@@ -26,7 +26,7 @@ const Footer = () => {
 
   return (
     <div className="container my-5 text-center">
-      <p>
+      <p className="tw-text-gray-dark">
         <Link
           href="https://www.instagram.com/activazon/"
           target="_blank"
@@ -36,7 +36,7 @@ const Footer = () => {
         </Link>
       </p>
 
-      <p>
+      <p className="tw-text-gray-dark">
         <span className="me-3">
           <i className="bi bi-c-square"></i> Activazon 2023
         </span>
