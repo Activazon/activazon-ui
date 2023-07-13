@@ -6,6 +6,7 @@ import Head from "components/Head";
 import ActivityBreakDown from "components/ActivityBreakdownTile";
 import Content from "components/Content/Content";
 import A2hsCtaTile from "components/A2hsCtaTile";
+import PlaceActionBar from "components/PlaceActionBar";
 import Footer from "components/Footer";
 import { useTrans } from "lib/trans";
 
@@ -88,6 +89,7 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
                 ]}
                 activityCount={area.activity_total_last5months}
               />
+              <PlaceActionBar />
               <ItemList>
                 {activities?.results.map((activity) => (
                   <Item

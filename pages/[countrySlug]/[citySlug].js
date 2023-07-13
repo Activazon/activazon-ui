@@ -8,6 +8,7 @@ import Content from "components/Content/Content";
 import ContentGroup from "components/Content/ContentGroup";
 import ContentGroupTitle from "components/Content/ContentGroupTitle";
 import A2hsCtaTile from "components/A2hsCtaTile";
+import PlaceActionBar from "components/PlaceActionBar";
 import Footer from "components/Footer";
 import { useTrans } from "lib/trans";
 
@@ -99,6 +100,7 @@ const Page = ({ countrySlug, citySlug }) => {
                 addressParts={[city.display_name, city.country.display_name]}
                 activityCount={city.activity_total_last5months}
               />
+              <PlaceActionBar />
               <ItemList>
                 {activities?.results.map((activity) => (
                   <Item
@@ -143,7 +145,7 @@ const Page = ({ countrySlug, citySlug }) => {
                     <Item
                       href={area.slug_path}
                       imgUrl={area.image_square_red_url}
-                      itemType={t("Activity")}
+                      itemType={t("City")}
                       title={area.display_name}
                       message={t(
                         "{{ActivityCount}} activities detected in the last 5 months",
