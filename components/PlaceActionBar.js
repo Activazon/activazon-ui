@@ -42,14 +42,14 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
      * makes a requests to try and subscribe user to area/place
      */
     e.preventDefault();
-    if (!isDisplayModeStandalone()) {
-      track("subscribe.click.standalone");
-      push({
-        pathname: "/a2hs",
-        query: { callbackUrl: asPath, mustSignUp: "1" },
-      });
-      return;
-    }
+    // if (!isDisplayModeStandalone()) {
+    //   track("subscribe.click.standalone");
+    //   push({
+    //     pathname: "/a2hs",
+    //     query: { callbackUrl: asPath, mustSignUp: "1" },
+    //   });
+    //   return;
+    // }
     if (!user) {
       track("subscribe.not-logged-in");
       // can't subscribe if not logged in
@@ -75,7 +75,7 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
       return;
     } else if (perms === "granted") {
       track("subscribe.click.granded");
-      subscribeUserToArea();
+      subscriptionManager.subscribeUserToArea();
       return;
     } else {
       track("subscribe.click.unknown_error");
@@ -93,7 +93,7 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
     if (
       confirm(`Are you sure you want to unsubscribe from ${placeDisplayName}?`)
     ) {
-      unsubscribeUserFromArea();
+      subscriptionManager.unsubscribeUserFromArea();
     }
   };
 
