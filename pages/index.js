@@ -3,7 +3,7 @@ import Footer from "components/Footer";
 import Head from "components/Head";
 import A2hsCtaTile from "components/A2hsCtaTile";
 import UserCurrentCityWidget from "components/UserCurrentCityWidget";
-import SearchWidget from "components/SearchWidget";
+import SearchBar from "components/SearchBar";
 import { ItemList, Item, ItemActivityTypePill } from "components/ItemList";
 import ContentGroupTitle from "components/Content/ContentGroupTitle";
 import ContentGroup from "components/Content/ContentGroup";
@@ -61,7 +61,7 @@ const Page = () => {
         <div className="page">
           <Nav backHref={null} />
           <Content>
-            <SearchWidget />
+            <SearchBar />
 
             {nearbyCity.success && (
               <UserCurrentCityWidget

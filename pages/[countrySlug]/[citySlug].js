@@ -10,6 +10,7 @@ import ContentGroupTitle from "components/Content/ContentGroupTitle";
 import A2hsCtaTile from "components/A2hsCtaTile";
 import PlaceActionBar from "components/PlaceActionBar";
 import Footer from "components/Footer";
+import SearchBar from "components/SearchBar";
 import { useTrans } from "lib/trans";
 
 import { activityPath, explorePath } from "lib/urls";
@@ -92,74 +93,37 @@ const Page = ({ countrySlug, citySlug }) => {
       <body>
         <div className="page">
           <Nav />
-          {city && (
-            <Content>
-              <MapTile imgUrl={seoImageUrl} />
-              <MapInfo
-                areaType={t("City")}
-                addressParts={[city.display_name, city.country.display_name]}
-                activityCount={city.activity_total_last5months}
-              />
-              <PlaceActionBar
-                placeManager={placeManager}
-                subscriptionManager={subscriptionManager}
-              />
-              <ItemList>
-                {activities?.results.map((activity) => (
-                  <Item
-                    href={activityPath(activity.area.slug_path, activity.id)}
-                    imgUrl={activity.area.image_square_red_url}
-                    itemType={t("Activity")}
-                    title={activity.area.display_name}
-                    message={displayDate(activity.date_occured)}
-                    pill={
-                      <ItemActivityTypePill
-                        name={t(activity.activity_type.name)}
-                      />
-                    }
-                  />
-                ))}
-                <Link
-                  href={explorePath(city?.slug_path + "/activities")}
-                  className="tw-text-blue-bright tw-text-center tw-no-underline tw-p-3 tw-bg-blue-bright-trans tw-rounded-full"
-                >
-                  {t("View more from {{CityName}}", {
-                    CityName: city.display_name,
-                  })}
-                </Link>
-              </ItemList>
-              <A2hsCtaTile />
-              <ActivityBreakDown
-                areaDisplayName={city.display_name}
-                data={activityBreakdown}
-              />
-              <ContentGroup>
-                <ContentGroupTitle
-                  title={t("Areas")}
-                  description={t(
-                    "Areas in {{cityDisplayName}} where activity has been detected",
-                    {
-                      cityDisplayName: city.display_name,
-                    }
-                  )}
+          <Content>
+            <SearchBar />
+            {city && (
+              <>
+                <MapTile imgUrl={seoImageUrl} />
+                <MapInfo
+                  areaType={t("City")}
+                  addressParts={[city.display_name, city.country.display_name]}
+                  activityCount={city.activity_total_last5months}
+                />
+                <PlaceActionBar
+                  placeManager={placeManager}
+                  subscriptionManager={subscriptionManager}
                 />
                 <ItemList>
-                  {areas?.results.map((area) => (
+                  {activities?.results.map((activity) => (
                     <Item
-                      href={area.slug_path}
-                      imgUrl={area.image_square_red_url}
-                      itemType={t("City")}
-                      title={area.display_name}
-                      message={t(
-                        "{{ActivityCount}} activities detected in the last 5 months",
-                        {
-                          ActivityCount: area.activity_total_last5months,
-                        }
-                      )}
+                      href={activityPath(activity.area.slug_path, activity.id)}
+                      imgUrl={activity.area.image_square_red_url}
+                      itemType={t("Activity")}
+                      title={activity.area.display_name}
+                      message={displayDate(activity.date_occured)}
+                      pill={
+                        <ItemActivityTypePill
+                          name={t(activity.activity_type.name)}
+                        />
+                      }
                     />
                   ))}
                   <Link
-                    href={explorePath(city?.slug_path + "/areas")}
+                    href={explorePath(city?.slug_path + "/activities")}
                     className="tw-text-blue-bright tw-text-center tw-no-underline tw-p-3 tw-bg-blue-bright-trans tw-rounded-full"
                   >
                     {t("View more from {{CityName}}", {
@@ -167,9 +131,49 @@ const Page = ({ countrySlug, citySlug }) => {
                     })}
                   </Link>
                 </ItemList>
-              </ContentGroup>
-            </Content>
-          )}
+                <A2hsCtaTile />
+                <ActivityBreakDown
+                  areaDisplayName={city.display_name}
+                  data={activityBreakdown}
+                />
+                <ContentGroup>
+                  <ContentGroupTitle
+                    title={t("Areas")}
+                    description={t(
+                      "Areas in {{cityDisplayName}} where activity has been detected",
+                      {
+                        cityDisplayName: city.display_name,
+                      }
+                    )}
+                  />
+                  <ItemList>
+                    {areas?.results.map((area) => (
+                      <Item
+                        href={area.slug_path}
+                        imgUrl={area.image_square_red_url}
+                        itemType={t("City")}
+                        title={area.display_name}
+                        message={t(
+                          "{{ActivityCount}} activities detected in the last 5 months",
+                          {
+                            ActivityCount: area.activity_total_last5months,
+                          }
+                        )}
+                      />
+                    ))}
+                    <Link
+                      href={explorePath(city?.slug_path + "/areas")}
+                      className="tw-text-blue-bright tw-text-center tw-no-underline tw-p-3 tw-bg-blue-bright-trans tw-rounded-full"
+                    >
+                      {t("View more from {{CityName}}", {
+                        CityName: city.display_name,
+                      })}
+                    </Link>
+                  </ItemList>
+                </ContentGroup>
+              </>
+            )}
+          </Content>
         </div>
         <Footer />
       </body>

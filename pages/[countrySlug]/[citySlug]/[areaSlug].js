@@ -7,6 +7,7 @@ import ActivityBreakDown from "components/ActivityBreakdownTile";
 import Content from "components/Content/Content";
 import A2hsCtaTile from "components/A2hsCtaTile";
 import PlaceActionBar from "components/PlaceActionBar";
+import SearchBar from "components/SearchBar";
 import Footer from "components/Footer";
 import { useTrans } from "lib/trans";
 
@@ -36,9 +37,6 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
   const subscriptionManager = useSubscriptionManager(placeManager);
   const { area, city, country, activities, activityBreakdown, detailsLoaded } =
     placeManager;
-
-  const activitesSurplus =
-    activities && Math.max(activities.count - activitiesLimit, 0);
 
   const user = useUser();
   const { t, p, ts } = useTrans();
@@ -77,53 +75,57 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
       <body>
         <div className="page">
           <Nav />
-          {area && (
-            <Content>
-              <MapTile imgUrl={seoImageUrl} />
-              <MapInfo
-                areaType={t("Area")}
-                addressParts={[
-                  area.display_name,
-                  city.display_name,
-                  country.display_name,
-                ]}
-                activityCount={area.activity_total_last5months}
-              />
-              <PlaceActionBar
-                placeManager={placeManager}
-                subscriptionManager={subscriptionManager}
-              />
-              <ItemList>
-                {activities?.results.map((activity) => (
-                  <Item
-                    href={activityPath(activity.area.slug_path, activity.id)}
-                    imgUrl={activity.area.image_square_red_url}
-                    itemType={t("Activity")}
-                    title={activity.area.display_name}
-                    message={displayDate(activity.date_occured)}
-                    pill={
-                      <ItemActivityTypePill
-                        name={t(activity.activity_type.name)}
-                      />
-                    }
-                  />
-                ))}
-                <Link
-                  href={explorePath(area?.slug_path + "/activities")}
-                  className="tw-text-blue-bright tw-text-center tw-no-underline tw-p-3 tw-bg-blue-bright-trans tw-rounded-full"
-                >
-                  {t("View more from {{CityName}}", {
-                    CityName: area.display_name,
-                  })}
-                </Link>
-              </ItemList>
-              <A2hsCtaTile />
-              <ActivityBreakDown
-                areaDisplayName={area.display_name}
-                data={activityBreakdown}
-              />
-            </Content>
-          )}
+          <Content>
+            <SearchBar />
+
+            {area && (
+              <>
+                <MapTile imgUrl={seoImageUrl} />
+                <MapInfo
+                  areaType={t("Area")}
+                  addressParts={[
+                    area.display_name,
+                    city.display_name,
+                    country.display_name,
+                  ]}
+                  activityCount={area.activity_total_last5months}
+                />
+                <PlaceActionBar
+                  placeManager={placeManager}
+                  subscriptionManager={subscriptionManager}
+                />
+                <ItemList>
+                  {activities?.results.map((activity) => (
+                    <Item
+                      href={activityPath(activity.area.slug_path, activity.id)}
+                      imgUrl={activity.area.image_square_red_url}
+                      itemType={t("Activity")}
+                      title={activity.area.display_name}
+                      message={displayDate(activity.date_occured)}
+                      pill={
+                        <ItemActivityTypePill
+                          name={t(activity.activity_type.name)}
+                        />
+                      }
+                    />
+                  ))}
+                  <Link
+                    href={explorePath(area?.slug_path + "/activities")}
+                    className="tw-text-blue-bright tw-text-center tw-no-underline tw-p-3 tw-bg-blue-bright-trans tw-rounded-full"
+                  >
+                    {t("View more from {{CityName}}", {
+                      CityName: area.display_name,
+                    })}
+                  </Link>
+                </ItemList>
+                <A2hsCtaTile />
+                <ActivityBreakDown
+                  areaDisplayName={area.display_name}
+                  data={activityBreakdown}
+                />
+              </>
+            )}
+          </Content>
         </div>
         <Footer />
       </body>
