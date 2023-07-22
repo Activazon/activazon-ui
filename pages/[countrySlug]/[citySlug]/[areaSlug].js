@@ -41,7 +41,7 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
     activities && Math.max(activities.count - activitiesLimit, 0);
 
   const user = useUser();
-  const { t, p } = useTrans();
+  const { t, p, ts } = useTrans();
   const { displayDate } = useDate();
   const activitesText =
     area &&
@@ -52,7 +52,7 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
   const seoTitle = detailsLoaded && `${address} (${activitesText})`;
   const seoDescription =
     detailsLoaded &&
-    t(
+    ts(
       "Get an in-depth analysis of crime trends in {{address}} with Activazon. Sign up for a free account to access personalized crime reports and stay informed about local activity.",
       {
         address,

@@ -13,7 +13,7 @@ const AnimateIn = ({ children }) => {
 };
 
 export default function Home({ inAppBrowser, browserOs }) {
-  const { i } = useTrans();
+  const { ts } = useTrans();
   useTrans("walkthrough.a2hs", {
     isInAppBrowser: inAppBrowser.is,
     appBrowserName: inAppBrowser.name,
@@ -26,7 +26,7 @@ export default function Home({ inAppBrowser, browserOs }) {
 
   return (
     <>
-      <Head title={i("Add To Home Screen")} />
+      <Head title={ts("Add To Home Screen")} />
       <body>
         <div className="walkthrough">
           <div className="nav-placeholder">

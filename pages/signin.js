@@ -19,7 +19,7 @@ const Page = ({}) => {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { t, locale } = useTrans();
+  const { t, ts, locale } = useTrans();
   useTrackOnce("page.signin", {
     error,
   });
@@ -51,7 +51,7 @@ const Page = ({}) => {
 
   return (
     <>
-      <Head title={t("Sign In")} />
+      <Head title={ts("Sign In")} />
       <body>
         <div className="page">
           <Nav pageTitle={t("Sign In")} />
@@ -70,14 +70,14 @@ const Page = ({}) => {
                 <form className="mt-0" onSubmit={onFormSubmit}>
                   {errorCredentials && (
                     <div
-                      className="alert alert-danger mb-3 border-0"
+                      className="mb-3 border-0 alert alert-danger"
                       role="alert"
                     >
                       {t("Email/Password does not match, please try again.")}
                     </div>
                   )}
 
-                  <div className="form-floating mb-3">
+                  <div className="mb-3 form-floating">
                     <input
                       type="email"
                       className="form-control"
@@ -90,7 +90,7 @@ const Page = ({}) => {
                     <label htmlFor="email">{t("Email address")}</label>
                   </div>
 
-                  <div className="form-floating mb-3">
+                  <div className="mb-3 form-floating">
                     <input
                       type="password"
                       className="form-control"

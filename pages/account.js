@@ -14,12 +14,12 @@ import { useTrackOnce } from "lib/track";
 
 const Page = ({}) => {
   const user = useUserRequired();
-  const { t } = useTrans();
+  const { t, ts } = useTrans();
   useTrackOnce("page.account");
 
   return (
     <>
-      <Head title={t("Sign In")} />
+      <Head title={ts("Sign In")} />
       <body>
         <div className="page">
           <Nav pageTitle={t("Sign In")} />
@@ -37,7 +37,7 @@ const Page = ({}) => {
               <SpinnerWhenBusy isBusy={!user}>
                 <div className="mt-3">
                   <div className="row">
-                    <div className="form-floating mb-3 col-6">
+                    <div className="mb-3 form-floating col-6">
                       <input
                         type="text"
                         className="form-control"
@@ -50,7 +50,7 @@ const Page = ({}) => {
                       </label>
                     </div>
 
-                    <div className="form-floating mb-3 col-6">
+                    <div className="mb-3 form-floating col-6">
                       <input
                         type="text"
                         className="form-control"
@@ -64,7 +64,7 @@ const Page = ({}) => {
                     </div>
                   </div>
 
-                  <div className="form-floating mb-3">
+                  <div className="mb-3 form-floating">
                     <input
                       type="email"
                       className="form-control"
@@ -75,7 +75,7 @@ const Page = ({}) => {
                     <label htmlFor="email">ID</label>
                   </div>
 
-                  <div className="form-floating mb-3">
+                  <div className="mb-3 form-floating">
                     <input
                       type="email"
                       className="form-control"

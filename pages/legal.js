@@ -190,12 +190,12 @@ const LegalEs = () => (
 );
 
 export default function Home({}) {
-  const { i, locale } = useTrans();
+  const { i, ts, locale } = useTrans();
   const content = locale === "es" ? <LegalEs /> : <LegalEn />;
 
   return (
     <>
-      <Head title={i("Terms of Use")} />
+      <Head title={ts("Terms of Use")} />
       <body>
         <div className="page">
           <Nav />

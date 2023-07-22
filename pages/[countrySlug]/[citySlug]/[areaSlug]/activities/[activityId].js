@@ -24,7 +24,7 @@ const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
   const router = useRouter();
   const [activity, setActivity] = useState(null);
   const user = useUser();
-  const { t, locale } = useTrans();
+  const { t, ts, locale } = useTrans();
   const { displayDate } = useDate();
   const placeManager = usePlaceManager(
     PLACE_TYPES.AREA,
@@ -56,8 +56,8 @@ const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
   const seoTitle =
     detailsLoaded &&
     activity &&
-    t("{{activity_type_name}} in {{neighbourhood_name}}", {
-      activity_type_name: t(activity.activity_type.name),
+    ts("{{activity_type_name}} in {{neighbourhood_name}}", {
+      activity_type_name: ts(activity.activity_type.name),
       neighbourhood_name: area.display_name,
     });
   const seoDescription = t(
@@ -66,7 +66,7 @@ const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
       address,
     }
   );
-  const isAuthenticated = !!user;
+
   const mapImageUrl = detailsLoaded && area.image_wide_url;
 
   const summary = activity

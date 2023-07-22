@@ -22,7 +22,7 @@ const Page = ({}) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [error, setError] = useState("");
-  const { t, locale } = useTrans();
+  const { t, ts, locale } = useTrans();
 
   useTrackOnce("page.signup", {
     ref: router.query.ref,
@@ -59,7 +59,7 @@ const Page = ({}) => {
 
   return (
     <>
-      <Head title={t("Sign Up")} />
+      <Head title={ts("Sign Up")} />
       <body>
         <div className="page">
           <Nav pageTitle={t("Sign Up")} hideMenu={true} />
@@ -79,14 +79,14 @@ const Page = ({}) => {
                 <form className="mt-0" onSubmit={onFormSubmit}>
                   {error && (
                     <div
-                      className="alert alert-danger mb-3 border-0"
+                      className="mb-3 border-0 alert alert-danger"
                       role="alert"
                     >
                       {t(error)}
                     </div>
                   )}
                   <div className="row">
-                    <div className="form-floating mb-3 col-6">
+                    <div className="mb-3 form-floating col-6">
                       <input
                         type="text"
                         className="form-control"
@@ -101,7 +101,7 @@ const Page = ({}) => {
                       </label>
                     </div>
 
-                    <div className="form-floating mb-3 col-6">
+                    <div className="mb-3 form-floating col-6">
                       <input
                         type="text"
                         className="form-control"
@@ -117,7 +117,7 @@ const Page = ({}) => {
                     </div>
                   </div>
 
-                  <div className="form-floating mb-3">
+                  <div className="mb-3 form-floating">
                     <input
                       type="email"
                       className="form-control"
@@ -130,7 +130,7 @@ const Page = ({}) => {
                     <label htmlFor="email">{t("Email address")}</label>
                   </div>
 
-                  <div className="form-floating mb-3">
+                  <div className="mb-3 form-floating">
                     <input
                       type="email"
                       className="form-control"
@@ -142,7 +142,7 @@ const Page = ({}) => {
                     <label htmlFor="email">{t("Verify Email address")}</label>
                   </div>
 
-                  <div className="form-floating mb-3">
+                  <div className="mb-3 form-floating">
                     <input
                       type="password"
                       className="form-control"

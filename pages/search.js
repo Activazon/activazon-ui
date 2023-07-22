@@ -69,7 +69,7 @@ const CtaSafe = ({}) => {
   return (
     <Col>
       <div className="card card-body tile tile-login-or-signup-cta">
-        <div className="row text-center gy-3">
+        <div className="text-center row gy-3">
           <div className="col-12">
             <i className="tile-icon bi bi-binoculars-fill" />
           </div>
@@ -103,7 +103,7 @@ const CtaSafe = ({}) => {
 };
 
 export default function Page() {
-  const { t } = useTrans();
+  const { t, ts } = useTrans();
   const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
   const [searchType, setSearchType] = useState("city");
@@ -155,12 +155,12 @@ export default function Page() {
 
   return (
     <>
-      <Head title={t("Search for your neighbourhood")} />
+      <Head title={ts("Search for your neighbourhood")} />
       <body>
         <div className="page">
           <Nav />
           <Bannerv2 title={t("Search for your neighbourhood")}>
-            <div className="row mt-3">
+            <div className="mt-3 row">
               <div className="col-12">
                 <SearchInput
                   onSearch={onSearch}
@@ -181,7 +181,7 @@ export default function Page() {
             )}
 
             {isBusy && (
-              <div className="w-100 text-center mt-5">
+              <div className="mt-5 text-center w-100">
                 <div
                   className="spinner-border"
                   style={{ width: "3rem", height: "3rem" }}

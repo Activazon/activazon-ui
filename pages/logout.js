@@ -19,7 +19,7 @@ const Page = ({}) => {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { t, locale } = useTrans();
+  const { t, ts, locale } = useTrans();
   useTrackOnce("page.signin", {
     error,
   });
@@ -51,7 +51,7 @@ const Page = ({}) => {
 
   return (
     <>
-      <Head title={t("Logged Out")} />
+      <Head title={ts("Logged Out")} />
       <body>
         <div className="page">
           <Nav />
