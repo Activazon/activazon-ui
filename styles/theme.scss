@@ -38,6 +38,10 @@ $theme-colors: (
 @import "./widget.scss";
 @import "./app.scss";
 
+body {
+  min-height: 100vh;
+}
+
 a {
   color: $primary;
   &:hover {
@@ -61,6 +65,7 @@ body {
 .page {
   @extend .d-flex;
   @extend .flex-column;
+  min-height: 100vh;
 }
 
 .container {
