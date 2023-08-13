@@ -2,7 +2,7 @@ import Bannerv2 from "components/Bannerv2";
 import Nav from "components/Nav";
 import Footer from "components/Footer";
 import Head from "components/Head";
-import SearchWidget from "components/SearchWidget";
+import SearchBar from "components/SearchBar";
 
 import { useTrans } from "lib/trans";
 
@@ -17,9 +17,9 @@ export default function Home() {
           <Nav />
           <main>
             <Bannerv2 title={i("Try searching instead")}>
-              <div className="row mt-3">
+              <div className="mt-3 row">
                 <div className="col-12">
-                  <SearchWidget />
+                  <SearchBar />
                 </div>
               </div>
             </Bannerv2>

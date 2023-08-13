@@ -17,6 +17,7 @@ import { isDisplayModeStandalone } from "lib/pwa";
 import Content from "components/Content/Content";
 import ContentGroup from "components/Content/ContentGroup";
 import PlaceActionBar from "components/PlaceActionBar";
+import SearchBar from "components/SearchBar";
 import { useDate } from "lib/date";
 import Link from "next/link";
 
@@ -92,60 +93,63 @@ const Page = ({ countrySlug, citySlug, areaSlug, activityId }) => {
       <body>
         <div className="page">
           <Nav />
-          {area && activity && (
-            <Content>
-              <ContentGroup>
-                <MapTile imgUrl={mapImageUrl} />
-                <MapInfo
-                  areaType={t("Area")}
-                  addressParts={[
-                    area.display_name,
-                    area.city.display_name,
-                    area.city.country.display_name,
-                  ]}
-                  activityCount={area.activity_total_last5months}
-                />
-                <PlaceActionBar
-                  placeManager={placeManager}
-                  subscriptionManager={subscriptionManager}
-                />
-                <div>
-                  <ItemActivityTypePill name={activity.activity_type.name} />
-                  <span className="ms-3">
-                    {displayDate(activity.date_occured)}
-                  </span>
-                </div>
-                <div>
-                  <p className="tw-text-gray-dark tw-m-0">{summary}</p>
-                </div>
-              </ContentGroup>
-
-              {activity.source_article && (
-                <Link
-                  href={activity.source_article.source_url}
-                  className="tw-no-underline"
-                >
-                  <div className="tw-bg-blue-bright-trans tw-p-3 tw-rounded-full tw-flex tw-gap-3 tw-items-center">
-                    <img
-                      src={
-                        "/sources/" +
-                        activity.source_article.source_name +
-                        ".jpg"
-                      }
-                      className="tw-h-[40px] tw-w-[40px] tw-rounded-full"
-                    />
-                    <div>
-                      <p className="tw-m-0 tw-text-blue-bright">
-                        {activity.source_article.source_title}
-                      </p>
-                    </div>
+          <Content>
+            <SearchBar />
+            {area && activity && (
+              <>
+                <ContentGroup>
+                  <MapTile imgUrl={mapImageUrl} />
+                  <MapInfo
+                    areaType={t("Area")}
+                    addressParts={[
+                      area.display_name,
+                      area.city.display_name,
+                      area.city.country.display_name,
+                    ]}
+                    activityCount={area.activity_total_last5months}
+                  />
+                  <PlaceActionBar
+                    placeManager={placeManager}
+                    subscriptionManager={subscriptionManager}
+                  />
+                  <div>
+                    <ItemActivityTypePill name={activity.activity_type.name} />
+                    <span className="ms-3">
+                      {displayDate(activity.date_occured)}
+                    </span>
                   </div>
-                </Link>
-              )}
+                  <div>
+                    <p className="tw-text-gray-dark tw-m-0">{summary}</p>
+                  </div>
+                </ContentGroup>
 
-              {!isDisplayModeStandalone() && <A2hsCtaTile />}
-            </Content>
-          )}
+                {activity.source_article && (
+                  <Link
+                    href={activity.source_article.source_url}
+                    className="tw-no-underline"
+                  >
+                    <div className="tw-bg-blue-bright-trans tw-p-3 tw-rounded-full tw-flex tw-gap-3 tw-items-center">
+                      <img
+                        src={
+                          "/sources/" +
+                          activity.source_article.source_name +
+                          ".jpg"
+                        }
+                        className="tw-h-[40px] tw-w-[40px] tw-rounded-full"
+                      />
+                      <div>
+                        <p className="tw-m-0 tw-text-blue-bright">
+                          {activity.source_article.source_title}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                )}
+
+                {!isDisplayModeStandalone() && <A2hsCtaTile />}
+              </>
+            )}
+          </Content>
           <Footer />
         </div>
       </body>
