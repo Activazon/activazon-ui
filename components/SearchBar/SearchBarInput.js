@@ -1,10 +1,8 @@
-import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const PLACEHOLDER_TEXT = "Anywhere";
 
-const SearchBarInput = () => {
-  const router = useRouter();
+const SearchBarInput = ({ onSearchInputChange }) => {
   const ref = useRef(null);
   const [searchInput, setSearchInput] = useState(PLACEHOLDER_TEXT);
   const onClick = (e) => {
@@ -22,12 +20,11 @@ const SearchBarInput = () => {
   const onChange = (e) => {
     setSearchInput(e.target.textContent);
   };
-  const onKeyDown = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      router.push({ pathname: "/search", query: { v: searchInput } });
-    }
-  };
+
+  useEffect(() => {
+    // keep parent updated
+    onSearchInputChange(searchInput == PLACEHOLDER_TEXT ? "" : searchInput);
+  }, [searchInput]);
   return (
     <div
       onClick={onClick}
@@ -45,7 +42,6 @@ const SearchBarInput = () => {
         ref={ref}
         onBlur={onBlur}
         onInput={onChange}
-        onKeyDown={onKeyDown}
       >
         {PLACEHOLDER_TEXT}
       </p>
