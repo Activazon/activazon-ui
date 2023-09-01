@@ -73,7 +73,7 @@ export default function Page() {
 
   return (
     <>
-      <Head title={null} />
+      <Head title={"Beta Map"} />
       <body>
         <div className="page">
           <Nav backHref={null} />
