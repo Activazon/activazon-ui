@@ -125,6 +125,12 @@ const NavMenu = forwardRef(({ open, close }, ref) => {
               }}
             />
           )}
+          <NavMenuItem
+            icon={<i className="bi bi-map me-3" />}
+            label={t("Map [Beta]")}
+            href="/map"
+            active={isActive("/map")}
+          />
         </div>
       </div>
     </>

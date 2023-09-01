@@ -79,6 +79,13 @@ export default function Page() {
           <Nav backHref={null} />
           <Content>
             <SearchBar onPlaceSelect={onPlaceSelect} />
+            {/* beta disclaimer */}
+            <div className="tw-w-full tw-rounded-2xl tw-overflow-hidden tw-bg-yellow-200 tw-p-3">
+              <p className="tw-m-0 tw-p-0 tw-text-sm">
+                This is currently a beta feature and may still contain some
+                issues. Please provide your feedback via instagram @activazon
+              </p>
+            </div>
             {/* map */}
             <div className="tw-w-full tw-h-[500px] tw-rounded-2xl tw-overflow-hidden tw-bg-blue-dark">
               <div
