@@ -8,10 +8,10 @@ const Modal = ({ title, children, actions, onClose }) => {
 
   return (
     <div
-      className="tw-fixed tw-left-0 tw-top-0 tw-h-screen tw-w-screen tw-bg-blue-dark tw-bg-opacity-80 tw-z-[10000] tw-p-3 tw-flex tw-items-center tw-justify-center"
+      className="tw-fixed tw-left-0 tw-top-0 tw-h-screen tw-w-screen tw-bg-[#FFF] tw-bg-opacity-80 tw-z-[10000] tw-p-3 tw-flex tw-items-center tw-justify-center tw-backdrop-blur-[1px]"
       onClick={handleCloseByTint}
     >
-      <div className="tw-bg-white tw-w-full tw-max-w-lg tw-py-5 tw-px-4 tw-rounded-2xl tw-shadow-2xl tw-flex tw-flex-col tw-gap-3">
+      <div className="tw-bg-white tw-border-2 tw-border-gray-300 tw-w-full tw-max-w-lg tw-py-5 tw-px-4 tw-rounded-2xl tw-shadow-2xl tw-flex tw-flex-col tw-gap-3">
         <p className="tw-m-0 tw-text-blue-dark tw-text-2xl">{title}</p>
         {children}
         {actions && (
