@@ -15,6 +15,7 @@ import { useTrackOnce, track } from "lib/track";
 import { searchThisApi } from "lib/client-api";
 import Modal from "components/Modal/Modal";
 import ModalButton from "components/Modal/ModalButton";
+import useModal from "components/Modal/useModal";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYWN0aXZhem9uIiwiYSI6ImNsY3ZtdHhwdzFsY2IzcGs2bGh5aDlqZmwifQ.wt_eBXNQzJXkJ-VOVKyPWA";
@@ -33,7 +34,9 @@ export default function Page() {
   const [city, setCity] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
   const [noResultsFound, setNoResultsFound] = useState(false);
-  const [isBetaModalOpen, setIsBetaModalOpen] = useState(true);
+  const [isBetaModalOpen, setIsBetaModalOpen] = useModal({
+    isShowingDefault: true,
+  });
 
   useTrackOnce("page.search", {});
   useEffect(() => {
