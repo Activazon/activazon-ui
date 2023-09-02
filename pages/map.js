@@ -13,6 +13,8 @@ import { useTrans } from "lib/trans";
 
 import { useTrackOnce, track } from "lib/track";
 import { searchThisApi } from "lib/client-api";
+import Modal from "components/Modal/Modal";
+import ModalButton from "components/Modal/ModalButton";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYWN0aXZhem9uIiwiYSI6ImNsY3ZtdHhwdzFsY2IzcGs2bGh5aDlqZmwifQ.wt_eBXNQzJXkJ-VOVKyPWA";
@@ -31,6 +33,7 @@ export default function Page() {
   const [city, setCity] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
   const [noResultsFound, setNoResultsFound] = useState(false);
+  const [isBetaModalOpen, setIsBetaModalOpen] = useState(true);
 
   useTrackOnce("page.search", {});
   useEffect(() => {
@@ -104,6 +107,26 @@ export default function Page() {
     <>
       <Head title={"Map [Beta]"} />
       <body>
+        {isBetaModalOpen && (
+          <Modal
+            title="This is a beta"
+            actions={[
+              <ModalButton
+                type="blue-bright"
+                label="Okay"
+                onClick={() => setIsBetaModalOpen(false)}
+              />,
+            ]}
+          >
+            {/* write a long explination of what this is and what beta means */}
+            <p className="tw-text-gray-dark tw-m-0 tw-text-sm">
+              This is a beta version of the map. It is not yet ready for public
+              use and is only available to a select few. If you are interested
+              in helping us test this, please contact us via instagram at
+              @activazon
+            </p>
+          </Modal>
+        )}
         <div className="page">
           <Nav backHref={null} />
           <Content>
