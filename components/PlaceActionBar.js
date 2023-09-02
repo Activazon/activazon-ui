@@ -156,6 +156,9 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
           onClick={onUnsubscribeClick}
         />
       )}
+      <span className="tw-opacity-50 tw-w-full">
+        <PlaceActionBarButton icon="map" text="Map" onClick={() => {}} />
+      </span>
       <PlaceActionBarButton icon="share" text="Share" onClick={onShareClick} />
     </div>
   );
