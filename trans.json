@@ -939,5 +939,9 @@
   "Are you sure you want to unsubscribe from {{placeDisplayName}}?": {
     "en": "Are you sure you want to unsubscribe from {{placeDisplayName}}?",
     "es": "¿Estás seguro de que quieres cancelar la suscripción a {{placeDisplayName}}?"
+  },
+  "Map [Beta]": {
+    "en": "Map [Beta]",
+    "es": "Mapa [Beta]"
   }
 }

@@ -6,12 +6,22 @@ import { useTrans } from "lib/trans";
 
 let timer = null;
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   const { t } = useTrans();
   const [searchInput, setSearchInput] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [noResultsFound, setNoResultsFound] = useState(false);
   const [results, setResults] = useState([]);
+
+  const onPlaceSelect = (place) => {
+    if (props.onPlaceSelect) {
+      props.onPlaceSelect(place);
+      setSearchInput("");
+      setResults([]);
+      setIsLoading(false);
+      setNoResultsFound(false);
+    }
+  };
 
   useEffect(() => {
     // clear timer
@@ -61,7 +71,7 @@ const SearchBar = () => {
         </div>
       )}
       {!noResultsFound && results.length > 0 && (
-        <SearchBarResults data={results} />
+        <SearchBarResults data={results} onPlaceSelect={onPlaceSelect} />
       )}
     </div>
   );
