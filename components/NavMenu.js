@@ -65,7 +65,7 @@ const NavMenu = forwardRef(({ open, close }, ref) => {
       <div className="tw-px-3 tw-w-full tw-max-w-4xl tw-mx-auto">
         <div
           ref={ref}
-          className="tw-w-full tw-mb-3 tw-px-3 tw-flex tw-flex-col tw-bg-blue-bright-trans tw-rounded-lg tw-shadow-2xl"
+          className="tw-w-full tw-mb-3 tw-px-3 tw-flex tw-flex-col tw-bg-slate-200 tw-border-[1px] tw-border-slate-200 tw-rounded-lg tw-shadow-2xl"
           id="v-pills-tab"
           role="tablist"
           aria-orientation="vertical"
@@ -125,6 +125,12 @@ const NavMenu = forwardRef(({ open, close }, ref) => {
               }}
             />
           )}
+          <NavMenuItem
+            icon={<i className="bi bi-map me-3" />}
+            label={t("Map [Beta]")}
+            href="/map"
+            active={isActive("/map")}
+          />
         </div>
       </div>
     </>
