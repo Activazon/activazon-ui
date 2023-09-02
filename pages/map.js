@@ -25,7 +25,8 @@ export default function Page() {
   const { t, ts } = useTrans();
   const map = useRef(null);
   const mapContainer = useRef(null);
-  const [places, setPlaces] = useState([]);
+  const [areas, setAreas] = useState([]);
+  const [city, setCity] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
   const [noResultsFound, setNoResultsFound] = useState(false);
 
@@ -44,7 +45,8 @@ export default function Page() {
 
     setIsSearching(true);
     setNoResultsFound(false);
-    setPlaces([]);
+    setCity(null);
+    setAreas([]);
 
     const searchPromise = searchThisApi({
       place_type: place.place_type,
@@ -67,7 +69,8 @@ export default function Page() {
     if (results.total === 0) {
       setNoResultsFound(true);
     } else {
-      setPlaces([results.closest_city, ...results.areas]);
+      setCity(results.closest_city);
+      setAreas([...results.areas]);
     }
     setIsSearching(false);
   };
@@ -100,14 +103,41 @@ export default function Page() {
                 <Message message="No places found in this area with activity" />
               )}
               {isSearching && <Message message="Searching this area..." />}
-              {!isSearching && places.length > 0 && (
+              {!isSearching && areas.length > 0 && (
                 <ItemList>
-                  {places.map((place) => (
+                  {city && (
+                    <div className="tw-p-2 tw-bg-gray-200 tw-rounded-lg">
+                      <Item
+                        key={`place-city-${city.id}`}
+                        href={city.slug_path}
+                        imgUrl={city.image_square_url}
+                        itemType={t("City")}
+                        title={city.display_name}
+                        message={
+                          city.activity_total_last7days !== 0
+                            ? t(
+                                "{{ActivityCount}} activities detected in the last week",
+                                {
+                                  ActivityCount: city.activity_total_last7days,
+                                }
+                              )
+                            : t(
+                                "{{ActivityCount}} activities detected in the last 5 months",
+                                {
+                                  ActivityCount:
+                                    city.activity_total_last5months,
+                                }
+                              )
+                        }
+                      />
+                    </div>
+                  )}
+                  {areas.map((place) => (
                     <Item
-                      key={`place-${place.id}`}
+                      key={`place-area-${place.id}`}
                       href={place.slug_path}
                       imgUrl={place.image_square_url}
-                      itemType={t("City")}
+                      itemType={t("Area")}
                       title={place.display_name}
                       message={
                         place.activity_total_last7days !== 0
