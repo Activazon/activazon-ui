@@ -4,10 +4,17 @@ import { isDisplayModeStandalone } from "lib/pwa";
 import { track } from "lib/track";
 import { useUser } from "lib/user";
 
-const PlaceActionBarButton = ({ icon, text, onClick, disabled }) => {
+const PlaceActionBarButton = ({ icon, text, onClick, disabled, color }) => {
+  let extraClassName = "";
+  if (color == "yellow") {
+    extraClassName = "tw-bg-yellow-200 tw-text-yellow-700";
+  } else {
+    extraClassName = "tw-bg-gray-100 tw-text-blue-dark";
+  }
+
   return (
     <button
-      className="tw-flex tw-flex-row tw-items-center tw-text-sm tw-justify-center tw-gap-1 tw-text-blue-dark tw-rounded-lg tw-p-2 tw-bg-blue-bright-trans tw-w-full"
+      className={`tw-border tw-flex tw-flex-row tw-items-center tw-text-sm tw-justify-center tw-gap-1  tw-rounded-lg tw-p-2 tw-w-full ${extraClassName}`}
       disabled={disabled}
       onClick={onClick}
     >
@@ -138,6 +145,12 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
     }
   };
 
+  const onFixClick = () => {
+    push({
+      pathname: asPath + "/fix",
+    });
+  };
+
   return (
     <div className="tw-w-full tw-gap-1 tw-flex tw-flex-row">
       {!isSubscribed && (
@@ -156,10 +169,14 @@ const PlaceActionBar = ({ placeManager, subscriptionManager }) => {
           onClick={onUnsubscribeClick}
         />
       )}
-      <span className="tw-opacity-50 tw-w-full">
-        <PlaceActionBarButton icon="map" text="Map" onClick={() => {}} />
-      </span>
+
       <PlaceActionBarButton icon="share" text="Share" onClick={onShareClick} />
+      <PlaceActionBarButton
+        icon="exclamation-diamond-fill"
+        text="Fix"
+        onClick={onFixClick}
+        color="yellow"
+      />
     </div>
   );
 };
