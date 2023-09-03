@@ -7,6 +7,7 @@ import OptionsModal from "components/FixContent/OptionsModal";
 import FixContentWrongCity from "components/FixContent/FixContentWrongCity";
 import FixContentLocation from "components/FixContent/FixContentLocation";
 import FixContentInvalidPlace from "components/FixContent/FixContentInvalidPlace";
+import SuccessModal from "components/FixContent/SuccessModal";
 import options from "components/FixContent/options";
 import { useTrans } from "lib/trans";
 import { useTrackOnce } from "lib/track";
@@ -25,6 +26,7 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
   );
   const { area } = placeManager;
   const [optionName, setOptionName] = useState(null);
+  const [correctionSubmitted, setCorrectionSubmitted] = useState(false);
   useTrackOnce("page.explore.area.fix", {
     // isAuthenticated: !!user,
     areaSlug: areaSlug,
@@ -32,6 +34,9 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
 
   const onOptionSelect = (optionName) => {
     setOptionName(optionName);
+  };
+  const onSubmitCorrection = (data) => {
+    setCorrectionSubmitted(true);
   };
 
   return (
@@ -45,19 +50,26 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
               onOptionSelect={onOptionSelect}
             />
           )}
+          {correctionSubmitted && <SuccessModal redirectTo={area.slug_path} />}
           <Nav />
 
           <Content>
             {optionName === options.wrong_city && (
-              <FixContentWrongCity area={area} onSubmitCorrection={() => {}} />
+              <FixContentWrongCity
+                area={area}
+                onSubmitCorrection={onSubmitCorrection}
+              />
             )}
             {optionName === options.location && (
-              <FixContentLocation area={area} onSubmitCorrection={() => {}} />
+              <FixContentLocation
+                area={area}
+                onSubmitCorrection={onSubmitCorrection}
+              />
             )}
             {optionName === options.invalid_place && (
               <FixContentInvalidPlace
                 area={area}
-                onSubmitCorrection={() => {}}
+                onSubmitCorrection={onSubmitCorrection}
               />
             )}
           </Content>

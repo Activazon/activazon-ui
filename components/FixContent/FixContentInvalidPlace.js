@@ -16,9 +16,9 @@ const FixContentLocation = ({ area, onSubmitCorrection }) => {
           <b>{area.display_name}</b> Is not a real place?
         </p>
         <p className="tw-m-0 tw-text-gray-dark">
-          Use the map below to pin point where {area.display_name} is located.
+          By clicking the button below, you are stating that{" "}
+          {area.city.display_name}, {area.display_name} is not a real place.
         </p>
-        {/*  */}
       </ContentGroup>
       <FixCorrectionButton onClick={handleOnSubmitCorrection} />
     </>
