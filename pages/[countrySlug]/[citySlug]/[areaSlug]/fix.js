@@ -2,8 +2,11 @@ import { useState } from "react";
 import Nav from "components/Nav";
 import Footer from "components/Footer";
 import Head from "components/Head";
+import Content from "components/Content/Content";
 import OptionsModal from "components/FixContent/OptionsModal";
 import FixContentWrongCity from "components/FixContent/FixContentWrongCity";
+import FixContentLocation from "components/FixContent/FixContentLocation";
+import FixContentInvalidPlace from "components/FixContent/FixContentInvalidPlace";
 import options from "components/FixContent/options";
 import { useTrans } from "lib/trans";
 import { useTrackOnce } from "lib/track";
@@ -43,9 +46,22 @@ const Page = ({ countrySlug, citySlug, areaSlug }) => {
             />
           )}
           <Nav />
-          {optionName === options.wrong_city && (
-            <FixContentWrongCity area={area} />
-          )}
+
+          <Content>
+            {optionName === options.wrong_city && (
+              <FixContentWrongCity area={area} onSubmitCorrection={() => {}} />
+            )}
+            {optionName === options.location && (
+              <FixContentLocation area={area} onSubmitCorrection={() => {}} />
+            )}
+            {optionName === options.invalid_place && (
+              <FixContentInvalidPlace
+                area={area}
+                onSubmitCorrection={() => {}}
+              />
+            )}
+          </Content>
+
           <Footer />
         </div>
       </body>

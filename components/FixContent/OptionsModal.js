@@ -37,11 +37,6 @@ const OptionsModal = ({ areaDisplayName, onOptionSelect }) => {
             onClick={handleOptionSelect(options.location)}
           />
           <OptionsButton
-            label="Area name"
-            icon="houses-fill"
-            onClick={handleOptionSelect(options.area_name)}
-          />
-          <OptionsButton
             label="Wrong City"
             icon="houses-fill"
             onClick={handleOptionSelect(options.wrong_city)}
