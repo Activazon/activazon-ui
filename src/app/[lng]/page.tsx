@@ -14,7 +14,6 @@ import { useDictionary } from "@/dictionaries";
 import {
   accessorPlaceDisplayName,
   accessorPlaceIncidentMetricsLast3Months,
-  accessorPlaceMapImagesSquareDefault,
   accessorPlaceMapImagesWideDefault,
   accesorPlaceSlugPath,
 } from "@/lib/placeAccessors";
