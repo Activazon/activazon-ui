@@ -1,0 +1,28 @@
+{
+  "locale": "en",
+  "translations": {
+    "language:english": "English",
+    "language:spanish": "Spanish",
+    "menu:home": "Home",
+    "menu:signup": "Sign Up",
+    "menu:language": "Change Language: {{language}}",
+    "menu:install_app": "Install App",
+    "menu:share_app": "Share App",
+    "home:mapInfo:lead": "Your Location",
+    "home:similiar_cities": "Similiar Cities",
+    "common:areas": "Areas",
+    "common:activities": "Activities",
+    "common:recent_activity": "{{count}} activities detected recently",
+    "common:search_placeholder": "Search for places",
+    "common:search_end_of_results": "End of results",
+    "common:search_city_results": "City results",
+    "common:search_area_results": "Area results",
+    "city:mapInfo:lead": "City",
+    "area:mapInfo:lead": "Area",
+    "activity:mapInfo:lead": "Activity",
+    "activity_breakdown:title": "Type of activities",
+    "activity_breakdown:description": "Type of activities detected in <b>{{areaDisplayName}}</b>",
+    "activity:summary": "Summary",
+    "activity:related_places": "Related Places"
+  }
+}

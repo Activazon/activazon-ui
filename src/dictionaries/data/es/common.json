@@ -1,0 +1,28 @@
+{
+  "locale": "es",
+  "translations": {
+    "language:english": "Inglés",
+    "language:spanish": "Español",
+    "menu:home": "Inicio",
+    "menu:signup": "Registrarse",
+    "menu:language": "Cambiar Idioma: {{language}}",
+    "menu:install_app": "Instalar Aplicación",
+    "menu:share_app": "Compartir Aplicación",
+    "home:mapInfo:lead": "Tu Ubicación",
+    "home:similar_cities": "Ciudades Similares",
+    "common:areas": "Áreas",
+    "common:activities": "Actividades",
+    "common:recent_activity": "{{count}} actividades detectadas recientemente",
+    "common:search_placeholder": "Buscar lugares",
+    "common:search_end_of_results": "Fin de los resultados",
+    "common:search_city_results": "Resultados de la ciudad",
+    "common:search_area_results": "Resultados del área",
+    "city:mapInfo:lead": "Ciudad",
+    "area:mapInfo:lead": "Área",
+    "activity:mapInfo:lead": "Actividad",
+    "activity_breakdown:title": "Tipo de actividades",
+    "activity_breakdown:description": "Tipo de actividades detectadas en <b>{{areaDisplayName}}</b>",
+    "activity:summary": "Resumen",
+    "activity:related_places": "Lugares Relacionados"
+  }
+}

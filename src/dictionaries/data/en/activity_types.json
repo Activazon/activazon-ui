@@ -1,0 +1,9 @@
+{
+  "locale": "en",
+  "translations": {
+    "theft": "Theft",
+    "suicide": "Suicide",
+    "homicide": "Homicide",
+    "kidnapping": "Kidnapping"
+  }
+}
