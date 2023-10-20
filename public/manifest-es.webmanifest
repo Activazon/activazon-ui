@@ -3,7 +3,7 @@
   "background_color": "#FFFFFF",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/es/app",
+  "start_url": "/es/home",
   "name": "Activazon",
   "short_name": "Activazon",
   "description": "Activazon is a progressive web app that provides real-time crime data for cities and neighborhoods, empowering users to make informed decisions about their safety.",
@@ -22,45 +22,30 @@
       "label": "Estadísticas de delitos para tu barrio"
     }
   ],
-  "shortcuts": [
-    {
-      "name": "Tegucigalpa",
-      "url": "/honduras/tegucigalpa",
-      "description": "List of events planned for today"
-    },
-    {
-      "name": "San Pedro Sula",
-      "url": "/honduras/san-pedro-sula"
-    },
-    {
-      "name": "La Ceiba",
-      "url": "/honduras/la-ceiba"
-    }
-  ],
   "icons": [
     {
-      "src": "/icon-192x192.png",
+      "src": "/pwa/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/icon-256x256.png",
+      "src": "/pwa/icon-256x256.png",
       "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "/icon-384x384.png",
+      "src": "/pwa/icon-384x384.png",
       "sizes": "384x384",
       "type": "image/png"
     },
     {
-      "src": "/icon-512x512.png",
+      "src": "/pwa/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/icon-256x256.png",
+      "src": "/pwa/icon-256x256.png",
       "sizes": "256x256",
       "type": "image/png",
       "purpose": "any maskable"
