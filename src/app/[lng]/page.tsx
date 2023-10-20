@@ -9,6 +9,7 @@ import TileGridContainer from "@/components/TileGrid/TileGridContainer";
 import TileItem from "@/components/TileGrid/TileItem";
 import { useCoordinates } from "./helper";
 import { useFetchCitiesQuery, useFetchNearbyQuery } from "@/store/api/cityApi";
+import { useFetchCityAreasQuery } from "@/store/api/area";
 import { pulseObjectList } from "@/lib/pulse";
 import { useDictionary } from "@/dictionaries";
 import {
@@ -19,18 +20,9 @@ import {
   accesorPlaceSlugPath,
 } from "@/lib/placeAccessors";
 import { placesPath } from "@/lib/places";
-import { useFetchCityIncidentsQuery } from "@/store/api/incidentApi";
-import {
-  accesorIncidentAreaDisplayName,
-  accesorIncidentListImage,
-  accesorIncidentTitle,
-  accesorIncidentType,
-} from "@/lib/incidentAccessors";
-import { activityPath } from "@/lib/activity";
-import ActivityTypePill from "@/components/ActivityTypePill";
 
 const Page = () => {
-  const { t, locale } = useDictionary();
+  const { t } = useDictionary();
   // fetch nearby cities (try to use user location)
   const { coords, coordsLoaded } = useCoordinates();
   const fetchNearbyQuery = useFetchNearbyQuery(coords, {
@@ -38,7 +30,7 @@ const Page = () => {
   });
   // fetch areas for the city we are in
   const areasLimit = 5;
-  const fetchIncidentsQuery = useFetchCityIncidentsQuery(
+  const fetchAreasQuery = useFetchCityAreasQuery(
     {
       slugPath: fetchNearbyQuery.data?.place.slug_path!,
       limit: areasLimit,
@@ -47,8 +39,8 @@ const Page = () => {
       skip: !fetchNearbyQuery.isSuccess || !fetchNearbyQuery.data?.place.id,
     }
   );
-  const activityItems = fetchIncidentsQuery.isSuccess
-    ? fetchIncidentsQuery.data?.results
+  const areaItems = fetchAreasQuery.isSuccess
+    ? fetchAreasQuery.data?.results
     : pulseObjectList(areasLimit);
 
   // fetch cities
@@ -75,21 +67,18 @@ const Page = () => {
       />
 
       <ContentGroup>
-        <ContentGroupTitle title={t("common:activities")} />
+        <ContentGroupTitle title={t("common:areas")} />
         <ItemListContainer>
-          {activityItems.map((data: any) => (
+          {areaItems.map((data: any) => (
             <Item
               key={`area-${data.id}`}
-              title={accesorIncidentTitle(data, locale)}
-              descriptionMd={accesorIncidentAreaDisplayName(data)}
-              badge={
-                <span>
-                  <ActivityTypePill name={accesorIncidentType(data)} />
-                </span>
-              }
-              url={activityPath(data.id)}
-              image={accesorIncidentListImage(data)}
-              pulse={!fetchIncidentsQuery.isSuccess}
+              title={accessorPlaceDisplayName(data)}
+              url={placesPath(accesorPlaceSlugPath(data))}
+              description={t("common:recent_activity", {
+                count: accessorPlaceIncidentMetricsLast3Months(data),
+              })}
+              image={accessorPlaceMapImagesSquareDefault(data)}
+              pulse={!fetchAreasQuery.isSuccess}
             />
           ))}
         </ItemListContainer>
