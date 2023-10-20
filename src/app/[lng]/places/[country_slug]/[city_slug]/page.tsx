@@ -2,10 +2,7 @@
 import { useDictionary } from "@/dictionaries";
 import { usePlaceParams } from "@/lib/places";
 import { pulseObjectList } from "@/lib/pulse";
-import {
-  useFetchCityActivitiesQuery,
-  useFetchCityQuery,
-} from "@/store/api/cityApi";
+import { useFetchCityQuery } from "@/store/api/cityApi";
 import Content from "@/components/Content/Content";
 import Item from "@/components/ItemList/Item";
 import ItemListContainer from "@/components/ItemList/ItemListContainer";
