@@ -3,7 +3,7 @@
   "background_color": "#FFFFFF",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/en/home",
+  "start_url": "/en",
   "name": "Activazon",
   "short_name": "Activazon",
   "description": "Activazon is a progressive web app that provides real-time crime data for cities and neighborhoods, empowering users to make informed decisions about their safety.",

@@ -30,7 +30,7 @@ const NavigationBar = () => {
         <nav className="tw-py-3 tw-w-full tw-px-3 tw-flex tw-flex-row tw-justify-between tw-max-w-4xl tw-mx-auto">
           <Link
             className="tw-text-[1.5rem] tw-font-medium tw-no-underline tw-text-blue-light tw-flex tw-gap-3"
-            href="/home"
+            href="/"
           >
             <Image
               src="/assets/icons/logo.svg"
