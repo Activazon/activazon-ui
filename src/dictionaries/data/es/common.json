@@ -9,7 +9,7 @@
     "menu:install_app": "Instalar Aplicación",
     "menu:share_app": "Compartir Aplicación",
     "home:mapInfo:lead": "Tu Ubicación",
-    "home:similar_cities": "Ciudades Similares",
+    "home:similiar_cities": "Ciudades Similares",
     "common:areas": "Áreas",
     "common:activities": "Actividades",
     "common:recent_activity": "{{count}} actividades detectadas recientemente",

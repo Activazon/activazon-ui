@@ -1,5 +1,5 @@
 import { useActivazonSelector } from "@/store/hooks";
-import { useEffect, useState, createElement } from "react";
+import { useEffect, useState, createElement, useCallback } from "react";
 
 interface Dictionary {
   locale: string;
@@ -50,21 +50,24 @@ export const useDictionary = (namespace: string = "common") => {
   /**
    * gets translation for key
    */
-  const t = (key: string, params?: Record<string, string>) => {
-    if (!dictionary.translations) {
-      return key;
-    }
-    const translation = dictionary.translations[key];
-    if (!translation) {
-      return key;
-    }
-    // format string
-    if (params) {
-      return formatString(translation, params);
-    }
+  const t = useCallback(
+    (key: string, params?: Record<string, string>) => {
+      if (!dictionary.translations) {
+        return key;
+      }
+      const translation = dictionary.translations[key];
+      if (!translation) {
+        return key;
+      }
+      // format string
+      if (params) {
+        return formatString(translation, params);
+      }
 
-    return translation;
-  };
+      return translation;
+    },
+    [dictionary]
+  );
 
   /**
    * gets translation for key and converts to react element to perserve html tags

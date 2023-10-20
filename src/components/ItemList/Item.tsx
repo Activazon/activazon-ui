@@ -24,7 +24,7 @@ const Item = ({
       <div className="tw-flex tw-flex-row tw-gap-4">
         <div
           className={
-            "tw-aspect-square tw-w-[120px] tw-h-[120px] md:tw-w-[150px] md:tw-h-[150px]  tw-bg-blue-dark tw-border-2 tw-rounded-xl tw-shadow-md tw-overflow-hidden tw-inline-table " +
+            "tw-aspect-square tw-w-[120px] tw-h-[120px] md:tw-w-[150px] md:tw-h-[150px]  tw-bg-blue-dark tw-border-2 tw-rounded-xl tw-shadow-md tw-overflow-hidden tw-flex-shrink-0 " +
             (pulse ? "tw-border-blue-dark" : "tw-border-blue-light")
           }
         >

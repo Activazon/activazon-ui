@@ -10,10 +10,10 @@ interface TileItemProps {
 
 const TileItem = ({ title, description, url, image, pulse }: TileItemProps) => {
   return (
-    <Link href={url}>
+    <Link href={url} className="tw-contents">
       <div
         className={
-          "tw-bg-blue-dark tw-aspect-[16/9] tw-rounded-lg tw-relative tw-shadow-md tw-border-2 tw-overflow-hidden " +
+          "tw-bg-blue-dark tw-aspect-[16/9] tw-rounded-lg tw-relative tw-shadow-md tw-border-2 tw-overflow-hidden tw-cursor-pointer " +
           (pulse ? "tw-border-blue-dark" : "tw-border-blue-light")
         }
       >
