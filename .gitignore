@@ -35,10 +35,3 @@ yarn-error.log*
 .sentryclirc
 
 .env
-
-# next-pwa
-public/sw.js
-public/sw.js.map
-public/fallback-development.js
-public/workbox-*
-public/worker-*
