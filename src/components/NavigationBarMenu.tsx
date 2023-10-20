@@ -43,14 +43,14 @@ const NavigationBarMenu = () => {
       ? pathname.replace("/es/", "/en/")
       : pathname.replace("/en/", "/es/");
 
-  const onShareApp = () => {
-    if (navigator.share) {
-      navigator
-        .share()
-        .then(() => setIsMenuOpen(false))
-        .catch((error) => alert("Error sharing"));
-    }
-  };
+  // const onShareApp = () => {
+  //   if (navigator.share) {
+  //     navigator
+  //       .share()
+  //       .then(() => setIsMenuOpen(false))
+  //       .catch((error) => alert("Error sharing"));
+  //   }
+  // };
 
   return (
     <div className="tw-relative">
@@ -85,12 +85,12 @@ const NavigationBarMenu = () => {
             >
               {t("menu:home")}
             </MenuItem>
-            <MenuItem
+            {/* <MenuItem
               icon={<i className="bi bi-hearts" />}
               onClick={onShareApp}
             >
               {t("menu:share_app")}
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               icon={<i className="bi bi-translate" />}
               onClick={redirectAndClose(changeLanguageUrl)}
