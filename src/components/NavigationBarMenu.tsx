@@ -40,8 +40,8 @@ const NavigationBarMenu = () => {
 
   const changeLanguageUrl =
     locale == "es"
-      ? pathname.replace("/es/", "/en/")
-      : pathname.replace("/en/", "/es/");
+      ? pathname.replace("/es", "/en")
+      : pathname.replace("/en", "/es");
 
   // const onShareApp = () => {
   //   if (navigator.share) {
