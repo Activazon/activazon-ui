@@ -81,7 +81,7 @@ const NavigationBarMenu = () => {
             </MenuItem> */}
             <MenuItem
               icon={<i className="bi bi-house-fill" />}
-              onClick={redirectAndClose("/home")}
+              onClick={redirectAndClose("/")}
             >
               {t("menu:home")}
             </MenuItem>
