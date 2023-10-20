@@ -33,12 +33,11 @@ export function middleware(request: NextRequest) {
 
   if (localeInUrl && localeInUrl !== locale) {
     // User changed locale in the URL, update the cookie
-    const updatedCookie = new Response("", {
+    new Response("", {
       headers: {
         "Set-Cookie": `${LOCALE_COOKIE_NAME}=${localeInUrl}; Path=/; Max-Age=31536000; SameSite=Lax`,
       },
     });
-    return updatedCookie;
   }
 
   if (!localeInUrl) {
