@@ -3,10 +3,10 @@ import { useActivazonSelector } from "@/store/hooks";
 import PwaInstalModel from "./Model/PwaInstallModel";
 
 const ModalManager = () => {
-  const { modelName, modalData } = useActivazonSelector((state) => state.modal);
+  const { name, data } = useActivazonSelector((state) => state.modal);
 
-  if (modelName == "pwa_install") {
-    return <PwaInstalModel data={modalData} />;
+  if (name == "pwa_install") {
+    return <PwaInstalModel data={data} />;
   }
 
   return null;

@@ -12,11 +12,10 @@ const Modal = ({ children }: ModalProps) => {
   const handleClose = (event: React.MouseEvent<HTMLElement>) => {
     dispatch(
       setModel({
-        modelName: undefined,
-        modalData: undefined,
+        name: undefined,
+        data: undefined,
       })
     );
-    console.log("HELLO ");
   };
   const handleCloseByTint = (event: React.MouseEvent<HTMLElement>) => {
     if (event.target === event.currentTarget) {

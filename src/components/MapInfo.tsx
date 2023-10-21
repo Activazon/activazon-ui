@@ -1,4 +1,5 @@
 import ContentGroup from "./Content/ContentGroup";
+import SubscribeButton from "./SubscribeButton";
 
 interface MapInfoProps {
   lead: string;
@@ -56,9 +57,7 @@ const MapInfo = ({
         )}
         {canSubscribe && (
           <div className="tw-flex tw-items-center tw-justify-start">
-            <button className="tw-rounded-xl tw-aspect-square tw-w-10 tw-text-blue-dark hover:tw-bg-blue-light hover:tw-text-white">
-              <i className="bi bi-bell-fill tw-text-xl" />
-            </button>
+            <SubscribeButton />
           </div>
         )}
       </div>

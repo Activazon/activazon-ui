@@ -1,16 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ModelState {
-  modelName?:
-    | "pwa_install"
-    | "subscription_success"
-    | "notification_permission";
-  modalData?: object;
+  name?: "pwa_install" | "subscription_success" | "notification_permission";
+  data?: object;
 }
 
 const initialState = {
-  modelName: "pwa_install", // undefined,
-  modalData: {},
+  data: undefined,
+  name: {},
 } as ModelState;
 
 const modalSlice = createSlice({
@@ -18,8 +15,8 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     setModel: (state, action: PayloadAction<ModelState>) => {
-      state.modalData = action.payload.modalData;
-      state.modelName = action.payload.modelName;
+      state.name = action.payload.name;
+      state.data = action.payload.data;
     },
   },
 });

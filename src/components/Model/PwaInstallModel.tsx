@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import Content from "../Content/Content";
 import ContentGroup from "../Content/ContentGroup";
-import Modal from "./Model";
+import Modal from "./Modal";
 
 interface PwaInstalModelProps {
   data: any;
@@ -19,7 +19,7 @@ const ListItem = ({ icon, title, description }: ListItemProps) => {
       <div className="tw-text-blue-light tw-text-xl">{icon}</div>
       <div>
         <p className="tw-text-blue-dark tw-text-lg tw-font-semibold">{title}</p>
-        <p className="tw-font-normal tw-text-gray-dark tw-text-sm tw-font-medium">
+        <p className="tw-text-gray-dark tw-text-sm tw-font-medium">
           {description}
         </p>
       </div>
@@ -30,7 +30,7 @@ const ListItem = ({ icon, title, description }: ListItemProps) => {
 const IosInstructions = () => (
   <ContentGroup extraClasses="ios-specific">
     <p className="tw-text-lg tw-text-center">
-      Tap the{" "}
+      To continue, tap the{" "}
       <span className="tw-text-xl">
         <i className="bi bi-box-arrow-up"></i>
       </span>{" "}
@@ -51,7 +51,7 @@ const IosInstructions = () => (
 const NonIosInstructions = () => (
   <ContentGroup extraClasses="non-ios-specific">
     <p className="tw-text-lg tw-text-center">
-      Tap the{" "}
+      To continue, tap the{" "}
       <span className="tw-text-xl">
         <i className="bi bi-three-dots-vertical"></i>
       </span>{" "}
