@@ -22,8 +22,41 @@ const pushNotificationsApi = createApi({
         body: data,
       }),
     }),
+    createSubscription: builder.mutation({
+      query: (data: {
+        place_city_slug: string;
+        place_area_slug: string | null;
+        token: string;
+      }) => {
+        const token = data.token;
+        return {
+          url: "/v3/push-notifications/device-subscription/",
+          method: "POST",
+          body: { ...data, token: undefined },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
+    }),
+    getSubscriptions: builder.query({
+      query: (data: { token: string }) => {
+        const token = data.token;
+        return {
+          url: "/v3/push-notifications/device-subscription/",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
+    }),
   }),
 });
 
-export const { useAddDeviceMutation } = pushNotificationsApi;
+export const {
+  useAddDeviceMutation,
+  useCreateSubscriptionMutation,
+  useGetSubscriptionsQuery,
+} = pushNotificationsApi;
 export default pushNotificationsApi;

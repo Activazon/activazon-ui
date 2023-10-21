@@ -8,15 +8,17 @@ import { usePlaceSubscription } from "@/lib/subscriptions";
 
 const SubscribeButton = () => {
   const disaptch = useActivazonDispatch();
-  const { isSubscribed, isEnrolled, enrollDevice } = usePlaceSubscription();
+  const { isSubscribed, isEnrolled, registerDevice, subscribeToPlace } =
+    usePlaceSubscription();
 
   const enrollAndSubscribe = async () => {
-    if (isEnrolled()) {
-      console.log("already enrolled");
-    } else {
-      console.debug("Enrolling device");
-      await enrollDevice();
+    if (!isEnrolled()) {
+      // make sure device is enrolled
+      await registerDevice();
     }
+
+    //  subscribe
+    await subscribeToPlace();
   };
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {

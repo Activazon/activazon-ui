@@ -1,4 +1,8 @@
-import { useAddDeviceMutation } from "@/store/api/pushNotificationsApi";
+import {
+  useAddDeviceMutation,
+  useCreateSubscriptionMutation,
+  useGetSubscriptionsQuery,
+} from "@/store/api/pushNotificationsApi";
 import { usePlaceParams } from "./places";
 
 const urlBase64ToUint8Array = (base64String: string) => {
@@ -44,19 +48,67 @@ export const getDeviceSubscriptionInfo = async () => {
 
 const DEVICE_JWT_STORAGE_KEY = "device_jwt";
 
+const getDeviceJwt = () => {
+  return localStorage.getItem(DEVICE_JWT_STORAGE_KEY);
+};
+
 export const usePlaceSubscription = () => {
   /**
    * grabs the users subscription info object
    * along with browser info to store in our database
    */
-  const { slugPath } = usePlaceParams();
+  const { slugPath, countrySlug, citySlug, areaSlug, hasSlugs } =
+    usePlaceParams();
   const [addDevice, addDeviceResult] = useAddDeviceMutation();
+  const [createSubscription, createSubscriptionResult] =
+    useCreateSubscriptionMutation();
+  const subscriptionsResult = useGetSubscriptionsQuery(
+    {
+      token: getDeviceJwt()!,
+    },
+    {
+      skip: !getDeviceJwt(),
+    }
+  );
+
+  const isSubscribed =
+    subscriptionsResult.isSuccess &&
+    subscriptionsResult.data.results.some((devSub: any) => {
+      if (!hasSlugs) {
+        return false;
+      }
+
+      if (devSub.place_city.slug_path == `/${countrySlug}/${citySlug}`) {
+        return true;
+      }
+
+      if (
+        areaSlug &&
+        devSub.place_area?.slug_path ==
+          `/${countrySlug}/${citySlug}/${areaSlug}`
+      ) {
+        return true;
+      }
+
+      return false;
+    });
+
+  const canSubscribe = Boolean(countrySlug && citySlug);
+  const citySlugPath = [countrySlug, citySlug].join("/");
+  const areaSlugPath = areaSlug
+    ? [countrySlug, citySlug, areaSlug].join("/")
+    : null;
+
   const isEnrolled = () => {
-    const jwtToken = localStorage.getItem(DEVICE_JWT_STORAGE_KEY);
+    const jwtToken = getDeviceJwt();
     return jwtToken !== null;
   };
 
-  const enrollDevice = async () => {
+  /**
+   * registers this device with our database
+   * so we can send it push notifications
+   */
+  const registerDevice = async () => {
     const data = await getDeviceSubscriptionInfo();
     // add this device to our database, so we can send it push notifications
     const response = await addDevice({
@@ -65,18 +117,38 @@ export const usePlaceSubscription = () => {
 
     if ("error" in response) {
       // error adding device
-    }
-
-    if ("data" in response) {
+      alert("Error subscribing, could not register device");
+    } else if ("data" in response) {
       const jwtToken = response.data.jwt_token;
       localStorage.setItem(DEVICE_JWT_STORAGE_KEY, jwtToken);
     }
-    console.log("add device response", response);
+  };
+
+  /**
+   * creates a subscription for this device
+   */
+  const subscribeToPlace = async () => {
+    const token = getDeviceJwt();
+
+    if (!token) {
+      alert("Error subscribing, could not find device token");
+      return;
+    }
+
+    await createSubscription({
+      place_city_slug: citySlugPath,
+      place_area_slug: areaSlugPath,
+      token,
+    });
+    // refetch subscriptions
+    subscriptionsResult.refetch();
   };
 
   return {
-    isSubscribed: false,
+    isSubscribed,
+    canSubscribe,
     isEnrolled,
-    enrollDevice,
+    registerDevice,
+    subscribeToPlace,
   };
 };
