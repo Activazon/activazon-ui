@@ -5,12 +5,7 @@ const localeSlice = createSlice({
   initialState: {
     locale: "",
   },
-  reducers: {
-    // decremented: (state) => {
-    //   state.value -= 1;
-    // },
-  },
+  reducers: {},
 });
 
-// export const { incremented, decremented } = counterSlice.actions;
 export default localeSlice.reducer;

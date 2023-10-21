@@ -49,3 +49,25 @@ body {
   background-color: #ffffff;
   font-weight: 500;
 }
+
+/* device detect */
+.ios-specific {
+  display: none;
+}
+.non-ios-specific {
+  display: none;
+}
+
+/* CSS for iOS devices with touch support */
+@supports (-webkit-overflow-scrolling: touch) {
+  .ios-specific {
+    display: block;
+  }
+}
+
+/* CSS for devices without touch support (non-iOS devices) */
+@supports not (-webkit-overflow-scrolling: touch) {
+  .non-ios-specific {
+    display: block;
+  }
+}

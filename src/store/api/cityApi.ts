@@ -1,19 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { prepareHeaders } from "./utils";
 
-interface FetchCityData {
-  countrySlug: string;
-  citySlug: string;
-}
-
-interface FetchWithCityId {
-  cityId: number;
-}
-
-interface FetchWithCityIdWithLimit extends FetchWithCityId {
-  limit: number;
-}
-
 const cityApi = createApi({
   reducerPath: "cityApi",
   baseQuery: fetchBaseQuery({

@@ -10,6 +10,7 @@ export async function generateStaticParams() {
 
 import type { Metadata } from "next";
 import ServiceWorkerProvider from "@/store/ServiceWrokerProvider";
+import ModalManager from "@/components/ModalManager";
 
 export const metadata: Metadata = {
   title: "Activazon",
@@ -74,9 +75,11 @@ export default function RootLayout({
             <NavigationBar />
             <SearchManager />
             <main className="tw-mt-4">{children}</main>
+
+            <Footer />
+            <ModalManager />
           </AppProvider>
         </ServiceWorkerProvider>
-        <Footer />
       </body>
     </html>
   );

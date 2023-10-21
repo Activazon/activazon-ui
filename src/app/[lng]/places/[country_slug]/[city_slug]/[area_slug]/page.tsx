@@ -9,7 +9,7 @@ import MapInfo from "@/components/MapInfo";
 import PlaceActivityBreakdown from "@/components/PlaceActivityBreakdown";
 import { activityPath } from "@/lib/activity";
 import ActivityTypePill from "@/components/ActivityTypePill";
-import { useFetchAreaQuery } from "@/store/api/area";
+import { useFetchAreaQuery } from "@/store/api/areaApi";
 import {
   useFetchAreaIncidentTypeBreakdownQuery,
   useFetchAreaIncidentsQuery,
@@ -80,6 +80,7 @@ const Page = () => {
         description={t("common:recent_activity", {
           count: accessorPlaceIncidentMetricsLast3Months(placeData),
         })}
+        canSubscribe={true}
       />
 
       <PlaceActivityBreakdown

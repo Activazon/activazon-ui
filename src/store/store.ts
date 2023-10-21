@@ -6,17 +6,21 @@ import {
 
 // slices
 import locale from "./slices/locale";
+import modal from "./slices/modals";
 
 // apis
 import cityApi from "./api/cityApi";
-import areasApi from "./api/area";
+import areasApi from "./api/areaApi";
 import incidentApi from "./api/incidentApi";
+import pushNotificationsApi from "./api/pushNotificationsApi";
 
 const rootReducer = combineReducers({
   locale,
+  modal,
   [cityApi.reducerPath]: cityApi.reducer,
   [areasApi.reducerPath]: areasApi.reducer,
   [incidentApi.reducerPath]: incidentApi.reducer,
+  [pushNotificationsApi.reducerPath]: pushNotificationsApi.reducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
@@ -26,7 +30,8 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
       getDefaultMiddleware()
         .concat(cityApi.middleware)
         .concat(areasApi.middleware)
-        .concat(incidentApi.middleware),
+        .concat(incidentApi.middleware)
+        .concat(pushNotificationsApi.middleware),
     preloadedState,
   });
 };

@@ -24,10 +24,11 @@ export const usePlaceParams = () => {
     countrySlug,
     citySlug,
     areaSlug,
-    slugPath: `${countrySlug}/${citySlug}/${areaSlug}`.replace(
-      "/undefined",
-      ""
-    ),
+    slugPath:
+      countrySlug && citySlug
+        ? `/${countrySlug}/${citySlug}/${areaSlug}`.replace("/undefined", "")
+        : null,
     activityId,
+    hasSlugs: Boolean(countrySlug && citySlug),
   };
 };
