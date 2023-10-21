@@ -71,6 +71,7 @@ const Page = () => {
             fetchNearbyQuery.data?.place
           ),
         })}
+        canSubscribe={true}
       />
 
       <ContentGroup>

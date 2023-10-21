@@ -6,6 +6,7 @@ import {
 
 // slices
 import locale from "./slices/locale";
+import modal from "./slices/modals";
 
 // apis
 import cityApi from "./api/cityApi";
@@ -14,6 +15,7 @@ import incidentApi from "./api/incidentApi";
 
 const rootReducer = combineReducers({
   locale,
+  modal,
   [cityApi.reducerPath]: cityApi.reducer,
   [areasApi.reducerPath]: areasApi.reducer,
   [incidentApi.reducerPath]: incidentApi.reducer,
