@@ -50,7 +50,7 @@ export const getDeviceSubscriptionInfo = async () => {
 
 const DEVICE_JWT_STORAGE_KEY = "device_jwt";
 
-const getDeviceJwt = () => {
+export const getDeviceJwt = () => {
   if (typeof window === "undefined") {
     return null;
   }

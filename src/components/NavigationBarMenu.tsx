@@ -77,6 +77,12 @@ const NavigationBarMenu = () => {
               {t("menu:home")}
             </MenuItem>
             <MenuItem
+              icon={<i className="bi bi-bell-fill" />}
+              onClick={redirectAndClose("/subscriptions")}
+            >
+              {t("menu:subscriptions")}
+            </MenuItem>
+            <MenuItem
               icon={<i className="bi bi-translate" />}
               onClick={redirectAndClose(changeLanguageUrl)}
             >
