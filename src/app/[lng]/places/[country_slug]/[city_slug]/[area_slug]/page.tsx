@@ -27,7 +27,7 @@ import {
   accesorIncidentType,
 } from "@/lib/incidentAccessors";
 
-const ACTIVITIES_LIMIT = 5;
+const ACTIVITIES_LIMIT = 15;
 
 const Page = () => {
   const { t, locale } = useDictionary();

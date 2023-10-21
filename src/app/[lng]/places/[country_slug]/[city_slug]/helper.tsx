@@ -8,7 +8,7 @@ import {
   useFetchCityIncidentsQuery,
 } from "@/store/api/incidentApi";
 
-const ACTIVITIES_LIMIT = 5;
+const ACTIVITIES_LIMIT = 15;
 
 export const useCityPageParams = () => {
   const { slugPath } = usePlaceParams();
