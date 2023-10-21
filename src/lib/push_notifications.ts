@@ -36,29 +36,29 @@ export const askPushNotificationPermission = async () => {
  * Determines the next decision for handling device notifications based on the user's environment.
  *
  * @returns One of the following decisions:
- * - "Subscribe": Proceed with the subscription process.
- * - "AskPermission": Prompt the user for notification permission.
- * - "RedirectToA2HS": Redirect the user to add the app to their home screen.
- * - "OpenInBrowser": Ask the user to open the app in a full browser.
- * - "Unsupported": Handle the case where push notifications are not supported.
+ * - "subscribe": Proceed with the subscription process.
+ * - "ask_permission": Prompt the user for notification permission.
+ * - "redirect_to_a2hs": Redirect the user to add the app to their home screen.
+ * - "open_in_browser": Ask the user to open the app in a full browser.
+ * - "unsupported": Handle the case where push notifications are not supported.
  */
 export const getNotificationHandlingDecision = ():
-  | "Subscribe"
-  | "AskPermission"
-  | "RedirectToA2HS"
-  | "OpenInBrowser"
-  | "Unsupported" => {
+  | "subscribe"
+  | "ask_permission"
+  | "redirect_to_a2hs"
+  | "open_in_browser"
+  | "unsupported" => {
   if (isPushNotificationsSupported()) {
     if (pushNotificationPermission() === "granted") {
-      return "Subscribe";
+      return "subscribe";
     }
-    return "AskPermission";
+    return "ask_permission";
   }
   if (!isDisplayModeStandalone()) {
-    return "RedirectToA2HS";
+    return "redirect_to_a2hs";
   }
   if (getInAppBrowserName(window.navigator.userAgent)) {
-    return "OpenInBrowser";
+    return "open_in_browser";
   }
-  return "Unsupported";
+  return "unsupported";
 };
