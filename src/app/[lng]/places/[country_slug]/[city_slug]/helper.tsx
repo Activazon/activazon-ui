@@ -29,10 +29,10 @@ export const useCityPageParams = () => {
   // get place breakdown data
   const fetchPlaceBreakdownQuery = useFetchCityIncidentTypeBreakdownQuery(
     {
-      slugPath,
+      slugPath: slugPath!,
     },
     {
-      skip: !fetchPlaceQuery.isSuccess,
+      skip: !fetchPlaceQuery.isSuccess || !slugPath,
     }
   );
   const breakdownLoaded = fetchPlaceBreakdownQuery.isSuccess;
@@ -41,11 +41,11 @@ export const useCityPageParams = () => {
   // get activities
   const fetchIncidentQuery = useFetchCityIncidentsQuery(
     {
-      slugPath,
+      slugPath: slugPath!,
       limit: ACTIVITIES_LIMIT,
     },
     {
-      skip: !fetchPlaceQuery.isSuccess,
+      skip: !fetchPlaceQuery.isSuccess || !slugPath,
     }
   );
   const activitiesLoaded = fetchIncidentQuery.isSuccess;

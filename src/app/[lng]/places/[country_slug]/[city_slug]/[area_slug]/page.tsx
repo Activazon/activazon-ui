@@ -46,10 +46,10 @@ const Page = () => {
   // get place breakdown data
   const fetchPlaceBreakdownQuery = useFetchAreaIncidentTypeBreakdownQuery(
     {
-      slugPath,
+      slugPath: slugPath!,
     },
     {
-      skip: !fetchPlaceQuery.isSuccess,
+      skip: !fetchPlaceQuery.isSuccess || !slugPath,
     }
   );
   const breakdownLoaded = fetchPlaceBreakdownQuery.isSuccess;
@@ -58,11 +58,11 @@ const Page = () => {
   // get activities
   const fetchIncidentsQuery = useFetchAreaIncidentsQuery(
     {
-      slugPath: slugPath,
+      slugPath: slugPath!,
       limit: ACTIVITIES_LIMIT,
     },
     {
-      skip: !fetchPlaceQuery.isSuccess,
+      skip: !fetchPlaceQuery.isSuccess || !slugPath,
     }
   );
   const activitiesLoaded = fetchIncidentsQuery.isSuccess;
