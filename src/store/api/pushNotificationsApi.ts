@@ -51,6 +51,18 @@ const pushNotificationsApi = createApi({
         };
       },
     }),
+    deleteSubscription: builder.mutation({
+      query: (data: { id: number; token: string }) => {
+        const token = data.token;
+        return {
+          url: `/v3/push-notifications/device-subscription/${data.id}/`,
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
+    }),
   }),
 });
 
@@ -58,5 +70,6 @@ export const {
   useAddDeviceMutation,
   useCreateSubscriptionMutation,
   useGetSubscriptionsQuery,
+  useDeleteSubscriptionMutation,
 } = pushNotificationsApi;
 export default pushNotificationsApi;

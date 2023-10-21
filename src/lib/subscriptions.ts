@@ -1,9 +1,11 @@
 import {
   useAddDeviceMutation,
   useCreateSubscriptionMutation,
+  useDeleteSubscriptionMutation,
   useGetSubscriptionsQuery,
 } from "@/store/api/pushNotificationsApi";
 import { usePlaceParams } from "./places";
+import { useCallback } from "react";
 
 const urlBase64ToUint8Array = (base64String: string) => {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -49,6 +51,9 @@ export const getDeviceSubscriptionInfo = async () => {
 const DEVICE_JWT_STORAGE_KEY = "device_jwt";
 
 const getDeviceJwt = () => {
+  if (typeof window === "undefined") {
+    return null;
+  }
   return localStorage.getItem(DEVICE_JWT_STORAGE_KEY);
 };
 
@@ -57,8 +62,7 @@ export const usePlaceSubscription = () => {
    * grabs the users subscription info object
    * along with browser info to store in our database
    */
-  const { slugPath, countrySlug, citySlug, areaSlug, hasSlugs } =
-    usePlaceParams();
+  const { countrySlug, citySlug, areaSlug, hasSlugs } = usePlaceParams();
   const [addDevice, addDeviceResult] = useAddDeviceMutation();
   const [createSubscription, createSubscriptionResult] =
     useCreateSubscriptionMutation();
@@ -70,10 +74,12 @@ export const usePlaceSubscription = () => {
       skip: !getDeviceJwt(),
     }
   );
+  const [deleteSubscription, deleteSubscriptionResult] =
+    useDeleteSubscriptionMutation();
 
-  const isSubscribed =
+  const subscription =
     subscriptionsResult.isSuccess &&
-    subscriptionsResult.data.results.some((devSub: any) => {
+    subscriptionsResult.data.results.find((devSub: any) => {
       if (!hasSlugs) {
         return false;
       }
@@ -92,6 +98,7 @@ export const usePlaceSubscription = () => {
 
       return false;
     });
+  const isSubscribed = Boolean(subscription);
 
   const canSubscribe = Boolean(countrySlug && citySlug);
   const citySlugPath = [countrySlug, citySlug].join("/");
@@ -144,11 +151,24 @@ export const usePlaceSubscription = () => {
     subscriptionsResult.refetch();
   };
 
+  const unsubscribeToPlace = useCallback(async () => {
+    console.log("Removing subscription", subscription);
+    if (!subscription) {
+      alert("Something went wrong, could not remove subscription");
+    }
+    await deleteSubscription({
+      id: subscription.id,
+      token: getDeviceJwt()!,
+    });
+    subscriptionsResult.refetch();
+  }, [subscriptionsResult, deleteSubscription, subscription]);
+
   return {
     isSubscribed,
     canSubscribe,
     isEnrolled,
     registerDevice,
     subscribeToPlace,
+    unsubscribeToPlace,
   };
 };

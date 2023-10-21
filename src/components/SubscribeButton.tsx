@@ -8,8 +8,13 @@ import { usePlaceSubscription } from "@/lib/subscriptions";
 
 const SubscribeButton = () => {
   const disaptch = useActivazonDispatch();
-  const { isSubscribed, isEnrolled, registerDevice, subscribeToPlace } =
-    usePlaceSubscription();
+  const {
+    isSubscribed,
+    isEnrolled,
+    registerDevice,
+    subscribeToPlace,
+    unsubscribeToPlace,
+  } = usePlaceSubscription();
 
   const enrollAndSubscribe = async () => {
     if (!isEnrolled()) {
@@ -21,7 +26,7 @@ const SubscribeButton = () => {
     await subscribeToPlace();
   };
 
-  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onSubscribe = (e: React.MouseEvent<HTMLButtonElement>) => {
     switch (getNotificationHandlingDecision()) {
       case "subscribe":
         enrollAndSubscribe();
@@ -65,13 +70,29 @@ const SubscribeButton = () => {
     }
   };
 
+  const onUnsubscribe = (e: React.MouseEvent<HTMLButtonElement>) => {
+    unsubscribeToPlace();
+  };
+
   return (
-    <button
-      className="tw-rounded-xl tw-aspect-square tw-w-10 tw-text-blue-dark hover:tw-bg-blue-light hover:tw-text-white"
-      onClick={onClick}
-    >
-      <i className="bi bi-bell-fill tw-text-xl" />
-    </button>
+    <>
+      {!isSubscribed && (
+        <button
+          className="tw-rounded-xl tw-aspect-square tw-w-10 tw-text-blue-dark hover:tw-bg-blue-light hover:tw-text-white"
+          onClick={onSubscribe}
+        >
+          <i className="bi bi-bell-fill tw-text-xl" />
+        </button>
+      )}
+      {isSubscribed && (
+        <button
+          className="tw-rounded-xl tw-aspect-square tw-w-10 tw-text-gray-dark hover:tw-bg-slate-200 hover:tw-text-blue-dark"
+          onClick={onUnsubscribe}
+        >
+          <i className="bi bi-bell-slash-fill tw-text-xl" />
+        </button>
+      )}
+    </>
   );
 };
 
