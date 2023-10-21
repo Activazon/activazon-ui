@@ -13,6 +13,7 @@ const SubscribeButton = () => {
         alert("Ask permission");
         break;
       case "redirect_to_a2hs":
+        // display pwa install instructions modal (ModalManager.tsx)
         disaptch(
           setModel({
             name: "pwa_install",
@@ -21,10 +22,22 @@ const SubscribeButton = () => {
         );
         return;
       case "open_in_browser":
-        alert("Open in browser");
+        // display open in browser instructions modal (ModalManager.tsx)
+        disaptch(
+          setModel({
+            name: "open_in_browser",
+            data: undefined,
+          })
+        );
         break;
       case "unsupported":
-        alert("Unsupported");
+        // display unsupported instructions modal (ModalManager.tsx)
+        disaptch(
+          setModel({
+            name: "unsupported",
+            data: undefined,
+          })
+        );
         break;
     }
   };

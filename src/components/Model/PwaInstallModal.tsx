@@ -2,8 +2,9 @@ import { ReactNode } from "react";
 import Content from "../Content/Content";
 import ContentGroup from "../Content/ContentGroup";
 import Modal from "./Modal";
+import ModalHeader from "./ModalHeader";
 
-interface PwaInstalModelProps {
+interface PwaInstalModalProps {
   data: any;
 }
 
@@ -69,25 +70,11 @@ const NonIosInstructions = () => (
   </ContentGroup>
 );
 
-const PwaInstalModel = ({ data }: PwaInstalModelProps) => {
+const PwaInstalModal = ({ data }: PwaInstalModalProps) => {
   return (
     <Modal>
       <Content>
-        <ContentGroup>
-          <p className="tw-m-0 tw-text-blue-dark tw-text-2xl tw-font-semibold">
-            Unlock the full power of{" "}
-            <span className="tw-whitespace-nowrap tw-text-blue-light">
-              <i className="bi bi-activity"></i> Activazon
-            </span>
-          </p>
-          <p className="tw-font-normal tw-text-gray-dark">
-            Adding Activazon to your{" "}
-            <b>
-              <i className="bi bi-plus-square"></i> Home Screen
-            </b>{" "}
-            can allow you to use some cool features for free
-          </p>
-        </ContentGroup>
+        <ModalHeader />
         <ContentGroup>
           <ListItem
             icon={<i className="bi bi-bell-fill"></i>}
@@ -107,4 +94,4 @@ const PwaInstalModel = ({ data }: PwaInstalModelProps) => {
   );
 };
 
-export default PwaInstalModel;
+export default PwaInstalModal;

@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ModelState {
-  name?: "pwa_install" | "subscription_success" | "notification_permission";
+  name?: "pwa_install" | "open_in_browser" | "unsupported";
   data?: object;
 }
 
 const initialState = {
   data: undefined,
-  name: {},
+  name: undefined,
 } as ModelState;
 
 const modalSlice = createSlice({
