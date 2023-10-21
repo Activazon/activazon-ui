@@ -44,6 +44,7 @@ const Page = () => {
         description={t("common:recent_activity", {
           count: accessorPlaceIncidentMetricsLast3Months(placeData),
         })}
+        canSubscribe={true}
       />
 
       <PlaceActivityBreakdown
