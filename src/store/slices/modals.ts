@@ -1,12 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ModelState {
-  modelName?: "subscription_success" | "pwa_first" | "notification_permission";
+  modelName?:
+    | "pwa_install"
+    | "subscription_success"
+    | "notification_permission";
   modalData?: object;
 }
 
 const initialState = {
-  modelName: undefined,
+  modelName: "pwa_install", // undefined,
   modalData: {},
 } as ModelState;
 
@@ -14,11 +17,12 @@ const modalSlice = createSlice({
   name: "modal",
   initialState,
   reducers: {
-    setModelName: (state, action: PayloadAction<ModelState["modelName"]>) => {
-      state.modelName = action.payload;
+    setModel: (state, action: PayloadAction<ModelState>) => {
+      state.modalData = action.payload.modalData;
+      state.modelName = action.payload.modelName;
     },
   },
 });
 
-export const { setModelName } = modalSlice.actions;
+export const { setModel } = modalSlice.actions;
 export default modalSlice.reducer;
