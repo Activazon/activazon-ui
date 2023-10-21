@@ -14,9 +14,14 @@ export const useCityPageParams = () => {
   const { slugPath } = usePlaceParams();
 
   // get place data
-  const fetchPlaceQuery = useFetchCityQuery({
-    slugPath,
-  });
+  const fetchPlaceQuery = useFetchCityQuery(
+    {
+      slugPath: slugPath!,
+    },
+    {
+      skip: !slugPath,
+    }
+  );
   const placeMapLoaded = fetchPlaceQuery.isSuccess;
   const placeData = fetchPlaceQuery.data;
   const placeAddress = placeMapLoaded ? accesorPlaceAddress(placeData) : "";
