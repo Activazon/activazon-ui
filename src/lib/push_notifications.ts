@@ -17,15 +17,12 @@ export const pushNotificationPermission = (): NotificationPermission => {
 /**
  * asks the user for permission to send notifications
  */
-export const askPushNotificationPermission = async () => {
-  return new Promise((resolve, reject) => {
+export const askPushNotificationPermission = async (): Promise<{
+  permission: string;
+}> => {
+  return new Promise((resolve) => {
     window?.Notification.requestPermission(async (permission) => {
-      if (permission === "granted") {
-        resolve({
-          permission,
-        });
-      }
-      reject({
+      resolve({
         permission,
       });
     });

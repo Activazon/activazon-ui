@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import SearchResults from "./SearchResults";
 import Spinner from "./Spinner";
 import { useLazySearchCitiesQuery } from "@/store/api/cityApi";
-import { useLazySearchAreasQuery } from "@/store/api/area";
+import { useLazySearchAreasQuery } from "@/store/api/areaApi";
 import { usePathname } from "next/navigation";
 
 let searchTimer: NodeJS.Timeout;

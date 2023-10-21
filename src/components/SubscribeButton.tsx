@@ -1,16 +1,37 @@
 import { setModel } from "@/store/slices/modals";
 import { useActivazonDispatch } from "@/store/hooks";
-import { getNotificationHandlingDecision } from "@/lib/push_notifications";
+import {
+  askPushNotificationPermission,
+  getNotificationHandlingDecision,
+} from "@/lib/push_notifications";
+import { usePlaceSubscription } from "@/lib/subscriptions";
 
 const SubscribeButton = () => {
   const disaptch = useActivazonDispatch();
+  const { isSubscribed, isEnrolled, enrollDevice } = usePlaceSubscription();
+
+  const enrollAndSubscribe = async () => {
+    if (isEnrolled()) {
+      console.log("already enrolled");
+    } else {
+      console.debug("Enrolling device");
+      await enrollDevice();
+    }
+  };
+
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     switch (getNotificationHandlingDecision()) {
       case "subscribe":
-        alert("Notifications are enabled");
+        enrollAndSubscribe();
         break;
       case "ask_permission":
-        alert("Ask permission");
+        askPushNotificationPermission().then(({ permission }) => {
+          if (permission == "granted") {
+            enrollAndSubscribe();
+          } else {
+            alert("Please enable notifications in app settings to continue");
+          }
+        });
         break;
       case "redirect_to_a2hs":
         // display pwa install instructions modal (ModalManager.tsx)
