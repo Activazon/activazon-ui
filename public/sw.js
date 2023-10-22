@@ -75,48 +75,67 @@ self.addEventListener("push", (event) => {
   }
 
   const iconUrl = "https://activazon.com/pwa/icon-192x192.png";
+  const isEn = data.locale.toLocaleLowerCase().indexOf("en") > -1;
+
   if (data.incident) {
-    const isEn = data.locale.toLocaleLowerCase().indexOf("en") > -1;
-    const title = isEn
-      ? data.incident.contents["en"].title
-      : data.incident.contents["es"].title;
-    const summary = isEn
-      ? data.incident.contents["en"].summary
-      : data.incident.contents["es"].summary;
-
-    const city = data.incident.place_area || data.incident.place_city;
-    const image = city.map_images.wide_default_url;
-    const tag = data.incident.place_city.slug_path;
-
+    // fetch the incident data
     event.waitUntil(
-      self.registration.showNotification(title, {
-        lang: data.locale,
-        icon: iconUrl,
-        body: summary,
-        image,
-        renotify: true,
-        tag,
-        data: {
-          createdAt: new Date(Date.now()).toString(),
-          type: "incident",
-          id: data.incident.id,
-          notification_opened_callback: data.notification_opened_callback,
-        },
-      })
-    );
+      fetch(data.incident)
+        .then((response) => {
+          // get details for the notification
+          if (!response || !response.ok) {
+            console.error("Could not fetch incident data");
+            return;
+          }
 
-    // let the serve know that the notification has been delivered
-    if (data.notification_delivered_callback) {
-      event.waitUntil(
-        fetch(data.notification_delivered_callback)
-          .then((response) => {
-            console.debug("Notification delivered callback successful");
-          })
-          .catch((error) => {
-            console.error("Notification delivered callback failed", error);
-          })
-      );
-    }
+          return response.json();
+        })
+        .then((incident) => {
+          const title = isEn
+            ? incident.contents["en"].title
+            : incident.contents["es"].title;
+          const summary = isEn
+            ? incident.contents["en"].summary
+            : incident.contents["es"].summary;
+
+          const city = incident.place_area || incident.place_city;
+          const image = city.map_images.wide_default_url;
+          const tag = incident.place_city.slug_path;
+
+          // show the notification
+          return self.registration.showNotification(title, {
+            lang: data.locale,
+            icon: iconUrl,
+            body: summary,
+            image,
+            renotify: true,
+            tag,
+            data: {
+              createdAt: new Date(Date.now()).toString(),
+              type: "incident",
+              id: incident.id,
+              notification_opened_callback: data.notification_opened_callback,
+            },
+          });
+        })
+        .then(() => {
+          // let the server know that the notification has been delivered
+          if (data.notification_delivered_callback) {
+            event.waitUntil(
+              fetch(data.notification_delivered_callback)
+                .then((response) => {
+                  console.debug("Notification delivered callback successful");
+                })
+                .catch((error) => {
+                  console.error(
+                    "Notification delivered callback failed",
+                    error
+                  );
+                })
+            );
+          }
+        })
+    );
   }
 });
 
