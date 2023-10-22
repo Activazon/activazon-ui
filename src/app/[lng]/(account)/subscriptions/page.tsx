@@ -52,7 +52,7 @@ const Page = () => {
     subscriptionsResult.isSuccess &&
     subscriptionsResult.data?.results.length > 0
       ? subscriptionsResult.data?.results[0].device_id
-      : "No device id";
+      : "Unregistered";
 
   return (
     <Content>
