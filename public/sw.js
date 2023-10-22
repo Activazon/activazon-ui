@@ -68,23 +68,36 @@ self.addEventListener("push", (event) => {
   }
 
   const iconUrl = "https://activazon.com/pwa/icon-192x192.png";
-  const body =
-    data.locale.lower().indexOf("en") > -1
-      ? data.incident.contents["en"].title
-      : data.incident.contents["es"].title;
-  const tag = "incident:" + data.incident.id;
-  const city = data.incident.place_area || data.incident.place_city;
-  const image = city.images.map_images.wide_default_url;
+  if (data.incident) {
+    const title =
+      data.locale.lower().indexOf("en") > -1
+        ? data.incident.contents["en"].title
+        : data.incident.contents["es"].title;
+    const summary =
+      data.locale.lower().indexOf("en") > -1
+        ? data.incident.contents["en"].summary
+        : data.incident.contents["es"].summary;
 
-  event.waitUntil(
-    registration.showNotification(notificationReceived.title, {
-      lang: data.locale,
-      icon: iconUrl,
-      body,
-      tag: tag,
-      image,
-    })
-  );
+    const city = data.incident.place_area || data.incident.place_city;
+    const image = city.images.map_images.wide_default_url;
+    const tag = data.incident.place_city.slug_path;
+
+    event.waitUntil(
+      self.registration.showNotification(title, {
+        lang: data.locale,
+        icon: iconUrl,
+        body: summary,
+        image,
+        renotify: true,
+        tag,
+        data: {
+          createdAt: new Date(Date.now()).toString(),
+          type: "incident",
+          id: data.incident.id,
+        },
+      })
+    );
+  }
 });
 
 self.addEventListener("notificationclick", (event) => {
@@ -94,12 +107,10 @@ self.addEventListener("notificationclick", (event) => {
     // User selected the Archive action.
     archiveEmail();
   } else {
-    const [resourceType, resourceId] = event.notification.tag.split(":");
+    // TODO: could be a good place to log opens
 
-    // could be a good place to log opens
-
-    if (resourceType == "incident") {
-      clients.openWindow(`/activity/${resourceId}`);
+    if (event.notification.data.type == "incident") {
+      clients.openWindow(`/activity/${event.notification.data.id}`);
     }
   }
 });
