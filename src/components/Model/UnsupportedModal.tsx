@@ -1,3 +1,4 @@
+import { useDictionary } from "@/dictionaries";
 import Content from "../Content/Content";
 import ContentGroup from "../Content/ContentGroup";
 import Modal from "./Modal";
@@ -8,6 +9,7 @@ interface UnsupportedModalProps {
 }
 
 const UnsupportedModal = ({ data }: UnsupportedModalProps) => {
+  const { thtml } = useDictionary();
   return (
     <Modal>
       <Content>
@@ -15,16 +17,12 @@ const UnsupportedModal = ({ data }: UnsupportedModalProps) => {
         <ContentGroup>
           <p className="tw-text-lg tw-text-center tw-text-yellow-500">
             <b>
-              <i className="bi bi-exclamation-triangle-fill"></i> Look&apos;s
-              like your browser or device does not support this feature
+              <i className="bi bi-exclamation-triangle-fill"></i>{" "}
+              {thtml("modal:unsupported_message_1")}
             </b>
           </p>
           <p className="tw-text-lg tw-text-center">
-            Try opening{" "}
-            <b>
-              <a href="https://activazon.com">www.activazon.com</a>
-            </b>{" "}
-            in a different browser or device to continue.
+            {thtml("modal:unsupported_message_2")}
           </p>
 
           <p className="tw-text-center tw-text-3xl tw-my-3 tw-animate-spin">

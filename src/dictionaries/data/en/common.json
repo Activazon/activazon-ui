@@ -35,6 +35,10 @@
     "modal:pwainstall_instruction_nonios_1": "To continue, tap the <span class=\"tw-text-xl\"><i class=\"bi bi-three-dots-vertical\"></i></span> menu in your browser's menu",
     "modal:pwainstall_instruction_nonios_2": "then tap <b class=\"tw-whitespace-nowrap\"><i class=\"bi bi-phone\"></i> Add to Home Screen</b>",
     "modal:pwainstall_instruction_ios_1": "To continue, tap the <span class=\"tw-text-xl\"><i class=\"bi bi-box-arrow-up\"></i></span> button below",
-    "modal:pwainstall_instruction_ios_2": "then tap <b class=\"tw-whitespace-nowrap\"><i class=\"bi bi-plus-square\"></i> Add to Home Screen</b>"
+    "modal:pwainstall_instruction_ios_2": "then tap <b class=\"tw-whitespace-nowrap\"><i class=\"bi bi-plus-square\"></i> Add to Home Screen</b>",
+    "modal:unsupported_message_1": "Look&apos;s like your browser or device does not support this feature",
+    "modal:unsupported_message_2": "Try opening <b><a href=\"https://activazon.com\">www.activazon.com</a></b> in a different browser or device to continue.",
+    "modal:open_in_browswer_instruction_1": "To continue, tap the <span class=\"tw-text-xl\"><i class=\"bi bi-three-dots\"></i></span> button",
+    "modal:open_in_browswer_instruction_2": "then tap <b>Open in external browser</b>"
   }
 }
