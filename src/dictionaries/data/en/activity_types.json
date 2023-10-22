@@ -1,9 +1,29 @@
 {
   "locale": "en",
   "translations": {
-    "theft": "Theft",
-    "suicide": "Suicide",
+    "mistreatment": "Mistreatment",
+    "tragedy": "Tragedy",
+    "exploitation": "Exploitation",
+    "disease": "Disease",
+    "threats-and-assaults": "Threats and Assaults",
+    "sexual-abuse": "Sexual Abuse",
+    "prison": "Prison",
+    "health": "Health",
+    "vandalism": "Vandalism",
+    "extortion": "Extortion",
+    "earthquake": "Earthquake",
+    "drug-trafficking": "Drug Trafficking",
+    "concern": "Concern",
+    "accident": "Accident",
+    "abuse": "Abuse",
+    "misconduct": "Misconduct",
+    "arrest": "Arrest",
+    "attempted-suicide": "Attempted Suicide",
     "homicide": "Homicide",
-    "kidnapping": "Kidnapping"
+    "protest": "Protest",
+    "kidnapping": "Kidnapping",
+    "theft": "Theft",
+    "gang": "Gang",
+    "natural-disaster": "Natural Disaster"
   }
 }
