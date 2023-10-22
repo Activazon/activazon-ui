@@ -20,10 +20,11 @@ import {
 } from "@/lib/placeAccessors";
 import { placesPath, usePlaceParams } from "@/lib/places";
 import { useFetchIncidentQuery } from "@/store/api/incidentApi";
+import Link from "next/link";
 import { useEffect } from "react";
 
 const Page = () => {
-  const { t, locale } = useDictionary();
+  const { t, locale, thtml } = useDictionary();
   const { activityId } = usePlaceParams();
   const fetchActivityResult = useFetchIncidentQuery({
     incidentId: parseInt(activityId!),
@@ -54,6 +55,27 @@ const Page = () => {
       <TextContent title={t("activity:summary")} pulse={pulse}>
         {accesorIncidentSummary(incidentData, locale)}
       </TextContent>
+      {incidentData?.source && (
+        <div className="tw-flex tw-flex-col tw-gap-2">
+          <p className="tw-text-gray-dark">
+            {thtml("activity:read_more", {
+              websiteName: incidentData?.source.website_name,
+            })}
+          </p>
+          <Link href={incidentData?.source.canonical_link} target="_blank">
+            <p className="tw-text-sm tw-text-blue-dark ">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={incidentData?.source.website_favicon}
+                alt="News source favicon"
+                className="tw-inline-block tw-mr-2 tw-h-[18px] tw-w-[18px]"
+              />
+
+              {incidentData?.source.title}
+            </p>
+          </Link>
+        </div>
+      )}
 
       <ContentGroup>
         <ContentGroupTitle title={t("activity:related_places")} />

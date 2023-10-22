@@ -25,6 +25,21 @@
     "activity_breakdown:title": "Tipo de actividades",
     "activity_breakdown:description": "Tipo de actividades detectadas en <b>{{areaDisplayName}}</b>",
     "activity:summary": "Resumen",
-    "activity:related_places": "Lugares Relacionados"
+    "activity:related_places": "Lugares Relacionados",
+    "modal:generic_title": "Desbloquea todo el potencial de",
+    "modal:generic_description": "Al agregar Activazon a tu <b><i class=\"bi bi-plus-square\"></i> Pantalla de Inicio</b>, podrás utilizar algunas características geniales de forma gratuita",
+    "modal:pwainstall_feature1_title": "Notificaciones",
+    "modal:pwainstall_feature1_description": "Recibe alertas de notificaciones push cuando se detecta actividad en tu vecindario",
+    "modal:pwainstall_feature2_title": "Ubicación",
+    "modal:pwainstall_feature2_description": "Descubre lo que está sucediendo cerca de ti",
+    "modal:pwainstall_instruction_nonios_1": "Para continuar, toca el menú <span class=\"tw-text-xl\"><i class=\"bi bi-three-dots-vertical\"></i></span> en el navegador",
+    "modal:pwainstall_instruction_nonios_2": "luego toca <b class=\"tw-whitespace-nowrap\"><i class=\"bi bi-phone\"></i> Agregar a la Pantalla de Inicio</b>",
+    "modal:pwainstall_instruction_ios_1": "Para continuar, toca el botón <span class=\"tw-text-xl\"><i class=\"bi bi-box-arrow-up\"></i></span> a continuación",
+    "modal:pwainstall_instruction_ios_2": "luego toca <b class=\"tw-whitespace-nowrap\"><i class=\"bi bi-plus-square\"></i> Agregar a la Pantalla de Inicio</b>",
+    "modal:unsupported_message_1": "Parece que tu navegador o dispositivo no admite esta función",
+    "modal:unsupported_message_2": "Intenta abrir <b><a href=\"https://activazon.com\">www.activazon.com</a></b> en un navegador o dispositivo diferente para continuar.",
+    "modal:open_in_browswer_instruction_1": "Para continuar, toca el botón <span class=\"tw-text-xl\"><i class=\"bi bi-three-dots\"></i></span>",
+    "modal:open_in_browswer_instruction_2": "luego toca <b>Abrir en un navegador externo</b>",
+    "activity:read_more": "Leer más de <b>{{websiteName}}</b>"
   }
 }
