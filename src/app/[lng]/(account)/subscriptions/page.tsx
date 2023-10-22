@@ -48,18 +48,9 @@ const Page = () => {
     ? subscriptionsResult.data?.results
     : pulseObjectList(5);
 
-  const deviceId =
-    subscriptionsResult.isSuccess &&
-    subscriptionsResult.data?.results.length > 0
-      ? subscriptionsResult.data?.results[0].device_id
-      : "Unregistered";
-
   return (
     <Content>
-      <PageTitle
-        title={t("common:subscriptions")}
-        description={"Device Id: " + deviceId}
-      />
+      <PageTitle title={t("common:subscriptions")} />
       <ItemListContainer>
         {activityItems.map((sub: any) => {
           const data = sub.place_area || sub.place_city;
