@@ -58,6 +58,13 @@ workbox.routing.registerRoute(
   })
 );
 
+self.addEventListener("activate", (event) => {
+  /**
+   * give control to the latest service worker immeditely
+   */
+  event.waitUntil(clients.claim());
+});
+
 // listen for push notifications
 self.addEventListener("push", (event) => {
   const data = event.data.json();
