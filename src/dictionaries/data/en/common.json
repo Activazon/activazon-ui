@@ -25,6 +25,16 @@
     "activity_breakdown:title": "Type of activities",
     "activity_breakdown:description": "Type of activities detected in <b>{{areaDisplayName}}</b>",
     "activity:summary": "Summary",
-    "activity:related_places": "Related Places"
+    "activity:related_places": "Related Places",
+    "modal:generic_title": "Unlock the full power of ",
+    "modal:generic_description": "Adding Activazon to your <b><i class=\"bi bi-plus-square\"></i> Home Screen</b> can allow you to use some cool features for free",
+    "modal:pwainstall_feature1_title": "Notifications",
+    "modal:pwainstall_feature1_description": "Receive push notification alerts when activity is detected in your neighborhood",
+    "modal:pwainstall_feature2_title": "Location",
+    "modal:pwainstall_feature2_description": "Discover what is happening near you",
+    "modal:pwainstall_instruction_nonios_1": "To continue, tap the <span class=\"tw-text-xl\"><i class=\"bi bi-three-dots-vertical\"></i></span> menu in your browser's menu",
+    "modal:pwainstall_instruction_nonios_2": "then tap <b class=\"tw-whitespace-nowrap\"><i class=\"bi bi-phone\"></i> Add to Home Screen</b>",
+    "pwainstall_instruction_ios_1": "To continue, tap the <span class=\"tw-text-xl\"><i class=\"bi bi-box-arrow-up\"></i></span> button below",
+    "pwainstall_instruction_ios_2": "then tap <b class=\"tw-whitespace-nowrap\"><i class=\"bi bi-plus-square\"></i> Add to Home Screen</b>"
   }
 }

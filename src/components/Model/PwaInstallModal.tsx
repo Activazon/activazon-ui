@@ -3,6 +3,7 @@ import Content from "../Content/Content";
 import ContentGroup from "../Content/ContentGroup";
 import Modal from "./Modal";
 import ModalHeader from "./ModalHeader";
+import { useDictionary } from "@/dictionaries";
 
 interface PwaInstalModalProps {
   data: any;
@@ -28,49 +29,43 @@ const ListItem = ({ icon, title, description }: ListItemProps) => {
   );
 };
 
-const IosInstructions = () => (
-  <ContentGroup extraClasses="ios-specific">
-    <p className="tw-text-lg tw-text-center">
-      To continue, tap the{" "}
-      <span className="tw-text-xl">
-        <i className="bi bi-box-arrow-up"></i>
-      </span>{" "}
-      button below
-    </p>
-    <p className="tw-text-lg tw-text-center">
-      then tap{" "}
-      <b className="tw-whitespace-nowrap">
-        <i className="bi bi-plus-square"></i> Add to Home Screen
-      </b>
-    </p>
-    <p className="tw-text-center tw-text-3xl tw-my-3 tw-animate-bounce">
-      <i className="bi bi-arrow-down"></i>
-    </p>
-  </ContentGroup>
-);
+const IosInstructions = () => {
+  const { thtml } = useDictionary();
+  return (
+    <ContentGroup extraClasses="ikos-specific">
+      <p className="tw-text-lg tw-text-center">
+        {thtml("modal:pwainstall_instruction_ios_1")}
+        button below
+      </p>
+      <p className="tw-text-lg tw-text-center">
+        {thtml("modal:pwainstall_instruction_ios_2")}
+      </p>
+      <p className="tw-text-center tw-text-3xl tw-my-3 tw-animate-bounce">
+        <i className="bi bi-arrow-down"></i>
+      </p>
+    </ContentGroup>
+  );
+};
 
-const NonIosInstructions = () => (
-  <ContentGroup extraClasses="non-ios-specific">
-    <p className="tw-text-lg tw-text-center">
-      To continue, tap the{" "}
-      <span className="tw-text-xl">
-        <i className="bi bi-three-dots-vertical"></i>
-      </span>{" "}
-      menu in your browser&apos;s menu
-    </p>
-    <p className="tw-text-lg tw-text-center">
-      then tap{" "}
-      <b className="tw-whitespace-nowrap">
-        <i className="bi bi-phone"></i> Add to Home Screen
-      </b>
-    </p>
-    <p className="tw-text-center tw-text-3xl tw-my-3 tw-animate-spin">
-      <i className="bi bi-arrow-clockwise"></i>
-    </p>
-  </ContentGroup>
-);
+const NonIosInstructions = () => {
+  const { thtml } = useDictionary();
+  return (
+    <ContentGroup extraClasses="non-ios-specific">
+      <p className="tw-text-lg tw-text-center">
+        {thtml("modal:pwainstall_instruction_nonios_1")}
+      </p>
+      <p className="tw-text-lg tw-text-center">
+        {thtml("modal:pwainstall_instruction_nonios_2")}
+      </p>
+      <p className="tw-text-center tw-text-3xl tw-my-3 tw-animate-spin">
+        <i className="bi bi-arrow-clockwise"></i>
+      </p>
+    </ContentGroup>
+  );
+};
 
 const PwaInstalModal = ({ data }: PwaInstalModalProps) => {
+  const { t } = useDictionary();
   return (
     <Modal>
       <Content>
@@ -78,13 +73,13 @@ const PwaInstalModal = ({ data }: PwaInstalModalProps) => {
         <ContentGroup>
           <ListItem
             icon={<i className="bi bi-bell-fill"></i>}
-            title="Notifications"
-            description="Receive push notification alerts when activity is detected in your neighborhood"
+            title={t("modal:pwainstall_feature1_title")}
+            description={t("modal:pwainstall_feature1_description")}
           />
           <ListItem
             icon={<i className="bi bi-geo-alt-fill"></i>}
-            title="Location"
-            description="Discover what is happening near you"
+            title={t("modal:pwainstall_feature2_title")}
+            description={t("modal:pwainstall_feature2_description")}
           />
         </ContentGroup>
         <IosInstructions />

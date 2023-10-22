@@ -7,7 +7,7 @@ interface ModelState {
 
 const initialState = {
   data: undefined,
-  name: undefined,
+  name: "pwa_install",
 } as ModelState;
 
 const modalSlice = createSlice({
