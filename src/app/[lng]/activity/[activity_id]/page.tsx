@@ -48,7 +48,7 @@ const Page = () => {
         lead={t("activity:mapInfo:lead")}
         title={accesorIncidentTitle(incidentData, locale)}
         description={accesorIncidentAddress(incidentData)}
-        canSubscribe={true}
+        canSubscribe={false}
       />
 
       <TextContent title={t("activity:summary")} pulse={pulse}>
