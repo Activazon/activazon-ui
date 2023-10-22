@@ -108,9 +108,13 @@ self.addEventListener("push", (event) => {
     // let the serve know that the notification has been delivered
     if (data.notification_delivered_callback) {
       event.waitUntil(
-        fetch(data.notification_delivered_callback).then((response) => {
-          console.debug("Notification delivered callback successful");
-        })
+        fetch(data.notification_delivered_callback)
+          .then((response) => {
+            console.debug("Notification delivered callback successful");
+          })
+          .catch((error) => {
+            console.error("Notification delivered callback failed", error);
+          })
       );
     }
   }
@@ -130,11 +134,13 @@ self.addEventListener("notificationclick", (event) => {
     // let the server know that the notification has been opened
     if (event.notification.data.notification_opened_callback) {
       event.waitUntil(
-        fetch(event.notification.data.notification_opened_callback).then(
-          (response) => {
+        fetch(event.notification.data.notification_opened_callback)
+          .then((response) => {
             console.debug("Notification opened callback successful");
-          }
-        )
+          })
+          .catch((error) => {
+            console.error("Notification opened callback failed", error);
+          })
       );
     }
   }
