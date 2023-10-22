@@ -123,10 +123,19 @@ self.addEventListener("notificationclick", (event) => {
     // User selected the Archive action.
     archiveEmail();
   } else {
-    // TODO: could be a good place to log opens
-
     if (event.notification.data.type == "incident") {
       clients.openWindow(`/activity/${event.notification.data.id}`);
+    }
+
+    // let the server know that the notification has been opened
+    if (event.notification.data.notification_opened_callback) {
+      event.waitUntil(
+        fetch(event.notification.data.notification_opened_callback).then(
+          (response) => {
+            console.debug("Notification opened callback successful");
+          }
+        )
+      );
     }
   }
 });
