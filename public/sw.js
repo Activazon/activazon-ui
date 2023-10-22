@@ -57,3 +57,49 @@ workbox.routing.registerRoute(
     cacheName: "manifest-cache",
   })
 );
+
+// listen for push notifications
+self.addEventListener("push", (event) => {
+  const data = event.data.json();
+
+  if (!(self.Notification && self.Notification.permission === "granted")) {
+    console.log("Notifications blocked");
+    return;
+  }
+
+  const iconUrl = "https://activazon.com/pwa/icon-192x192.png";
+  const body =
+    data.locale.lower().indexOf("en") > -1
+      ? data.incident.contents["en"].title
+      : data.incident.contents["es"].title;
+  const tag = "incident:" + data.incident.id;
+  const city = data.incident.place_area || data.incident.place_city;
+  const image = city.images.map_images.wide_default_url;
+
+  event.waitUntil(
+    registration.showNotification(notificationReceived.title, {
+      lang: data.locale,
+      icon: iconUrl,
+      body,
+      tag: tag,
+      image,
+    })
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  console.log("Notification click detected: ", event.notification);
+  event.notification.close();
+  if (event.action === "archive") {
+    // User selected the Archive action.
+    archiveEmail();
+  } else {
+    const [resourceType, resourceId] = event.notification.tag.split(":");
+
+    // could be a good place to log opens
+
+    if (resourceType == "incident") {
+      clients.openWindow(`/activity/${resourceId}`);
+    }
+  }
+});
