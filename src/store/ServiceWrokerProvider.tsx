@@ -13,7 +13,7 @@ const ServiceWorkerProvider = ({ children }: ServiceWorkerProviderProps) => {
       // site using the default scope.
       navigator.serviceWorker.register("/sw.js").then(
         (registration) => {
-          console.log("Service worker registration succeeded:", registration);
+          //
         },
         (error) => {
           console.error(`Service worker registration failed: ${error}`);

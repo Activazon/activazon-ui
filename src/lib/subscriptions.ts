@@ -152,7 +152,6 @@ export const usePlaceSubscription = () => {
   };
 
   const unsubscribeToPlace = useCallback(async () => {
-    console.log("Removing subscription", subscription);
     if (!subscription) {
       alert("Something went wrong, could not remove subscription");
     }

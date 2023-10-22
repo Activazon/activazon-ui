@@ -68,13 +68,9 @@ const Page = () => {
     ? subscriptionsResult.data?.results
     : pulseObjectList(5);
 
-  console.log("activityItems", activityItems);
   return (
     <Content>
-      <PageTitle
-        title={t("common:subscriptions")}
-        description="Places you are subscribed to"
-      />
+      <PageTitle title={t("common:subscriptions")} />
       <ItemListContainer>
         {activityItems.map((sub: any) => {
           const data = sub.place_area || sub.place_city;
