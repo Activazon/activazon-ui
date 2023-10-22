@@ -32,7 +32,7 @@ const ListItem = ({ icon, title, description }: ListItemProps) => {
 const IosInstructions = () => {
   const { thtml } = useDictionary();
   return (
-    <ContentGroup extraClasses="ikos-specific">
+    <ContentGroup extraClasses="ios-specific">
       <p className="tw-text-lg tw-text-center">
         {thtml("modal:pwainstall_instruction_ios_1")}
         button below
