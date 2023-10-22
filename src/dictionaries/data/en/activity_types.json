@@ -24,6 +24,17 @@
     "kidnapping": "Kidnapping",
     "theft": "Theft",
     "gang": "Gang",
-    "natural-disaster": "Natural Disaster"
+    "natural-disaster": "Natural Disaster",
+    "robbery": "Robbery",
+    "fraud": "Fraud",
+    "cybercrime": "Cybercrime",
+    "domestic-violence": "Domestic Violence",
+    "missing-persons": "Missing Persons",
+    "harassment": "Harassment",
+    "environmental-incidents": "Environmental Incidents",
+    "riot": "Riot",
+    "fire": "Fire",
+    "civil-unrest": "Civil Unrest",
+    "corruption": "Corruption"
   }
 }
