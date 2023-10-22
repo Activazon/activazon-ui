@@ -51,11 +51,12 @@ export const getNotificationHandlingDecision = ():
     }
     return "ask_permission";
   }
-  if (!isDisplayModeStandalone()) {
-    return "redirect_to_a2hs";
-  }
   if (getInAppBrowserName(window.navigator.userAgent)) {
     return "open_in_browser";
   }
+  if (!isDisplayModeStandalone()) {
+    return "redirect_to_a2hs";
+  }
+
   return "unsupported";
 };
