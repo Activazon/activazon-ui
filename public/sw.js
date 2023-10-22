@@ -69,17 +69,16 @@ self.addEventListener("push", (event) => {
 
   const iconUrl = "https://activazon.com/pwa/icon-192x192.png";
   if (data.incident) {
-    const title =
-      data.locale.lower().indexOf("en") > -1
-        ? data.incident.contents["en"].title
-        : data.incident.contents["es"].title;
-    const summary =
-      data.locale.lower().indexOf("en") > -1
-        ? data.incident.contents["en"].summary
-        : data.incident.contents["es"].summary;
+    const isEn = data.locale.toLocaleLowerCase().indexOf("en") > -1;
+    const title = isEn
+      ? data.incident.contents["en"].title
+      : data.incident.contents["es"].title;
+    const summary = isEn
+      ? data.incident.contents["en"].summary
+      : data.incident.contents["es"].summary;
 
     const city = data.incident.place_area || data.incident.place_city;
-    const image = city.images.map_images.wide_default_url;
+    const image = city.map_images.wide_default_url;
     const tag = data.incident.place_city.slug_path;
 
     event.waitUntil(
