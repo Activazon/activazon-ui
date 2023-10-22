@@ -71,3 +71,47 @@ body {
     display: block;
   }
 }
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeindown {
+  from {
+    opacity: 0;
+    transform: translate(0, -10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0px);
+  }
+}
+
+@keyframes fadeinup {
+  from {
+    opacity: 0;
+    transform: translate(0, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0px);
+  }
+}
+
+.animate--modal-bg {
+  animation: fadein 0.2s ease-in-out;
+  /* animation: spin 1s linear infinite; */
+}
+
+.animate--modal-down {
+  animation: fadeindown 0.2s ease-in-out;
+}
+
+.animate--modal-up {
+  animation: fadeinup 0.4s ease-in-out;
+}

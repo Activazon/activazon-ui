@@ -33,7 +33,7 @@ const SearchResults = ({
   const areaItems = areasPulse ? pulseObjectList(10) : areasResults;
 
   return (
-    <Content extraClasses="tw-mt-5">
+    <Content extraClasses="tw-mt-5 animate--modal-bg">
       {/* only show cities during pulsing and if we have matches */}
       {cityItems?.length > 0 && (
         <ContentGroup>

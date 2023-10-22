@@ -26,13 +26,13 @@ const Modal = ({ children }: ModalProps) => {
 
   return (
     <div
-      className="tw-fixed tw-top-0 tw-left-0 tw-z-[10000000] tw-h-screen tw-w-screen tw-backdrop-blur-md tw-bg-white/30 tw-transition-opacity tw-flex tw-justify-center tw-items-end md:tw-items-center"
+      className="tw-fixed tw-top-0 tw-left-0 tw-z-[10000000] tw-h-screen tw-w-screen tw-backdrop-blur-md tw-bg-white/30 tw-transition-opacity tw-flex tw-justify-center tw-items-end md:tw-items-center animate--modal-bg"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
       onClick={handleCloseByTint}
     >
-      <div className="tw-relative tw-shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] tw-bg-white tw-max-h-full tw-max-w-full md:tw-min-w-[550px] tw-w-full md:tw-w-auto tw-pt-9 tw-px-4 md:tw-px-10 tw-pb-[6rem] md:tw-pb-9 tw-flex tw-flex-col tw-gap-6 tw-rounded-t-3xl md:tw-rounded-3xl">
+      <div className="tw-relative tw-shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] tw-bg-white tw-max-h-full tw-max-w-full md:tw-min-w-[550px] tw-w-full md:tw-w-auto tw-pt-9 tw-px-4 md:tw-px-10 tw-pb-[6rem] md:tw-pb-9 tw-flex tw-flex-col tw-gap-6 tw-rounded-t-3xl md:tw-rounded-3xl animate--modal-up">
         <button
           className="tw-absolute tw-top-4 tw-right-4 tw-cursor-pointer tw-z-50 tw-bg-slate-200 tw-rounded-full tw-aspect-square tw-w-8 tw-flex tw-justify-center tw-items-center tw-text-blue-dark"
           onClick={handleClose}
