@@ -100,9 +100,19 @@ self.addEventListener("push", (event) => {
           createdAt: new Date(Date.now()).toString(),
           type: "incident",
           id: data.incident.id,
+          notification_opened_callback: data.notification_opened_callback,
         },
       })
     );
+
+    // let the serve know that the notification has been delivered
+    if (data.notification_delivered_callback) {
+      event.waitUntil(
+        fetch(data.notification_delivered_callback).then((response) => {
+          console.debug("Notification delivered callback successful");
+        })
+      );
+    }
   }
 });
 
