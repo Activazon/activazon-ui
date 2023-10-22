@@ -51,7 +51,7 @@ const Page = () => {
     : pulseObjectList(areasLimit);
 
   // fetch cities
-  const citiesLimit = 4;
+  const citiesLimit = 8;
   const fetchCitiesQuery = useFetchCitiesQuery({
     limit: citiesLimit,
   });
