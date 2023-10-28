@@ -5,6 +5,8 @@ import {
   getNotificationHandlingDecision,
 } from "@/lib/push_notifications";
 import { usePlaceSubscription } from "@/lib/subscriptions";
+import PopupMessage from "./PopupMessage";
+import { useDictionary } from "@/dictionaries";
 
 interface SubscribeButtonProps {
   countrySlug: string;
@@ -17,10 +19,12 @@ const SubscribeButton = ({
   citySlug,
   areaSlug,
 }: SubscribeButtonProps) => {
+  const { t } = useDictionary();
   const disaptch = useActivazonDispatch();
   const {
     isSubscribed,
     isEnrolled,
+    actionSuccessful,
     registerDevice,
     subscribeToPlace,
     unsubscribeToPlace,
@@ -86,6 +90,12 @@ const SubscribeButton = ({
 
   return (
     <>
+      {actionSuccessful && isSubscribed && (
+        <PopupMessage label={t("popup:subscribed")} />
+      )}
+      {actionSuccessful && !isSubscribed && (
+        <PopupMessage label={t("popup:unsubscribed")} />
+      )}
       {!isSubscribed && (
         <button
           className="tw-rounded-xl tw-aspect-square tw-w-10 tw-text-blue-dark hover:tw-bg-blue-light hover:tw-text-white"

@@ -4,7 +4,7 @@ import {
   useDeleteSubscriptionMutation,
   useGetSubscriptionsQuery,
 } from "@/store/api/pushNotificationsApi";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 const urlBase64ToUint8Array = (base64String: string) => {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -86,6 +86,7 @@ export const usePlaceSubscription = ({
   );
   const [deleteSubscription, deleteSubscriptionResult] =
     useDeleteSubscriptionMutation();
+  const [actionSuccessful, setActionSuccessful] = useState(false);
 
   const subscription =
     subscriptionsResult.isSuccess &&
@@ -157,6 +158,7 @@ export const usePlaceSubscription = ({
       place_area_slug: areaSlugPath,
       token,
     });
+    setActionSuccessful(true);
     // refetch subscriptions
     subscriptionsResult.refetch();
   };
@@ -169,12 +171,14 @@ export const usePlaceSubscription = ({
       id: subscription.id,
       token: getDeviceJwt()!,
     });
+    setActionSuccessful(true);
     subscriptionsResult.refetch();
   }, [subscriptionsResult, deleteSubscription, subscription]);
 
   return {
     isSubscribed,
     canSubscribe,
+    actionSuccessful,
     isEnrolled,
     registerDevice,
     subscribeToPlace,

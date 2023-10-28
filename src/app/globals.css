@@ -81,6 +81,15 @@ body {
   }
 }
 
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 @keyframes fadeindown {
   from {
     opacity: 0;
@@ -114,4 +123,12 @@ body {
 
 .animate--modal-up {
   animation: fadeinup 0.4s ease-in-out;
+}
+
+.animate--fadein {
+  animation: fadein 0.2s ease-in-out 1 forwards;
+}
+
+.animate--fadeout {
+  animation: fadeout 0.3s ease-in-out 1 forwards;
 }

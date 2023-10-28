@@ -40,6 +40,8 @@
     "modal:unsupported_message_2": "Try opening <b><a href=\"https://activazon.com\">www.activazon.com</a></b> in a different browser or device to continue.",
     "modal:open_in_browswer_instruction_1": "To continue, tap the <span class=\"tw-text-xl\"><i class=\"bi bi-three-dots\"></i></span> button",
     "modal:open_in_browswer_instruction_2": "then tap <b>Open in external browser</b>",
-    "activity:read_more": "Read more from <b>{{websiteName}}</b>"
+    "activity:read_more": "Read more from <b>{{websiteName}}</b>",
+    "popup:subscribed": "Subscribed",
+    "popup:unsubscribed": "Unsubscribed"
   }
 }
