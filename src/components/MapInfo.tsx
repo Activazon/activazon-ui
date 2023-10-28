@@ -1,6 +1,5 @@
 import React from "react";
 import ContentGroup from "./Content/ContentGroup";
-import SubscribeButton from "./SubscribeButton";
 
 interface MapInfoProps {
   lead: string;
