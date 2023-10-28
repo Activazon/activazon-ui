@@ -26,6 +26,7 @@ import {
   accesorIncidentTitle,
   accesorIncidentType,
 } from "@/lib/incidentAccessors";
+import SubscribeButton from "@/components/SubscribeButton";
 
 const ACTIVITIES_LIMIT = 15;
 
@@ -70,6 +71,14 @@ const Page = () => {
     ? fetchIncidentsQuery.data?.results
     : pulseObjectList(ACTIVITIES_LIMIT);
 
+  const actionsElements = (
+    <SubscribeButton
+      countrySlug={countrySlug}
+      citySlug={citySlug}
+      areaSlug={areaSlug}
+    />
+  );
+
   return (
     <Content>
       <MapInfo
@@ -80,7 +89,7 @@ const Page = () => {
         description={t("common:recent_activity", {
           count: accessorPlaceIncidentMetricsLast3Months(placeData),
         })}
-        canSubscribe={true}
+        actionsElements={actionsElements}
       />
 
       <PlaceActivityBreakdown

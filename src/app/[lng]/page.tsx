@@ -27,6 +27,7 @@ import {
 } from "@/lib/incidentAccessors";
 import { activityPath } from "@/lib/activity";
 import ActivityTypePill from "@/components/ActivityTypePill";
+import SubscribeButton from "@/components/SubscribeButton";
 
 const Page = () => {
   const { t, locale } = useDictionary();
@@ -59,6 +60,14 @@ const Page = () => {
     ? fetchCitiesQuery.data?.results
     : pulseObjectList(citiesLimit);
 
+  const actionsElements = (
+    <SubscribeButton
+      countrySlug={fetchNearbyQuery.data?.place.country.slug!}
+      citySlug={fetchNearbyQuery.data?.place.slug!}
+      areaSlug={undefined}
+    />
+  );
+
   return (
     <Content>
       <MapInfo
@@ -71,7 +80,7 @@ const Page = () => {
             fetchNearbyQuery.data?.place
           ),
         })}
-        canSubscribe={false}
+        actionsElements={actionsElements}
       />
 
       <ContentGroup>

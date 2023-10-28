@@ -3,6 +3,7 @@ import Content from "@/components/Content/Content";
 import ContentGroup from "@/components/Content/ContentGroup";
 import ContentGroupTitle from "@/components/Content/ContentGroupTitle";
 import MapInfo from "@/components/MapInfo";
+import SubscribeButton from "@/components/SubscribeButton";
 import TextContent from "@/components/TextContent";
 import TileGridContainer from "@/components/TileGrid/TileGridContainer";
 import TileItem from "@/components/TileGrid/TileItem";
@@ -41,6 +42,14 @@ const Page = () => {
   const cityData = fetchActivityResult.data?.place_city;
   const pulse = !fetchActivityResult.isSuccess;
 
+  const actionsElements = (
+    <SubscribeButton
+      countrySlug={cityData?.country.slug!}
+      citySlug={cityData?.slug!}
+      areaSlug={areaData?.slug}
+    />
+  );
+
   return (
     <Content>
       <MapInfo
@@ -49,7 +58,7 @@ const Page = () => {
         lead={t("activity:mapInfo:lead")}
         title={accesorIncidentTitle(incidentData, locale)}
         description={accesorIncidentAddress(incidentData)}
-        canSubscribe={false}
+        actionsElements={actionsElements}
       />
 
       <TextContent title={t("activity:summary")} pulse={pulse}>

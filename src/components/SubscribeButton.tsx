@@ -6,7 +6,17 @@ import {
 } from "@/lib/push_notifications";
 import { usePlaceSubscription } from "@/lib/subscriptions";
 
-const SubscribeButton = () => {
+interface SubscribeButtonProps {
+  countrySlug: string;
+  citySlug: string;
+  areaSlug?: string;
+}
+
+const SubscribeButton = ({
+  countrySlug,
+  citySlug,
+  areaSlug,
+}: SubscribeButtonProps) => {
   const disaptch = useActivazonDispatch();
   const {
     isSubscribed,
@@ -14,7 +24,7 @@ const SubscribeButton = () => {
     registerDevice,
     subscribeToPlace,
     unsubscribeToPlace,
-  } = usePlaceSubscription();
+  } = usePlaceSubscription({ countrySlug, citySlug, areaSlug });
 
   const enrollAndSubscribe = async () => {
     if (!isEnrolled()) {

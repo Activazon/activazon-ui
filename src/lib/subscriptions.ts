@@ -4,7 +4,6 @@ import {
   useDeleteSubscriptionMutation,
   useGetSubscriptionsQuery,
 } from "@/store/api/pushNotificationsApi";
-import { usePlaceParams } from "./places";
 import { useCallback } from "react";
 
 const urlBase64ToUint8Array = (base64String: string) => {
@@ -57,12 +56,23 @@ export const getDeviceJwt = () => {
   return localStorage.getItem(DEVICE_JWT_STORAGE_KEY);
 };
 
-export const usePlaceSubscription = () => {
+interface UsePlaceSubscriptionOptions {
+  countrySlug: string;
+  citySlug: string;
+  areaSlug?: string;
+}
+
+export const usePlaceSubscription = ({
+  countrySlug,
+  citySlug,
+  areaSlug,
+}: UsePlaceSubscriptionOptions) => {
   /**
    * grabs the users subscription info object
    * along with browser info to store in our database
    */
-  const { countrySlug, citySlug, areaSlug, hasSlugs } = usePlaceParams();
+  const hasSlugs = Boolean(countrySlug && citySlug);
+  // const { countrySlug, citySlug, areaSlug, hasSlugs } = usePlaceParams();
   const [addDevice, addDeviceResult] = useAddDeviceMutation();
   const [createSubscription, createSubscriptionResult] =
     useCreateSubscriptionMutation();

@@ -20,6 +20,7 @@ import {
   accesorIncidentType,
 } from "@/lib/incidentAccessors";
 import { useCityPageParams } from "./helper";
+import SubscribeButton from "@/components/SubscribeButton";
 
 const Page = () => {
   const { t, locale } = useDictionary();
@@ -34,6 +35,14 @@ const Page = () => {
     activitiesLoaded,
   } = useCityPageParams();
 
+  const actionsElements = (
+    <SubscribeButton
+      countrySlug={placeData?.country?.slug!}
+      citySlug={placeData?.slug!}
+      areaSlug={undefined}
+    />
+  );
+
   return (
     <Content>
       <MapInfo
@@ -44,7 +53,7 @@ const Page = () => {
         description={t("common:recent_activity", {
           count: accessorPlaceIncidentMetricsLast3Months(placeData),
         })}
-        canSubscribe={true}
+        actionsElements={actionsElements}
       />
 
       <PlaceActivityBreakdown

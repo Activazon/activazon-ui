@@ -1,3 +1,4 @@
+import React from "react";
 import ContentGroup from "./Content/ContentGroup";
 import SubscribeButton from "./SubscribeButton";
 
@@ -7,7 +8,7 @@ interface MapInfoProps {
   description: string;
   imgUrl: string;
   pulse: boolean;
-  canSubscribe: boolean;
+  actionsElements: React.ReactNode;
 }
 
 const MapInfo = ({
@@ -16,7 +17,7 @@ const MapInfo = ({
   description,
   imgUrl,
   pulse,
-  canSubscribe,
+  actionsElements,
 }: MapInfoProps) => {
   return (
     <ContentGroup>
@@ -55,9 +56,9 @@ const MapInfo = ({
             <div className="tw-h-3 tw-bg-slate-200 tw-rounded-full tw-col-span-5"></div>
           </div>
         )}
-        {canSubscribe && (
+        {actionsElements && (
           <div className="tw-flex tw-items-center tw-justify-start">
-            <SubscribeButton />
+            {actionsElements}
           </div>
         )}
       </div>
