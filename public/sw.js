@@ -158,25 +158,27 @@ self.addEventListener("push", (event) => {
 self.addEventListener("notificationclick", (event) => {
   console.log("Notification click detected: ", event.notification);
   event.notification.close();
-  if (event.action === "archive") {
-    // User selected the Archive action.
-    archiveEmail();
-  } else {
-    if (event.notification.data.type == "incident") {
-      clients.openWindow(`/activity/${event.notification.data.id}`);
-    }
+  const promiseChain = [];
 
-    // let the server know that the notification has been opened
-    if (event.notification.data.notification_opened_callback) {
-      event.waitUntil(
-        fetch(event.notification.data.notification_opened_callback)
-          .then((response) => {
-            console.debug("Notification opened callback successful");
-          })
-          .catch((error) => {
-            console.error("Notification opened callback failed", error);
-          })
-      );
-    }
+  // incident notification clicked
+  if (event.notification.data.type == "incident") {
+    promiseChain.push(
+      clients.openWindow(`/activity/${event.notification.data.id}`)
+    );
   }
+
+  // trigger opened callback
+  if (event.notification.data.notification_opened_callback) {
+    promiseChain.push(
+      fetch(event.notification.data.notification_opened_callback)
+        .then((response) => {
+          console.debug("Notification opened callback successful");
+        })
+        .catch((error) => {
+          console.error("Notification opened callback failed", error);
+        })
+    );
+  }
+
+  event.waitUntil(Promise.all(promiseChain));
 });
