@@ -23,7 +23,7 @@ const PopupMessage = ({ label }: SubscribePopupProps) => {
         isVisible ? "animate--fadein" : "animate--fadeout"
       }`}
     >
-      <div className="tw-bg-black/80 tw-px-3 tw-py-1 tw-rounded-xl tw-backdrop-blur-sm tw-shadow-2xl tw-text-white tw-font-semibold">
+      <div className="tw-bg-black/60 tw-px-3 tw-py-1 tw-rounded-xl tw-backdrop-blur-sm tw-shadow-2xl tw-text-white tw-font-semibold">
         <p>{label}</p>
       </div>
     </div>
