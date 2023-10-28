@@ -9,6 +9,10 @@ export const accesorIncidentBannerImage = (incident: any) => {
   return accessorPlaceMapImagesWideDefault(place);
 };
 
+export const accesorIncidentExtraBannerImages = (incident: any) => {
+  return [incident?.source?.top_image].filter((x) => x);
+};
+
 export const accesorIncidentTitle = (incident: any, locale: string) => {
   if (incident?.contents) {
     return incident.contents[locale].title;

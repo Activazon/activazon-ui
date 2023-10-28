@@ -6,6 +6,7 @@ interface MapInfoProps {
   title: string;
   description: string;
   imgUrl: string;
+  extraImgUrls?: string[];
   pulse: boolean;
   actionsElements: React.ReactNode;
 }
@@ -15,21 +16,28 @@ const MapInfo = ({
   title,
   description,
   imgUrl,
+  extraImgUrls,
   pulse,
   actionsElements,
 }: MapInfoProps) => {
+  const imgUrls = [imgUrl, ...(extraImgUrls || [])];
   return (
     <ContentGroup>
       <div className="tw-bg-blue-dark tw-shadow-xl tw-rounded-2xl tw-aspect-[16/9] tw-w-full tw-overflow-hidden">
         {!pulse && (
-          <>
+          <div className="tw-snap-x tw-flex tw-flex-row tw-snap-mandatory tw-overflow-x-auto">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="tw-aspect-[16/9] tw-w-full tw-h-full"
-              alt={`Map of ${title}`}
-              src={imgUrl}
-            />
-          </>
+            {imgUrls.map((url, index) => (
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="tw-aspect-[16/9] tw-w-full tw-h-full tw-snap-start"
+                  alt={`Image of ${title} (#${index})`}
+                  src={url}
+                />
+              </>
+            ))}
+          </div>
         )}
       </div>
       <div className="tw-flex tw-justify-between">

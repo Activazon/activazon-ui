@@ -11,6 +11,7 @@ import { useDictionary } from "@/dictionaries";
 import {
   accesorIncidentAddress,
   accesorIncidentBannerImage,
+  accesorIncidentExtraBannerImages,
   accesorIncidentSummary,
   accesorIncidentTitle,
 } from "@/lib/incidentAccessors";
@@ -55,6 +56,7 @@ const Page = () => {
       <MapInfo
         pulse={pulse}
         imgUrl={accesorIncidentBannerImage(incidentData)}
+        extraImgUrls={accesorIncidentExtraBannerImages(incidentData)}
         lead={t("activity:mapInfo:lead")}
         title={accesorIncidentTitle(incidentData, locale)}
         description={accesorIncidentAddress(incidentData)}
