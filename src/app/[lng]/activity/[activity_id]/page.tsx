@@ -44,7 +44,7 @@ const Page = () => {
 
   const actionsElements = (
     <SubscribeButton
-      countrySlug={cityData?.country.slug!}
+      countrySlug={cityData?.country?.slug!}
       citySlug={cityData?.slug!}
       areaSlug={areaData?.slug}
     />
