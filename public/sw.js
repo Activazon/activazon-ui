@@ -6,7 +6,6 @@ workbox.setConfig({
   debug: true,
 });
 
-workbox.core.skipWaiting();
 workbox.core.clientsClaim();
 
 //  nextjs pages
@@ -65,8 +64,13 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(clients.claim());
 });
 
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
+});
+
 // listen for push notifications
 self.addEventListener("push", (event) => {
+  console.log("Push notification received", event);
   const data = event.data.json();
 
   if (!(self.Notification && self.Notification.permission === "granted")) {
@@ -75,22 +79,31 @@ self.addEventListener("push", (event) => {
   }
 
   const iconUrl = "https://activazon.com/pwa/icon-192x192.png";
-  const isEn = data.locale.toLocaleLowerCase().indexOf("en") > -1;
+  let promiseChain = [];
 
-  if (data.incident) {
-    // fetch the incident data
-    event.waitUntil(
+  if (data.test) {
+    promiseChain.push(
+      self.registration.showNotification("Testing testing 123", {
+        data: {
+          type: "test",
+        },
+      })
+    );
+  } else if (data.incident) {
+    // fetch the incident data and show the notification
+    promiseChain.push(
       fetch(data.incident)
         .then((response) => {
           // get details for the notification
           if (!response || !response.ok) {
-            console.error("Could not fetch incident data");
+            console.error("Could not fetch incident data", response);
             return;
           }
 
           return response.json();
         })
         .then((incident) => {
+          const isEn = data.locale.toLocaleLowerCase().indexOf("en") > -1;
           const title = isEn
             ? incident.contents["en"].title
             : incident.contents["es"].title;
@@ -111,7 +124,6 @@ self.addEventListener("push", (event) => {
             renotify: true,
             tag,
             data: {
-              createdAt: new Date(Date.now()).toString(),
               type: "incident",
               id: incident.id,
               notification_opened_callback: data.notification_opened_callback,
@@ -119,24 +131,28 @@ self.addEventListener("push", (event) => {
           });
         })
         .then(() => {
-          // let the server know that the notification has been delivered
-          if (data.notification_delivered_callback) {
-            event.waitUntil(
-              fetch(data.notification_delivered_callback)
-                .then((response) => {
-                  console.debug("Notification delivered callback successful");
-                })
-                .catch((error) => {
-                  console.error(
-                    "Notification delivered callback failed",
-                    error
-                  );
-                })
-            );
-          }
+          console.log("Successfully sent notification");
+        })
+        .catch((error) => {
+          console.error("Could not send notification", error);
         })
     );
   }
+
+  // let the server know that the notification has been delivered
+  if (data.notification_delivered_callback) {
+    promiseChain.push(
+      fetch(data.notification_delivered_callback)
+        .then((response) => {
+          console.debug("Notification delivered callback successful");
+        })
+        .catch((error) => {
+          console.error("Notification delivered callback failed", error);
+        })
+    );
+  }
+
+  event.waitUntil(Promise.all(promiseChain));
 });
 
 self.addEventListener("notificationclick", (event) => {
