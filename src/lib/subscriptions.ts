@@ -158,9 +158,9 @@ export const usePlaceSubscription = ({
       place_area_slug: areaSlugPath,
       token,
     });
-    setActionSuccessful(true);
     // refetch subscriptions
     subscriptionsResult.refetch();
+    setActionSuccessful(true);
   };
 
   const unsubscribeToPlace = useCallback(async () => {
@@ -171,8 +171,8 @@ export const usePlaceSubscription = ({
       id: subscription.id,
       token: getDeviceJwt()!,
     });
-    setActionSuccessful(true);
     subscriptionsResult.refetch();
+    setActionSuccessful(true);
   }, [subscriptionsResult, deleteSubscription, subscription]);
 
   return {
