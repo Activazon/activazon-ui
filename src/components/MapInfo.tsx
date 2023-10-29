@@ -31,6 +31,7 @@ const MapInfo = ({
               <>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
+                  key={`map-info-${title}-${index}`}
                   className="tw-aspect-[16/9] tw-w-full tw-h-full tw-snap-start"
                   alt={`Image of ${title} (#${index})`}
                   src={url}
