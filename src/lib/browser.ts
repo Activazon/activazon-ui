@@ -20,7 +20,10 @@ export const getInAppBrowserName = (
  * returns true if the user is in standalone mode
  */
 export const isDisplayModeStandalone = () => {
-  return "standalone" in window.navigator && window.navigator.standalone;
+  return (
+    ("standalone" in window.navigator && window.navigator.standalone) || // ios
+    window.matchMedia("(display-mode: standalone)").matches // android
+  );
 };
 
 /**
