@@ -22,3 +22,14 @@ export const getInAppBrowserName = (
 export const isDisplayModeStandalone = () => {
   return "standalone" in window.navigator && window.navigator.standalone;
 };
+
+/**
+ * Returns true if the user is on a desktop browser
+ */
+export const isOnDesktopBrowser = () => {
+  const isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  return !isMobile;
+};

@@ -3,7 +3,7 @@ import { useActivazonDispatch } from "@/store/hooks";
 import {
   askPushNotificationPermission,
   getNotificationHandlingDecision,
-} from "@/lib/push_notifications";
+} from "@/lib/pushNotifications";
 import { usePlaceSubscription } from "@/lib/subscriptions";
 import PopupMessage from "./PopupMessage";
 import { useDictionary } from "@/dictionaries";

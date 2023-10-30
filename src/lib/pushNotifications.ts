@@ -1,4 +1,8 @@
-import { getInAppBrowserName, isDisplayModeStandalone } from "./browser";
+import {
+  getInAppBrowserName,
+  isDisplayModeStandalone,
+  isOnDesktopBrowser,
+} from "./browser";
 
 /**
  * checks we can send push notifications to this device
@@ -46,17 +50,31 @@ export const getNotificationHandlingDecision = ():
   | "open_in_browser"
   | "unsupported" => {
   if (isPushNotificationsSupported()) {
-    if (pushNotificationPermission() === "granted") {
-      return "subscribe";
+    // push notification are supported on this device
+    if (isOnDesktopBrowser() || isDisplayModeStandalone()) {
+      // only allow push notifications on desktop browsers and standalone apps on mobile
+      if (pushNotificationPermission() === "granted") {
+        return "subscribe";
+      }
+      return "ask_permission";
+    } else {
+      // user is in a mobile browser that supports push notifications
+      // we do not want this to happen, so we will ask the user to add the app to their home screen
+      return "redirect_to_a2hs";
     }
-    return "ask_permission";
-  }
-  if (getInAppBrowserName(window.navigator.userAgent)) {
-    return "open_in_browser";
-  }
-  if (!isDisplayModeStandalone()) {
-    return "redirect_to_a2hs";
   }
 
-  return "unsupported";
+  if (getInAppBrowserName(window.navigator.userAgent)) {
+    // we will ask the user to open the app in a full browser
+    return "open_in_browser";
+  }
+
+  if (!isPushNotificationsSupported() && isDisplayModeStandalone()) {
+    // user is in standalone mode but push notifications are not supported
+    return "unsupported";
+  }
+
+  // we will ask the user to add the app to their home screen hoping
+  // that they will use a browser that supports push notifications
+  return "redirect_to_a2hs";
 };
