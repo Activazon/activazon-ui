@@ -49,9 +49,6 @@ export const getNotificationHandlingDecision = ():
   | "redirect_to_a2hs"
   | "open_in_browser"
   | "unsupported" => {
-  alert(`isPushNotificationsSupported(): ${isPushNotificationsSupported()}`);
-  alert(`isOnDesktopBrowser(): ${isOnDesktopBrowser()}`);
-  alert(`isDisplayModeStandalone(): ${isDisplayModeStandalone()}`);
   if (isPushNotificationsSupported()) {
     // push notification are supported on this device
     if (isOnDesktopBrowser() || isDisplayModeStandalone()) {
