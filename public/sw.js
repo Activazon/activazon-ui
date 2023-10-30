@@ -104,12 +104,10 @@ self.addEventListener("push", (event) => {
         })
         .then((incident) => {
           const isEn = data.locale.toLocaleLowerCase().indexOf("en") > -1;
-          const placeDisplayName = [
-            incident.place_area?.display_name,
-            incident.place_city?.display_name,
-          ]
-            .filter(Boolean)
-            .join(", "); // e.g: "Colonia Roma, Ciudad de México"
+          const placeDisplayName = incident.place_area
+            ? `${incident.place_area.display_name}, ${incident.place_city.display_name}`
+            : incident.place_city.display_name;
+
           const title = isEn
             ? `Incident in ${placeDisplayName}`
             : `Incidente en ${placeDisplayName}`;
