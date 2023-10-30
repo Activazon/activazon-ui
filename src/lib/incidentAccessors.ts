@@ -40,6 +40,11 @@ export const accesorIncidentType = (incident: any) => {
 };
 
 export const accesorIncidentAreaDisplayName = (incident: any) => {
-  const place = incident?.place_area || incident?.place_city;
-  return place?.display_name;
+  if (incident?.place_area) {
+    return [
+      incident.place_area.display_name,
+      incident.place_city.display_name,
+    ].join(", ");
+  }
+  return incident?.place_city?.display_name;
 };
