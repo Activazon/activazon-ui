@@ -104,15 +104,21 @@ self.addEventListener("push", (event) => {
         })
         .then((incident) => {
           const isEn = data.locale.toLocaleLowerCase().indexOf("en") > -1;
+          const placeDisplayName = [
+            incident.place_area?.display_name,
+            incident.place_city?.display_name,
+          ]
+            .filter(Boolean)
+            .join(", "); // e.g: "Colonia Roma, Ciudad de México"
           const title = isEn
-            ? incident.contents["en"].title
-            : incident.contents["es"].title;
+            ? `Incident in ${placeDisplayName}`
+            : `Incidente en ${placeDisplayName}`;
           const summary = isEn
-            ? incident.contents["en"].summary
-            : incident.contents["es"].summary;
+            ? `${incident.contents["en"].title} - Read more`
+            : `${incident.contents["es"].title} - Leer más`;
 
-          const city = incident.place_area || incident.place_city;
-          const image = city.map_images.wide_default_url;
+          const place = incident.place_area || incident.place_city;
+          const image = place.map_images.wide_default_url;
           const tag = incident.place_city.slug_path;
 
           // show the notification
