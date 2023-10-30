@@ -160,7 +160,9 @@ self.addEventListener("notificationclick", (event) => {
   // incident notification clicked
   if (event.notification.data.type == "incident") {
     promiseChain.push(
-      clients.openWindow(`/activity/${event.notification.data.id}`)
+      clients
+        .openWindow(`/activity/${event.notification.data.id}`)
+        .then((windowClient) => (windowClient ? windowClient.focus() : null))
     );
   }
 
