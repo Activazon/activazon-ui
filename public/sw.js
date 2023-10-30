@@ -57,13 +57,6 @@ workbox.routing.registerRoute(
   })
 );
 
-self.addEventListener("activate", (event) => {
-  /**
-   * give control to the latest service worker immeditely
-   */
-  event.waitUntil(clients.claim());
-});
-
 self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
