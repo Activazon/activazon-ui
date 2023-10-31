@@ -1,4 +1,4 @@
-import "../globals.css";
+import "../../globals.css";
 import AppProvider from "@/store/AppProvider";
 import NavigationBar from "@/components/NavigationBar";
 import SearchManager from "@/components/SearchManager";
