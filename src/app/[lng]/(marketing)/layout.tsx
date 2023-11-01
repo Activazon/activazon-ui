@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="tw-w-full tw-min-h-[50px] tw-bg-blue-light tw-py-5">
+        <div className="tw-w-full tw-min-h-[50px] tw-bg-blue-light tw-py-5 tw-sticky">
           <nav className="tw-w-full tw-max-w-6xl tw-px-3 tw-mx-auto tw-flex tw-justify-between">
             <p className="tw-text-2xl tw-flex tw-flex-row tw-gap-2 tw-items-center tw-font-medium tw-text-white">
               <i className="bi bi-activity tw-text-3xl"></i>
