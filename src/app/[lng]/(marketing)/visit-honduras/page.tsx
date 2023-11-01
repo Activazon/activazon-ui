@@ -189,6 +189,17 @@ const Page = () => {
           </div>
         </div>
       </Section>
+      {/* CTA */}
+      <Section color="blue">
+        <div className="tw-flex tw-flex-col tw-gap-10">
+          <h1 className="tw-text-blue-dark tw-text-5xl tw-font-bold tw-text-center">
+            Don&apos;t take our word for it.
+          </h1>
+          <p className="tw-text-center tw-text-lg">
+            Activazon is easy to use, no installs necessary, just tap below
+          </p>
+        </div>
+      </Section>
     </>
   );
 };
