@@ -20,6 +20,13 @@ const Section = ({ children, color }: SectionProps) => {
   );
 };
 
+const Point = ({ children }: { children: React.ReactNode }) => (
+  <div className="tw-text-blue-dark tw-text-lg tw-bg-blue-light/20 tw-p-4 tw-rounded-2xl tw-shadow-xll tw-border-2 tw-border-blue-light tw-flex tw-flex-row tw-gap-3 tw-items-center hover:tw-scale-110 tw-ease-in-out tw-duration-300">
+    <i className="bi bi-asterisk tw-text-2xl tw-text-blue-light"></i>
+    <p>{children}</p>
+  </div>
+);
+
 const Page = () => {
   return (
     <>
@@ -45,47 +52,31 @@ const Page = () => {
         </div>
       </Section>
       {/* the problem with the way things are done */}
-      <Section color="slate">
+      <Section color="white">
         <div className="tw-flex tw-flex-col tw-gap-10">
-          <h1 className="tw-text-blue-dark tw-text-5xl tw-font-bold tw-text-center">
+          <h1 className="tw-text-blue-dark tw-text-5xl tw-font-bold tw-text-left">
             Honestly, We Get It.
           </h1>
           <div className="tw-flex tw-flex-row tw-gap-10 tw-justify-evenly">
-            <div className="tw-bg-slate-200 tw-w-full tw-rounded-3xl tw-px-10 tw-py-10 tw-shadow-2xl tw-flex tw-flex-col tw-gap-3">
-              <p className="tw-text-2xl tw-font-bold tw-text-blue-dark">
-                You want to explore, but you don&apos;t know what is happening
-                around you.
-              </p>
-              <p className="tw-text-gray-dark">
-                It&apos;s frustrating to arrive in a new place, eager to
-                explore, only to be in the dark about safety of the area you
-                will be staying
-              </p>
-              <p className="tw-text-gray-dark">
-                You might try relying on generic travel guides, but they often
-                lack real-time information.
-              </p>
-              <p className="tw-text-gray-dark">
-                Googling news articles can be time-consuming, especially if the
-                news is in a language you don&apos;t understand.
-              </p>
-            </div>
-            <div className="tw-bg-slate-200 tw-w-full tw-rounded-3xl tw-px-10 tw-py-10 tw-shadow-2xl tw-flex tw-flex-col tw-gap-3">
+            {/* first issue our customers have */}
+            <div className="tw-w-full tw-flex tw-flex-col tw-gap-5">
               <p className="tw-text-2xl tw-font-bold tw-text-blue-dark">
                 You can&apos;t enjoy yourself while feeling anxious or unsure of
                 your surroundings.
               </p>
-              <p className="tw-text-gray-dark">
+              <Point>
                 The constant worry about your safety can cast a shadow on your
                 travel experience. Preventing you from enjoying yourself.
-              </p>
-              <p className="tw-text-gray-dark">
-                Hard to find information relevant to you
-              </p>
-              <p className="tw-text-gray-dark">
+              </Point>
+              <Point>Hard to find information relevant to you</Point>
+              <Point>
                 Googling news articles can be time-consuming, especially if the
                 news is in a language you don&apos;t understand.
-              </p>
+              </Point>
+            </div>
+
+            <div className="tw-w-2/3 tw-flex tw-items-center tw-justify-center">
+              <img src="/assets/landing/undraw_Departing_re_mlq3.png" />
             </div>
           </div>
         </div>
