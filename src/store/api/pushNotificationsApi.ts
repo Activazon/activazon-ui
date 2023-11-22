@@ -22,6 +22,20 @@ const pushNotificationsApi = createApi({
         body: data,
       }),
     }),
+    updateDevice: builder.mutation({
+      query: (data: {
+        platform: string;
+        user_agent: string;
+        language_preference: string;
+        endpoint: string;
+        expiration_time: number | null;
+        auth: string;
+      }) => ({
+        url: "/v3/push-notifications/device/",
+        method: "PATCH",
+        body: data,
+      }),
+    }),
     createSubscription: builder.mutation({
       query: (data: {
         place_city_slug: string;
@@ -68,6 +82,7 @@ const pushNotificationsApi = createApi({
 
 export const {
   useAddDeviceMutation,
+  useUpdateDeviceMutation,
   useCreateSubscriptionMutation,
   useGetSubscriptionsQuery,
   useDeleteSubscriptionMutation,
