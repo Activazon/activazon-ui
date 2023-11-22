@@ -36,7 +36,7 @@ const pushNotificationsApi = createApi({
         return {
           url: "/v3/push-notifications/device/sync/",
           method: "POST",
-          body: { data, token: undefined },
+          body: { ...data, token: undefined },
           headers: {
             Authorization: `Bearer ${token}`,
           },
