@@ -1,6 +1,6 @@
 "use client";
 
-import { getDeviceSubscriptionInfo } from "@/lib/subscriptions";
+import { getDeviceJwt, getDeviceSubscriptionInfo } from "@/lib/subscriptions";
 import { useEffect } from "react";
 import { useUpdateDeviceMutation } from "./api/pushNotificationsApi";
 import { pushNotificationPermission } from "@/lib/pushNotifications";
@@ -29,11 +29,13 @@ const ServiceWorkerProvider = ({ children }: ServiceWorkerProviderProps) => {
 
     // sometimes permissions get lost (expired or browswer takes it away from us),
     // so we need to check and re-register
-    if (pushNotificationPermission() === "granted") {
+    const deviceJwt = getDeviceJwt();
+    if (pushNotificationPermission() === "granted" && deviceJwt) {
       getDeviceSubscriptionInfo()
         .then((subscriptionInfo) => {
           if (subscriptionInfo) {
             updateDevice({
+              token: deviceJwt,
               ...subscriptionInfo,
             });
           }

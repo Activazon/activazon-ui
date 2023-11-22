@@ -30,11 +30,18 @@ const pushNotificationsApi = createApi({
         endpoint: string;
         expiration_time: number | null;
         auth: string;
-      }) => ({
-        url: "/v3/push-notifications/device/",
-        method: "PATCH",
-        body: data,
-      }),
+        token: string;
+      }) => {
+        const token = data.token;
+        return {
+          url: "/v3/push-notifications/device/",
+          method: "PATCH",
+          body: { data, token: undefined },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
     }),
     createSubscription: builder.mutation({
       query: (data: {
