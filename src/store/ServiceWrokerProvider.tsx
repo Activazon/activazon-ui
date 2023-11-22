@@ -37,7 +37,6 @@ const ServiceWorkerProvider = ({ children }: ServiceWorkerProviderProps) => {
     if (pushNotificationPermission() === "granted" && deviceJwt) {
       getDeviceSubscriptionInfo()
         .then((subscriptionInfo) => {
-          alert(JSON.stringify(subscriptionInfo, null, 2));
           if (subscriptionInfo) {
             updateDevice({
               token: deviceJwt,
