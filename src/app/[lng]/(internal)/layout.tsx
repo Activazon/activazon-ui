@@ -23,18 +23,18 @@ export default function RootLayout({
   return (
     <html lang={lng}>
       <body>
-        <TrackingProvider>
-          <ServiceWorkerProvider>
-            <AppProvider locale={lng}>
+        <AppProvider locale={lng}>
+          <TrackingProvider>
+            <ServiceWorkerProvider>
               <NavigationBar />
               <SearchManager />
               <main className="tw-mt-4">{children}</main>
 
               <Footer />
               <ModalManager />
-            </AppProvider>
-          </ServiceWorkerProvider>
-        </TrackingProvider>
+            </ServiceWorkerProvider>
+          </TrackingProvider>
+        </AppProvider>
       </body>
     </html>
   );
