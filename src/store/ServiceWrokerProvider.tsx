@@ -1,6 +1,10 @@
 "use client";
 
-import { getDeviceJwt, getDeviceSubscriptionInfo } from "@/lib/subscriptions";
+import {
+  getDeviceJwt,
+  getDeviceSubscriptionInfo,
+  subscribeAndGetDeviceSubscriptionInfo,
+} from "@/lib/subscriptions";
 import { useEffect } from "react";
 import { useUpdateDeviceMutation } from "./api/pushNotificationsApi";
 import { pushNotificationPermission } from "@/lib/pushNotifications";

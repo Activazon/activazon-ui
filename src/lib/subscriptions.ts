@@ -21,10 +21,38 @@ const urlBase64ToUint8Array = (base64String: string) => {
   return outputArray;
 };
 
+export const getDeviceSubscriptionInfo = async () => {
+  // get subscription
+  const registration = await navigator.serviceWorker.ready;
+  const subscription = await registration.pushManager.getSubscription();
+
+  if (!subscription) {
+    return null;
+  }
+
+  const arrayBufferToString = (buffer: ArrayBuffer | null) => {
+    if (!buffer) {
+      return null;
+    }
+    const decoder = new TextDecoder("utf-8");
+    return decoder.decode(buffer);
+  };
+
+  return {
+    platform: navigator.platform,
+    user_agent: navigator.userAgent,
+    language_preference: navigator.language,
+    endpoint: subscription.endpoint,
+    expiration_time: subscription.expirationTime,
+    p256dh: arrayBufferToString(subscription.getKey("p256dh"))!,
+    auth: arrayBufferToString(subscription.getKey("auth"))!,
+  };
+};
+
 /**
  * collects data we need to store in our database to send push notifications
  */
-export const getDeviceSubscriptionInfo = async () => {
+export const subscribeAndGetDeviceSubscriptionInfo = async () => {
   // get subscription
   const registration = await navigator.serviceWorker.ready;
   const subscription = await registration.pushManager.subscribe({
@@ -127,7 +155,7 @@ export const usePlaceSubscription = ({
    * so we can send it push notifications
    */
   const registerDevice = async () => {
-    const data = await getDeviceSubscriptionInfo();
+    const data = await subscribeAndGetDeviceSubscriptionInfo();
     // add this device to our database, so we can send it push notifications
     const response = await addDevice({
       ...data,
