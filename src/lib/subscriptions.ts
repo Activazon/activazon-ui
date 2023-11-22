@@ -30,6 +30,8 @@ export const getDeviceSubscriptionInfo = async () => {
     return null;
   }
 
+  const subJson = subscription.toJSON();
+
   const arrayBufferToString = (buffer: ArrayBuffer | null) => {
     if (!buffer) {
       return null;
@@ -44,8 +46,8 @@ export const getDeviceSubscriptionInfo = async () => {
     language_preference: navigator.language,
     endpoint: subscription.endpoint,
     expiration_time: subscription.expirationTime,
-    p256dh: arrayBufferToString(subscription.getKey("p256dh"))!,
-    auth: arrayBufferToString(subscription.getKey("auth"))!,
+    p256dh: subJson.keys!.p256dh,
+    auth: subJson.keys!.auth,
   };
 };
 
