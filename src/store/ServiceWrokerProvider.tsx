@@ -30,13 +30,17 @@ const ServiceWorkerProvider = ({ children }: ServiceWorkerProviderProps) => {
     // sometimes permissions get lost (expired or browswer takes it away from us),
     // so we need to check and re-register
     if (pushNotificationPermission() === "granted") {
-      getDeviceSubscriptionInfo().then((subscriptionInfo) => {
-        if (subscriptionInfo) {
-          updateDevice({
-            ...subscriptionInfo,
-          });
-        }
-      });
+      getDeviceSubscriptionInfo()
+        .then((subscriptionInfo) => {
+          if (subscriptionInfo) {
+            updateDevice({
+              ...subscriptionInfo,
+            });
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   }, []);
   return children;
