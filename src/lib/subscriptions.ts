@@ -32,14 +32,6 @@ export const getDeviceSubscriptionInfo = async () => {
 
   const subJson = subscription.toJSON();
 
-  const arrayBufferToString = (buffer: ArrayBuffer | null) => {
-    if (!buffer) {
-      return null;
-    }
-    const decoder = new TextDecoder("utf-8");
-    return decoder.decode(buffer);
-  };
-
   return {
     platform: navigator.platform,
     user_agent: navigator.userAgent,
