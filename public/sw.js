@@ -102,8 +102,8 @@ self.addEventListener("push", (event) => {
             : incident.place_city.display_name;
 
           const title = isEn
-            ? `Incident in ${placeDisplayName}`
-            : `Incidente en ${placeDisplayName}`;
+            ? `Incident in ${placeDisplayName}${data.has_more ? ' & more' : ''}`
+            : `Incidente en ${placeDisplayName}${data.has_more ? ' y más' : ''}`;
           const summary = isEn
             ? `${incident.contents["en"].title} - Read more`
             : `${incident.contents["es"].title} - Leer más`;
