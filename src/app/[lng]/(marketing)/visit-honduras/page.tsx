@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import { default as basicMetadata } from "@/lib/metadata";
+import Link from "next/link";
 
 interface SectionProps {
   children: any;
-  color: "blue" | "white" | "slate";
+  color: "blue" | "white" | "slate" | "transparent";
 }
 
 export const metadata: Metadata = {
@@ -69,6 +70,7 @@ const Section = ({ children, color }: SectionProps) => {
     blue: "tw-bg-blue-light",
     white: "tw-bg-white",
     slate: "tw-bg-slate-100",
+    transparent: "tw-bg-transparent",
   }[color];
   return (
     <div className={"tw-w-full tw-py-12 " + colorClassName}>
@@ -95,7 +97,7 @@ const PointCard = ({
   title: string;
   description: string;
 }) => (
-  <div className="tw-w-full tw-bg-white tw-shadow-2xl tw-rounded-3xl tw-py-9 tw-px-6 tw-flex tw-flex-col tw-gap-4 hover:tw-scale-110 tw-ease-in-out tw-duration-300">
+  <div className="tw-w-full tw-bg-black/5 tw-rounded-3xl tw-py-9 tw-px-6 tw-flex tw-flex-col tw-gap-4 hover:tw-scale-110 tw-ease-in-out tw-duration-300">
     <div className="tw-text-center">
       <i className={`${icon} tw-text-5xl tw-text-blue-light`}></i>
     </div>
@@ -111,34 +113,46 @@ const PointCard = ({
 const Page = () => {
   return (
     <>
-      {/* what the user will get */}
-      <Section color="blue">
-        <div className="tw-flex tw-flex-row tw-gap-10 tw-justify-evenly">
-          <div className="tw-flex tw-flex-shrink tw-flex-col tw-gap-3 tw-justify-center">
-            <h1 className="tw-text-6xl tw-font-bold tw-text-white">
-              Explore Honduras&apos; Secrets with
-              <br />
-              Peace of Mind
-            </h1>
-            <p className="tw-text-xl tw-font-medium tw-text-white">
-              Find Peace of Mind Knowing You&apos;re Safe while You to Explore
-              with Confidence.
+      <div className="banner-bg">
+        <div className="tw-w-full tw-min-h-[50px] tw-py-5 tw-sticky">
+          <nav className="tw-w-full tw-max-w-6xl tw-px-3 tw-mx-auto tw-flex tw-justify-between">
+            <p className="tw-text-2xl tw-flex tw-flex-row tw-gap-2 tw-items-center tw-font-medium tw-text-white">
+              <i className="bi bi-activity tw-text-3xl"></i>
+              <span>Activazon</span>
             </p>
-          </div>
-          <div className="tw-flex tw-flex-shrink-0 tw-w-1/3">
-            <div className="tw-bg-blue-dark/50 tw-shadow-xl tw-rounded-2xl tw-aspect-[16/9] tw-w-full">
-              {/*  */}
-            </div>
-          </div>
+            <a
+              href="#"
+              className="tw-bg-blue-dark tw-text-blue-light tw-text-lg tw-font-medium tw-px-6 tw-py-2 tw-rounded-full hover:tw-bg-blue-dark/70"
+            >
+              Open App
+            </a>
+          </nav>
         </div>
-      </Section>
+        {/* what the user will get */}
+        <Section color="transparent">
+          <div className="tw-flex tw-flex-col md:tw-flex-row tw-gap-10 tw-justify-evenly">
+            <div className="tw-flex tw-flex-shrink tw-flex-col tw-gap-3 tw-justify-center">
+              <h1 className="tw-text-6xl tw-font-bold tw-text-white">
+                Explore Honduras&apos; Secrets with
+                <br />
+                Peace of Mind
+              </h1>
+              <p className="tw-text-xl tw-font-medium tw-text-white">
+                Find Peace of Mind Knowing You&apos;re Safe while You to Explore
+                with Confidence.
+              </p>
+            </div>
+            <div className="tw-flex tw-flex-shrink-0 tw-w-1/3"></div>
+          </div>
+        </Section>
+      </div>
       {/* the problem with the way things are done */}
       <Section color="white">
         <div className="tw-flex tw-flex-col tw-gap-10">
           <h1 className="tw-text-blue-dark tw-text-5xl tw-font-bold tw-text-left">
             Honestly, We Get It.
           </h1>
-          <div className="tw-flex tw-flex-row tw-gap-10 tw-justify-evenly">
+          <div className="tw-flex tw-flex-col-reverse md:tw-flex-row tw-gap-10 tw-justify-evenly">
             {/* first issue our customers have */}
             <div className="tw-w-full tw-flex tw-flex-col tw-gap-5">
               <p className="tw-text-2xl tw-font-bold tw-text-blue-dark">
@@ -156,7 +170,7 @@ const Page = () => {
               </Point>
             </div>
 
-            <div className="tw-w-2/3 tw-flex tw-items-center tw-justify-center">
+            <div className="tw-w-full md:tw-w-2/3 tw-flex tw-items-center tw-justify-center">
               <img src="/assets/landing/undraw_Departing_re_mlq3.png" />
             </div>
           </div>
@@ -169,7 +183,7 @@ const Page = () => {
             Safety Simplified, Just for You.
           </h1>
           <div className="tw-flex tw-flex-row tw-gap-10 tw-justify-evenly">
-            <div className="tw-w-full tw-flex tw-flex-row tw-gap-5">
+            <div className="tw-w-full tw-flex tw-flex-col md:tw-flex-row tw-gap-5">
               <PointCard
                 icon="bi bi-hearts"
                 title="Information that is relevant to you"
@@ -197,6 +211,18 @@ const Page = () => {
           </h1>
           <p className="tw-text-center tw-text-lg">
             Activazon is easy to use, no installs necessary, just tap below
+          </p>
+          <p className="tw-text-[8rem] tw-text-blue-dark tw-text-center">
+            <i className="bi bi-door-open-fill"></i>
+          </p>
+
+          <p className="tw-text-center">
+            <Link
+              href="/"
+              className="tw-text-center tw-text-3xl tw-font-bold tw-text-white tw-bg-blue-dark tw-rounded-full tw-py-4 tw-px-10 hover:tw-scale-110 tw-ease-in-out tw-duration-300"
+            >
+              Open App
+            </Link>
           </p>
         </div>
       </Section>

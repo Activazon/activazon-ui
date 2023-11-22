@@ -10,23 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <div className="tw-w-full tw-min-h-[50px] tw-bg-blue-light tw-py-5 tw-sticky">
-          <nav className="tw-w-full tw-max-w-6xl tw-px-3 tw-mx-auto tw-flex tw-justify-between">
-            <p className="tw-text-2xl tw-flex tw-flex-row tw-gap-2 tw-items-center tw-font-medium tw-text-white">
-              <i className="bi bi-activity tw-text-3xl"></i>
-              <span>Activazon</span>
-            </p>
-            <a
-              href="#"
-              className="tw-bg-blue-dark tw-text-blue-light tw-text-lg tw-font-medium tw-px-6 tw-py-2 tw-rounded-full hover:tw-bg-blue-dark/70"
-            >
-              Open App
-            </a>
-          </nav>
-        </div>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

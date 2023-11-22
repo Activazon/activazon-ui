@@ -136,3 +136,14 @@ body {
 .animate--fadeout {
   animation: fadeout 0.3s ease-in-out 1 forwards;
 }
+
+.banner-bg {
+  background-image: linear-gradient(
+    to right bottom,
+    #2791a6,
+    #24a0ba,
+    #1eb0ce,
+    #16c0e3,
+    #06d0f9
+  );
+}
