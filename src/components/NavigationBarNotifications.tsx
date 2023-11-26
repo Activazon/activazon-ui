@@ -7,7 +7,7 @@ import { useEffect } from "react";
 const NavigationBarNotifications = () => {
   const { t } = useDictionary();
   const token = getDeviceJwt();
-  const { data, error, isLoading, refetch } = useGetUnopenedCountQuery(
+  const { data, refetch } = useGetUnopenedCountQuery(
     {
       token: token!,
     },
