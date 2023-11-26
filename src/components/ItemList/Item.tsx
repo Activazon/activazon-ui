@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MouseEvent } from "react";
 
 interface ItemProps {
   title: string;
@@ -8,6 +9,7 @@ interface ItemProps {
   url: string;
   image: string;
   pulse?: boolean;
+  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
 }
 
 const Item = ({
@@ -18,9 +20,10 @@ const Item = ({
   url,
   image,
   pulse,
+  onClick,
 }: ItemProps) => {
   return (
-    <Link href={url}>
+    <Link href={url} onClick={onClick}>
       <div className="tw-flex tw-flex-row tw-gap-4">
         <div
           className={

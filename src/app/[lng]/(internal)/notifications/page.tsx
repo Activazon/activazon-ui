@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, MouseEvent } from "react";
+import { useRouter } from "next/navigation";
 import { useDictionary } from "@/dictionaries";
 import { pulseObjectList } from "@/lib/pulse";
 import Content from "@/components/Content/Content";
@@ -26,6 +27,7 @@ import { activityPath } from "@/lib/activity";
 import Link from "next/link";
 
 const Page = () => {
+  const router = useRouter();
   const { t, locale } = useDictionary();
   const dispatch = useActivazonDispatch();
   const [isDeviceRegistered, _] = useState(getDeviceJwt());
@@ -42,7 +44,7 @@ const Page = () => {
     }
   }, [isDeviceRegistered, dispatch]);
 
-  const { data, isSuccess } = useGetSentNotificationsQuery(
+  const { data, isSuccess, refetch } = useGetSentNotificationsQuery(
     {
       token: token!,
     },
@@ -77,6 +79,18 @@ const Page = () => {
               ? false
               : !notificationSent.has_been_opened;
 
+          const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
+            e.preventDefault();
+
+            if (notificationSent.notification_opened_callback) {
+              // mark the notification as opened
+              fetch(notificationSent.notification_opened_callback).then(() => {
+                refetch(); // refresh the list
+              });
+            }
+            router.push(activityPath(data.id));
+          };
+
           return (
             <ItemAttentionWrapper
               key={`area-${notificationSent.id}`}
@@ -91,7 +105,8 @@ const Page = () => {
                     <ActivityTypePill name={accesorIncidentType(data)} />
                   </span>
                 }
-                url={activityPath(data.id)}
+                url="#"
+                onClick={onClick}
                 image={accesorIncidentListImage(data)}
                 pulse={!isSuccess}
               />
