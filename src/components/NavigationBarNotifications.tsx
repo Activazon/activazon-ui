@@ -36,14 +36,31 @@ const NavigationBarNotifications = () => {
     }
   }, [unOpenedCount]);
 
+  // probably not the best way to do this, i would like to do this via sw
   useEffect(() => {
     if (token) {
       // set timmer that will refetch every 5 minutes
       const interval = setInterval(() => {
-        console.log("refetching unopened notifications");
         refetch();
       }, 5 * 60 * 1000);
-      return () => clearInterval(interval);
+
+      const handleVisibilityChange = () => {
+        if (document.visibilityState === "visible") {
+          // refetch when app is in foreground
+          refetch();
+        }
+      };
+
+      // Add visibility change event listener
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
+      return () => {
+        clearInterval(interval);
+        document.removeEventListener(
+          "visibilitychange",
+          handleVisibilityChange
+        );
+      };
     }
   }, [token, refetch]);
 
