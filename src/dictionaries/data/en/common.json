@@ -12,6 +12,7 @@
     "home:mapInfo:lead": "Your Location",
     "home:similiar_cities": "Similiar Cities",
     "common:subscriptions": "Subscriptions",
+    "common:notifications": "Notifications",
     "common:areas": "Areas",
     "common:activities": "Activities",
     "common:recent_activity": "{{count}} activities detected recently",

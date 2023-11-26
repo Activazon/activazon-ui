@@ -65,7 +65,7 @@ const Page = () => {
       <ItemListContainer>
         {activityItems.map((data: any) => (
           <Item
-            key={`area-${data.id}`}
+            key={`activity-${data.id}`}
             title={accesorIncidentTitle(data, locale)}
             descriptionMd={accesorIncidentAreaDisplayName(data)}
             badge={

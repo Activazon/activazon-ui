@@ -2,11 +2,12 @@ import { useDictionary } from "@/dictionaries";
 import { getDeviceJwt } from "@/lib/subscriptions";
 import { useGetUnopenedCountQuery } from "@/store/api/pushNotificationsApi";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const NavigationBarNotifications = () => {
   const { t } = useDictionary();
   const token = getDeviceJwt();
-  const { data, error, isLoading } = useGetUnopenedCountQuery(
+  const { data, error, isLoading, refetch } = useGetUnopenedCountQuery(
     {
       token: token!,
     },
@@ -21,6 +22,30 @@ const NavigationBarNotifications = () => {
   const altMessage = t("unread_notifications", {
     count: unOpenedCount,
   });
+
+  useEffect(() => {
+    // update badge
+    if (navigator.setAppBadge) {
+      if (unOpenedCount && unOpenedCount > 0) {
+        navigator.setAppBadge(unOpenedCount);
+      } else {
+        navigator.clearAppBadge();
+      }
+    } else {
+      console.warn("BadgeAPI not supported on this device");
+    }
+  }, [unOpenedCount]);
+
+  useEffect(() => {
+    if (token) {
+      // set timmer that will refetch every 5 minutes
+      const interval = setInterval(() => {
+        console.log("refetching unopened notifications");
+        refetch();
+      }, 5 * 60 * 1000);
+      return () => clearInterval(interval);
+    }
+  }, [token, refetch]);
 
   return (
     <div>
