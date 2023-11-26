@@ -25,6 +25,7 @@ import ItemAttentionWrapper from "@/components/ItemList/ItemAttentionWrapper";
 import ActivityTypePill from "@/components/ActivityTypePill";
 import { activityPath } from "@/lib/activity";
 import Link from "next/link";
+import { useUnopenedIncidents } from "@/lib/badge";
 
 const Page = () => {
   const router = useRouter();
@@ -32,6 +33,8 @@ const Page = () => {
   const dispatch = useActivazonDispatch();
   const [isDeviceRegistered, _] = useState(getDeviceJwt());
   const token = getDeviceJwt();
+
+  const { refetchAndUpdateBadge } = useUnopenedIncidents();
 
   useEffect(() => {
     if (!isDeviceRegistered && !isDisplayModeStandalone()) {
@@ -86,6 +89,7 @@ const Page = () => {
               // mark the notification as opened
               fetch(notificationSent.notification_opened_callback).then(() => {
                 refetch(); // refresh the list
+                refetchAndUpdateBadge(); // update the badge
               });
             }
             router.push(activityPath(data.id));
