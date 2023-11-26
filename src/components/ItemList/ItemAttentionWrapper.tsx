@@ -10,7 +10,7 @@ const ItemAttentionWrapper = ({
   return (
     <div
       className={`tw-p-2 tw-rounded-xl ${
-        showAttention ? "tw-bg-blue-light/30" : ""
+        showAttention ? "tw-bg-blue-light/20" : ""
       }`}
     >
       {children}
