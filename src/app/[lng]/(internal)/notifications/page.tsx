@@ -23,6 +23,7 @@ import {
 import ItemAttentionWrapper from "@/components/ItemList/ItemAttentionWrapper";
 import ActivityTypePill from "@/components/ActivityTypePill";
 import { activityPath } from "@/lib/activity";
+import Link from "next/link";
 
 const Page = () => {
   const { t, locale } = useDictionary();
@@ -55,7 +56,19 @@ const Page = () => {
 
   return (
     <Content>
-      <PageTitle title={t("common:notifications")} />
+      <PageTitle
+        title={t("common:notifications")}
+        description={
+          <>
+            <Link
+              href="/subscriptions"
+              className="tw-text-blue-light hover:tw-underline tw-font-medium"
+            >
+              {t("common:subscriptions")}
+            </Link>
+          </>
+        }
+      />
       <ItemListContainer>
         {notificationSentItems.map((notificationSent: any) => {
           const data = notificationSent.incident || {};
