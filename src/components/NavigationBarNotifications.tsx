@@ -17,7 +17,7 @@ const NavigationBarNotifications = () => {
   );
 
   const unOpenedCount = data?.unopened_count || 0;
-  const showBadge = unOpenedCount > 0;
+  const showBadge = unOpenedCount > 0 || !token; // we want to show badge if there is no token to try and get the user's attention
 
   const altMessage = t("unread_notifications", {
     count: unOpenedCount,

@@ -2,7 +2,7 @@ import ContentGroup from "./Content/ContentGroup";
 
 interface PageTitleProps {
   title: string;
-  description?: string;
+  description?: string | React.ReactNode;
 }
 
 const PageTitle = ({ title, description }: PageTitleProps) => {
