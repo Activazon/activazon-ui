@@ -42,6 +42,7 @@
     "modal:open_in_browswer_instruction_2": "then tap <b>Open in external browser</b>",
     "activity:read_more": "Read more from <b>{{websiteName}}</b>",
     "popup:subscribed": "Subscribed",
-    "popup:unsubscribed": "Unsubscribed"
+    "popup:unsubscribed": "Unsubscribed",
+    "unread_notifications": "{{count}} unread notifications"
   }
 }

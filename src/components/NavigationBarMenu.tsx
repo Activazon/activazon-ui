@@ -46,8 +46,10 @@ const NavigationBarMenu = () => {
   return (
     <div className="tw-relative">
       <button
-        className={"tw-text-blue-bright tw-text-[1.5rem] tw-z-[10000]"}
+        className={"tw-text-blue-dark tw-text-[1.5rem] tw-z-[10000]"}
         onClick={onMenuToggle}
+        title="Menu"
+        role="menu"
       >
         <i className="bi bi-list" />
       </button>
@@ -77,7 +79,7 @@ const NavigationBarMenu = () => {
               {t("menu:home")}
             </MenuItem>
             <MenuItem
-              icon={<i className="bi bi-bell-fill" />}
+              icon={<i className="bi bi-geo-alt-fill" />}
               onClick={redirectAndClose("/subscriptions")}
             >
               {t("menu:subscriptions")}

@@ -84,6 +84,20 @@ const pushNotificationsApi = createApi({
         };
       },
     }),
+
+    // notifications
+    getUnopenedCount: builder.query({
+      query: (data: { token: string }) => {
+        const token = data.token;
+        return {
+          url: "/v3/push-notifications/device-notification-sent/unopened_count/",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
+    }),
   }),
 });
 
@@ -93,5 +107,7 @@ export const {
   useCreateSubscriptionMutation,
   useGetSubscriptionsQuery,
   useDeleteSubscriptionMutation,
+  // notifications
+  useGetUnopenedCountQuery,
 } = pushNotificationsApi;
 export default pushNotificationsApi;

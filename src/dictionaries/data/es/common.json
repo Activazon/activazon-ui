@@ -42,6 +42,7 @@
     "modal:open_in_browswer_instruction_2": "luego toca <b>Abrir en un navegador externo</b>",
     "activity:read_more": "Leer más de <b>{{websiteName}}</b>",
     "popup:subscribed": "Suscripción exitosa",
-    "popup:unsubscribed": "Suscripción cancelada"
+    "popup:unsubscribed": "Suscripción cancelada",
+    "unread_notifications": "{{count}} notificaciones sin leer"
   }
 }

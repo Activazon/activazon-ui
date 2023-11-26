@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import NavigationBarMenu from "./NavigationBarMenu";
+import NavigationBarNotifications from "./NavigationBarNotifications";
 
 const NavigationBar = () => {
   return (
@@ -20,8 +21,10 @@ const NavigationBar = () => {
             />
             Activazon
           </Link>
-          <div className="flex-grow-1"></div>
-          <NavigationBarMenu />
+          <div className="tw-flex tw-flex-row">
+            <NavigationBarNotifications />
+            <NavigationBarMenu />
+          </div>
         </nav>
       </div>
     </div>
