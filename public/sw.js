@@ -128,7 +128,17 @@ self.addEventListener("push", (event) => {
           });
         })
         .then(() => {
-          console.log("Successfully sent notification");
+          console.debug("Successfully sent notification");
+          const unOpenedCount = data.device_unopened_count;
+          if (navigator.setAppBadge) {
+            if (unOpenedCount && unOpenedCount > 0) {
+              navigator.setAppBadge(unOpenedCount);
+            } else {
+              navigator.clearAppBadge();
+            }
+          } else {
+            console.warn("BadgeAPI not supported on this device");
+          }
         })
         .catch((error) => {
           console.error("Could not send notification", error);
