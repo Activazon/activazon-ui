@@ -147,3 +147,7 @@ body {
     #06d0f9
   );
 }
+
+a {
+  -webkit-touch-callout: none;
+}
