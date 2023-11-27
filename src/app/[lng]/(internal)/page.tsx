@@ -73,7 +73,9 @@ const Page = () => {
       <MapInfo
         pulse={!fetchNearbyQuery.isSuccess}
         imgUrl={accessorPlaceMapImagesWideDefault(fetchNearbyQuery.data?.place)}
-        lead={t("home:mapInfo:lead")}
+        lead={t("home:mapInfo:" + (fetchNearbyQuery.data?.source || "lead"), {
+          country_name: fetchNearbyQuery.data?.country_name,
+        })}
         title={accessorPlaceDisplayName(fetchNearbyQuery.data?.place)}
         description={t("common:recent_activity", {
           count: accessorPlaceIncidentMetricsLast3Months(
