@@ -33,7 +33,7 @@ const Page = () => {
   const { t, locale } = useDictionary();
   // fetch nearby cities (try to use user location)
   // const { coords, coordsLoaded } = useCoordinates();
-  const fetchNearbyQuery = useFetchNearbyQuery();
+  const fetchNearbyQuery = useFetchNearbyQuery(null);
   // fetch areas for the city we are in
   const areasLimit = 5;
   const fetchIncidentsQuery = useFetchCityIncidentsQuery(
