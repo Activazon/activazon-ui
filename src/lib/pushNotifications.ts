@@ -15,7 +15,10 @@ export const isPushNotificationsSupported = (): boolean => {
  * checks if we have permission to send notifications
  */
 export const pushNotificationPermission = (): NotificationPermission => {
-  return Notification.permission;
+  if ("Notification" in window) {
+    return Notification.permission;
+  }
+  return "default";
 };
 
 /**
