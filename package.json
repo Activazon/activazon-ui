@@ -11,6 +11,7 @@
   "dependencies": {
     "@cronitorio/cronitor-rum-nextjs": "^0.4.0",
     "@formatjs/intl-localematcher": "^0.4.2",
+    "@fullstory/browser": "^2.0.0",
     "@reduxjs/toolkit": "^1.9.7",
     "@sentry/nextjs": "^7.82.0",
     "bootstrap-icons": "^1.11.1",
