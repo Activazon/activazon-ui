@@ -35,3 +35,6 @@ yarn-error.log*
 .sentryclirc
 
 .env
+
+# Sentry Config File
+.sentryclirc
