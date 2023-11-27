@@ -48,7 +48,7 @@ const ServiceWorkerProvider = ({ children }: ServiceWorkerProviderProps) => {
           console.error(error);
         });
     }
-  }, []);
+  }, [updateDevice]);
   return children;
 };
 
