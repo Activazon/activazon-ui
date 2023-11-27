@@ -7,7 +7,7 @@ import ItemListContainer from "@/components/ItemList/ItemListContainer";
 import MapInfo from "@/components/MapInfo";
 import TileGridContainer from "@/components/TileGrid/TileGridContainer";
 import TileItem from "@/components/TileGrid/TileItem";
-import { useCoordinates } from "./helper";
+// import { useCoordinates } from "./helper";
 import { useFetchCitiesQuery, useFetchNearbyQuery } from "@/store/api/cityApi";
 import { pulseObjectList } from "@/lib/pulse";
 import { useDictionary } from "@/dictionaries";
@@ -32,10 +32,8 @@ import SubscribeButton from "@/components/SubscribeButton";
 const Page = () => {
   const { t, locale } = useDictionary();
   // fetch nearby cities (try to use user location)
-  const { coords, coordsLoaded } = useCoordinates();
-  const fetchNearbyQuery = useFetchNearbyQuery(coords, {
-    skip: !coordsLoaded,
-  });
+  // const { coords, coordsLoaded } = useCoordinates();
+  const fetchNearbyQuery = useFetchNearbyQuery();
   // fetch areas for the city we are in
   const areasLimit = 5;
   const fetchIncidentsQuery = useFetchCityIncidentsQuery(

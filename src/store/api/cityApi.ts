@@ -29,15 +29,9 @@ const cityApi = createApi({
       },
     }),
     fetchNearby: builder.query({
-      query: (data: Coordinates | undefined) => {
-        const params = new URLSearchParams({});
-        if (data) {
-          params.set("latitude", data.latitude.toString());
-          params.set("longitude", data.longitude.toString());
-        }
-
+      query: () => {
         return {
-          url: `/v3/places/city/nearby/?${params.toString()}`,
+          url: "/v3/places/city/nearby/",
           method: "GET",
         };
       },
