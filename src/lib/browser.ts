@@ -36,3 +36,7 @@ export const isOnDesktopBrowser = () => {
     );
   return !isMobile;
 };
+
+export const shouldInstall = () => {
+  return !("Notification" in window);
+};

@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 import { useDictionary } from "@/dictionaries";
 import { placesPath } from "@/lib/places";
 import { pulseObjectList } from "@/lib/pulse";
@@ -14,26 +13,10 @@ import {
 } from "@/lib/placeAccessors";
 import PageTitle from "@/components/PageTitle";
 import { getDeviceJwt } from "@/lib/subscriptions";
-import { isDisplayModeStandalone } from "@/lib/browser";
-import { setModel } from "@/store/slices/modals";
-import { useActivazonDispatch } from "@/store/hooks";
 import { useGetSubscriptionsQuery } from "@/store/api/pushNotificationsApi";
 
 const Page = () => {
   const { t } = useDictionary();
-  const dispatch = useActivazonDispatch();
-  const [isDeviceRegistered, setIsDeviceRegistered] = useState(getDeviceJwt());
-
-  useEffect(() => {
-    if (!isDeviceRegistered && !isDisplayModeStandalone()) {
-      dispatch(
-        setModel({
-          name: "pwa_install",
-          data: undefined,
-        })
-      );
-    }
-  }, [isDeviceRegistered, dispatch]);
 
   const subscriptionsResult = useGetSubscriptionsQuery(
     {

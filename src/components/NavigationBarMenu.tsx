@@ -1,5 +1,6 @@
 "use client";
 import { useDictionary } from "@/dictionaries";
+import { shouldInstall } from "@/lib/browser";
 import { usePathname, useRouter } from "next/navigation";
 import { MouseEvent, ReactNode, useState } from "react";
 
@@ -46,7 +47,7 @@ const NavigationBarMenu = () => {
   return (
     <div className="tw-relative">
       <button
-        className={"tw-text-blue-dark tw-text-[1.5rem] tw-z-[10000]"}
+        className="tw-text-blue-dark tw-text-[1.5rem] tw-z-[10000] tw-px-3 hover:tw-bg-blue-light/20 tw-rounded-md"
         onClick={onMenuToggle}
         title="Menu"
         role="menu"
@@ -78,12 +79,14 @@ const NavigationBarMenu = () => {
             >
               {t("menu:home")}
             </MenuItem>
-            <MenuItem
-              icon={<i className="bi bi-geo-alt-fill" />}
-              onClick={redirectAndClose("/subscriptions")}
-            >
-              {t("menu:subscriptions")}
-            </MenuItem>
+            {!shouldInstall() && (
+              <MenuItem
+                icon={<i className="bi bi-geo-alt-fill" />}
+                onClick={redirectAndClose("/subscriptions")}
+              >
+                {t("menu:subscriptions")}
+              </MenuItem>
+            )}
             <MenuItem
               icon={<i className="bi bi-translate" />}
               onClick={redirectAndClose(changeLanguageUrl)}

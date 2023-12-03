@@ -30,22 +30,9 @@ import { useUnopenedIncidents } from "@/lib/badge";
 const Page = () => {
   const router = useRouter();
   const { t, locale } = useDictionary();
-  const dispatch = useActivazonDispatch();
-  const [isDeviceRegistered, _] = useState(getDeviceJwt());
   const token = getDeviceJwt();
 
   const { refetchAndUpdateBadge } = useUnopenedIncidents();
-
-  useEffect(() => {
-    if (!isDeviceRegistered && !isDisplayModeStandalone()) {
-      dispatch(
-        setModel({
-          name: "pwa_install",
-          data: undefined,
-        })
-      );
-    }
-  }, [isDeviceRegistered, dispatch]);
 
   const { data, isSuccess, refetch } = useGetSentNotificationsQuery(
     {

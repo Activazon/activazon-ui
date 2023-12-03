@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import NavigationBarMenu from "./NavigationBarMenu";
 import NavigationBarNotifications from "./NavigationBarNotifications";
+import NotificationBarDownload from "./NotificationBarDownload";
 
 const NavigationBar = () => {
   return (
@@ -22,6 +23,7 @@ const NavigationBar = () => {
             Activazon
           </Link>
           <div className="tw-flex tw-flex-row">
+            <NotificationBarDownload />
             <NavigationBarNotifications />
             <NavigationBarMenu />
           </div>

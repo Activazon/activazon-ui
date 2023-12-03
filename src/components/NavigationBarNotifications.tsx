@@ -1,18 +1,25 @@
-import { useDictionary } from "@/dictionaries";
 import { useUnopenedIncidents } from "@/lib/badge";
-import { getDeviceJwt } from "@/lib/subscriptions";
-import { useGetUnopenedCountQuery } from "@/store/api/pushNotificationsApi";
+import { shouldInstall } from "@/lib/browser";
+import usePwaInstallHook from "@/lib/pwaInstallHook";
 import Link from "next/link";
-import { useEffect } from "react";
 
 const NavigationBarNotifications = () => {
   const { showBadge, altMessage } = useUnopenedIncidents();
+  const openModal = usePwaInstallHook();
+  const href = shouldInstall() ? "#" : "/notifications";
+
+  const onClickCheck = () => {
+    if (shouldInstall()) {
+      openModal();
+    }
+  };
 
   return (
     <div>
       <Link
-        href="/notifications"
-        className={"tw-text-blue-dark tw-text-[1.5rem] tw-px-3"}
+        href={href}
+        onClick={onClickCheck}
+        className="tw-text-blue-dark tw-text-[1.5rem] tw-px-3 hover:tw-bg-blue-light/20 tw-rounded-md"
         title={altMessage}
       >
         <i className="bi bi-bell-fill tw-relative">
