@@ -35,7 +35,7 @@ export function middleware(request: NextRequest) {
     // User changed locale in the URL, update the cookie
     new Response("", {
       headers: {
-        "Set-Cookie": `${LOCALE_COOKIE_NAME}=${localeInUrl}; Path=/; Max-Age=31536000; SameSite=Lax`,
+        "Set-Cookie": `${LOCALE_COOKIE_NAME}=${localeInUrl}; Path=/;`,
       },
     });
   }
