@@ -1,10 +1,16 @@
 import { shouldInstall } from "@/lib/browser";
 import usePwaInstallHook from "@/lib/pwaInstallHook";
+import { useEffect, useState } from "react";
 
 const NotificationBarDownload = () => {
   const openModal = usePwaInstallHook();
+  const [show, setShow] = useState(false);
 
-  if (!shouldInstall()) {
+  useEffect(() => {
+    setShow(shouldInstall());
+  }, []);
+
+  if (!show) {
     return null;
   }
 

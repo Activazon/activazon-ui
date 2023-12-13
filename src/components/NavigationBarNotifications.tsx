@@ -2,14 +2,19 @@ import { useUnopenedIncidents } from "@/lib/badge";
 import { shouldInstall } from "@/lib/browser";
 import usePwaInstallHook from "@/lib/pwaInstallHook";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const NavigationBarNotifications = () => {
   const { showBadge, altMessage } = useUnopenedIncidents();
   const openModal = usePwaInstallHook();
-  const href = shouldInstall() ? "#" : "/notifications";
+  const [shouldOpenModalInstead, setShouldOpenModalInstead] = useState(false);
+  useEffect(() => {
+    setShouldOpenModalInstead(shouldInstall());
+  }, []);
+  const href = shouldOpenModalInstead ? "#" : "/notifications";
 
   const onClickCheck = () => {
-    if (shouldInstall()) {
+    if (shouldOpenModalInstead) {
       openModal();
     }
   };

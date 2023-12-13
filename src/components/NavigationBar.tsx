@@ -4,8 +4,20 @@ import Link from "next/link";
 import NavigationBarMenu from "./NavigationBarMenu";
 import NavigationBarNotifications from "./NavigationBarNotifications";
 import NotificationBarDownload from "./NotificationBarDownload";
+import { useEffect } from "react";
 
 const NavigationBar = () => {
+  useEffect(() => {
+    const onScroll = (e) => {
+      console.log(
+        "e.target.documentElement.scrollTop",
+        e.target.documentElement.scrollTop
+      );
+    };
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
     <div className="tw-w-full tw-z-50 tw-h-[62px]">
       <div className="tw-fixed tw-w-full tw-bg-white tw-z-50">
