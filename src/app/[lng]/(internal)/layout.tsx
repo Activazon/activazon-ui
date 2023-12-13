@@ -27,7 +27,7 @@ export default function RootLayout({
           <TrackingProvider>
             <ServiceWorkerProvider>
               <NavigationBar />
-              <SearchManager />
+              <SearchManager alwaysShow={false} />
               <main className="tw-mt-4">{children}</main>
               <Footer />
               <ModalManager />
