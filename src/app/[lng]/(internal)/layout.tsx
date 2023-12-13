@@ -29,7 +29,6 @@ export default function RootLayout({
               <NavigationBar />
               <SearchManager />
               <main className="tw-mt-4">{children}</main>
-
               <Footer />
               <ModalManager />
             </ServiceWorkerProvider>

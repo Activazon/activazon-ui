@@ -8,7 +8,7 @@ interface PageTitleProps {
 const PageTitle = ({ title, description }: PageTitleProps) => {
   return (
     <ContentGroup>
-      <p className="tw-m-0 tw-text-blue-dark tw-text-3xl tw-font-semibold">
+      <p className="tw-m-0 tw-text-blue-dark tw-text-4xl tw-font-semibold">
         {title}
       </p>
       {description && (

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useScrollingDirection = () => {
   const [lastScrollTop, setLastScrollTop] = useState<number | undefined>(
@@ -17,15 +17,24 @@ export const useScrollingDirection = () => {
   useEffect(() => {
     const onScroll = (e: Event) => {
       const target = e.target as Document;
-      const last = target.documentElement.scrollTop;
-      if (lastScrollTop && last > lastScrollTop) {
+      const current = target.documentElement.scrollTop;
+
+      if (lastScrollTop && current > lastScrollTop) {
         setDirection("down");
-        setDistance((d) => (direction == "up" ? 0 : d + 1));
+        if (current > 0) {
+          setDistance((d) => (direction == "up" ? 0 : d + 1));
+        } else {
+          setDistance(0);
+        }
       } else {
         setDirection("up");
-        setDistance((d) => (direction == "down" ? 0 : d + 1));
+        if (current > 0) {
+          setDistance((d) => (direction == "down" ? 0 : d + 1));
+        } else {
+          setDistance(0);
+        }
       }
-      setLastScrollTop(last);
+      setLastScrollTop(current);
     };
     window.addEventListener("scroll", onScroll);
 

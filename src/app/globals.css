@@ -129,19 +129,19 @@ body {
 @media (max-width: 640px) {
   @keyframes fadeoutup {
     from {
-      opacity: 1;
+      /* opacity: 1; */
       transform: translate(0, 0px);
     }
     to {
-      opacity: 0;
-      transform: translate(0, -30px);
+      /* opacity: 0; */
+      transform: translate(0, -38px);
     }
   }
 
   @keyframes fadeindown {
     from {
       opacity: 0;
-      transform: translate(0, -30px);
+      transform: translate(0, -38px);
     }
     to {
       opacity: 1;
@@ -169,4 +169,10 @@ body {
 
 a {
   -webkit-touch-callout: none;
+}
+
+@supports (padding: max(0px)) {
+  .footer-button {
+    padding-bottom: max(0.75rem + env(safe-area-inset-bottom)) !important;
+  }
 }

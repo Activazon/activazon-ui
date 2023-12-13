@@ -13,7 +13,11 @@ let searchTimer: NodeJS.Timeout;
 const CITIES_SEARCH_LIMIT = 4;
 const AREAS_SEARCH_LIMIT = 15;
 
-const SearchManager = () => {
+interface SearchManagerProps {
+  alwaysShow: boolean;
+}
+
+const SearchManager = ({ alwaysShow }: SearchManagerProps) => {
   const routePathname = usePathname();
   const { t } = useDictionary();
   const [forcePulse, setForcePulse] = useState(false);
@@ -64,7 +68,7 @@ const SearchManager = () => {
   }, [routePathname]);
 
   const tailContent = isSearching ? <Spinner /> : null;
-  const canShowResults = searchValue.trim() != "";
+  const canShowResults = alwaysShow || searchValue.trim() != "";
 
   // get the high of the page (including inner content)
   const pageHeight =
@@ -73,7 +77,9 @@ const SearchManager = () => {
 
   return (
     <>
-      <div className="tw-relative">
+      <div
+        className={`tw-relative ${!alwaysShow ? "tw-hidden md:tw-block" : ""}`}
+      >
         <SearchBar
           searchValue={searchValue}
           placeholder={t("common:search_placeholder")}
@@ -82,7 +88,7 @@ const SearchManager = () => {
         />
         {canShowResults && (
           <div
-            className="tw-absolute tw-top-full tw-left-0 tw-w-full tw-backdrop-blur-lg tw-bg-white/80 tw-pb-7 tw-z-50"
+            className="tw-absolute tw-top-full tw-left-0 tw-w-full tw-backdrop-blur-lg tw-bg-white/80 tw-pb-7"
             style={{ minHeight: resultsMinHeight }}
           >
             <SearchResults

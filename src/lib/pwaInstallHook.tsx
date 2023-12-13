@@ -1,10 +1,17 @@
 import { setModel } from "@/store/slices/modals";
 import { useActivazonDispatch } from "@/store/hooks";
+import { useEffect, useState } from "react";
+import { shouldInstall } from "./browser";
 
 const usePwaInstallHook = () => {
   const dispatch = useActivazonDispatch();
+  const [shouldOpenModalInstead, setShouldOpenModalInstead] = useState(false);
 
-  const openModel = () => {
+  useEffect(() => {
+    setShouldOpenModalInstead(shouldInstall());
+  }, []);
+
+  const openModal = () => {
     dispatch(
       setModel({
         name: "pwa_install",
@@ -12,7 +19,7 @@ const usePwaInstallHook = () => {
       })
     );
   };
-  return openModel;
+  return { openModal, shouldOpenModalInstead };
 };
 
 export default usePwaInstallHook;
