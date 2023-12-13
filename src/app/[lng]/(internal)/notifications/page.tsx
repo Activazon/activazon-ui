@@ -48,19 +48,7 @@ const Page = () => {
 
   return (
     <Content>
-      <PageTitle
-        title={t("common:notifications")}
-        description={
-          <>
-            <Link
-              href="/subscriptions"
-              className="tw-text-blue-light hover:tw-underline tw-font-medium"
-            >
-              {t("common:subscriptions")}
-            </Link>
-          </>
-        }
-      />
+      <PageTitle title={t("common:notifications")} />
       <ItemListContainer>
         {notificationSentItems.map((notificationSent: any) => {
           const data = notificationSent.incident || {};
