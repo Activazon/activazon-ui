@@ -94,17 +94,6 @@ body {
   }
 }
 
-@keyframes fadeindown {
-  from {
-    opacity: 0;
-    transform: translate(0, -10px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(0, 0px);
-  }
-}
-
 @keyframes fadeinup {
   from {
     opacity: 0;
@@ -135,6 +124,36 @@ body {
 
 .animate--fadeout {
   animation: fadeout 0.3s ease-in-out 1 forwards;
+}
+
+@media (max-width: 640px) {
+  @keyframes fadeoutup {
+    from {
+      opacity: 1;
+      transform: translate(0, 0px);
+    }
+    to {
+      opacity: 0;
+      transform: translate(0, -30px);
+    }
+  }
+
+  @keyframes fadeindown {
+    from {
+      opacity: 0;
+      transform: translate(0, -30px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, 0px);
+    }
+  }
+  .animate-nav-fadeoutup {
+    animation: fadeoutup 0.4s ease-in-out 1 forwards;
+  }
+  .animate-nav-fadeindown {
+    animation: fadeindown 0.2s ease-in-out 1 forwards;
+  }
 }
 
 .banner-bg {

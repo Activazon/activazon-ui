@@ -56,10 +56,6 @@ const NavigationBarMenu = () => {
       </button>
       {isMenuOpen && (
         <>
-          <div
-            className="tw-fixed tw-left-0 tw-top-0 tw-w-full tw-h-full tw-backdrop-blur-2xl tw-bg-white/30 md:tw-opacity-0 animate--modal-bg"
-            onClick={onMenuToggle}
-          />
           <div className="tw-visible tw-absolute tw-bottom--full tw-right-0 tw-bg-slate-100 tw-border tw-border-slate-200 tw-rounded-2xl tw-min-w-[200px] tw-shadow-2xl tw-overflow-hidden animate--modal-down">
             {/* <MenuItem
               icon={<i className="bi bi-person-fill-lock" />}
