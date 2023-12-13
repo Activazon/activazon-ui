@@ -51,13 +51,6 @@ const useGetActivePathName = (paths: string[], def: string) => {
 
 const Footer = () => {
   const { openModal, shouldOpenModalInstead } = usePwaInstallHook();
-  const footerRef = useRef<HTMLDivElement>(null);
-  const [footerHeight, setFooterHeight] = useState(0);
-  useEffect(() => {
-    if (footerRef.current) {
-      setFooterHeight(footerRef.current.clientHeight);
-    }
-  }, [footerRef]);
 
   const activePathName = useGetActivePathName(
     ["/search", "/notifications", "/menu"],
@@ -72,10 +65,7 @@ const Footer = () => {
 
   return (
     <>
-      <footer
-        ref={footerRef}
-        className="tw-w-full tw-fixed tw-bottom-0 tw-left-0 tw-backdrop-blur-lg tw-bg-white/90 tw-pointer-events-auto tw-border-t md:tw-hidden"
-      >
+      <footer className="tw-w-full tw-fixed tw-bottom-0 tw-left-0 tw-backdrop-blur-lg tw-bg-white/90 tw-pointer-events-auto tw-border-t md:tw-hidden">
         <Content extraClasses="!tw-flex-row">
           <FooterButton
             href="/"
@@ -117,10 +107,7 @@ const Footer = () => {
           )}
         </Content>
       </footer>
-      <div
-        className="tw-w-full tw-mt-5 md:tw-hidden"
-        style={{ height: footerHeight }}
-      ></div>
+      <div className="tw-w-full tw-h-[100px] tw-mt-5 md:tw-hidden"></div>
     </>
   );
 };
