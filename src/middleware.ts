@@ -2,49 +2,51 @@ import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { NextRequest } from "next/server";
 
-const locales = ["en", "es"];
-const defaultLocale = "es";
-const LOCALE_COOKIE_NAME = "act-locale";
+const LOCALES_SUPPORTED = ["en", "es"];
+const LOCALE_DEFAULT = "es";
 
-function getLocale(request: NextRequest) {
-  const acceptLanguageHeader = request.headers.get("accept-language");
-  const cookieLocale = request.cookies.get(LOCALE_COOKIE_NAME)?.value;
-
-  if (cookieLocale && locales.includes(cookieLocale)) {
+const getNextLocale = (request: NextRequest) => {
+  const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value;
+  if (cookieLocale && LOCALES_SUPPORTED.includes(cookieLocale)) {
+    console.log("using next locale cookie");
     return cookieLocale;
   }
+  return null;
+};
 
-  if (!acceptLanguageHeader) return defaultLocale;
+const getAcceptLanguage = (request: NextRequest) => {
+  const acceptLanguageHeader = request.headers.get("accept-language");
+  if (!acceptLanguageHeader) {
+    return null;
+  }
 
   const languages = new Negotiator({
     headers: { "accept-language": acceptLanguageHeader },
   }).languages();
 
-  return match(languages, locales, defaultLocale);
+  console.log("using accept");
+  return match(languages, LOCALES_SUPPORTED, LOCALE_DEFAULT);
+};
+
+function getLocale(request: NextRequest) {
+  return getNextLocale(request) || getAcceptLanguage(request) || LOCALE_DEFAULT;
 }
 
 export function middleware(request: NextRequest) {
+  // Check if there is any supported locale in the pathname
   const { pathname } = request.nextUrl;
-  const localeInUrl = locales.find(
+  const pathnameHasLocale = LOCALES_SUPPORTED.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
+  if (pathnameHasLocale) return;
+
+  // Redirect if there is no locale
   const locale = getLocale(request);
-
-  if (localeInUrl && localeInUrl !== locale) {
-    // User changed locale in the URL, update the cookie
-    new Response("", {
-      headers: {
-        "Set-Cookie": `${LOCALE_COOKIE_NAME}=${localeInUrl}; Path=/;`,
-      },
-    });
-  }
-
-  if (!localeInUrl) {
-    // Redirect if there is no locale in the URL
-    request.nextUrl.pathname = `/${locale}${pathname}`;
-    return Response.redirect(request.nextUrl);
-  }
+  request.nextUrl.pathname = `/${locale}${pathname}`;
+  // e.g. incoming request is /products
+  // The new URL is now /en-US/products
+  return Response.redirect(request.nextUrl);
 }
 
 export const config = {
