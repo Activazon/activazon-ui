@@ -145,7 +145,7 @@ const Page = ({ params }: Props) => {
               <span>Activazon</span>
             </p>
             <a
-              href={`/place/${params.country.toLocaleLowerCase()}`}
+              href={`/places/${params.country.toLocaleLowerCase()}`}
               className="tw-bg-blue-dark tw-text-blue-light tw-text-lg tw-font-medium tw-px-6 tw-py-2 tw-rounded-full hover:tw-bg-blue-dark/70"
             >
               Open App
@@ -241,7 +241,7 @@ const Page = ({ params }: Props) => {
 
           <p className="tw-text-center">
             <Link
-              href={`/place/${params.country.toLocaleLowerCase()}`}
+              href={`/places/${params.country.toLocaleLowerCase()}`}
               className="tw-text-center tw-text-3xl tw-font-bold tw-text-white tw-bg-blue-dark tw-rounded-full tw-py-4 tw-px-10 hover:tw-scale-110 tw-ease-in-out tw-duration-300"
             >
               Open App
