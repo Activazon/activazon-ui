@@ -7,63 +7,86 @@ interface SectionProps {
   color: "blue" | "white" | "slate" | "transparent";
 }
 
-export const metadata: Metadata = {
-  applicationName: "Activazon",
-  title: "Explore Honduras Safely with Activazon",
-  description:
-    "Discover essential safety insights for traveling in Honduras. Stay informed and explore with confidence using Activazon.",
-  keywords: [
-    "Honduras travel safety",
-    "places to avoid in Honduras",
-    "Honduras travel tips",
-    "safety in Honduras",
-    "is Honduras safe to visit?",
-    "dangerous places in Honduras",
-    "places to avoid in Honduras",
-    "crime in Honduras",
-    "travel safety tips for Honduras",
-    "Honduras safety news",
-    "Honduras safety alerts",
-    "Honduras safety map",
-    "real-time safety alerts for Honduras",
-    "safety app for Honduras",
-    "safe places to visit in Honduras",
-    "Honduras news alerts",
-    "Honduras incident alerts",
-    "Honduras safety notifications",
-    "Honduras travel safety app",
-    "Honduras safety app for tourists",
-    "Honduras crime alerts",
-    "Honduras violence alerts",
-    "Honduras natural disaster alerts",
-    "Honduras political unrest alerts",
-  ],
-  icons: basicMetadata.icons,
-  twitter: {
-    card: "summary_large_image",
-    site: "@activazon",
-    creator: "@yourusername", // Replace with your Twitter handle
-    title: "Explore Honduras Safely | Activazon",
-    description:
-      "Discover essential safety insights for traveling in Honduras. Stay informed and explore with confidence using Activazon.",
-  },
-  openGraph: {
-    type: "website",
-    url: "https://activazon.com/visit-honduras",
-    title: "Visit Honduras Securely",
-    description:
-      "Your Trusted Safety Companion in Honduras. Explore with Confidence.",
-    siteName: "Activazon",
-    images: [
-      {
-        url: "https://www.activazon.com/pwa/social-share.png",
-        width: 1200,
-        height: 630,
-        alt: "Activazon Logo",
-      },
-    ],
-  },
+type Props = {
+  params: { country: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
+
+const SUPPORTED_COUNTRIES: { [key: string]: string } = {
+  honduras: "Honduras",
+  nicaragua: "Nicaragua",
+  mexico: "Mexico",
+  colombia: "Colombia",
+  guatemala: "Guatemala",
+};
+
+const getCountryName = (countryName: string) => {
+  return SUPPORTED_COUNTRIES[countryName.toLocaleLowerCase()] || countryName;
+};
+
+export async function generateStaticParams() {
+  return Object.keys(SUPPORTED_COUNTRIES).map((country) => ({
+    country,
+  }));
+}
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const country = params.country;
+  const countryName = getCountryName(country);
+  return {
+    applicationName: "Activazon",
+    title: `Explore ${countryName} Safely with Activazon`,
+    description: `Discover essential safety insights for traveling in ${countryName}. Stay informed and explore with confidence using Activazon.`,
+    keywords: [
+      `${countryName} travel safety`,
+      `places to avoid in ${countryName}`,
+      `${countryName} travel tips`,
+      `safety in ${countryName}`,
+      `is ${countryName} safe to visit?`,
+      `dangerous places in ${countryName}`,
+      `places to avoid in ${countryName}`,
+      `crime in ${countryName}`,
+      `travel safety tips for ${countryName}`,
+      `${countryName} safety news`,
+      `${countryName} safety alerts`,
+      `${countryName} safety map`,
+      `real-time safety alerts for ${countryName}`,
+      `safety app for ${countryName}`,
+      `safe places to visit in ${countryName}`,
+      `${countryName} news alerts`,
+      `${countryName} incident alerts`,
+      `${countryName} safety notifications`,
+      `${countryName} travel safety app`,
+      `${countryName} safety app for tourists`,
+      `${countryName} crime alerts`,
+      `${countryName} violence alerts`,
+      `${countryName} natural disaster alerts`,
+      `${countryName} political unrest alerts`,
+    ],
+    icons: basicMetadata.icons,
+    twitter: {
+      card: "summary_large_image",
+      site: "@activazon",
+      creator: "@yourusername", // Replace with your Twitter handle
+      title: `Explore ${countryName} Safely | Activazon`,
+      description: `Discover essential safety insights for traveling in ${countryName}. Stay informed and explore with confidence using Activazon.`,
+    },
+    openGraph: {
+      type: "website",
+      url: `https://activazon.com/visit-${country}`,
+      title: `Visit ${countryName} Securely`,
+      description: `Your Trusted Safety Companion in ${countryName}. Explore with Confidence.`,
+      siteName: "Activazon",
+      images: [
+        {
+          url: "https://www.activazon.com/pwa/social-share.png",
+          width: 1200,
+          height: 630,
+          alt: "Activazon Logo",
+        },
+      ],
+    },
+  };
+}
 
 const Section = ({ children, color }: SectionProps) => {
   const colorClassName = {
@@ -110,7 +133,8 @@ const PointCard = ({
   </div>
 );
 
-const Page = () => {
+const Page = ({ params }: Props) => {
+  const countryName = getCountryName(params.country);
   return (
     <>
       <div className="banner-bg">
@@ -133,9 +157,8 @@ const Page = () => {
           <div className="tw-flex tw-flex-col md:tw-flex-row tw-gap-10 tw-justify-evenly">
             <div className="tw-flex tw-flex-shrink tw-flex-col tw-gap-3 tw-justify-center">
               <h1 className="tw-text-6xl tw-font-bold tw-text-white">
-                Explore Honduras&apos; Secrets with
-                <br />
-                Peace of Mind
+                Explore the Secrets of {countryName} with
+                <br />a Peace of Mind
               </h1>
               <p className="tw-text-xl tw-font-medium tw-text-white">
                 Find Peace of Mind Knowing You&apos;re Safe while You to Explore
@@ -218,7 +241,7 @@ const Page = () => {
 
           <p className="tw-text-center">
             <Link
-              href="/"
+              href={`/place/${params.country.toLocaleLowerCase()}`}
               className="tw-text-center tw-text-3xl tw-font-bold tw-text-white tw-bg-blue-dark tw-rounded-full tw-py-4 tw-px-10 hover:tw-scale-110 tw-ease-in-out tw-duration-300"
             >
               Open App
