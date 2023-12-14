@@ -22,6 +22,7 @@ import {
 } from "@/lib/placeAccessors";
 import {
   accesorIncidentAreaDisplayName,
+  accesorIncidentDate,
   accesorIncidentListImage,
   accesorIncidentTitle,
   accesorIncidentType,
@@ -103,6 +104,7 @@ const Page = () => {
           <Item
             key={`area-${data.id}`}
             title={accesorIncidentTitle(data, locale)}
+            description={accesorIncidentDate(data, locale)}
             descriptionMd={accesorIncidentAreaDisplayName(data)}
             badge={
               <span>

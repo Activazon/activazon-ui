@@ -31,6 +31,7 @@
     "activity_breakdown:description": "Tipo de actividades detectadas en <b>{{areaDisplayName}}</b>",
     "activity:summary": "Resumen",
     "activity:related_places": "Lugares Relacionados",
+    "activity:date_detected": "Detectada el <b>{{date}}</b>",
     "modal:generic_title": "Desbloquea todo el potencial de",
     "modal:generic_description": "Al agregar Activazon a tu <b><i class=\"bi bi-plus-square\"></i> Pantalla de Inicio</b>, podrás utilizar algunas características geniales de forma gratuita",
     "modal:pwainstall_feature1_title": "Notificaciones",

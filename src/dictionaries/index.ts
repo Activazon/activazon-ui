@@ -75,7 +75,7 @@ export const useDictionary = (namespace: string = "common") => {
   const thtml = (key: string, params?: Record<string, string>) => {
     const translation = t(key, params);
     return createElement("span", {
-      id: `--trans-${key}`,
+      id: `transation_${key}`,
       dangerouslySetInnerHTML: {
         __html: translation,
       },

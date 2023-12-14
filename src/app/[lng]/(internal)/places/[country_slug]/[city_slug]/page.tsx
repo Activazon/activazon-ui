@@ -15,6 +15,7 @@ import {
 
 import {
   accesorIncidentAreaDisplayName,
+  accesorIncidentDate,
   accesorIncidentListImage,
   accesorIncidentTitle,
   accesorIncidentType,
@@ -67,6 +68,7 @@ const Page = () => {
           <Item
             key={`activity-${data.id}`}
             title={accesorIncidentTitle(data, locale)}
+            description={accesorIncidentDate(data, locale)}
             descriptionMd={accesorIncidentAreaDisplayName(data)}
             badge={
               <span>

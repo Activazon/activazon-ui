@@ -11,6 +11,7 @@ import { useDictionary } from "@/dictionaries";
 import {
   accesorIncidentAddress,
   accesorIncidentBannerImage,
+  accesorIncidentDate,
   accesorIncidentExtraBannerImages,
   accesorIncidentSummary,
   accesorIncidentTitle,
@@ -62,6 +63,12 @@ const Page = () => {
         description={accesorIncidentAddress(incidentData)}
         actionsElements={actionsElements}
       />
+
+      <p className="tw-text-sm tw-text-gray-dark">
+        {thtml("activity:date_detected", {
+          date: accesorIncidentDate(incidentData, locale)!,
+        })}
+      </p>
 
       <TextContent title={t("activity:summary")} pulse={pulse}>
         {accesorIncidentSummary(incidentData, locale)}

@@ -31,6 +31,7 @@
     "activity_breakdown:description": "Type of activities detected in <b>{{areaDisplayName}}</b>",
     "activity:summary": "Summary",
     "activity:related_places": "Related Places",
+    "activity:date_detected": "Detected <b>{{date}}</b>",
     "modal:generic_title": "Unlock the full power of ",
     "modal:generic_description": "Adding Activazon to your <b><i class=\"bi bi-plus-square\"></i> Home Screen</b> can allow you to use some cool features for free",
     "modal:pwainstall_feature1_title": "Notifications",

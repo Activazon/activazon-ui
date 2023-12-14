@@ -8,6 +8,7 @@ import Item from "@/components/ItemList/Item";
 import ItemListContainer from "@/components/ItemList/ItemListContainer";
 import {
   accesorIncidentAreaDisplayName,
+  accesorIncidentDate,
   accesorIncidentListImage,
   accesorIncidentTitle,
   accesorIncidentType,
@@ -79,6 +80,7 @@ const Page = () => {
                 <Item
                   key={`notification-sent-${data.id}`}
                   title={accesorIncidentTitle(data, locale)}
+                  description={accesorIncidentDate(data, locale)}
                   descriptionMd={accesorIncidentAreaDisplayName(data)}
                   badge={
                     <span>

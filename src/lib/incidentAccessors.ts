@@ -1,3 +1,4 @@
+import { dateDisplay } from "./datetime";
 import {
   accesorPlaceAddress,
   accessorPlaceMapImagesSquareDefault,
@@ -47,4 +48,8 @@ export const accesorIncidentAreaDisplayName = (incident: any) => {
     ].join(", ");
   }
   return incident?.place_city?.display_name;
+};
+
+export const accesorIncidentDate = (incident: any, locale: string) => {
+  return incident ? dateDisplay(incident.date_detected, locale) : undefined;
 };

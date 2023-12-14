@@ -15,6 +15,7 @@
     "@reduxjs/toolkit": "^1.9.7",
     "@sentry/nextjs": "^7.82.0",
     "bootstrap-icons": "^1.11.1",
+    "moment-timezone": "^0.5.43",
     "negotiator": "^0.6.3",
     "next": "13.5.4",
     "react": "^18",
