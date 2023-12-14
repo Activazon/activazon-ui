@@ -145,7 +145,7 @@ const Page = ({ params }: Props) => {
               <span>Activazon</span>
             </p>
             <a
-              href="#"
+              href={`/place/${params.country.toLocaleLowerCase()}`}
               className="tw-bg-blue-dark tw-text-blue-light tw-text-lg tw-font-medium tw-px-6 tw-py-2 tw-rounded-full hover:tw-bg-blue-dark/70"
             >
               Open App
