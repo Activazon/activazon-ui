@@ -42,14 +42,15 @@ export const accesorIncidentType = (incident: any) => {
 
 export const accesorIncidentAreaDisplayName = (incident: any) => {
   if (incident?.place_area) {
-    return [
-      incident.place_area.display_name,
-      incident.place_city.display_name,
-    ].join(", ");
+    return incident.place_area.display_name;
   }
-  return incident?.place_city?.display_name;
+  return incident?.place_city?.display_name || "";
+};
+
+export const accesorIncidentCityDisplayName = (incident: any) => {
+  return incident?.place_city?.display_name || "";
 };
 
 export const accesorIncidentDate = (incident: any, locale: string) => {
-  return incident ? dateDisplay(incident.date_detected, locale) : undefined;
+  return incident ? dateDisplay(incident.date_detected, locale) || "-" : "-";
 };

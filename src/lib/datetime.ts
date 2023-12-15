@@ -8,16 +8,14 @@ const LOCALE_CALENDAR_MAP: { es: CalendarSpec; en: CalendarSpec } = {
     sameDay: "[Hoy]",
     nextDay: "[Mañana]",
     lastWeek: "[El] dddd [pasado]",
-    nextWeek: "dddd",
-    sameElse: "L",
+    sameElse: "ll",
   },
   en: {
     lastDay: "[Yesterday]",
     sameDay: "[Today]",
     nextDay: "[Tomorrow]",
     lastWeek: "[Last] dddd",
-    nextWeek: "dddd",
-    sameElse: "L",
+    sameElse: "ll",
   },
 };
 

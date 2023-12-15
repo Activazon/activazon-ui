@@ -14,7 +14,7 @@ import {
 } from "@/lib/placeAccessors";
 
 import {
-  accesorIncidentAreaDisplayName,
+  accesorIncidentCityDisplayName,
   accesorIncidentDate,
   accesorIncidentListImage,
   accesorIncidentTitle,
@@ -57,10 +57,12 @@ const Page = () => {
         {activityItems.map((data: any) => (
           <Item
             key={`activity-${data.id}`}
+            attrLabels={[
+              accesorIncidentCityDisplayName(data),
+              accesorIncidentDate(data, locale),
+            ]}
             title={accesorIncidentTitle(data, locale)}
-            description={accesorIncidentDate(data, locale)}
-            descriptionMd={accesorIncidentAreaDisplayName(data)}
-            badge={
+            content={
               <span>
                 <ActivityTypePill name={accesorIncidentType(data)} />
               </span>

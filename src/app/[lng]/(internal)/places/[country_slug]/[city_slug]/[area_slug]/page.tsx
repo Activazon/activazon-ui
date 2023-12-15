@@ -103,10 +103,12 @@ const Page = () => {
         {activityItems.map((data: any) => (
           <Item
             key={`area-${data.id}`}
+            attrLabels={[
+              accesorIncidentAreaDisplayName(data),
+              accesorIncidentDate(data, locale),
+            ]}
             title={accesorIncidentTitle(data, locale)}
-            description={accesorIncidentDate(data, locale)}
-            descriptionMd={accesorIncidentAreaDisplayName(data)}
-            badge={
+            content={
               <span>
                 <ActivityTypePill name={accesorIncidentType(data)} />
               </span>

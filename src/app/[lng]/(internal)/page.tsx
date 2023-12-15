@@ -20,7 +20,7 @@ import {
 import { placesPath } from "@/lib/places";
 import { useFetchCityIncidentsQuery } from "@/store/api/incidentApi";
 import {
-  accesorIncidentAreaDisplayName,
+  accesorIncidentCityDisplayName,
   accesorIncidentDate,
   accesorIncidentListImage,
   accesorIncidentTitle,
@@ -90,10 +90,12 @@ const Page = () => {
           {activityItems.map((data: any) => (
             <Item
               key={`area-${data.id}`}
+              attrLabels={[
+                accesorIncidentCityDisplayName(data),
+                accesorIncidentDate(data, locale),
+              ]}
               title={accesorIncidentTitle(data, locale)}
-              description={accesorIncidentDate(data, locale)}
-              descriptionMd={accesorIncidentAreaDisplayName(data)}
-              badge={
+              content={
                 <span>
                   <ActivityTypePill name={accesorIncidentType(data)} />
                 </span>

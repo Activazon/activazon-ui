@@ -3,9 +3,9 @@ import { MouseEvent } from "react";
 
 interface ItemProps {
   title: string;
-  descriptionMd?: string;
+  attrLabels?: [string, string];
   description?: string;
-  badge?: React.ReactNode;
+  content?: React.ReactNode;
   url: string;
   image: string;
   pulse?: boolean;
@@ -14,9 +14,9 @@ interface ItemProps {
 
 const Item = ({
   title,
-  descriptionMd,
   description,
-  badge,
+  attrLabels,
+  content,
   url,
   image,
   pulse,
@@ -25,38 +25,27 @@ const Item = ({
   return (
     <Link href={url} onClick={onClick}>
       <div className="tw-flex tw-flex-row tw-gap-4">
-        <div
-          className={
-            "tw-aspect-square tw-w-[120px] tw-h-[120px] md:tw-w-[150px] md:tw-h-[150px]  tw-bg-blue-dark tw-border-2 tw-rounded-xl tw-shadow-md tw-overflow-hidden tw-flex-shrink-0 " +
-            (pulse ? "tw-border-blue-dark" : "tw-border-blue-light")
-          }
-        >
-          {!pulse && (
-            <>
-              {/* eslint-disable-next-line @next/next/no-img-element  */}
-              <img
-                src={image}
-                alt={title}
-                className="tw-object-cover tw-w-[120px] tw-h-[120px] md:tw-w-[150px] md:tw-h-[150px]"
-              />
-            </>
-          )}
-        </div>
         {!pulse ? (
-          <div className="tw-flex tw-flex-col tw-gap-1">
-            <p className="tw-text-xl tw-font-demibold tw-text-blue-dark">
+          <div className="tw-flex tw-flex-col tw-gap-0 tw-w-full">
+            {attrLabels && (
+              <p className="tw-text-sm">
+                <span className="tw-text-blue-dark">{attrLabels[0]}</span>
+                <span className="tw-text-[#7F7F7F] tw-ml-1 tw-mr-1">
+                  {attrLabels[1]}
+                </span>
+              </p>
+            )}
+            <p className="tw-text-lg tw-font-demibold tw-text-blue-dark tw-leading-6">
               {title}
             </p>
-            {descriptionMd && (
-              <p className="tw-text-gray-dark">{descriptionMd}</p>
-            )}
+
             {description && (
               <p className="tw-text-gray-dark tw-text-sm">{description}</p>
             )}
-            {badge}
+            {content}
           </div>
         ) : (
-          <div className="tw-grid tw-grid-cols-6 tw-gap-0 tw-animate-pulse tw-flex-grow">
+          <div className="tw-grid tw-grid-cols-6 tw-gap-0 tw-animate-pulse tw-flex-grow tw-w-full">
             <div className="tw-h-7 tw-bg-slate-200 tw-rounded-full tw-col-span-4"></div>
 
             <div className="tw-h-4 tw-bg-slate-200 tw-rounded-full tw-col-span-3"></div>
@@ -64,6 +53,19 @@ const Item = ({
             <div className="tw-h-4 tw-bg-slate-200 tw-rounded-full tw-col-span-5"></div>
           </div>
         )}
+        {/* image */}
+        <div className="tw-aspect-square tw-w-[90px] tw-h-[90px] md:tw-w-[120px] md:tw-h-[120px]  tw-bg-blue-dark tw-rounded-xl tw-shadow-md tw-overflow-hidden tw-flex-shrink-0">
+          {!pulse && (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element  */}
+              <img
+                src={image}
+                alt={title}
+                className="tw-object-cover tw-w-full tw-h-full"
+              />
+            </>
+          )}
+        </div>
       </div>
     </Link>
   );
