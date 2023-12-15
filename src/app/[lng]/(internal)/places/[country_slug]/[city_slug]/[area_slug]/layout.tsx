@@ -1,7 +1,12 @@
 import { generatePlaceMetadata } from "../../../metadataHelper";
 
 interface Props {
-  params: { country_slug: string; city_slug?: string; area_slug?: string };
+  params: {
+    lng: string;
+    country_slug: string;
+    city_slug?: string;
+    area_slug?: string;
+  };
 }
 
 export const generateMetadata = (props: Props) => generatePlaceMetadata(props);
