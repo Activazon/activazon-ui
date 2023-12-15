@@ -9,6 +9,7 @@ import { pulseObjectList } from "@/lib/pulse";
 import { placesPath } from "@/lib/places";
 import { useDictionary } from "@/dictionaries";
 import {
+  accesorPlaceAddress,
   accesorPlaceSlugPath,
   accessorPlaceDisplayName,
   accessorPlaceIncidentMetricsLast3Months,
@@ -42,7 +43,7 @@ const SearchResults = ({
             {cityItems.map((data: any) => (
               <TileItem
                 key={`search-city-${data.id}`}
-                title={accessorPlaceDisplayName(data)}
+                title={accesorPlaceAddress(data)}
                 description={t("common:recent_activity", {
                   count: accessorPlaceIncidentMetricsLast3Months(data),
                 })}
