@@ -49,6 +49,8 @@
     "activity:read_more": "Leer más de <b>{{websiteName}}</b>",
     "popup:subscribed": "Suscripción exitosa",
     "popup:unsubscribed": "Suscripción cancelada",
-    "unread_notifications": "{{count}} notificaciones sin leer"
+    "unread_notifications": "{{count}} notificaciones sin leer",
+    "country:incidents": "Incidentes detectadas en {{countryName}}",
+    "country:cities": "Ciudades que cubrimos en {{countryName}}"
   }
 }

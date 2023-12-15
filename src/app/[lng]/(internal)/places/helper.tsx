@@ -58,7 +58,7 @@ export const useCountryPageParams = () => {
 
   // fetch cities
   const countrySlug = placeData?.slug;
-  const citiesLimit = 12;
+  const citiesLimit = 4;
   const fetchCitiesQuery = useFetchCitiesQuery(
     {
       limit: citiesLimit,
