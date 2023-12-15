@@ -51,10 +51,18 @@ const Page = () => {
     : pulseObjectList(areasLimit);
 
   // fetch cities
+  const currentCountrySlug =
+    fetchNearbyQuery.isSuccess && fetchNearbyQuery.data?.place.country.slug;
   const citiesLimit = 8;
-  const fetchCitiesQuery = useFetchCitiesQuery({
-    limit: citiesLimit,
-  });
+  const fetchCitiesQuery = useFetchCitiesQuery(
+    {
+      limit: citiesLimit,
+      countrySlug: currentCountrySlug,
+    },
+    {
+      skip: !currentCountrySlug,
+    }
+  );
   const cityItems = fetchCitiesQuery.isSuccess
     ? fetchCitiesQuery.data?.results
     : pulseObjectList(citiesLimit);

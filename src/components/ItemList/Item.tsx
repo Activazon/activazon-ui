@@ -46,11 +46,11 @@ const Item = ({
           </div>
         ) : (
           <div className="tw-grid tw-grid-cols-6 tw-gap-0 tw-animate-pulse tw-flex-grow tw-w-full">
-            <div className="tw-h-7 tw-bg-slate-200 tw-rounded-full tw-col-span-4"></div>
+            <div className="tw-h-5 tw-bg-slate-200 tw-rounded-full tw-col-span-4"></div>
 
-            <div className="tw-h-4 tw-bg-slate-200 tw-rounded-full tw-col-span-3"></div>
+            <div className="tw-h-3 tw-bg-slate-200 tw-rounded-full tw-col-span-3"></div>
 
-            <div className="tw-h-4 tw-bg-slate-200 tw-rounded-full tw-col-span-5"></div>
+            <div className="tw-h-3 tw-bg-slate-200 tw-rounded-full tw-col-span-5"></div>
           </div>
         )}
         {/* image */}

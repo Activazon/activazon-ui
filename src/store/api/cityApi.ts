@@ -9,8 +9,14 @@ const cityApi = createApi({
   }),
   endpoints: (builder) => ({
     fetchCities: builder.query({
-      query: ({ limit }: { limit: number }) => ({
-        url: `/v3/places/city/?limit=${limit}`,
+      query: ({
+        countrySlug,
+        limit,
+      }: {
+        countrySlug: string;
+        limit: number;
+      }) => ({
+        url: `/v3/places/city/?country_slug=${countrySlug}&limit=${limit}`,
         method: "GET",
       }),
     }),
