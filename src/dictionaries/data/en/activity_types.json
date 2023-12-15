@@ -35,6 +35,22 @@
     "riot": "Riot",
     "fire": "Fire",
     "civil-unrest": "Civil Unrest",
-    "corruption": "Corruption"
+    "corruption": "Corruption",
+    "security-measures": "Security Measures",
+    "activism": "Activism",
+    "traffic-congestion": "Traffic Congestion",
+    "illegal-trafficking": "Illegal Trafficking",
+    "seizure": "Seizure",
+    "migrant-support": "Migrant Support",
+    "conflict": "Conflict",
+    "price-increase": "Price Increase",
+    "attack": "Attack",
+    "trafficking": "Trafficking",
+    "human-trafficking": "Human Trafficking",
+    "death": "Death",
+    "smuggling": "Smuggling",
+    "animal-encounter": "Animal Encounter",
+    "investigation": "Investigation",
+    "violence": "Violence"
   }
 }
