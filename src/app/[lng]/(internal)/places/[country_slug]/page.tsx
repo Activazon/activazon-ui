@@ -113,33 +113,35 @@ const Page = () => {
           ))}
         </TileGridContainer>
       </ContentGroup>
-      <ContentGroup>
-        <ContentGroupTitle
-          title={t("country:incidents", {
-            countryName: placeAddress,
-          })}
-        />
-        <ItemListContainer>
-          {activityItemsPart2.map((data: any) => (
-            <Item
-              key={`activity-${data.id}`}
-              attrLabels={[
-                accesorIncidentCityDisplayName(data),
-                accesorIncidentDate(data, locale),
-              ]}
-              title={accesorIncidentTitle(data, locale)}
-              content={
-                <span>
-                  <ActivityTypePill name={accesorIncidentType(data)} />
-                </span>
-              }
-              url={activityPath(data.id)}
-              image={accesorIncidentListImage(data)}
-              pulse={!activitiesLoaded}
-            />
-          ))}
-        </ItemListContainer>
-      </ContentGroup>
+      {activityItemsPart2.length > 0 && (
+        <ContentGroup>
+          <ContentGroupTitle
+            title={t("country:incidents", {
+              countryName: placeAddress,
+            })}
+          />
+          <ItemListContainer>
+            {activityItemsPart2.map((data: any) => (
+              <Item
+                key={`activity-${data.id}`}
+                attrLabels={[
+                  accesorIncidentCityDisplayName(data),
+                  accesorIncidentDate(data, locale),
+                ]}
+                title={accesorIncidentTitle(data, locale)}
+                content={
+                  <span>
+                    <ActivityTypePill name={accesorIncidentType(data)} />
+                  </span>
+                }
+                url={activityPath(data.id)}
+                image={accesorIncidentListImage(data)}
+                pulse={!activitiesLoaded}
+              />
+            ))}
+          </ItemListContainer>
+        </ContentGroup>
+      )}
     </Content>
   );
 };
