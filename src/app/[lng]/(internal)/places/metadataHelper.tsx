@@ -127,6 +127,12 @@ export const generatePlaceMetadata = async (
       `Emergency Response in ${placeName}`,
       `Security Analytics for ${placeName}`,
     ],
+    twitter: {
+      site: "@activazon",
+      card: "summary_large_image",
+      creator: "@activazon",
+      images: responseJson.map_images.seo_url,
+    },
     openGraph: {
       type: "website",
       url: `https://activazon.com/places${responseJson.slug_path}`,
