@@ -42,6 +42,10 @@ const Page = () => {
     citiesLoaded,
   } = useCountryPageParams();
 
+  const firstPartCount = 4;
+  const activityItemsPart1 = activityItems.slice(0, firstPartCount);
+  const activityItemsPart2 = activityItems.slice(firstPartCount);
+
   return (
     <Content>
       <MapInfo
@@ -60,6 +64,27 @@ const Page = () => {
         areaDisplayName={accessorPlaceDisplayName(placeData)}
         data={breakdownData}
       />
+
+      <ItemListContainer>
+        {activityItemsPart1.map((data: any) => (
+          <Item
+            key={`activity-${data.id}`}
+            attrLabels={[
+              accesorIncidentCityDisplayName(data),
+              accesorIncidentDate(data, locale),
+            ]}
+            title={accesorIncidentTitle(data, locale)}
+            content={
+              <span>
+                <ActivityTypePill name={accesorIncidentType(data)} />
+              </span>
+            }
+            url={activityPath(data.id)}
+            image={accesorIncidentListImage(data)}
+            pulse={!activitiesLoaded}
+          />
+        ))}
+      </ItemListContainer>
 
       <ContentGroup>
         <ContentGroupTitle
@@ -89,7 +114,7 @@ const Page = () => {
           })}
         />
         <ItemListContainer>
-          {activityItems.map((data: any) => (
+          {activityItemsPart2.map((data: any) => (
             <Item
               key={`activity-${data.id}`}
               attrLabels={[

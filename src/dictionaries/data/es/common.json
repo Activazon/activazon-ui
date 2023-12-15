@@ -50,7 +50,7 @@
     "popup:subscribed": "Suscripción exitosa",
     "popup:unsubscribed": "Suscripción cancelada",
     "unread_notifications": "{{count}} notificaciones sin leer",
-    "country:incidents": "Incidentes detectadas en {{countryName}}",
+    "country:incidents": "Otras incidentes detectadas en {{countryName}}",
     "country:cities": "Ciudades que cubrimos en {{countryName}}"
   }
 }

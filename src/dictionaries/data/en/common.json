@@ -50,7 +50,7 @@
     "popup:subscribed": "Subscribed",
     "popup:unsubscribed": "Unsubscribed",
     "unread_notifications": "{{count}} unread notifications",
-    "country:incidents": "Incidents detected in {{countryName}}",
+    "country:incidents": "Other incidents detected in {{countryName}}",
     "country:cities": "Cities we cover in {{countryName}}"
   }
 }
