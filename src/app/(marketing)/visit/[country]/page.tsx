@@ -18,6 +18,7 @@ const SUPPORTED_COUNTRIES: { [key: string]: string } = {
   mexico: "Mexico",
   colombia: "Colombia",
   guatemala: "Guatemala",
+  belize: "Belize",
 };
 
 const getCountryName = (countryName: string) => {
