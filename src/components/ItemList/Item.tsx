@@ -29,8 +29,10 @@ const Item = ({
           <div className="tw-flex tw-flex-col tw-gap-0 tw-w-full">
             {attrLabels && (
               <p className="tw-text-sm">
-                <span className="tw-text-blue-dark">{attrLabels[0]}</span>
-                <span className="tw-text-[#7F7F7F] tw-ml-1 tw-mr-1">
+                <span className="tw-text-blue-dark">
+                  <i className="bi bi-geo-alt-fill"></i> {attrLabels[0]}
+                </span>
+                <span className="tw-text-[#7F7F7F] tw-ml-1.5">
                   {attrLabels[1]}
                 </span>
               </p>
