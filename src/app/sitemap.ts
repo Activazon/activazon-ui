@@ -16,25 +16,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
   ];
-
-  ["honduras", "belize", "nicaragua", "guatemala", "mexico"].forEach(
-    (country_slug: any) => {
+  try {
+    const responseJson = await getCities();
+    (responseJson?.results || []).forEach((country: any) => {
       // internal url
       siteMapResp.push({
-        url: "https://activazon.com/places/" + country_slug,
+        url: "https://activazon.com/places" + country.slug_path,
         lastModified: new Date(),
         changeFrequency: "daily",
         priority: 1,
       });
       // marketing url
       siteMapResp.push({
-        url: "https://activazon.com/visit/" + country_slug,
+        url: "https://activazon.com/visit/" + country.slug,
         lastModified: new Date(),
         changeFrequency: "weekly",
         priority: 1,
       });
-    }
-  );
+    });
+  } catch (e) {
+    // nothing
+  }
 
   return siteMapResp;
 }
