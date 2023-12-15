@@ -13,7 +13,7 @@ const config: Config = {
         "blue-light": "#06d0f9",
         "blue-light-2": "#E8FAFF",
         "blue-dark": "#0b2442",
-        "gray-dark": "#6d6d7f",
+        "gray-dark": "#727272",
       },
       fontFamily: {
         pixellari: ["TT-Supermolot-Neue", "sans-serif"],

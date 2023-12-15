@@ -17,7 +17,7 @@ const PlaceActivityBreakdownItem = ({
 }: PlaceActivityBreakDownItemProps) => {
   const { t } = useDictionary();
   return (
-    <div className="tw-border-2 tw-bg-white tw-shadow-lg tw-rounded-lg tw-p-2">
+    <div className="tw-bg-slate-200 tw-rounded-lg tw-p-2">
       <div>
         <p className="tw-text-blue-dark tw-text-6xl tw-font-bold tw-m-0 tw-inline">
           {activityCount}
