@@ -27,10 +27,12 @@ import ContentGroupTitle from "@/components/Content/ContentGroupTitle";
 import TileGridContainer from "@/components/TileGrid/TileGridContainer";
 import TileItem from "@/components/TileGrid/TileItem";
 import { placesPath } from "@/lib/places";
+import { notFound as nextNotFound } from "next/navigation";
 
 const Page = () => {
   const { t, locale } = useDictionary();
   const {
+    notFound,
     placeAddress,
     placeData,
     placeMapLoaded,
@@ -45,6 +47,10 @@ const Page = () => {
   const firstPartCount = 4;
   const activityItemsPart1 = activityItems.slice(0, firstPartCount);
   const activityItemsPart2 = activityItems.slice(firstPartCount);
+
+  if (notFound) {
+    return nextNotFound();
+  }
 
   return (
     <Content>

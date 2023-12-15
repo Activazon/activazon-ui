@@ -28,6 +28,7 @@ import {
   accesorIncidentType,
 } from "@/lib/incidentAccessors";
 import SubscribeButton from "@/components/SubscribeButton";
+import { notFound as nextNotFound } from "next/navigation";
 
 const ACTIVITIES_LIMIT = 15;
 
@@ -79,6 +80,11 @@ const Page = () => {
       areaSlug={areaSlug}
     />
   );
+
+  const notFound = (fetchPlaceQuery?.error as any)?.status == 404;
+  if (notFound) {
+    return nextNotFound();
+  }
 
   return (
     <Content>

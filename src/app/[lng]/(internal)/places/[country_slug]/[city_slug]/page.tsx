@@ -22,11 +22,13 @@ import {
 } from "@/lib/incidentAccessors";
 import { useCityPageParams } from "./helper";
 import SubscribeButton from "@/components/SubscribeButton";
+import { notFound as nextNotFound } from "next/navigation";
 
 const Page = () => {
   const { t, locale } = useDictionary();
 
   const {
+    notFound,
     placeAddress,
     placeData,
     placeMapLoaded,
@@ -35,6 +37,10 @@ const Page = () => {
     activityItems,
     activitiesLoaded,
   } = useCityPageParams();
+
+  if (notFound) {
+    return nextNotFound();
+  }
 
   const actionsElements = (
     <SubscribeButton

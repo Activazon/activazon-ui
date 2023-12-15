@@ -14,8 +14,6 @@ const ACTIVITIES_LIMIT = 15;
 export const useCountryPageParams = () => {
   const { slugPath } = usePlaceParams();
 
-  console.log("slugPath", slugPath);
-
   // get place data
   const fetchPlaceQuery = useFetchCountryQuery(
     {
@@ -73,7 +71,10 @@ export const useCountryPageParams = () => {
     ? fetchCitiesQuery.data?.results
     : pulseObjectList(citiesLimit);
 
+  const notFound = (fetchPlaceQuery?.error as any)?.status == 404;
+
   return {
+    notFound,
     placeAddress,
     placeData,
     placeMapLoaded,

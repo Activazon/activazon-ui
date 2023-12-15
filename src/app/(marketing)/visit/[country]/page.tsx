@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { default as basicMetadata } from "@/lib/metadata";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface SectionProps {
   children: any;
@@ -135,6 +136,9 @@ const PointCard = ({
 );
 
 const Page = ({ params }: Props) => {
+  if (!Object.keys(SUPPORTED_COUNTRIES).includes(params.country)) {
+    return notFound();
+  }
   const countryName = getCountryName(params.country);
   return (
     <>

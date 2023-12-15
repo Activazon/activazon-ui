@@ -53,7 +53,10 @@ export const useCityPageParams = () => {
     ? fetchIncidentQuery.data?.results
     : pulseObjectList(ACTIVITIES_LIMIT);
 
+  const notFound = (fetchPlaceQuery?.error as any)?.status == 404;
+
   return {
+    notFound,
     placeAddress,
     placeData,
     placeMapLoaded,
