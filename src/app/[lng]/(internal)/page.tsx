@@ -16,6 +16,7 @@ import {
   accessorPlaceIncidentMetricsLast3Months,
   accessorPlaceMapImagesWideDefault,
   accesorPlaceSlugPath,
+  accessorPlaceMapImagesSquareDefault,
 } from "@/lib/placeAccessors";
 import { placesPath } from "@/lib/places";
 import { useFetchCityIncidentsQuery } from "@/store/api/incidentApi";
@@ -127,7 +128,7 @@ const Page = () => {
                 count: accessorPlaceIncidentMetricsLast3Months(data),
               })}
               url={placesPath(accesorPlaceSlugPath(data))}
-              image={accessorPlaceMapImagesWideDefault(data)}
+              image={accessorPlaceMapImagesSquareDefault(data)}
               pulse={!fetchCitiesQuery.isSuccess}
             />
           ))}

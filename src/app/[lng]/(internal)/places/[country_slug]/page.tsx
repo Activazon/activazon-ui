@@ -11,6 +11,7 @@ import {
   accesorPlaceSlugPath,
   accessorPlaceDisplayName,
   accessorPlaceIncidentMetricsLast3Months,
+  accessorPlaceMapImagesSquareDefault,
   accessorPlaceMapImagesWideDefault,
 } from "@/lib/placeAccessors";
 
@@ -107,7 +108,7 @@ const Page = () => {
                 count: accessorPlaceIncidentMetricsLast3Months(data),
               })}
               url={placesPath(accesorPlaceSlugPath(data))}
-              image={accessorPlaceMapImagesWideDefault(data)}
+              image={accessorPlaceMapImagesSquareDefault(data)}
               pulse={!citiesLoaded}
             />
           ))}
