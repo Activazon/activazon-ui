@@ -11,37 +11,31 @@ interface TileItemProps {
 const TileItem = ({ title, description, url, image, pulse }: TileItemProps) => {
   return (
     <Link href={url} className="tw-contents">
-      <div
-        className={
-          "tw-bg-blue-dark tw-aspect-[16/9] tw-rounded-lg tw-relative tw-shadow-md tw-border-2 tw-overflow-hidden tw-cursor-pointer " +
-          (pulse ? "tw-border-blue-dark" : "tw-border-blue-light")
-        }
-      >
-        {!pulse && (
-          <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={image}
-              alt={title}
-              className="tw-object-cover tw-w-full tw-h-full"
-            />
-            <div className="tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-p-3 tw-pb-1 tw-bg-gradient-to-t tw-from-blue-dark tw-to-transparent">
-              <p className="tw-text-white tw-font-medium sm:tw-text-lg tw-shadow-sm">
-                {title}
-              </p>
-              <p className="tw-text-white tw-hidden md:tw-block tw-text-sm">
-                {description}
-              </p>
-            </div>
-          </>
-        )}
-        {pulse && (
-          <>
-            <div className="tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-p-3 tw-pb-2 tw-animate-pulse tw-grid tw-grid-cols-3">
-              <div className="tw-h-5 tw-bg-[#FFFFFF50] tw-rounded-full tw-col-span-2 md:tw-mb-2"></div>
-              <div className="tw-h-3 tw-bg-[#FFFFFF50] tw-rounded-full tw-col-span-3 tw-hidden md:tw-block"></div>
-            </div>
-          </>
+      <div className="hover:tw-bg-blue-light/10">
+        <div className="tw-bg-blue-dark tw-aspect-square tw-rounded-lg tw-relative tw-shadow-md tw-overflow-hidden tw-cursor-pointer ">
+          {!pulse && (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={image}
+                alt={title}
+                className="tw-object-cover tw-w-full tw-h-full"
+              />
+            </>
+          )}
+        </div>
+        {!pulse ? (
+          <div className="tw-mt-1">
+            <p className="tw-text-lg tw-font-demibold tw-text-blue-dark tw-leading-6">
+              {title}
+            </p>
+            <p className="tw-text-sm tw-text-[#7F7F7F]">{description}</p>
+          </div>
+        ) : (
+          <div className="tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-p-3 tw-pb-2 tw-animate-pulse tw-grid tw-grid-cols-3">
+            <div className="tw-h-5 tw-bg-blue-dark/50 tw-rounded-full tw-col-span-2 md:tw-mb-2"></div>
+            <div className="tw-h-3 tw-bg-blue-dark/50 tw-rounded-full tw-col-span-3 tw-hidden md:tw-block"></div>
+          </div>
         )}
       </div>
     </Link>

@@ -24,7 +24,7 @@ const Item = ({
 }: ItemProps) => {
   return (
     <Link href={url} onClick={onClick}>
-      <div className="tw-flex tw-flex-row tw-gap-4">
+      <div className="tw-flex tw-flex-row tw-gap-4 hover:tw-bg-blue-light/10">
         {!pulse ? (
           <div className="tw-flex tw-flex-col tw-gap-0 tw-w-full">
             {attrLabels && (
