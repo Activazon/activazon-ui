@@ -10,7 +10,7 @@ interface TileItemProps {
 
 const TileItem = ({ title, description, url, image, pulse }: TileItemProps) => {
   return (
-    <Link href={url} className="tw-contents">
+    <Link href={url} className="tw-inline-table">
       <div className="hover:tw-bg-blue-light/10">
         <div className="tw-bg-blue-dark tw-aspect-square tw-rounded-lg tw-relative tw-shadow-md tw-overflow-hidden tw-cursor-pointer ">
           {!pulse && (
