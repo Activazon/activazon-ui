@@ -20,14 +20,14 @@ export const usePlaceParams = () => {
     activity_id: activityId,
   } = useParams<PlaceParams>();
 
+  const slugPath =
+    "/" + [countrySlug, citySlug, areaSlug].filter((slug) => slug).join("/");
+
   return {
     countrySlug,
     citySlug,
     areaSlug,
-    slugPath:
-      countrySlug && citySlug
-        ? `/${countrySlug}/${citySlug}/${areaSlug}`.replace("/undefined", "")
-        : null,
+    slugPath,
     activityId,
     hasSlugs: Boolean(countrySlug && citySlug),
   };

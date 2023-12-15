@@ -14,6 +14,12 @@ const incidentApi = createApi({
         method: "GET",
       }),
     }),
+    fetchCountryIncidentTypeBreakdown: builder.query({
+      query: ({ slugPath }: { slugPath: string }) => ({
+        url: `/v3/incidents/incident/country_incident_type_breakdown/?slug_path=${slugPath}`,
+        method: "GET",
+      }),
+    }),
     fetchCityIncidentTypeBreakdown: builder.query({
       query: ({ slugPath }: { slugPath: string }) => ({
         url: `/v3/incidents/incident/city_incident_type_breakdown/?slug_path=${slugPath}`,
@@ -32,6 +38,12 @@ const incidentApi = createApi({
         method: "GET",
       }),
     }),
+    fetchCountryIncidents: builder.query({
+      query: ({ slugPath, limit }: { slugPath: string; limit: number }) => ({
+        url: `/v3/incidents/incident/country_incidents/?slug_path=${slugPath}&limit=${limit}`,
+        method: "GET",
+      }),
+    }),
 
     fetchIncident: builder.query({
       query: ({ incidentId }: { incidentId: number }) => ({
@@ -43,10 +55,12 @@ const incidentApi = createApi({
 });
 
 export const {
+  useFetchCountryIncidentTypeBreakdownQuery,
   useFetchAreaIncidentTypeBreakdownQuery,
   useFetchCityIncidentTypeBreakdownQuery,
   useFetchAreaIncidentsQuery,
   useFetchCityIncidentsQuery,
+  useFetchCountryIncidentsQuery,
   useFetchIncidentQuery,
 } = incidentApi;
 export default incidentApi;
