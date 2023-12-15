@@ -8,6 +8,7 @@ import PlaceActivityBreakdown from "@/components/PlaceActivityBreakdown";
 import { activityPath } from "@/lib/activity";
 import ActivityTypePill from "@/components/ActivityTypePill";
 import {
+  accesorPlaceSlugPath,
   accessorPlaceDisplayName,
   accessorPlaceIncidentMetricsLast3Months,
   accessorPlaceMapImagesWideDefault,
@@ -21,6 +22,11 @@ import {
   accesorIncidentType,
 } from "@/lib/incidentAccessors";
 import { useCountryPageParams } from "../helper";
+import ContentGroup from "@/components/Content/ContentGroup";
+import ContentGroupTitle from "@/components/Content/ContentGroupTitle";
+import TileGridContainer from "@/components/TileGrid/TileGridContainer";
+import TileItem from "@/components/TileGrid/TileItem";
+import { placesPath } from "@/lib/places";
 
 const Page = () => {
   const { t, locale } = useDictionary();
@@ -32,6 +38,8 @@ const Page = () => {
     breakdownData,
     activityItems,
     activitiesLoaded,
+    cityItems,
+    citiesLoaded,
   } = useCountryPageParams();
 
   return (
@@ -73,6 +81,24 @@ const Page = () => {
           />
         ))}
       </ItemListContainer>
+
+      <ContentGroup>
+        <ContentGroupTitle title={t("home:similiar_cities")} />
+        <TileGridContainer>
+          {cityItems.map((data: any) => (
+            <TileItem
+              key={`city-${data.id}`}
+              title={accessorPlaceDisplayName(data)}
+              description={t("common:recent_activity", {
+                count: accessorPlaceIncidentMetricsLast3Months(data),
+              })}
+              url={placesPath(accesorPlaceSlugPath(data))}
+              image={accessorPlaceMapImagesWideDefault(data)}
+              pulse={!citiesLoaded}
+            />
+          ))}
+        </TileGridContainer>
+      </ContentGroup>
     </Content>
   );
 };

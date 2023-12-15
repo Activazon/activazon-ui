@@ -7,6 +7,7 @@ import {
   useFetchCountryIncidentTypeBreakdownQuery,
 } from "@/store/api/incidentApi";
 import { useFetchCountryQuery } from "@/store/api/countryApi";
+import { useFetchCitiesQuery } from "@/store/api/cityApi";
 
 const ACTIVITIES_LIMIT = 15;
 
@@ -55,6 +56,23 @@ export const useCountryPageParams = () => {
     ? fetchIncidentQuery.data?.results
     : pulseObjectList(ACTIVITIES_LIMIT);
 
+  // fetch cities
+  const countrySlug = placeData?.slug;
+  const citiesLimit = 12;
+  const fetchCitiesQuery = useFetchCitiesQuery(
+    {
+      limit: citiesLimit,
+      countrySlug: countrySlug,
+    },
+    {
+      skip: !countrySlug,
+    }
+  );
+  const citiesLoaded = fetchCitiesQuery.isSuccess;
+  const cityItems = fetchCitiesQuery.isSuccess
+    ? fetchCitiesQuery.data?.results
+    : pulseObjectList(citiesLimit);
+
   return {
     placeAddress,
     placeData,
@@ -63,5 +81,7 @@ export const useCountryPageParams = () => {
     breakdownData,
     activityItems,
     activitiesLoaded,
+    cityItems,
+    citiesLoaded,
   };
 };
