@@ -27,8 +27,9 @@ export const accesorIncidentSummary = (incident: any, locale: string) => {
 };
 
 export const accesorIncidentListImage = (incident: any) => {
+  const sourceImage = incident?.source?.top_image;
   const place = incident?.place_area || incident?.place_city;
-  return accessorPlaceMapImagesSquareDefault(place);
+  return sourceImage || accessorPlaceMapImagesSquareDefault(place);
 };
 
 export const accesorIncidentAddress = (incident: any) => {
