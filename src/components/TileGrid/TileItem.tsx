@@ -19,7 +19,7 @@ const TileItem = ({ title, description, url, image, pulse }: TileItemProps) => {
               <img
                 src={image}
                 alt={title}
-                className="tw-object-cover tw-w-full tw-h-full"
+                className="tw-object-fill  tw-w-full tw-h-full"
               />
             </>
           )}
