@@ -7,9 +7,11 @@ import Spinner from "./Spinner";
 import { useLazySearchCitiesQuery } from "@/store/api/cityApi";
 import { useLazySearchAreasQuery } from "@/store/api/areaApi";
 import { usePathname } from "next/navigation";
+import { useLazySearchCountriesQuery } from "@/store/api/countryApi";
 
 let searchTimer: NodeJS.Timeout;
 
+const COUNTRIES_SEARCH_LIMIT = 2;
 const CITIES_SEARCH_LIMIT = 4;
 const AREAS_SEARCH_LIMIT = 15;
 
@@ -23,9 +25,12 @@ const SearchManager = ({ alwaysShow }: SearchManagerProps) => {
   const [forcePulse, setForcePulse] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-  const [searchCitiesTrigger, searchCitiesResult, _] =
+  const [searchCountriesTrigger, searchCountriesResult, _] =
+    useLazySearchCountriesQuery();
+  const [searchCitiesTrigger, searchCitiesResult, __] =
     useLazySearchCitiesQuery();
-  const [searchAreasTrigger, searchAreasResult, __] = useLazySearchAreasQuery();
+  const [searchAreasTrigger, searchAreasResult, ___] =
+    useLazySearchAreasQuery();
 
   useEffect(() => {
     if (searchCitiesResult.isFetching || searchAreasResult.isLoading) {
@@ -49,6 +54,10 @@ const SearchManager = ({ alwaysShow }: SearchManagerProps) => {
     searchTimer = setTimeout(() => {
       // search
       setIsSearching(true);
+      searchCountriesTrigger({
+        search: searchValue,
+        limit: COUNTRIES_SEARCH_LIMIT,
+      });
       searchCitiesTrigger({
         search: searchValue,
         limit: CITIES_SEARCH_LIMIT,
@@ -92,8 +101,10 @@ const SearchManager = ({ alwaysShow }: SearchManagerProps) => {
             style={{ minHeight: resultsMinHeight }}
           >
             <SearchResults
+              countriesPulse={!searchCountriesResult.isSuccess || forcePulse}
               citiesPulse={!searchCitiesResult.isSuccess || forcePulse}
               areasPulse={!searchAreasResult.isSuccess || forcePulse}
+              countriesResults={searchCountriesResult.data}
               citiesResults={searchCitiesResult.data}
               areasResults={searchAreasResult.data}
             />

@@ -17,24 +17,49 @@ import {
 } from "@/lib/placeAccessors";
 
 interface SearchResultsProps {
+  countriesPulse: boolean;
   citiesPulse: boolean;
   areasPulse: boolean;
+  countriesResults: any;
   citiesResults: any;
   areasResults: any;
 }
 
 const SearchResults = ({
+  countriesPulse,
   citiesPulse,
   areasPulse,
+  countriesResults,
   citiesResults,
   areasResults,
 }: SearchResultsProps) => {
   const { t } = useDictionary();
+  const countryItems = countriesPulse ? pulseObjectList(2) : countriesResults;
   const cityItems = citiesPulse ? pulseObjectList(4) : citiesResults;
   const areaItems = areasPulse ? pulseObjectList(10) : areasResults;
 
   return (
     <Content extraClasses="tw-mt-5 animate--modal-bg">
+      {/* only show countries during pulsing and if we have matches */}
+      {countryItems?.length > 0 && (
+        <ContentGroup>
+          <ContentGroupTitle title={t("common:search_country_results")} />
+          <TileGridContainer>
+            {countryItems.map((data: any) => (
+              <TileItem
+                key={`search-country-${data.id}`}
+                title={accesorPlaceAddress(data)}
+                description={t("common:recent_activity", {
+                  count: accessorPlaceIncidentMetricsLast3Months(data),
+                })}
+                url={placesPath(accesorPlaceSlugPath(data))}
+                image={accessorPlaceMapImagesSquareDefault(data)}
+                pulse={citiesPulse}
+              />
+            ))}
+          </TileGridContainer>
+        </ContentGroup>
+      )}
       {/* only show cities during pulsing and if we have matches */}
       {cityItems?.length > 0 && (
         <ContentGroup>

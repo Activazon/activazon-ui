@@ -14,8 +14,22 @@ const countryApi = createApi({
         method: "GET",
       }),
     }),
+    searchCountries: builder.query({
+      query: (data: { search: string; limit: number }) => {
+        const params = new URLSearchParams({});
+        if (data) {
+          params.set("query", data.search);
+          params.set("limit", data.limit.toString());
+        }
+
+        return {
+          url: `/v3/places/country/search/?${params.toString()}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useFetchCountryQuery } = countryApi;
+export const { useFetchCountryQuery, useLazySearchCountriesQuery } = countryApi;
 export default countryApi;
