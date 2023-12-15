@@ -50,7 +50,13 @@ const capitalizedString = (mySentence: string) => {
 export const generatePlaceMetadata = async (
   props: Props
 ): Promise<Metadata> => {
-  const responseJson = await getPlace(props.params).then((resp) => resp.json());
+  let responseJson = null;
+  try {
+    responseJson = await getPlace(props.params).then((resp) => resp.json());
+  } catch (e) {
+    return {};
+  }
+
   const placeName = capitalizedString(responseJson.address);
 
   if (props.params.lng == "es") {
