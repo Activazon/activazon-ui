@@ -23,6 +23,19 @@ export default function RootLayout({
   return (
     <html lang={lng}>
       <body>
+        <a href="https://www.sideprojectors.com/project/39567/activazon">
+          <img
+            style={{
+              position: "fixed",
+              zIndex: "1000",
+              top: "-5px",
+              right: "20px",
+              border: 0,
+            }}
+            src="https://www.sideprojectors.com/img/badges/badge_2_red.png"
+            alt="Activazon is sale at @SideProjectors"
+          />
+        </a>
         <AppProvider locale={lng}>
           <TrackingProvider>
             <ServiceWorkerProvider>
