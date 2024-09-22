@@ -134,6 +134,11 @@ const Page = () => {
           ))}
         </TileGridContainer>
       </ContentGroup>
+
+      <p>
+        Yes, Activazon does belong to me, Michael - @kiorqo on telegram Sept 21
+        2024
+      </p>
     </Content>
   );
 };
