@@ -1,178 +1,21 @@
-/* tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* icons */
-@import "bootstrap-icons/font/bootstrap-icons.min.css";
-
-/* font */
-@font-face {
-  font-family: "TT-Supermolot-Neue";
-  src: local("Sans-Serif"),
-    url("/assets/fonts/TT Supermolot Neue Trial Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-@font-face {
-  font-family: "TT-Supermolot-Neue";
-  src: local("Sans-Serif"),
-    url("/assets/fonts/TT Supermolot Neue Trial DemiBold.ttf")
-      format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "TT-Supermolot-Neue";
-  src: local("Sans-Serif"),
-    url("/assets/fonts/TT Supermolot Neue Trial Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "TT-Supermolot-Neue";
-  src: local("Sans-Serif"),
-    url("/assets/fonts/TT Supermolot Neue Trial Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
 body {
-  font-family: "TT-Supermolot-Neue";
-  background-color: #ffffff;
-  font-weight: 500;
-  -webkit-user-select: none; /* Safari 3.1+ */
-  -moz-user-select: none; /* Firefox 2+ */
-  -ms-user-select: none; /* IE 10+ */
-  user-select: none; /* Standard syntax */
-}
-
-/* device detect */
-.ios-specific {
-  display: none;
-}
-.non-ios-specific {
-  display: none;
-}
-
-/* CSS for iOS devices with touch support */
-@supports (-webkit-overflow-scrolling: touch) {
-  .ios-specific {
-    display: block;
-  }
-}
-
-/* CSS for devices without touch support (non-iOS devices) */
-@supports not (-webkit-overflow-scrolling: touch) {
-  .non-ios-specific {
-    display: block;
-  }
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeout {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeinup {
-  from {
-    opacity: 0;
-    transform: translate(0, 50px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(0, 0px);
-  }
-}
-
-.animate--modal-bg {
-  animation: fadein 0.2s ease-in-out;
-  /* animation: spin 1s linear infinite; */
-}
-
-.animate--modal-down {
-  animation: fadeindown 0.2s ease-in-out;
-}
-
-.animate--modal-up {
-  animation: fadeinup 0.4s ease-in-out;
-}
-
-.animate--fadein {
-  animation: fadein 0.2s ease-in-out 1 forwards;
-}
-
-.animate--fadeout {
-  animation: fadeout 0.3s ease-in-out 1 forwards;
-}
-
-@media (max-width: 640px) {
-  @keyframes fadeoutup {
-    from {
-      /* opacity: 1; */
-      transform: translate(0, 0px);
-    }
-    to {
-      /* opacity: 0; */
-      transform: translate(0, -38px);
-    }
-  }
-
-  @keyframes fadeindown {
-    from {
-      opacity: 0;
-      transform: translate(0, -38px);
-    }
-    to {
-      opacity: 1;
-      transform: translate(0, 0px);
-    }
-  }
-  .animate-nav-fadeoutup {
-    animation: fadeoutup 0.4s ease-in-out 1 forwards;
-  }
-  .animate-nav-fadeindown {
-    animation: fadeindown 0.2s ease-in-out 1 forwards;
-  }
-}
-
-.banner-bg {
-  background-image: linear-gradient(
-    to right bottom,
-    #2791a6,
-    #24a0ba,
-    #1eb0ce,
-    #16c0e3,
-    #06d0f9
-  );
-}
-
-a {
-  -webkit-touch-callout: none;
-}
-
-@supports (padding: max(0px)) {
-  .footer-button {
-    padding-bottom: max(0.75rem + env(safe-area-inset-bottom)) !important;
-  }
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
 }

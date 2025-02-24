@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
-  prefix: "tw-",
+export default {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,19 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "blue-light": "#06d0f9",
-        "blue-light-2": "#E8FAFF",
-        "blue-dark": "#0b2442",
-        "gray-dark": "#727272",
-      },
-      fontFamily: {
-        pixellari: ["TT-Supermolot-Neue", "sans-serif"],
-      },
-      height: {
-        "search-bar": "3.5rem",
+        background: "var(--background)",
+        foreground: "var(--foreground)",
       },
     },
   },
   plugins: [],
-};
-export default config;
+} satisfies Config;
