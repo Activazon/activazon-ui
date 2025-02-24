@@ -15,7 +15,7 @@ const JoinWaitListButton = () => {
   return (
     <Fragment>
       <div
-        className={`w-screen h-screen z-50 bg-black/20 backdrop-blur-md fixed top-0 left-0 flex justify-center items-center transition-all ${
+        className={`w-screen min-h-screen z-50 bg-black/20 backdrop-blur-md fixed top-0 left-0 flex justify-center items-center transition-all ${
           show
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
