@@ -11,7 +11,7 @@ import { Waitlist } from "@clerk/nextjs";
 import JoinWaitListButton from "./JoinWaitListButton";
 
 const Banner = () => (
-  <div className="w-fit flex flex-col gap-3 px-4">
+  <div className="w-fit flex flex-col gap-3 px-4 mt-8 md:md-0">
     <img
       src="/logo.svg"
       alt="Activazon Logo"
@@ -47,7 +47,7 @@ const Icon = ({ icon }: { icon: any }) => (
 
 export default function Home() {
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
+    <div className="w-screen min-h-screen flex justify-center items-center">
       <div className="w-full max-w-[500px] flex flex-col justify-end gap-5">
         <Banner />
 
