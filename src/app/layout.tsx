@@ -17,12 +17,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title:
-    "Activazon – Neighborhood Intelligence for Smart Investors & Decision-Makers",
+    "Activazon – Community Intelligence for Smart Investors & Decision-Makers",
   description:
     "Get AI-powered reports on real estate trends, new developments, crime & safety, business openings, and local infrastructure changes. Stay ahead with Activazon.",
   keywords: [
     "Activazon",
     "Neighborhood Intelligence",
+    "Community Intelligence",
     "Real Estate Reports",
     "Local Insights",
     "Development Reports",
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     "AI Reports",
   ],
   openGraph: {
-    title: "Activazon – AI-Powered Neighborhood Intelligence",
+    title: "Activazon – AI-Powered Community Intelligence",
     description:
       "Exclusive AI-generated reports on real estate, developments, crime, and more. Know first. Act fast.",
     url: "https://activazon.com",
@@ -40,13 +41,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Activazon - AI-Powered Neighborhood Intelligence",
+        alt: "Activazon - AI-Powered Community Intelligence",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Activazon – AI-Powered Neighborhood Intelligence",
+    title: "Activazon – AI-Powered Community Intelligence",
     description:
       "Exclusive AI-generated reports on real estate, developments, crime, and more. Know first. Act fast.",
     images: ["/og-image.png"],

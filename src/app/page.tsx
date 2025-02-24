@@ -18,7 +18,7 @@ const Banner = () => (
       className="w-full max-w-[250px] md:max-w-[300px]"
     />
     <p className="md:text-lg font-medium">
-      Neighborhood Intelligence for Decision-Makers
+      Community Intelligence for Decision-Makers
     </p>
   </div>
 );
@@ -65,7 +65,7 @@ export default function Home() {
           <UseCase
             icon={<Icon icon={CrimeIcon} />}
             title="Crime & Safety Reports"
-            description="Understand neighborhood risks & safety changes."
+            description="Understand community risks & safety changes."
           />
           <UseCase
             icon={<Icon icon={TrafficIcon} />}
