@@ -42,7 +42,7 @@ const UseCase = ({
 );
 
 const Icon = ({ icon }: { icon: any }) => (
-  <HugeiconsIcon icon={icon} size={35} color="#FFC95C" strokeWidth={0.1} />
+  <HugeiconsIcon icon={icon} size={35} color="#00A3FF" strokeWidth={0.1} />
 );
 
 export default function Home() {
