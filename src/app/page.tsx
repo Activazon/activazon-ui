@@ -1,15 +1,14 @@
-import { Fragment, ReactNode } from "react";
+import { ReactNode } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  SearchIcon,
   House03Icon as HouseIcon,
   Store01Icon as StoreIcon,
   PoliceCapIcon as CrimeIcon,
   TrafficLightIcon as TrafficIcon,
   CourtLawIcon as LawIcon,
-  ArrowRight02Icon as JoinIcon,
 } from "@hugeicons/core-free-icons";
 import { Waitlist } from "@clerk/nextjs";
+import JoinWaitListButton from "./JoinWaitListButton";
 
 const Banner = () => (
   <div className="w-fit flex flex-col gap-3 px-4">
@@ -41,19 +40,6 @@ const UseCase = ({
     </div>
   </div>
 );
-
-const JoinWaitListButton = () => {
-  return (
-    <Fragment>
-      <div className="w-full px-4 md:px-0">
-        <button className="w-full bg-[#FFC95C]/80 hover:bg-[#FFC95C] border border-white/30 text-black font-semibold py-3 md:rounded-2xl text-lg flex flex-row items-center justify-center gap-2">
-          <span>&#8594;</span>
-          <span>Join the Waitlist</span>
-        </button>
-      </div>
-    </Fragment>
-  );
-};
 
 const Icon = ({ icon }: { icon: any }) => (
   <HugeiconsIcon icon={icon} size={35} color="#FFC95C" strokeWidth={0.1} />
@@ -93,6 +79,11 @@ export default function Home() {
           />
         </div>
         <JoinWaitListButton />
+        <footer className="sticky bottom-0 w-full mt-5">
+          <p className="text-center text-sm text-white/70">
+            &copy; Activazon 2025
+          </p>
+        </footer>
       </div>
     </div>
   );
