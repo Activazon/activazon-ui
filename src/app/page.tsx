@@ -15,9 +15,9 @@ const Banner = () => (
     <img
       src="/logo.svg"
       alt="Activazon Logo"
-      className="w-full max-w-[250px] md:max-w-[300px]"
+      className="w-full max-w-[250px] md:max-w-[300px"
     />
-    <p className="md:text-lg font-medium">
+    <p className="md:text-lg font-semibold">
       Community Intelligence for Decision-Makers
     </p>
   </div>
@@ -50,6 +50,13 @@ export default function Home() {
     <div className="w-screen min-h-screen flex justify-center items-center">
       <div className="w-full max-w-[500px] flex flex-col justify-end gap-5">
         <Banner />
+
+        <div className="px-4">
+          <p className="text-white/90">
+            Get AI-powered insights on any aspect of your community,
+            including...
+          </p>
+        </div>
 
         <div className="w-full flex flex-col bg-white/[0.03] md:rounded-2xl border-t border-b border-white/5 md:border overflow-hidden">
           <UseCase
