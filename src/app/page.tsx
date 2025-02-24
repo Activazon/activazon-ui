@@ -79,7 +79,7 @@ export default function Home() {
           />
         </div>
         <JoinWaitListButton />
-        <footer className="sticky bottom-0 w-full mt-5">
+        <footer className="w-full mt-5">
           <p className="text-center text-sm text-white/70">
             &copy; Activazon 2025
           </p>
