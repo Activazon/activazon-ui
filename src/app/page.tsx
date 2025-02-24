@@ -31,8 +31,10 @@ const UseCase = ({
   description: string;
   icon: ReactNode;
 }) => (
-  <div className="w-full px-3 flex flex-row items-center group hover:bg-white/[0.03] transition-colors duration-200">
-    <div className="w-20 flex justify-center items-center">{icon}</div>
+  <div className="w-full px-3 flex flex-row items-center group hover:bg-[#00A3FF]/10 transition-colors duration-200">
+    <div className="w-20 flex justify-center items-center group-hover:scale-110 transition-all duration-500">
+      {icon}
+    </div>
     <div className="flex flex-col flex-1 group-last:border-b-0 border-b border-white/5 group-hover:border-transparent py-4">
       <p className="font-semibold text-lg">{title}</p>
       <p className="text-white/70">{description}</p>
@@ -54,12 +56,11 @@ export default function Home() {
 
           <div className="px-4">
             <p className="text-white/90">
-              Get AI-powered insights on any aspect of your community,
-              including...
+              Get AI-powered insights on any aspect of your community
             </p>
           </div>
 
-          <div className="w-full flex flex-col bg-white/[0.03] md:rounded-2xl border-t border-b border-white/5 md:border overflow-hidden">
+          <div className="w-full flex flex-col bg-white/[0.03] md:rounded-2xl border-t border-b border-white/5 md:border overflow-hidden shadow-2xl shadow-black/50">
             <UseCase
               icon={<Icon icon={HouseIcon} />}
               title="Real Estate Trends"
