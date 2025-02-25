@@ -6,6 +6,7 @@ export type MdxFrontMatter = {
   title: string;
   date: string; // Format: YYYY-MM-DD
   author: string;
+  author_profile: string;
   excerpt: string;
   slug: string;
   tags: string[];
