@@ -2,6 +2,7 @@ import path from "path";
 import fs from "fs/promises";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { MDX_COMPONENTS } from "./components";
+import remarkGfm from "remark-gfm";
 
 export type MdxFrontMatter = {
   title: string;
@@ -27,6 +28,9 @@ export async function getMdxContent(slug: string) {
     source: fileContent,
     options: {
       parseFrontmatter: true,
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+      },
     },
     components: MDX_COMPONENTS,
   });
