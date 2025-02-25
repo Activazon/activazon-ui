@@ -96,14 +96,7 @@ const BASIC_COMPONENTS = {
       {children}
     </code>
   ),
-  img: (props: any) => (
-    <Image
-      sizes="100vw"
-      className="rounded-lg border border-white/10 my-6 shadow-md"
-      style={{ width: "100%", height: "auto" }}
-      {...(props as ImageProps)}
-    />
-  ),
+  img: (props: any) => <img className="rounded-lg my-6 shadow-md" {...props} />,
   hr: () => <hr className="border-white/15 my-10" />,
 };
 

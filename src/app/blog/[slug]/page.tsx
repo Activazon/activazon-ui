@@ -1,6 +1,4 @@
 import { Metadata } from "next";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { MDX_COMPONENTS } from "@/app/blog/lib/components";
 import { getMdxContent } from "@/app/blog/lib/mdx";
 import { format } from "date-fns";
 
@@ -76,9 +74,12 @@ export default async function RemoteMdxPage({ params }: { params: Params }) {
 
       {/* Title */}
       <div className="mt-12 mb-6">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+        <h1 className="md:inline text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
           {metadata.title}
         </h1>
+        <p className="md:ml-3 md:inline text-2xl md:text-3xl tracking-tight text-white/80 leading-tight">
+          {metadata.sub_title}
+        </p>
 
         {/* Metadata Section */}
         <div className="flex items-center text-white/60 text-sm mt-3 space-x-3">

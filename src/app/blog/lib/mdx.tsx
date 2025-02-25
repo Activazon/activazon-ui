@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 
 export type MdxFrontMatter = {
   title: string;
+  sub_title: string;
   date: string; // Format: YYYY-MM-DD
   author: string;
   author_profile: string;
