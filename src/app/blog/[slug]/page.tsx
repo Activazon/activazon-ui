@@ -49,6 +49,7 @@ export default async function RemoteMdxPage({ params }: { params: Params }) {
     author: {
       "@type": "Person",
       name: metadata.author,
+      url: metadata.author_profile,
     },
     publisher: {
       "@type": "Organization",
