@@ -95,7 +95,8 @@ export default async function RemoteMdxPage({ params }: { params: Params }) {
       </div>
 
       {/* MDX Content */}
-      <MDXRemote components={MDX_COMPONENTS} source={content} />
+      {content}
+      {/* <MDXRemote components={MDX_COMPONENTS} source={content} /> */}
     </div>
   );
 }

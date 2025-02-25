@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs/promises";
-import matter from "gray-matter";
+import { compileMDX } from "next-mdx-remote/rsc";
+import { MDX_COMPONENTS } from "./components";
 
 export type MdxFrontMatter = {
   title: string;
@@ -21,9 +22,16 @@ export type MdxFrontMatter = {
 export async function getMdxContent(slug: string) {
   const filePath = path.join(process.cwd(), "content", `${slug}.mdx`);
   const fileContent = await fs.readFile(filePath, "utf-8");
-  const { data, content } = matter(fileContent);
 
-  return { metadata: data as MdxFrontMatter, content };
+  const { frontmatter: metadata, content } = await compileMDX<MdxFrontMatter>({
+    source: fileContent,
+    options: {
+      parseFrontmatter: true,
+    },
+    components: MDX_COMPONENTS,
+  });
+
+  return { metadata, content };
 }
 
 export async function getAllMdxMetadata(): Promise<MdxFrontMatter[]> {
@@ -35,11 +43,9 @@ export async function getAllMdxMetadata(): Promise<MdxFrontMatter[]> {
   const metadataList = await Promise.all(
     mdxFiles.map(async (file) => {
       const slug = file.replace(".mdx", "");
-      const filePath = path.join(contentDir, file);
-      const fileContent = await fs.readFile(filePath, "utf-8");
-      const { data } = matter(fileContent);
+      const { metadata } = await getMdxContent(slug);
 
-      return { ...data, slug } as MdxFrontMatter;
+      return { ...metadata, slug } as MdxFrontMatter;
     })
   );
 
