@@ -39,7 +39,8 @@ export default async function Page() {
               <p className="text-white/70 mt-2 font-normal">{post.excerpt}</p>
 
               <div className="flex-1 min-h-5" />
-              <div className="mb-2 flex flex-row justify-end">
+              <div className="mb-2 flex flex-row justify-between">
+                <p className="text-sm text-white/50">{post.author}</p>
                 <p className="text-sm text-white/50">
                   {format(new Date(post.date), "MMMM d, yyyy")}
                 </p>
