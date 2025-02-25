@@ -1,6 +1,7 @@
 import { getAllMdxMetadata } from "@/lib/mdx-files";
 import Link from "next/link";
 import { format } from "date-fns";
+import JoinWaitListButton from "../JoinWaitListButton";
 
 export default async function Page() {
   const posts = await getAllMdxMetadata();
@@ -11,12 +12,15 @@ export default async function Page() {
       <div className="w-full max-w-[1200px] flex flex-col md:flex-row justify-between items-start mt-16 md:mt-32 md:mb-5">
         <div className="w-full md:w-auto">
           <h1 className="text-4xl md:text-6xl font-medium text-white tracking-tight">
-            Activazon Blog
+            The Activazon Blog
           </h1>
           <p className="text-white/70 text-lg mt-2 max-w-lg">
             AI-powered insights on real estate, development, and community
             trends.
           </p>
+        </div>
+        <div className="">
+          <JoinWaitListButton />
         </div>
       </div>
 

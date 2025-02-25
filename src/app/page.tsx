@@ -8,6 +8,9 @@ import {
   CourtLawIcon as LawIcon,
 } from "@hugeicons/core-free-icons";
 import JoinWaitListButton from "./JoinWaitListButton";
+import { getAllMdxMetadata } from "@/lib/mdx-files"; // ✅ Fetch latest blog posts
+import Link from "next/link";
+import LatestInsights from "./LatestInsights";
 
 const Banner = () => (
   <div className="w-fit flex flex-col gap-3 px-4 mt-8 md:md-0">
@@ -46,9 +49,44 @@ const Icon = ({ icon }: { icon: any }) => (
   <HugeiconsIcon icon={icon} size={35} color="#00A3FF" strokeWidth={0.1} />
 );
 
-export default function Home() {
+export default async function Home() {
+  const latestPosts = (await getAllMdxMetadata()).slice(0, 3); // ✅ Fetch latest 3 blog posts
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Activazon",
+    url: "https://activazon.com",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://activazon.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+    hasPart: {
+      "@type": "Blog",
+      name: "Activazon Blog",
+      url: "https://activazon.com/blog",
+      blogPosts: latestPosts.map((post) => ({
+        "@type": "BlogPosting",
+        headline: post.title,
+        url: `https://activazon.com/blog/${post.slug}`,
+        datePublished: post.date,
+        author: {
+          "@type": "Person",
+          name: post.author,
+        },
+      })),
+    },
+  };
+
   return (
     <Fragment>
+      {/* JSON-LD Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
       <div className="mesh-gradient-bg !translate-y-[-40vh] md:!translate-y-[-50vh]" />
       <div className="w-screen min-h-screen flex justify-center items-center">
         <div className="w-full max-w-[500px] flex flex-col justify-end gap-5">
@@ -87,7 +125,13 @@ export default function Home() {
               description="See how new laws impact property & businesses."
             />
           </div>
-          <JoinWaitListButton />
+
+          <div className="w-full flex flex-col gap-5 md:flex-col-reverse">
+            <LatestInsights posts={latestPosts} />
+
+            <JoinWaitListButton />
+          </div>
+
           <footer className="w-full pt-5 pb-5">
             <p className="text-center text-sm text-white/70">
               &copy; Activazon 2025

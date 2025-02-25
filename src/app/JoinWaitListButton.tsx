@@ -26,7 +26,7 @@ const JoinWaitListButton = () => {
       </div>
       <div className="w-full px-4 md:px-0 sticky md:relative bottom-0 md:bottom-auto py-3 md:py-0 bg-black/10 backdrop-blur border-t border-white/10 md:border-0 md:backdrop-blur-0 md:bg-transparent">
         <button
-          className="w-full bg-[#00A3FF] hover:bg-[#0080CC] border border-white/30 text-black font-semibold py-3 rounded-2xl text-lg flex flex-row items-center justify-center gap-2"
+          className="w-full bg-[#00A3FF] hover:bg-[#0080CC] border border-white/30 text-black font-semibold py-3 rounded-2xl text-lg flex flex-row items-center justify-center gap-2 px-10"
           onClick={() => setShow(true)}
         >
           <span>&#8594;</span>
