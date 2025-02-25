@@ -1,4 +1,4 @@
-import { MdxFrontMatter } from "@/lib/mdx-files";
+import { MdxFrontMatter } from "@/app/blog/lib/mdx";
 import Link from "next/link";
 
 const LatestInsights = ({ posts }: { posts: MdxFrontMatter[] }) => {

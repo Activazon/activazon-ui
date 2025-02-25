@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { MDX_COMPONENTS } from "@/lib/mdx-components";
-import { getMdxContent } from "@/lib/mdx-files";
+import { MDX_COMPONENTS } from "@/app/blog/lib/components";
+import { getMdxContent } from "@/app/blog/lib/mdx";
 import { format } from "date-fns";
 
 type Params = Promise<{ slug: string }>;

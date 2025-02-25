@@ -1,4 +1,4 @@
-import { getAllMdxMetadata } from "@/lib/mdx-files";
+import { getAllMdxMetadata } from "@/app/blog/lib/mdx";
 import Link from "next/link";
 import { format } from "date-fns";
 import JoinWaitListButton from "../JoinWaitListButton";

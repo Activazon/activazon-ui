@@ -8,7 +8,7 @@ import {
   CourtLawIcon as LawIcon,
 } from "@hugeicons/core-free-icons";
 import JoinWaitListButton from "./JoinWaitListButton";
-import { getAllMdxMetadata } from "@/lib/mdx-files"; // ✅ Fetch latest blog posts
+import { getAllMdxMetadata } from "@/app/blog/lib/mdx"; // ✅ Fetch latest blog posts
 import Link from "next/link";
 import LatestInsights from "./LatestInsights";
 
