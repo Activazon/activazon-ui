@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
@@ -68,6 +69,8 @@ export default function RootLayout({
       <Head>
         <link rel="icon" type="image/png" href="/icon.png" />
       </Head>
+      {/* <GoogleAnalytics gaId="G-XYZ" /> */}
+      <GoogleTagManager gtmId="G-EMVQMGMVN2" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
