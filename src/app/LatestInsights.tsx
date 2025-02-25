@@ -17,9 +17,10 @@ const LatestInsights = ({ posts }: { posts: MdxFrontMatter[] }) => {
           className="group block"
         >
           <div className="p-4 bg-white/5 hover:bg-[#00A3FF]/20 rounded-lg transition duration-200 border border-white/5">
-            <h3 className="text-lg font-medium text-white group-hover:text-[#00A3FF]">
-              {post.title}
-            </h3>
+            <div className="mb-2 text-white group-hover:text-[#00A3FF] transition-all">
+              <h3 className=" inline text-lg font-medium">{post.title}</h3>
+              <p className="ml-1.5 inline opacity-80">{post.sub_title}</p>
+            </div>
             <p className="text-sm text-white/60">{post.excerpt}</p>
           </div>
         </Link>

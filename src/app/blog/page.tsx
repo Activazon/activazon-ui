@@ -36,7 +36,10 @@ export default async function Page() {
               <h2 className="text-xl md:text-2xl font-medium text-white group-hover:text-[#00A3FF] transition-all duration-200">
                 {post.title}
               </h2>
-              <p className="text-white/70 mt-2 font-normal">{post.excerpt}</p>
+              <p className="text-white/80 mt-0 mb-3 text-sm">
+                {post.sub_title}
+              </p>
+              <p className="text-white/60 mt-2 text-sm">{post.excerpt}</p>
 
               <div className="flex-1 min-h-5" />
               <div className="mb-2 flex flex-row justify-between">
