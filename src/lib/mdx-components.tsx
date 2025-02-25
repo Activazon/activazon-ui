@@ -1,5 +1,6 @@
 import Image, { ImageProps } from "next/image";
 import { ReactNode } from "react";
+import JoinWaitlistButton from "@/app/JoinWaitListButton";
 
 export const MDX_COMPONENTS = {
   h1: ({ children }: { children: ReactNode }) => (
@@ -69,4 +70,5 @@ export const MDX_COMPONENTS = {
     />
   ),
   hr: () => <hr className="border-white/15 my-10" />,
+  JoinWaitlistButton,
 };

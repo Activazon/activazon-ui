@@ -23,6 +23,17 @@ export default function RootLayout({
       </header>
 
       <div className="w-full">{children}</div>
+      <footer className="w-full pt-5 pb-5">
+        <p className="text-center text-sm text-white/70">
+          &copy; Activazon 2025 |{" "}
+          <a
+            href="/"
+            className="text-[#00A3FF] underline decoration-[#00A3FF]/50 hover:decoration-[#00A3FF] transition-all duration-200 underline-offset-"
+          >
+            Home
+          </a>
+        </p>
+      </footer>
     </Fragment>
   );
 }

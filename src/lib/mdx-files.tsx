@@ -21,6 +21,7 @@ export async function getMdxContent(slug: string) {
   const filePath = path.join(process.cwd(), "content", `${slug}.mdx`);
   const fileContent = await fs.readFile(filePath, "utf-8");
   const { data, content } = matter(fileContent);
+
   return { metadata: data as MdxFrontMatter, content };
 }
 

@@ -37,7 +37,7 @@ export default async function RemoteMdxPage({
 }: {
   params: { slug: string };
 }) {
-  const { metadata, content } = await getMdxContent(params.slug);
+  const { metadata, content, mdxSource } = await getMdxContent(params.slug);
 
   const structuredData = {
     "@context": "https://schema.org",
