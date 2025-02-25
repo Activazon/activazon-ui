@@ -70,7 +70,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" href="/icon.png" />
       </Head>
       {/* <GoogleAnalytics gaId="G-XYZ" /> */}
-      <GoogleTagManager gtmId="G-EMVQMGMVN2" />
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -81,6 +81,7 @@ export default function RootLayout({
         >
           {children}
         </ClerkProvider>
+        <GoogleTagManager gtmId="G-EMVQMGMVN2" />
       </body>
     </html>
   );
