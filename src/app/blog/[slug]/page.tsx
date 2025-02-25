@@ -18,7 +18,7 @@ export async function generateMetadata({
     openGraph: {
       title: metadata.og_title || metadata.title,
       description: metadata.og_description || metadata.excerpt,
-      images: [{ url: metadata.image }],
+      images: [{ url: `https://activazon.com/${metadata.image}` }],
       type: "article",
       publishedTime: metadata.date,
       authors: [metadata.author],
@@ -28,7 +28,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: metadata.og_title || metadata.title,
       description: metadata.og_description || metadata.excerpt,
-      images: [metadata.image],
+      images: [`https://activazon.com/${metadata.image}`],
     },
   };
 }
@@ -41,7 +41,7 @@ export default async function RemoteMdxPage({ params }: { params: Params }) {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: metadata.title,
-    image: metadata.image, // Cover image
+    image: `https://activazon.com/${metadata.image}`,
     datePublished: metadata.date,
     dateModified: metadata.date,
     author: {
