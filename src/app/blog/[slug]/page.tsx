@@ -4,12 +4,15 @@ import { MDX_COMPONENTS } from "@/lib/mdx-components";
 import { getMdxContent } from "@/lib/mdx-files";
 import { format } from "date-fns";
 
+type Params = Promise<{ slug: string }>;
+
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Params;
 }): Promise<Metadata> {
-  const { metadata } = await getMdxContent(params.slug);
+  const { slug } = await params;
+  const { metadata } = await getMdxContent(slug);
 
   return {
     title: metadata.title + " (Activazon)",
@@ -32,12 +35,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function RemoteMdxPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { metadata, content, mdxSource } = await getMdxContent(params.slug);
+export default async function RemoteMdxPage({ params }: { params: Params }) {
+  const { slug } = await params;
+  const { metadata, content } = await getMdxContent(slug);
 
   const structuredData = {
     "@context": "https://schema.org",
