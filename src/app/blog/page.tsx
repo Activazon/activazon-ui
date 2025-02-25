@@ -60,19 +60,22 @@ export default function BlogIndex() {
       </div>
 
       {/* Blog Grid */}
-      <div className="w-full max-w-[1200px] mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="w-full max-w-[1200px] mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-2">
         {blogPosts.map((post) => (
-          <Link
-            key={post.id}
-            href={`/blog/${post.slug}`}
-            className="group block"
-          >
-            <div className="w-full bg-white/[0.05] border border-white/10 rounded-xl p-5 transition-all duration-300 hover:bg-white/[0.1] hover:border-white/20 hover:scale-105">
-              <h2 className="text-xl font-semibold text-white group-hover:text-[#00A3FF] transition-all duration-200">
+          <Link key={post.id} href={`/blog/${post.slug}`} className="group">
+            <div className="w-full h-full bg-white/[0.03] border border-white/5 rounded-lg p-3 transition-all duration-200 hover:bg-white/[0.05] flex flex-col">
+              <h2 className="text-xl md:text-2xl font-medium text-white group-hover:text-[#00A3FF] transition-all duration-200">
                 {post.title}
               </h2>
-              <p className="text-white/70 mt-1">{post.excerpt}</p>
-              <p className="text-sm text-white/50 mt-2">{post.date}</p>
+              <p className="text-white/70 mt-2 font-normal">{post.excerpt}</p>
+
+              <div className="flex-1 min-h-5" />
+              <div className="mb-2 flex flex-row justify-end">
+                <p className="text-sm text-white/50">{post.date}</p>
+              </div>
+              <button className="bg-white/5 md:bg-white/10 py-2 w-full rounded-xl text-[#00A3FF] font-medium group-hover:bg-[#00A3FF]/30">
+                Read More
+              </button>
             </div>
           </Link>
         ))}
