@@ -14,7 +14,7 @@ export type MdxFrontMatter = {
   slug: string;
   tags: string[];
   category: string;
-  image: string; // Path to the preview image
+  image?: string; // Path to the preview image
   og_title: string;
   og_description: string;
   reading_time: number; // Estimated reading time in minutes

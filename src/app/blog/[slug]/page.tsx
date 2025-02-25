@@ -12,13 +12,17 @@ export async function generateMetadata({
   const { slug } = await params;
   const { metadata } = await getMdxContent(slug);
 
+  const image = metadata.image
+    ? `https://activazon.com/${metadata.image}`
+    : "https://activazon.com/og-image.png";
+
   return {
     title: metadata.title + " (Activazon)",
     description: metadata.og_description || metadata.excerpt,
     openGraph: {
       title: metadata.og_title || metadata.title,
       description: metadata.og_description || metadata.excerpt,
-      images: [{ url: `https://activazon.com/${metadata.image}` }],
+      images: [{ url: image }],
       type: "article",
       publishedTime: metadata.date,
       authors: [metadata.author],
@@ -28,7 +32,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: metadata.og_title || metadata.title,
       description: metadata.og_description || metadata.excerpt,
-      images: [`https://activazon.com/${metadata.image}`],
+      images: [image],
     },
   };
 }
@@ -37,11 +41,15 @@ export default async function RemoteMdxPage({ params }: { params: Params }) {
   const { slug } = await params;
   const { metadata, content } = await getMdxContent(slug);
 
+  const image = metadata.image
+    ? `https://activazon.com/${metadata.image}`
+    : "https://activazon.com/og-image.png";
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: metadata.title,
-    image: `https://activazon.com/${metadata.image}`,
+    image: image,
     datePublished: metadata.date,
     dateModified: metadata.date,
     author: {
