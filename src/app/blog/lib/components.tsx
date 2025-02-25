@@ -22,12 +22,12 @@ const TABLE_COMPONENTS = {
     </tr>
   ),
   th: ({ children }: { children: ReactNode }) => (
-    <th className="px-4 py-2 text-left text-white/90 font-medium border first:border-l-0 last:border-r-0 border-t-0 border-white/15  bg-white/5">
+    <th className="px-4 py-2.5 text-left text-white/90 font-normal border first:border-l-0 last:border-r-0 border-t-0 border-white/15  bg-white/5">
       {children}
     </th>
   ),
   td: ({ children }: { children: ReactNode }) => (
-    <td className="px-4 py-2 border first:border-l-0 last:border-r-0 border-white/15 text-white/80">
+    <td className="px-4 py-2.5 border first:border-l-0 last:border-r-0 border-white/15 text-white/80">
       {children}
     </td>
   ),
