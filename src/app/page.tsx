@@ -49,7 +49,7 @@ const Icon = ({ icon }: { icon: any }) => (
 export default function Home() {
   return (
     <Fragment>
-      <div className="mesh-gradient-bg " />
+      <div className="mesh-gradient-bg !translate-y-[-40vh] md:!translate-y-[-50vh]" />
       <div className="w-screen min-h-screen flex justify-center items-center">
         <div className="w-full max-w-[500px] flex flex-col justify-end gap-5">
           <Banner />
