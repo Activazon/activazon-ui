@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -17,7 +16,7 @@ export default function RootLayout({
       <header className="w-full flex flex-row justify-between border-b border-white/10 bg-white/5 md:bg-transparent md:py-5 md:px-5 py-4 px-3 sticky top-0 backdrop-blur-xl z-10">
         <Link href="/" className="">
           <img
-            src="logo.svg"
+            src="/logo.svg"
             className="h-5 md:h-7 invert brightness-0 transition-all hover:brightness-100 hover:invert-0 duration-200"
           />
         </Link>
