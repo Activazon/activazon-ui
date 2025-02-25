@@ -2,7 +2,42 @@ import Image, { ImageProps } from "next/image";
 import { ReactNode } from "react";
 import JoinWaitlistButton from "@/app/JoinWaitListButton";
 
-export const MDX_COMPONENTS = {
+const TABLE_COMPONENTS = {
+  table: ({ children }: { children: ReactNode }) => (
+    <div className="overflow-x-auto my-6 border border-white/15 rounded-xl">
+      <table className="w-full border-collapse overflow-hidden">
+        {children}
+      </table>
+    </div>
+  ),
+  thead: ({ children }: { children: ReactNode }) => (
+    <thead className="bg-white/10 text-white/80 border-b border-white/15">
+      {children}
+    </thead>
+  ),
+  tbody: ({ children }: { children: ReactNode }) => <tbody>{children}</tbody>,
+  tr: ({ children }: { children: ReactNode }) => (
+    <tr className="border-b border-white/15 hover:bg-white/5 transition-colors last:border-0">
+      {children}
+    </tr>
+  ),
+  th: ({ children }: { children: ReactNode }) => (
+    <th className="px-4 py-2 text-left text-white/90 font-medium border first:border-l-0 last:border-r-0 border-t-0 border-white/15  bg-white/5">
+      {children}
+    </th>
+  ),
+  td: ({ children }: { children: ReactNode }) => (
+    <td className="px-4 py-2 border first:border-l-0 last:border-r-0 border-white/15 text-white/80">
+      {children}
+    </td>
+  ),
+};
+
+const CUSTOM_COMPONENTS = {
+  JoinWaitlistButton,
+};
+
+const BASIC_COMPONENTS = {
   h1: ({ children }: { children: ReactNode }) => (
     <h1 className="text-4xl md:text-5xl font-bold mt-12 mb-6 tracking-tight text-white leading-tight">
       {children}
@@ -70,5 +105,10 @@ export const MDX_COMPONENTS = {
     />
   ),
   hr: () => <hr className="border-white/15 my-10" />,
-  JoinWaitlistButton,
+};
+
+export const MDX_COMPONENTS = {
+  ...BASIC_COMPONENTS,
+  ...TABLE_COMPONENTS,
+  ...CUSTOM_COMPONENTS,
 };
