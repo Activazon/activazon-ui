@@ -17,11 +17,13 @@ export async function generateMetadata({
     : "https://activazon.com/og-image.png";
 
   return {
-    title: metadata.title + " (Activazon)",
+    title: `${metadata.title} (Activazon)`,
     description: metadata.og_description || metadata.excerpt,
     openGraph: {
       title: metadata.og_title || metadata.title,
       description: metadata.og_description || metadata.excerpt,
+      url: `https://activazon.com/blog/${metadata.slug}`,
+      siteName: "Activazon",
       images: [{ url: image }],
       type: "article",
       publishedTime: metadata.date,
@@ -62,7 +64,7 @@ export default async function RemoteMdxPage({ params }: { params: Params }) {
       name: "Activazon",
       logo: {
         "@type": "ImageObject",
-        url: "/logo.png",
+        url: "https://activazon.com/logo.png",
       },
     },
     description: metadata.og_description || metadata.excerpt,
@@ -74,20 +76,22 @@ export default async function RemoteMdxPage({ params }: { params: Params }) {
 
   return (
     <div className="px-4 md:px-0 w-full max-w-[1000px] mx-auto">
-      {/* JSON-LD Structured Data */}
+      {/* JSON-LD Structured Data for SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      {/* Title */}
+      {/* Title Section */}
       <div className="mt-12 mb-6">
         <h1 className="md:inline text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
           {metadata.title}
         </h1>
-        <p className="md:ml-3 md:inline text-2xl md:text-3xl tracking-tight text-white/80 leading-tight">
-          {metadata.sub_title}
-        </p>
+        {metadata.sub_title && (
+          <p className="md:ml-3 md:inline text-2xl md:text-3xl tracking-tight text-white/80 leading-tight">
+            {metadata.sub_title}
+          </p>
+        )}
 
         {/* Metadata Section */}
         <div className="flex items-center text-white/60 text-sm mt-3 space-x-3">
@@ -96,6 +100,7 @@ export default async function RemoteMdxPage({ params }: { params: Params }) {
           <a
             href={metadata.author_profile}
             target="_blank"
+            rel="noopener noreferrer"
             className="text-[#00A3FF] underline decoration-[#00A3FF]/50 hover:decoration-[#00A3FF] transition-all duration-200 underline-offset-4"
           >
             {metadata.author}
@@ -103,9 +108,19 @@ export default async function RemoteMdxPage({ params }: { params: Params }) {
         </div>
       </div>
 
+      {/* Featured Image */}
+      {metadata.image && (
+        <div className="w-full my-6">
+          <img
+            src={image}
+            alt={metadata.title}
+            className="rounded-lg shadow-md w-full max-h-[500px] object-cover"
+          />
+        </div>
+      )}
+
       {/* MDX Content */}
       {content}
-      {/* <MDXRemote components={MDX_COMPONENTS} source={content} /> */}
     </div>
   );
 }
