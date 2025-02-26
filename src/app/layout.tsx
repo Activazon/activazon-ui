@@ -5,6 +5,7 @@ import Head from "next/head";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,7 +82,18 @@ export default function RootLayout({
         >
           {children}
         </ClerkProvider>
-        <GoogleTagManager gtmId="G-EMVQMGMVN2" />
+
+        <Script
+          async={true}
+          src="https://www.googletagmanager.com/gtag/js?id=G-EMVQMGMVN2"
+        />
+        <Script>
+          {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EMVQMGMVN2');`}
+        </Script>
       </body>
     </html>
   );
