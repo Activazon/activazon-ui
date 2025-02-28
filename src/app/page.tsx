@@ -9,7 +9,6 @@ import {
 } from "@hugeicons/core-free-icons";
 import JoinWaitListButton from "./JoinWaitListButton";
 import { getAllMdxMetadata } from "@/app/blog/lib/mdx"; // ✅ Fetch latest blog posts
-import Link from "next/link";
 import LatestInsights from "./LatestInsights";
 
 const Banner = () => (

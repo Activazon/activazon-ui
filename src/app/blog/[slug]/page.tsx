@@ -17,7 +17,7 @@ export async function generateMetadata({
     : "https://activazon.com/og-image.png";
 
   return {
-    title: `${metadata.title} (Activazon)`,
+    title: `${metadata.og_title || metadata.title} (Activazon)`,
     description: metadata.og_description || metadata.excerpt,
     applicationName: "Activazon",
     keywords: metadata.tags,

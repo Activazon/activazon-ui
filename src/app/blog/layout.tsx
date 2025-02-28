@@ -17,6 +17,7 @@ export default function RootLayout({
         <Link href="/blog" className="">
           <img
             src="/logo.svg"
+            alt="Activazon Logo"
             className="h-6 md:h-7 invert brightness-0 transition-all hover:brightness-100 hover:invert-0 duration-200"
           />
         </Link>

@@ -98,7 +98,20 @@ const BASIC_COMPONENTS = {
       {children}
     </code>
   ),
-  img: (props: any) => <img className="rounded-lg my-6 shadow-md" {...props} />,
+  img: (props: any) => (
+    <div className="relative w-full h-auto">
+      <Image
+        src={props.src}
+        alt={props.alt}
+        width={700}
+        height={400}
+        style={{ objectFit: "cover" }}
+        className="rounded-lg my-6 shadow-md w-full"
+        quality={30}
+        priority
+      />
+    </div>
+  ),
   hr: () => <hr className="border-white/15 my-10" />,
 };
 
