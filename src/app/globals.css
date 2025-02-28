@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #FFFFFF;
+  --background: 10, 10, 10;
+  --foreground: 255, 255, 255;
+  --primary: 0, 163, 255;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -15,8 +16,8 @@
 } */
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
   position: relative;
 
 }
@@ -28,8 +29,8 @@ body {
     radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.2) 10%, transparent 40%),
     radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.5) 15%, transparent 45%),
     radial-gradient(circle at 70% 35%, rgba(0, 163, 255, 0.5) 15%, transparent 45%),
-    radial-gradient(circle at 50% 5%, rgba(0, 0, 0, 0.7) 30%, var(--background) 50%),
-    var(--background);
+    radial-gradient(circle at 50% 5%, rgba(0, 0, 0, 0.7) 30%, rgb(var(--background)) 50%),
+    rgb(var(--background));
 
   background-size: cover;
   background-attachment: fixed;

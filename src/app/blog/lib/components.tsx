@@ -1,6 +1,7 @@
 import Image, { ImageProps } from "next/image";
 import { ReactNode } from "react";
 import JoinWaitlistButton from "@/app/JoinWaitListButton";
+import InlineCitation from "./InlineCitation";
 
 const TABLE_COMPONENTS = {
   table: ({ children }: { children: ReactNode }) => (
@@ -35,6 +36,7 @@ const TABLE_COMPONENTS = {
 
 const CUSTOM_COMPONENTS = {
   JoinWaitlistButton,
+  InlineCitation,
 };
 
 const BASIC_COMPONENTS = {
