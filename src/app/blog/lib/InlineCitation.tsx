@@ -17,7 +17,6 @@ const InlineCitation: React.FC<InlineCitationProps> = ({ url }) => {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      aria-hidden="true"
       className="inline-block ml-1 px-2 py-0.5 bg-foreground/20 hover:bg-primary/40 text-foreground/60 hover:text-primary rounded-full text-xs no-underline transition-all duration-200"
     >
       {domain}
