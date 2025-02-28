@@ -19,6 +19,9 @@ export async function generateMetadata({
   return {
     title: `${metadata.title} (Activazon)`,
     description: metadata.og_description || metadata.excerpt,
+    applicationName: "Activazon",
+    keywords: metadata.tags,
+    publisher: "Activazon",
     openGraph: {
       title: metadata.og_title || metadata.title,
       description: metadata.og_description || metadata.excerpt,
@@ -27,7 +30,7 @@ export async function generateMetadata({
       images: [{ url: image }],
       type: "article",
       publishedTime: metadata.date,
-      authors: [metadata.author],
+      authors: ["Activazon", metadata.author],
       tags: metadata.tags,
     },
     twitter: {
