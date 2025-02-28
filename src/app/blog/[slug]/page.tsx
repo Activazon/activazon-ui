@@ -108,17 +108,6 @@ export default async function RemoteMdxPage({ params }: { params: Params }) {
         </div>
       </div>
 
-      {/* Featured Image */}
-      {metadata.image && (
-        <div className="w-full my-6">
-          <img
-            src={image}
-            alt={metadata.title}
-            className="rounded-lg shadow-md w-full max-h-[500px] object-cover"
-          />
-        </div>
-      )}
-
       {/* MDX Content */}
       {content}
     </div>
