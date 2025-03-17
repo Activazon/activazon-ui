@@ -37,6 +37,7 @@ const TABLE_COMPONENTS = {
 const CUSTOM_COMPONENTS = {
   JoinWaitlistButton,
   InlineCitation,
+  Ref: InlineCitation,
 };
 
 const BASIC_COMPONENTS = {
