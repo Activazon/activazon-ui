@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getMdxContent } from "@/app/blog/lib/mdx";
 import { format } from "date-fns";
+import Link from "next/link";
 
 type Params = Promise<{ slug: string }>;
 
@@ -11,6 +12,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const { metadata } = await getMdxContent(slug);
+
+  if (!metadata) {
+    return {};
+  }
 
   const image = metadata.image
     ? `https://activazon.com/${metadata.image}`
@@ -45,6 +50,18 @@ export async function generateMetadata({
 export default async function RemoteMdxPage({ params }: { params: Params }) {
   const { slug } = await params;
   const { metadata, content } = await getMdxContent(slug);
+
+  if (!metadata) {
+    return (
+      <div className="p-10 flex flex-col gap-4">
+        <p className="text-3xl">Not Found</p>
+        <p className="text-lg">The page you are looking for does not exist.</p>
+        <Link href="/blog" className="text-blue-500">
+          Go back to the blog
+        </Link>
+      </div>
+    );
+  }
 
   const image = metadata.image
     ? `https://activazon.com/${metadata.image}`

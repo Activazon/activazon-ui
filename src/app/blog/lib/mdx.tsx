@@ -22,21 +22,28 @@ export type MdxFrontMatter = {
 };
 
 export async function getMdxContent(slug: string) {
-  const filePath = path.join(process.cwd(), "content", `${slug}.mdx`);
-  const fileContent = await fs.readFile(filePath, "utf-8");
+  try {
+    const filePath = path.join(process.cwd(), "content", `${slug}.mdx`);
+    const fileContent = await fs.readFile(filePath, "utf-8");
 
-  const { frontmatter: metadata, content } = await compileMDX<MdxFrontMatter>({
-    source: fileContent,
-    options: {
-      parseFrontmatter: true,
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-      },
-    },
-    components: MDX_COMPONENTS,
-  });
+    const { frontmatter: metadata, content } = await compileMDX<MdxFrontMatter>(
+      {
+        source: fileContent,
+        options: {
+          parseFrontmatter: true,
+          mdxOptions: {
+            remarkPlugins: [remarkGfm],
+          },
+        },
+        components: MDX_COMPONENTS,
+      }
+    );
 
-  return { metadata, content };
+    return { metadata, content };
+  } catch (error) {
+    console.error(error);
+    return { metadata: null, content: null };
+  }
 }
 
 export async function getAllMdxMetadata(): Promise<MdxFrontMatter[]> {
