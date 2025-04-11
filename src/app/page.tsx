@@ -131,6 +131,13 @@ export default async function Home() {
             <JoinWaitListButton />
           </div>
 
+          <a
+            href="https://internet-watchdog-alert.lovable.app/"
+            className="text-4xl text-white font-bold"
+          >
+            INTERNET CHECKER
+          </a>
+
           <footer className="w-full pt-5 pb-5">
             <p className="text-center text-sm text-white/70">
               &copy; Activazon 2025
