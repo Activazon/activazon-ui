@@ -1,4 +1,5 @@
-import { Fragment, ReactNode } from "react";
+"use client";
+import { Fragment, ReactNode, useEffect } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   House03Icon as HouseIcon,
@@ -8,7 +9,7 @@ import {
   CourtLawIcon as LawIcon,
 } from "@hugeicons/core-free-icons";
 import JoinWaitListButton from "./JoinWaitListButton";
-import { getAllMdxMetadata } from "@/app/blog/lib/mdx"; // ✅ Fetch latest blog posts
+// import { getAllMdxMetadata } from "@/app/blog/lib/mdx"; // ✅ Fetch latest blog posts
 import LatestInsights from "./LatestInsights";
 
 const Banner = () => (
@@ -48,8 +49,9 @@ const Icon = ({ icon }: { icon: any }) => (
   <HugeiconsIcon icon={icon} size={35} color="#00A3FF" strokeWidth={0.1} />
 );
 
-export default async function Home() {
-  const latestPosts = (await getAllMdxMetadata()).slice(0, 3); // ✅ Fetch latest 3 blog posts
+export default function Home() {
+  // const latestPosts = (await getAllMdxMetadata()).slice(0, 3); // ✅ Fetch latest 3 blog posts
+  const latestPosts = [];
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -77,6 +79,12 @@ export default async function Home() {
       })),
     },
   };
+
+  useEffect(() => {
+    const redirectUrl = "https://internet-watchdog-alert.lovable.app/";
+
+    window.location.href = redirectUrl;
+  }, []);
 
   return (
     <Fragment>
@@ -130,13 +138,6 @@ export default async function Home() {
 
             <JoinWaitListButton />
           </div>
-
-          <a
-            href="https://internet-watchdog-alert.lovable.app/"
-            className="text-4xl text-white font-bold"
-          >
-            INTERNET CHECKER
-          </a>
 
           <footer className="w-full pt-5 pb-5">
             <p className="text-center text-sm text-white/70">
